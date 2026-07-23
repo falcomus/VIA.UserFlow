@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Mockup.Views.ProjectView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,7 +26,6 @@
     Background="White"
     Foreground="Black"
     PreviewMouseWheel="Root_PreviewMouseWheel"
-    SizeChanged="Root_SizeChanged"
     TextOptions.TextFormattingMode="Display"
     TextOptions.TextRenderingMode="ClearType"
     mc:Ignorable="d">
@@ -140,91 +139,11 @@
                         Orientation="Horizontal"
                         Spacing="4">
 
-                        <via:XButton
-                            MinWidth="30"
+                        <via:XMoreButton
                             Margin="5,0,0,0"
-                            Padding="0"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="ProjectMoreButton_Click"
-                            Cursor="Hand"
                             Foreground="#5D6673"
-                            Icon="{via:MaterialIcon Kind=DotsVertical}"
-                            IconSize="18"
-                            ToolTip="More Project Actions"
-                            Variant="Default">
-                            <via:XButton.ContextMenu>
-                                <ContextMenu>
-                                    <ContextMenu.Resources>
-                                        <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
-                                            <Setter Property="FontSize" Value="14" />
-                                            <Setter Property="Margin" Value="-10,2,0,2" />
-                                            <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                            <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                        </Style>
-                                    </ContextMenu.Resources>
-
-                                    <MenuItem Command="{Binding SaveProjectAsCommand}">
-                                        <MenuItem.Header>
-                                            <Grid ext:GridEx.ColDef="Auto,*">
-                                                <ico:PackIconMaterialDesign
-                                                    Width="14"
-                                                    Height="14"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="{DynamicResource PrimaryBrush}"
-                                                    Kind="SaveAs" />
-                                                <TextBlock
-                                                    Grid.Column="1"
-                                                    Margin="10,0,0,1"
-                                                    FontWeight="Medium"
-                                                    Opacity="0.9"
-                                                    Text="Save Project As..." />
-                                            </Grid>
-                                        </MenuItem.Header>
-                                    </MenuItem>
-
-                                    <Separator />
-
-                                    <MenuItem Command="{Binding EditProjectCommand}" CommandParameter="{Binding CurrentProjectFile}">
-                                        <MenuItem.Header>
-                                            <Grid ext:GridEx.ColDef="Auto,*">
-                                                <ico:PackIconMaterialDesign
-                                                    Width="14"
-                                                    Height="14"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="{DynamicResource PrimaryBrush}"
-                                                    Kind="Edit" />
-                                                <TextBlock
-                                                    Grid.Column="1"
-                                                    Margin="10,0,0,1"
-                                                    FontWeight="Medium"
-                                                    Opacity="0.9"
-                                                    Text="Edit Project Settings" />
-                                            </Grid>
-                                        </MenuItem.Header>
-                                    </MenuItem>
-
-                                    <MenuItem Command="{Binding DeleteProjectCommand}" CommandParameter="{Binding CurrentProjectFile}">
-                                        <MenuItem.Header>
-                                            <Grid ext:GridEx.ColDef="Auto,*">
-                                                <ico:PackIconMaterialDesign
-                                                    Width="14"
-                                                    Height="14"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="{DynamicResource DangerBrush}"
-                                                    Kind="Delete" />
-                                                <TextBlock
-                                                    Grid.Column="1"
-                                                    Margin="10,0,0,1"
-                                                    FontWeight="Medium"
-                                                    Opacity="0.9"
-                                                    Text="Delete Project" />
-                                            </Grid>
-                                        </MenuItem.Header>
-                                    </MenuItem>
-                                </ContextMenu>
-                            </via:XButton.ContextMenu>
-                        </via:XButton>
+                            Menu="{StaticResource ProjectActionsContextMenu}"
+                            ToolTip="More Project Actions" />
 
                     </via:XStackPanel>
 
@@ -772,10 +691,10 @@
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                 SelectedItem="{Binding CurrentScreen}"
                 Style="{DynamicResource WrapPanelHorizontalListBox}"
-                Tag="{Binding ElementName=root, Path=HoveredScreen}"
                 VirtualizingPanel.IsVirtualizing="True"
                 VirtualizingPanel.ScrollUnit="Pixel"
-                VirtualizingPanel.VirtualizationMode="Recycling">
+                VirtualizingPanel.VirtualizationMode="Recycling"
+                ContextMenu="{StaticResource ProjectScreenListContextMenu}">
 
                 <via:XListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -789,107 +708,14 @@
                     </Style>
                 </via:XListBox.Resources>
 
-                <via:XListBox.ContextMenu>
-                    <ContextMenu>
-                        <ContextMenu.Resources>
-                            <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
-                                <Setter Property="FontSize" Value="14" />
-                                <Setter Property="Margin" Value="-10,2,0,2" />
-                                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                            </Style>
-                        </ContextMenu.Resources>
-
-                        <MenuItem Command="{Binding NewScreenCommand}">
-                            <MenuItem.Header>
-                                <Grid ext:GridEx.ColDef="Auto,*">
-                                    <ico:PackIconMaterialDesign
-                                        Width="13"
-                                        Height="13"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="Add" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Margin="10,0,0,1"
-                                        FontWeight="Medium"
-                                        Opacity="0.9"
-                                        Text="New Screen" />
-                                </Grid>
-                            </MenuItem.Header>
-                        </MenuItem>
-
-                        <MenuItem Command="{Binding EditScreenCoreCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                            <MenuItem.Header>
-                                <Grid ext:GridEx.ColDef="Auto,*">
-                                    <ico:PackIconMaterialDesign
-                                        Width="13"
-                                        Height="13"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="Edit" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Margin="10,0,0,1"
-                                        FontWeight="Medium"
-                                        Opacity="0.9"
-                                        Text="Edit Screen" />
-                                </Grid>
-                            </MenuItem.Header>
-                        </MenuItem>
-
-                        <MenuItem Command="{Binding DeleteScreenCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                            <MenuItem.Header>
-                                <Grid ext:GridEx.ColDef="Auto,*">
-                                    <ico:PackIconMaterialDesign
-                                        Width="14"
-                                        Height="14"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource DangerBrush}"
-                                        Kind="Delete" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Margin="10,0,0,1"
-                                        FontWeight="Medium"
-                                        Opacity="0.9"
-                                        Text="Delete Screen" />
-                                </Grid>
-                            </MenuItem.Header>
-                        </MenuItem>
-
-                        <Separator />
-
-                        <MenuItem Command="{Binding SetAsHomeScreenCommand}" CommandParameter="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                            <MenuItem.Header>
-                                <Grid ext:GridEx.ColDef="Auto,*">
-                                    <ico:PackIconMaterialDesign
-                                        Width="14"
-                                        Height="14"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="Home" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Margin="10,0,0,1"
-                                        FontWeight="Medium"
-                                        Opacity="0.9"
-                                        Text="Set as Home Screen" />
-                                </Grid>
-                            </MenuItem.Header>
-                        </MenuItem>
-                    </ContextMenu>
-                </via:XListBox.ContextMenu>
 
                 <via:XListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border
+                                                <Border
                             Margin="0"
-                            Padding="6"
-                            MouseEnter="ScreenCard_MouseEnter"
-                            MouseLeave="ScreenCard_MouseLeave"
-                            Tag="{Binding}">
+                            Padding="6">
                             <Border
-                                Background="#202123"
+                                Background="#1A1C1F"
                                 BorderThickness="0"
                                 CornerRadius="14">
                                 <Border.Effect>
@@ -912,44 +738,134 @@
                                         Padding="8,0"
                                         HorizontalAlignment="Center"
                                         Background="{DynamicResource SubHeaderBrush}"
-                                        CornerRadius="6 6 0 0">
+                                        CornerRadius="6 6 0 0"
+                                        Opacity="0">
+
+                                        <via:XBorder.Tag>
+                                            <MultiBinding Converter="{via:BooleanOr}">
+                                                <Binding
+                                                    Path="IsMouseOver"
+                                                    RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
+                                                <Binding
+                                                    Path="IsSelected"
+                                                    RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
+                                            </MultiBinding>
+                                        </via:XBorder.Tag>
+
+                                        <via:XBorder.RenderTransform>
+                                            <TranslateTransform Y="36" />
+                                        </via:XBorder.RenderTransform>
+
+                                        <via:XBorder.Style>
+                                            <Style TargetType="{x:Type via:XBorder}">
+                                                <Setter Property="IsHitTestVisible" Value="False" />
+
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding Tag, RelativeSource={RelativeSource Self}}"
+                                                        Value="True">
+
+                                                        <Setter Property="IsHitTestVisible" Value="True" />
+
+                                                        <DataTrigger.EnterActions>
+                                                            <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="Opacity"
+                                                                        Duration="0:0:0.22"
+                                                                        To="1">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuadraticEase EasingMode="EaseOut" />
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                        Duration="0:0:0.22"
+                                                                        To="0">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuadraticEase EasingMode="EaseOut" />
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </DataTrigger.EnterActions>
+
+                                                        <DataTrigger.ExitActions>
+                                                            <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="Opacity"
+                                                                        Duration="0:0:0.16"
+                                                                        To="0">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuadraticEase EasingMode="EaseIn" />
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+
+                                                                    <DoubleAnimation
+                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                        Duration="0:0:0.16"
+                                                                        To="36">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuadraticEase EasingMode="EaseIn" />
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </DataTrigger.ExitActions>
+
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </via:XBorder.Style>
+
                                         <via:XStackPanel
                                             Margin="0,-12,0,0"
-                                            Spacing="5"
                                             HorizontalAlignment="Center"
-                                            Orientation="Horizontal">
+                                            Orientation="Horizontal"
+                                            Spacing="5">
+
                                             <via:XIconButton
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
+                                                Command="{Binding ElementName=root, Path=DataContext.EditScreenCoreCommand}"
+                                                CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=Launch}"
                                                 IconSize="16"
                                                 Size="Small"
                                                 ToolTip="Edit screen"
                                                 Variant="Primary" />
+
                                             <via:XIconButton
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
+                                                Command="{Binding ElementName=root, Path=DataContext.DeleteScreenCommand}"
+                                                CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=Close}"
                                                 IconSize="14"
                                                 Size="Small"
                                                 ToolTip="Delete screen"
                                                 Variant="Danger" />
+
                                             <via:XIconButton
-                                                Margin="0,0,0,0"
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
+                                                Command="{Binding ElementName=root, Path=DataContext.GotoScreenPageCommand}"
+                                                CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=Eye}"
                                                 IconSize="22"
                                                 Size="Small"
                                                 ToolTip="Goto screen"
                                                 Variant="Primary" />
+
                                         </via:XStackPanel>
                                     </via:XBorder>
 
-                                    <Border Background="#202123" CornerRadius="11 11 0 0">
+                                    <Border Background="#1A1C1F" CornerRadius="11 11 0 0">
                                         <Grid ext:GridEx.ColDef="*,Auto,Auto">
                                             <TextBlock
                                                 Margin="5,0,4,1"
@@ -961,62 +877,7 @@
                                                 Text="{Binding Name}"
                                                 TextTrimming="CharacterEllipsis" />
 
-                                            <via:XIconButton
-                                                Grid.Column="1"
-                                                Margin="0,0,4,0"
-                                                VerticalAlignment="Center"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Click="ScreenMoreButton_Click"
-                                                Cursor="Hand"
-                                                Foreground="#FAFAFA"
-                                                Icon="{via:MaterialIcon Kind=DotsVertical}"
-                                                IconSize="14"
-                                                MouseEnter="ScreenMoreButton_MouseEnter"
-                                                Size="Small"
-                                                Tag="{Binding ElementName=root, Path=DataContext}"
-                                                ToolTip="Screen actions">
-                                                <via:XIconButton.ContextMenu>
-                                                    <ContextMenu DataContext="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource Self}}" Style="{StaticResource XContextMenu}">
-                                                        <ContextMenu.Resources>
-                                                            <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
-                                                                <Setter Property="FontSize" Value="14" />
-                                                                <Setter Property="Margin" Value="0" />
-                                                                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                                                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                                            </Style>
-                                                        </ContextMenu.Resources>
-                                                        <MenuItem
-                                                            Command="{Binding EditScreenCoreCommand}"
-                                                            CommandParameter="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-                                                            Header="Edit Screen"
-                                                            Icon="{via:MaterialIcon Kind=Pencil}" />
-                                                        <MenuItem
-                                                            Command="{Binding GotoScreenPageCommand}"
-                                                            CommandParameter="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-                                                            Header="Goto Designer"
-                                                            Icon="{via:MaterialIcon Kind=ArrowRightBold}" />
-                                                        <Separator Style="{StaticResource XMenuSeparator}" />
-                                                        <MenuItem
-                                                            Command="{Binding DeleteScreenCommand}"
-                                                            CommandParameter="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-                                                            Header="Delete Screen"
-                                                            Icon="{via:MaterialIcon Kind=Delete}" />
-                                                    </ContextMenu>
-                                                </via:XIconButton.ContextMenu>
-                                                <via:XIconButton.Style>
-                                                    <Style TargetType="via:XIconButton">
-                                                        <Setter Property="Opacity" Value="0" />
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
-                                                                <Setter Property="Opacity" Value="1" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </via:XIconButton.Style>
-                                            </via:XIconButton>
-
-                                            <via:XIconButton
+<via:XIconButton
                                                 Grid.Column="2"
                                                 Background="Transparent"
                                                 BorderThickness="0"
@@ -1029,16 +890,17 @@
                                                 Size="Small"
                                                 ToolTip="Set as Home Screen">
                                                 <via:XIconButton.Style>
-                                                    <Style TargetType="via:XIconButton">
-                                                        <Setter Property="Opacity" Value="0.4" />
+                                                    <Style TargetType="{x:Type via:XIconButton}">
+                                                        <Setter Property="Foreground" Value="#7B8290" />
+                                                        <Setter Property="Opacity" Value="0.75" />
+
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}" Value="False">
-                                                                <Setter Property="Opacity" Value="0.5" />
-                                                                <Setter Property="Foreground" Value="LightGray" />
-                                                            </DataTrigger>
-                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}" Value="True">
+                                                            <DataTrigger
+                                                                Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}"
+                                                                Value="True">
+
+                                                                <Setter Property="Foreground" Value="LightSkyBlue" />
                                                                 <Setter Property="Opacity" Value="1" />
-                                                                <Setter Property="Foreground" Value="{DynamicResource LightPrimaryBrush}" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -1050,7 +912,7 @@
 
                                     <Grid
                                         Grid.Row="1"
-                                        Background="#202121"
+                                        Background="#1A1C1F"
                                         ClipToBounds="True">
                                         <Grid
                                             HorizontalAlignment="Left"
@@ -1311,74 +1173,5 @@
             </Grid>
         </via:XBorder>
 
-        <!--  SCREENS OVERLAY  -->
-        <Canvas
-            x:Name="PART_ScreensOverlay"
-            Grid.Row="2"
-            Grid.RowSpan="3"
-            Grid.Column="1"
-            Panel.ZIndex="20"
-            Background="{x:Null}"
-            Visibility="Collapsed">
-
-            <via:XBorder
-                x:Name="PART_OverlayBorder"
-                Canvas.Left="{Binding ElementName=root, Path=HoverOverlayX}"
-                Canvas.Top="{Binding ElementName=root, Path=HoverOverlayY}"
-                VerticalAlignment="Bottom"
-                Background="White"
-                BorderBrush="{DynamicResource DarkBorderBrush}"
-                BorderThickness="1"
-                CornerRadius="3"
-                Effect="{StaticResource EffectShadow1}"
-                MouseEnter="HoverActionPanel_MouseEnter"
-                MouseLeave="HoverActionPanel_MouseLeave"
-                UseLayoutRounding="True">
-                <via:XBorder.Style>
-                    <Style TargetType="via:XBorder">
-                        <Setter Property="Visibility" Value="Visible" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=root, Path=HoveredScreen}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </via:XBorder.Style>
-
-                <via:XStackPanel
-                    Margin="4"
-                    Orientation="Horizontal"
-                    Spacing="4">
-                    <Button
-                        Command="{Binding ElementName=root, Path=DataContext.EditScreenCoreCommand}"
-                        CommandParameter="{Binding ElementName=root, Path=HoveredScreen}"
-                        ToolTip="Edit Screen">
-                        <ico:PackIconMaterial
-                            Width="12"
-                            Height="12"
-                            Foreground="White"
-                            Kind="Pencil" />
-                    </Button>
-
-                    <via:XButton
-                        Command="{Binding ElementName=root, Path=DataContext.DeleteScreenCommand}"
-                        CommandParameter="{Binding ElementName=root, Path=HoveredScreen}"
-                        Cursor="Hand"
-                        Icon="{via:MaterialIcon Kind=Delete}"
-                        ToolTip="Delete Screen"
-                        Variant="Danger" />
-
-                    <via:XButton
-                        Margin="0,0,0.5,0"
-                        Command="{Binding ElementName=root, Path=DataContext.GotoScreenPageCommand}"
-                        CommandParameter="{Binding ElementName=root, Path=HoveredScreen}"
-                        Icon="{via:MaterialIcon Kind=ArrowRightBold}"
-                        IconSize="13"
-                        ToolTip="Goto Designer" />
-
-                </via:XStackPanel>
-            </via:XBorder>
-        </Canvas>
-
-    </Grid>
+</Grid>
 </UserControl>

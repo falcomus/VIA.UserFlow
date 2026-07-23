@@ -56,7 +56,8 @@
                     SelectedItem="{Binding CurrentScreen, Mode=TwoWay}"
                     SelectionChanged="ScreenListBox_SelectionChanged"
                     SelectionMode="Single"
-                    VirtualizingPanel.IsVirtualizing="True">
+                    VirtualizingPanel.IsVirtualizing="True"
+                    ContextMenu="{StaticResource ScreenListContextMenu}">
 
                     <via:XListBox.ItemContainerStyle>
                         <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
@@ -85,98 +86,6 @@
                         </Style>
                     </via:XListBox.ItemContainerStyle>
 
-                    <via:XListBox.ContextMenu>
-                        <ContextMenu>
-                            <ContextMenu.Resources>
-                                <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
-                                    <Setter Property="FontSize" Value="14" />
-                                    <Setter Property="Margin" Value="-10,2,0,2" />
-                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                </Style>
-                            </ContextMenu.Resources>
-
-                            <MenuItem Command="{Binding NewScreenCommand}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="13"
-                                            Height="13"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryBrush}"
-                                            Kind="Add" />
-
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="New Screen" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
-
-                            <MenuItem Command="{Binding EditScreenCoreCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="18"
-                                            Height="18"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryBrush}"
-                                            Kind="Edit" />
-
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="Edit Screen" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
-
-                            <MenuItem>
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="18"
-                                            Height="18"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryBrush}"
-                                            Kind="CopyAll" />
-
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="Duplicate Screen" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
-
-                            <MenuItem Command="{Binding DeleteScreenCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="16"
-                                            Height="16"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource DangerBrush}"
-                                            Kind="Delete" />
-
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="Delete Screen" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
-                        </ContextMenu>
-                    </via:XListBox.ContextMenu>
 
                     <via:XListBox.GroupStyle>
                         <GroupStyle>

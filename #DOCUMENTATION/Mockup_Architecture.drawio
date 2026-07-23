@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram id="mockup-architecture" name="Mockup Architecture">
+    <mxGraphModel dx="1722" dy="941" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="MockupViewModel&#xa;------------------&#xa;CurrentScreen : Screen&#xa;CurrentScreenTemplate : ScreenTemplate&#xa;CurrentPopup : ScreenPopup&#xa;DesignerHeight : double&#xa;&#xa;Commands:&#xa;MoveBand(band, delta)&#xa;ResizeBand(...)&#xa;Save/Load" vertex="1">
+          <mxGeometry height="220" width="360" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="xaml" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="XAML Views&#xa;------------------&#xa;ScreenDesignerControl&#xa;TemplateDesignerControl&#xa;PopupDesignerControl&#xa;&#xa;Bindings:&#xa;Screen / Template / Popup&#xa;Height = DesignerHeight" vertex="1">
+          <mxGeometry height="220" width="320" x="40" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="base" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" value="BaseDesigner&#xa;------------------&#xa;Render + Mouse + HitTest&#xa;InvalidateDesigner()&#xa;&#xa;NO STATE:&#xa;no Bands collection&#xa;no Screen/Template/Popup knowledge&#xa;&#xa;abstract GetActiveBands()" vertex="1">
+          <mxGeometry height="220" width="320" x="840" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="screenDesigner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="ScreenDesigner : BaseDesigner&#xa;------------------&#xa;DP: Screen&#xa;GetActiveBands() =&gt; Screen.Bands&#xa;Mouse → RequestMoveBand(band,delta)" vertex="1">
+          <mxGeometry height="130" width="320" x="340" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="templateDesigner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="TemplateDesigner : BaseDesigner&#xa;------------------&#xa;DP: ScreenTemplate&#xa;GetActiveBands() =&gt; Template.Bands" vertex="1">
+          <mxGeometry height="120" width="320" x="490" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="popupDesigner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="PopupDesigner : BaseDesigner&#xa;------------------&#xa;DP: ScreenPopup&#xa;GetActiveBands() =&gt; Popup.Bands" vertex="1">
+          <mxGeometry height="120" width="320" x="750" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="vm" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="xaml">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="xaml" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="screenDesigner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="xaml" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="templateDesigner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="xaml" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="popupDesigner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="screenDesigner" style="endArrow=block;endFill=0;html=1;rounded=0;strokeColor=#666666;" target="base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="templateDesigner" style="endArrow=block;endFill=0;html=1;rounded=0;strokeColor=#666666;" target="base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="popupDesigner" style="endArrow=block;endFill=0;html=1;rounded=0;strokeColor=#666666;" target="base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="screenDesigner" style="endArrow=block;html=1;rounded=0;strokeColor=#cc0000;fontColor=#cc0000;" target="vm" value="Request: MoveBand / ResizeBand">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

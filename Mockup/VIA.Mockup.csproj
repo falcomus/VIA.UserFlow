@@ -1,0 +1,105 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- ═══════════════════════════════════════════════════════════
+         GRUNDLEGENDE PROJEKTEINSTELLUNGEN
+         ═══════════════════════════════════════════════════════════ -->
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Prefer32Bit>false</Prefer32Bit>
+		<AssemblyTitle>Mockup WPF Bibliothek</AssemblyTitle>
+		<AssemblyDescription>Mockup-Komponenten für die Anwendung</AssemblyDescription>
+		<Copyright>Copyright © 2024</Copyright>
+		<LangVersion>latest</LangVersion>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         BUILD-KONFIGURATION
+         ═══════════════════════════════════════════════════════════ -->
+	<PropertyGroup>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<NoWarn>NU1701;CS0618;CS8600;CS8602;CS8603;CS8625;CS8618;CS0649;CS0169;CS0472</NoWarn>
+	</PropertyGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         DEBUG-KONFIGURATION
+         ═══════════════════════════════════════════════════════════ -->
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<Optimize>false</Optimize>
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         RELEASE-KONFIGURATION
+         ═══════════════════════════════════════════════════════════ -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<DefineConstants>TRACE</DefineConstants>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<TieredCompilation>false</TieredCompilation>
+	</PropertyGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         NUGET-PAKETE
+         ═══════════════════════════════════════════════════════════ -->
+	<ItemGroup>
+		<!-- MVVM Framework -->
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+
+		<!-- WPF Drag-and-Drop -->
+		<PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
+
+		<!-- Icons (MahApps.Metro) -->
+		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
+
+		<!-- Logging -->
+		<PackageReference Include="Serilog" Version="4.3.1" />
+
+		<!-- Grafik & Rendering (SkiaSharp + SVG) -->
+		<PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.4" />
+		<PackageReference Include="SkiaSharp.Extended" Version="3.0.0" />
+		<PackageReference Include="Svg.Skia" Version="5.0.0" />
+
+		<!-- Text-Rendering -->
+		<PackageReference Include="Topten.RichTextKit" Version="0.4.167" />
+
+		<!-- Virtualisierte WrapPanel-Performance -->
+		<PackageReference Include="VirtualizingWrapPanel" Version="2.5.1" />
+	</ItemGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         PROJEKT-REFERENZEN
+         ═══════════════════════════════════════════════════════════ -->
+	<ItemGroup>
+		<ProjectReference Include="..\Mockup.Snapshots\VIA.Mockup.Snapshots.csproj" />
+		<ProjectReference Include="..\Mockup.Guidelines\VIA.Mockup.Guidelines.csproj" />
+		<ProjectReference Include="..\..\VIA.WPF\VIA.WPF\VIA.WPF\VIA.WPF.csproj" />
+	</ItemGroup>
+
+	<!-- ═══════════════════════════════════════════════════════════
+         ASSETS & RESSOURCEN
+         ═══════════════════════════════════════════════════════════ -->
+	<ItemGroup>
+		<Resource Include="Resources\Image\**\*.png" />
+		<Resource Include="Resources\PNG\**\*.png" />
+		<Resource Include="Resources\ControlPreviews\**\*.png" />
+		<EmbeddedResource Include="Resources\SVG\**\*.svg" />
+		<Resource Include="Resources\Cursors\*.ani" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,72 @@
+<Window
+    x:Class="UserFlow.SplashWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:via="http://schemas.via.dev/wpf"
+    Title="VIA USERFLOW"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    SizeToContent="Manual"
+    SnapsToDevicePixels="True"
+    TextOptions.TextFormattingMode="Display"
+    TextOptions.TextRenderingMode="ClearType"
+    Topmost="True"
+    UseLayoutRounding="True"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None">
+
+    <Grid Width="400" Height="300">
+
+        <Image Source="/Resources/png/splashScreen.png" Stretch="Uniform" />
+
+        <TextBlock
+            x:Name="PART_HeadingText"
+            Margin="25,150,0,0"
+            HorizontalAlignment="Left"
+            FontSize="18"
+            FontWeight="Bold"
+            Foreground="Black"
+            Opacity="0.9"
+            Text="Startup process" />
+
+        <TextBlock
+            x:Name="PART_StatusText"
+            Grid.Row="1"
+            Margin="25,195,0,0"
+            FontSize="13"
+            Foreground="Black"
+            Opacity="0.9"
+            Text="The launch is being prepared..."
+            TextTrimming="CharacterEllipsis" />
+
+        <via:XProgressBar
+            x:Name="PART_ProgressBar"
+            Width="300"
+            Height="18"
+            Margin="25,175,0,0"
+            HorizontalAlignment="Left"
+            IsIndeterminate="False"
+            Maximum="100"
+            Minimum="0"
+            MinHeight="0"
+            ProgressBrush="#2050A0"
+            ShowValue="False"
+            TrackBrush="#EAEBEF"
+            TrackThickness="18"
+            Value="50" />
+
+        <TextBlock
+            x:Name="PART_PercentText"
+            Margin="350,228,0,0"
+            HorizontalAlignment="Left"
+            FontSize="12"
+            FontWeight="SemiBold"
+            Foreground="Black"
+            Opacity="0.9"
+            Text="0 %" />
+    </Grid>
+
+
+</Window>

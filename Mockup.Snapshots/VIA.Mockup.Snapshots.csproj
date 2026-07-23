@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- ============================================================
+         GRUNDLEGENDE PROJEKTEINSTELLUNGEN
+         ============================================================ -->
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>false</UseWPF>
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <AssemblyTitle>Mockup.Snapshots</AssemblyTitle>
+        <AssemblyDescription>Undo/Redo Snapshot-Engine für UserFlow</AssemblyDescription>
+        <Copyright>Copyright © 2024</Copyright>
+
+        <LangVersion>latest</LangVersion>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <NoWarn>NU1701;CS8600;CS8602;CS8603;CS8625;CS8618</NoWarn>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <!-- ============================================================
+         NUGET PACKAGES
+         ============================================================ -->
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    </ItemGroup>
+
+</Project>

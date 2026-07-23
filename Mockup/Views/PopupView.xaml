@@ -1,0 +1,607 @@
+<UserControl
+    x:Class="Mockup.Views.PopupView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behav="clr-namespace:Mockup.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:designer="clr-namespace:Mockup.Designer"
+    xmlns:ext="clr-namespace:Mockup.Extensions"
+    xmlns:gong="urn:gong-wpf-dragdrop"
+    xmlns:grouping="clr-namespace:Mockup.Grouping"
+    xmlns:helper="clr-namespace:Mockup.Helper"
+    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:Mockup.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mockup="clr-namespace:Mockup"
+    xmlns:ui="clr-namespace:Mockup.UIControls"
+    xmlns:via="http://schemas.via.dev/wpf"
+    xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
+    x:Name="root"
+    d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="1200"
+    Background="{DynamicResource DesignerBackgroundBrush}"
+    Foreground="{DynamicResource TextPrimaryBrush}"
+    PreviewMouseWheel="Root_PreviewMouseWheel"
+    SnapsToDevicePixels="True"
+    TextOptions.TextFormattingMode="Display"
+    TextOptions.TextRenderingMode="ClearType"
+    UseLayoutRounding="True"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ResizeHeightThumbStyle" TargetType="Thumb">
+            <Setter Property="Width" Value="25" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Grid>
+                            <Ellipse
+                                Fill="{DynamicResource PrimaryBrush}"
+                                Stroke="White"
+                                StrokeThickness="1.3">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="3"
+                                        Direction="270"
+                                        Opacity="0.5"
+                                        ShadowDepth="1" />
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <ico:PackIconMaterial
+                                Width="14"
+                                Height="14"
+                                Foreground="White"
+                                Kind="ArrowVerticalLock" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ResizeWidthThumbStyle" TargetType="Thumb">
+            <Setter Property="Width" Value="25" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Grid>
+                            <Ellipse
+                                Fill="{DynamicResource PrimaryBrush}"
+                                Stroke="White"
+                                StrokeThickness="1.3">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="3"
+                                        Direction="270"
+                                        Opacity="0.5"
+                                        ShadowDepth="1" />
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <ico:PackIconMaterial Kind="ArrowHorizontalLock" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RightWidthHandleStyle" TargetType="Thumb">
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Margin" Value="0,0,-22,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentPopup.Position}" Value="{x:Static mockup:ScreenPopupPosition.Right}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LeftWidthHandleStyle" TargetType="Thumb">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Margin" Value="-22,0,0,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentPopup.Position}" Value="{x:Static mockup:ScreenPopupPosition.Right}">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="Margin" Value="-22,0,0,0" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="BottomHeightHandleStyle" TargetType="Thumb">
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentPopup.Position}" Value="{x:Static mockup:ScreenPopupPosition.Bottom}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TopHeightHandleStyle" TargetType="Thumb">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Margin" Value="0,-22,0,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentPopup.Position}" Value="{x:Static mockup:ScreenPopupPosition.Bottom}">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Setter Property="Margin" Value="0,-22,0,0" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid ext:GridEx.ColDef="350,*">
+        <via:XBorder
+            Padding="0"
+            Background="{DynamicResource HeaderBackgroundBrush}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+            BorderThickness="0,0,1,0"
+            CornerRadius="0">
+            <Grid Grid.Column="0" ext:GridEx.RowDef="48,Auto,*">
+
+                <via:XBorder
+                    Grid.Row="1"
+                    Height="35"
+                    Padding="8,2"
+                    Background="White"
+                    BorderBrush="{DynamicResource DarkBorderBrush}"
+                    BorderThickness="0,0,0,0.5"
+                    CornerRadius="0"
+                    Visibility="Collapsed">
+                    <via:XSearchBox
+                        Margin="0,0,0,4"
+                        Padding="5,0,5,0"
+                        VerticalAlignment="Center"
+                        Background="White"
+                        BorderThickness="0,0,0,1"
+                        Focusable="True"
+                        FontSize="15"
+                        FontWeight="Normal"
+                        IsHitTestVisible="True"
+                        IsTabStop="False"
+                        Placeholder="Search .."
+                        ShowResetButton="True" />
+                </via:XBorder>
+
+                <via:XListBox
+                    x:Name="PopupListBox"
+                    Grid.Row="2"
+                    Padding="0"
+                    HorizontalContentAlignment="Stretch"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
+                    BorderThickness="0"
+                    ItemContainerStyle="{StaticResource GroupedListBoxItemStyle}"
+                    ItemTemplate="{StaticResource GroupedPopupItemTemplate}"
+                    ItemsSource="{Binding PopupsGroupedView}"
+                    MouseDoubleClick="ListBox_MouseDoubleClick"
+                    ScrollViewer.CanContentScroll="False"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    SelectedItem="{Binding CurrentPopup, Mode=TwoWay}"
+                    SelectionChanged="PopupListBox_SelectionChanged"
+                    SelectionMode="Single">
+
+                    <via:XListBox.ContextMenu>
+                        <ContextMenu>
+                            <ContextMenu.Resources>
+                                <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
+                                    <Setter Property="FontSize" Value="14" />
+                                    <Setter Property="Margin" Value="-10,2,0,2" />
+                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </ContextMenu.Resources>
+
+                            <MenuItem Command="{Binding NewPopupCommand}">
+                                <MenuItem.Header>
+                                    <Grid ext:GridEx.ColDef="Auto,*">
+                                        <ico:PackIconMaterialDesign
+                                            Width="13"
+                                            Height="13"
+                                            VerticalAlignment="Center"
+                                            Foreground="{DynamicResource PrimaryBrush}"
+                                            Kind="Add" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="10,0,0,1"
+                                            FontWeight="Medium"
+                                            Opacity="0.9"
+                                            Text="New Popup" />
+                                    </Grid>
+                                </MenuItem.Header>
+                            </MenuItem>
+
+                            <MenuItem Command="{Binding EditPopupCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                <MenuItem.Header>
+                                    <Grid ext:GridEx.ColDef="Auto,*">
+                                        <ico:PackIconMaterialDesign
+                                            Width="13"
+                                            Height="13"
+                                            VerticalAlignment="Center"
+                                            Foreground="{DynamicResource PrimaryBrush}"
+                                            Kind="Edit" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="10,0,0,1"
+                                            FontWeight="Medium"
+                                            Opacity="0.9"
+                                            Text="Edit Popup" />
+                                    </Grid>
+                                </MenuItem.Header>
+                            </MenuItem>
+
+                            <MenuItem Command="{Binding DeletePopupCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                <MenuItem.Header>
+                                    <Grid ext:GridEx.ColDef="Auto,*">
+                                        <ico:PackIconMaterialDesign
+                                            Width="14"
+                                            Height="14"
+                                            VerticalAlignment="Center"
+                                            Foreground="{DynamicResource DangerBrush}"
+                                            Kind="Delete" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="10,0,0,1"
+                                            FontWeight="Medium"
+                                            Opacity="0.9"
+                                            Text="Delete Popup" />
+                                    </Grid>
+                                </MenuItem.Header>
+                            </MenuItem>
+                        </ContextMenu>
+                    </via:XListBox.ContextMenu>
+
+                    <via:XListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <via:XExpander
+                                                    Margin="2"
+                                                    Padding="0"
+                                                    HorizontalAlignment="Stretch"
+                                                    HorizontalContentAlignment="Stretch"
+                                                    behav:GroupExpandStateBehavior.Host="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    behav:GroupExpandStateBehavior.Key="{Binding Name}"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceDark}}"
+                                                    ContentPadding="0 1 0 -2"
+                                                    Header="{Binding Name}"
+                                                    IsExpanded="True">
+                                                    <ItemsPresenter />
+                                                </via:XExpander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </via:XListBox.GroupStyle>
+                </via:XListBox>
+
+                <via:XBorder
+                    Grid.Column="0"
+                    Padding="0"
+                    Background="{DynamicResource HeaderBackgroundBrush}"
+                    BorderBrush="{DynamicResource DarkBorderBrush}"
+                    BorderThickness="0,0,0,1"
+                    CornerRadius="0">
+                    <via:XBorder.Effect>
+                        <DropShadowEffect
+                            BlurRadius="8"
+                            Direction="270"
+                            Opacity="0.2"
+                            ShadowDepth="2" />
+                    </via:XBorder.Effect>
+                    <Grid Grid.Column="0" ext:GridEx.ColDef="*,Auto">
+
+                        <via:XTextBlock
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            Text="Popups" />
+
+                        <via:XIconButton
+                            Grid.Column="1"
+                            Margin="0,0,10,0"
+                            Command="{Binding NewPopupCommand}"
+                            Cursor="Hand"
+                            Icon="{via:MaterialIcon Kind=Plus}"
+                            IconSize="16"
+                            Size="Small"
+                            ToolTip="New Popup"
+                            Variant="Primary" />
+
+                    </Grid>
+                </via:XBorder>
+            </Grid>
+        </via:XBorder>
+
+        <Grid
+            x:Name="PART_DesignerArea"
+            Grid.Column="1"
+            ext:GridEx.RowDef="48,*">
+
+            <ScrollViewer
+                x:Name="PART_ScrollViewer"
+                Grid.Row="1"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <Grid
+                    MinWidth="{Binding ElementName=PART_ScrollViewer, Path=ViewportWidth}"
+                    MinHeight="{Binding ElementName=PART_ScrollViewer, Path=ViewportHeight}"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}">
+                    <Grid
+                        Margin="0,44,0,44"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Grid.LayoutTransform>
+                            <ScaleTransform ScaleX="{Binding CurrentProject.PopupZoomPercent, Converter={StaticResource ZoomPercentToScaleConverter}}" ScaleY="{Binding CurrentProject.PopupZoomPercent, Converter={StaticResource ZoomPercentToScaleConverter}}" />
+                        </Grid.LayoutTransform>
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Grid
+                                Width="{Binding ElementName=root, Path=PopupPreviewSurfaceWidth}"
+                                Height="{Binding ElementName=root, Path=PopupPreviewSurfaceHeight}"
+                                ClipToBounds="False">
+                                <Rectangle
+                                    Width="{Binding CurrentProject.DeviceWidth, FallbackValue=100}"
+                                    Height="{Binding CurrentProject.DeviceHeight, FallbackValue=100}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Fill="{DynamicResource DesignAreaBackground}"
+                                    Stroke="#80A7B7C8"
+                                    StrokeDashArray="2 2"
+                                    StrokeThickness="1" />
+
+                                <Canvas Background="Transparent" ClipToBounds="False">
+                                    <Grid Canvas.Left="{Binding ElementName=root, Path=PopupPreviewLeft}" Canvas.Top="{Binding ElementName=root, Path=PopupPreviewTop}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <via:XBorder
+                                            Grid.Row="0"
+                                            Margin="0"
+                                            Padding="4"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Background="#20242A"
+                                            CornerRadius="8"
+                                            SnapsToDevicePixels="False"
+                                            UseLayoutRounding="True">
+                                            <designer:PopupDesignerControl
+                                                x:Name="PART_PopupDesignerControl"
+                                                Width="{Binding PopupDesignerWidth, Mode=TwoWay, FallbackValue=200}"
+                                                Height="{Binding PopupDesignerHeight, Mode=TwoWay, FallbackValue=250}"
+                                                gong:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Self}}"
+                                                gong:DragDrop.IsDropTarget="True"
+                                                AllowDrop="True"
+                                                ScreenPopup="{Binding CurrentPopup}" />
+                                        </via:XBorder>
+
+                                        <Thumb
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Width="22"
+                                            Height="22"
+                                            Padding="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Background="Transparent"
+                                            Cursor="SizeNS"
+                                            DragDelta="ResizeHeight"
+                                            Foreground="White"
+                                            Style="{StaticResource TopHeightHandleStyle}">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border
+                                                        Background="#303133"
+                                                        BorderThickness="0"
+                                                        CornerRadius="4 4 0 0">
+                                                        <ico:PackIconMaterial
+                                                            Width="12"
+                                                            Height="12"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Kind="DragVertical" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+
+                                        <Thumb
+                                            Grid.Row="1"
+                                            Width="22"
+                                            Height="22"
+                                            Padding="0"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            Cursor="SizeNS"
+                                            DragDelta="ResizeHeight"
+                                            Foreground="White"
+                                            Style="{StaticResource BottomHeightHandleStyle}">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border
+                                                        Background="#303133"
+                                                        BorderThickness="0"
+                                                        CornerRadius="0 0 4 4">
+                                                        <ico:PackIconMaterial
+                                                            Width="12"
+                                                            Height="12"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Kind="DragVertical" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+
+                                        <Thumb
+                                            Grid.Row="0"
+                                            Width="22"
+                                            Height="22"
+                                            Padding="0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            Cursor="SizeWE"
+                                            DragDelta="ResizeWidth"
+                                            Foreground="White"
+                                            Style="{StaticResource LeftWidthHandleStyle}">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border
+                                                        Background="#303133"
+                                                        BorderThickness="0"
+                                                        CornerRadius="4 0 0 4">
+                                                        <ico:PackIconMaterial
+                                                            Width="12"
+                                                            Height="12"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Kind="DragHorizontal" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+
+                                        <Thumb
+                                            Grid.Row="0"
+                                            Width="22"
+                                            Height="22"
+                                            Padding="0"
+                                            HorizontalAlignment="Right"
+                                            Background="Transparent"
+                                            Cursor="SizeWE"
+                                            DragDelta="ResizeWidth"
+                                            Foreground="White"
+                                            Style="{StaticResource RightWidthHandleStyle}">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border
+                                                        Background="#303133"
+                                                        BorderThickness="0"
+                                                        CornerRadius="0 4 4 0">
+                                                        <ico:PackIconMaterial
+                                                            Width="12"
+                                                            Height="12"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Kind="DragHorizontal" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Grid>
+                                </Canvas>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+            <via:XBorder
+                Grid.Column="1"
+                Padding="0"
+                Background="{DynamicResource HeaderBackgroundBrush}"
+                BorderBrush="{DynamicResource DarkBorderBrush}"
+                BorderThickness="0,0,0,1"
+                CornerRadius="0">
+                <via:XBorder.Effect>
+                    <DropShadowEffect
+                        BlurRadius="8"
+                        Direction="270"
+                        Opacity="0.12"
+                        ShadowDepth="2" />
+                </via:XBorder.Effect>
+
+                <Grid ext:GridEx.ColDef="*,Auto">
+
+                    <via:XTextBlock
+                        Margin="18,0,15,1"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Opacity="0.9"
+                        Text="{Binding CurrentPopup.Name, FallbackValue='Popup Name'}" />
+
+                    <StackPanel
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+
+                        <via:XSeparator
+                            Grid.Column="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <ui:AlignmentToolbar
+                            HorizontalAlignment="Right"
+                            BorderBrush="{DynamicResource DarkBorderBrush}"
+                            BorderThickness="0"
+                            Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <via:XSeparator
+                            Grid.Column="1"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center" />
+
+                        <ui:UndoRedoBar />
+
+                        <via:XSeparator
+                            Grid.Column="1"
+                            Margin="3,0,3,0"
+                            HorizontalAlignment="Center" />
+
+                        <ui:XZoomSlider
+                            x:Name="PART_ZoomSlider"
+                            Margin="3,0,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            MaxZoomPercent="200"
+                            MinZoomPercent="25"
+                            TickFrequency="1"
+                            ZoomPercent="{Binding CurrentProject.PopupZoomPercent, Mode=TwoWay}" />
+
+                    </StackPanel>
+
+                </Grid>
+
+            </via:XBorder>
+
+            <via:XBorder
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="3"
+                Padding="0"
+                Background="{DynamicResource NoDataBackground}"
+                BorderBrush="{DynamicResource DarkBorderBrush}"
+                BorderThickness="0,0,1,0"
+                CornerRadius="0"
+                Visibility="{Binding CurrentPopup, Converter={StaticResource NullToInversVisibilityConverter}, FallbackValue=Collapsed}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ico:PackIconMaterial
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Foreground="{DynamicResource DangerBrush}"
+                        Kind="Information" />
+                    <via:XTextBlock
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        Text="No current Popup" />
+                </StackPanel>
+            </via:XBorder>
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+

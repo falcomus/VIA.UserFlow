@@ -1,0 +1,122 @@
+<UserControl
+    x:Class="Mockup.UIControls.AlignmentToolbar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:Mockup.Extensions"
+    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
+    xmlns:via="http://schemas.via.dev/wpf"
+    d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        
+        <Style TargetType="ico:PackIconMaterial">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="15" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <via:XToggleDropDown
+        Height="34"
+        Padding="10,0,10,1"
+        VerticalContentAlignment="Center"
+        Content="Alignment"
+        Cursor="Hand"
+        Focusable="False"
+        FontSize="13"
+        FontWeight="Medium"
+        IsTabStop="False">
+        <via:XToggleDropDown.DropDownContent>
+            <Border
+                Padding="8"
+                Background="White"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="18"
+                        Direction="315"
+                        Opacity="0.16"
+                        ShadowDepth="4" />
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock
+                        Margin="2,0,0,8"
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Text="ALIGNMENT" />
+
+                    <via:XStackPanel Orientation="Horizontal" Spacing="4">
+                        <Button Command="{Binding AlignLeftCommand}"  ToolTip="Align Left">
+                            <ico:PackIconMaterial Kind="FormatHorizontalAlignLeft" />
+                        </Button>
+                        <Button Command="{Binding AlignCenterCommand}"  ToolTip="Align Center">
+                            <ico:PackIconMaterial Kind="FormatHorizontalAlignCenter" />
+                        </Button>
+                        <Button Command="{Binding AlignRightCommand}"  ToolTip="Align Right">
+                            <ico:PackIconMaterial Kind="FormatHorizontalAlignRight" />
+                        </Button>
+                        <Button Margin="6,0,0,0" Command="{Binding AlignTopCommand}"  ToolTip="Align Top">
+                            <ico:PackIconMaterial Kind="FormatVerticalAlignTop" />
+                        </Button>
+                        <Button Command="{Binding AlignMiddleCommand}"  ToolTip="Align Middle">
+                            <ico:PackIconMaterial Kind="FormatVerticalAlignCenter" />
+                        </Button>
+                        <Button Command="{Binding AlignBottomCommand}"  ToolTip="Align Bottom">
+                            <ico:PackIconMaterial Kind="FormatVerticalAlignBottom" />
+                        </Button>
+                    </via:XStackPanel>
+
+                    <TextBlock
+                        Margin="2,12,0,8"
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Text="SIZE &amp; SPACING" />
+
+                    <via:XStackPanel Orientation="Horizontal" Spacing="4">
+                        <Button Command="{Binding MakeSameWidthCommand}"  ToolTip="Make Same Width">
+                            <ico:PackIconMaterial Kind="ArrowExpandHorizontal" />
+                        </Button>
+                        <Button Command="{Binding MakeSameHeightCommand}"  ToolTip="Make Same Height">
+                            <ico:PackIconMaterial Kind="ArrowExpandVertical" />
+                        </Button>
+                        <Button Command="{Binding MakeSameSizeCommand}"  ToolTip="Make Same Size">
+                            <ico:PackIconMaterial Kind="CropSquare" />
+                        </Button>
+                        <Button Margin="6,0,0,0" Command="{Binding SpaceHorEvenCommand}"  ToolTip="Space Horizontal Even">
+                            <ico:PackIconMaterial Kind="UnfoldMoreVertical" />
+                        </Button>
+                        <Button Command="{Binding SpaceVerEvenCommand}"  ToolTip="Space Vertical Even">
+                            <ico:PackIconMaterial Kind="UnfoldMoreHorizontal" />
+                        </Button>
+                    </via:XStackPanel>
+
+                    <TextBlock
+                        Margin="2,12,0,8"
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Text="STACK" />
+
+                    <via:XStackPanel Orientation="Horizontal" Spacing="4">
+                        <Button Command="{Binding StackHorCommand}"  ToolTip="Stack Horizontal">
+                            <ico:PackIconMaterial Kind="ViewWeekOutline" />
+                        </Button>
+                        <Button Command="{Binding StackVerCommand}"  ToolTip="Stack Vertical">
+                            <ico:PackIconMaterial Kind="ViewAgendaOutline" />
+                        </Button>
+                    </via:XStackPanel>
+                </StackPanel>
+            </Border>
+        </via:XToggleDropDown.DropDownContent>
+    </via:XToggleDropDown>
+</UserControl>

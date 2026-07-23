@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+	<Application>
+		<Assembly Name="SkiaSharp">
+			<Type Name="SkiaSharp.SKObject" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKSurface" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKCanvas" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKPaint" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKPath" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKBitmap" Dynamic="Required All" />
+			<Type Name="SkiaSharp.SKImage" Dynamic="Required All" />
+		</Assembly>
+		<Assembly Name="SkiaSharp.Views.WPF">
+			<Type Name="SkiaSharp.Views.WPF.SKElement" Dynamic="Required All" />
+		</Assembly>
+	</Application>
+</Directives>

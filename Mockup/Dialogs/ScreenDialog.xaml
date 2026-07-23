@@ -1,0 +1,504 @@
+<dialogs:ModalDialogWindow
+    x:Class="Mockup.Dialogs.ScreenDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogs="clr-namespace:Mockup.Dialogs"
+    xmlns:ext="clr-namespace:Mockup.Extensions"
+    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mockup="clr-namespace:Mockup"
+    xmlns:via="http://schemas.via.dev/wpf"
+    x:Name="root"
+    Title="Edit screen"
+    Subtitle=""
+    Width="800"
+    MinWidth="600"
+    d:DataContext="{d:DesignInstance Type=mockup:Screen}"
+    SizeToContent="Height"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    ShowThemeModeButton="False"
+    ShowThemeSelector="False"
+    ShowMinimizeButton="False"
+    ShowMaximizeButton="False"
+    ShowResizeGrip="False"
+    TitleBarHeight="45"
+    TitleFontSize="16"
+    TitleBarPadding="20,0,0,0"
+    CornerRadius="10"
+    WindowStartupLocation="CenterOwner"
+    WindowBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
+    WindowBorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+    TitleBarBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
+    TitleBarForegroundBrush="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+    mc:Ignorable="d">
+
+    <dialogs:ModalDialogWindow.Effect>
+        <DropShadowEffect BlurRadius="18" Direction="270" Opacity="0.20" ShadowDepth="5" />
+    </dialogs:ModalDialogWindow.Effect>
+
+    <Grid ext:GridEx.RowDef="*,Auto">
+                <Grid
+                    Grid.Row="0"
+                    Margin="20,20,20,10"
+                    ext:GridEx.RowDef="Auto,*">
+
+                    <via:XStackPanel Orientation="Vertical" Spacing="5">
+                        <!--  Name  -->
+                        <via:XTextBox
+                            x:Name="InputName"
+                            Header="Name"
+                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!--  Category  -->
+                        <Grid
+                            Grid.Row="2"
+                            Margin="0,10,0,0"
+                            ext:GridEx.ColDef="*,40,Auto">
+                            <via:XComboBox
+                                Header="Category"
+                                IsEditable="True"
+                                IsTextSearchEnabled="True"
+                                ItemsSource="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=ScreenGroupNames}"
+                                Text="{Binding GroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                            <via:XCheckBox
+                                Grid.Column="2"
+                                VerticalAlignment="Bottom"
+                                Content="Home Screen"
+                                IsChecked="{Binding IsHomeScreen}" />
+
+                        </Grid>
+
+                        <!--  Description  -->
+                        <via:XTextBox
+                            Grid.Row="4"
+                            Height="85"
+                            Margin="0,10,0,0"
+                            AcceptsReturn="True"
+                            Header="Description"
+                            VerticalContentAlignment="Top"
+                            Text="{Binding Descr, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="Wrap" />
+
+
+                        <Grid
+                            Margin="0,10,0,0"
+                            ext:GridEx.ColDef="Auto,20,*"
+                            ext:GridEx.RowDef="Auto,*">
+
+                            <via:XTextBlock
+                                Margin="0,4,0,0"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                Text="Background" />
+
+                            <via:XStackPanel
+                                Grid.Row="1"
+                                Margin="0,5,0,0"
+                                Orientation="Horizontal">
+
+                                <via:XBorder
+                                    Width="150"
+                                    Height="34"
+                                    Background="{Binding Background, Converter={StaticResource ColorToBrushConverter}}"
+                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                    BorderThickness="1"
+                                    CornerRadius="3" />
+                                <via:XIconButton
+                                    Margin="5,0,0,0"
+                                    Click="PickBackground_Click"
+                                    Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                    IconSize="12"
+                                    Size="Medium" />
+                            </via:XStackPanel>
+
+                            <via:XTextBlock
+                                Grid.Column="2"
+                                Margin="0,4,0,0"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                Text="Image" />
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="0,5,0,0"
+                                ext:GridEx.ColDef="*,Auto,Auto">
+                                <via:XBorder
+                                    Height="34"
+                                    Padding="10,0"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                                    CornerRadius="4">
+                                    <via:XTextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="13"
+                                        FontWeight="Medium"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                        Text="{Binding BackgroundImageFilename, FallbackValue='Image Filename'}" />
+                                </via:XBorder>
+
+                                <via:XIconButton
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=SelectScreenImageCommand}"
+                                    CommandParameter="{Binding}"
+                                    Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                    IconSize="12"
+                                    Size="Medium" />
+
+                                <via:XIconButton
+                                    Grid.Column="2"
+                                    Margin="5,0,0,0"
+                                    Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=ResetScreenImageCommand}"
+                                    CommandParameter="{Binding}"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
+                                    Icon="{via:MaterialIcon Kind=Close}"
+                                    IconSize="12" />
+
+                            </Grid>
+
+                        </Grid>
+
+                    </via:XStackPanel>
+
+                    <via:XTabControl
+                        Grid.Row="1"
+                        Height="470"
+                        Margin="0,30,0,0"
+                        FontWeight="SemiBold"
+                        HeaderAppearance="Underlined"
+                        HeaderPadding="14,7,14,7"
+                        HeaderSpacing="2"
+                        ShowBorder="False">
+
+                        <!--  Tab Header  -->
+                        <via:XTabItem Header="Header">
+
+                            <via:XBorder Margin="0,10,0,5">
+
+                                <Grid
+                                    Margin="5"
+                                    ext:GridEx.ColDef="250,30,*"
+                                    ext:GridEx.RowDef="Auto,Auto,Auto,Auto,*"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}">
+
+                                    <via:XCheckBox Content="Show Header" IsChecked="{Binding ShowHeader}" />
+
+                                    <via:XTextBox
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="3"
+                                        Margin="0,15,0,0"
+                                        Header="Header Title"
+                                        Text="{Binding HeaderBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <via:XTextBlock
+                                        Grid.Row="2"
+                                        Margin="0,15,0,0"
+                                        FontSize="12"
+                                        FontWeight="Medium"
+                                        Text="Header Color" />
+
+                                    <Grid
+                                        Grid.Row="3"
+                                        Margin="0,5,0,0"
+                                        ext:GridEx.ColDef="*,3,Auto">
+                                        <via:XBorder
+                                            x:Name="HeaderColorPreview"
+                                            Grid.Row="1"
+                                            Height="34"
+                                            Padding="0"
+                                            Background="{Binding HeaderBand.HeaderBackground, Converter={StaticResource ColorToBrushConverter}}"
+                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                            BorderThickness="1"
+                                            CornerRadius="3" />
+                                        <via:XIconButton
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Margin="2,0,0,0"
+                                            Click="PickHeaderColor_Click"
+                                            Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                            IconSize="12"
+                                            Size="Medium" />
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </via:XBorder>
+
+                        </via:XTabItem>
+
+
+                        <via:XTabItem Header="Footer">
+                            <via:XBorder Margin="0,10,0,5">
+
+                                <Grid
+                                    Margin="5"
+                                    ext:GridEx.ColDef="*,30,*"
+                                    ext:GridEx.RowDef="Auto,Auto,Auto,Auto,*"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}">
+
+                                    <via:XCheckBox Content="Show Footer" IsChecked="{Binding ShowFooter}" />
+
+                                    <via:XTextBox
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="3"
+                                        Margin="0,15,0,0"
+                                        Header="Footer Title"
+                                        Text="{Binding FooterBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <via:XTextBlock
+                                        Grid.Row="2"
+                                        Margin="0,15,0,0"
+                                        FontSize="12"
+                                        FontWeight="Medium"
+                                        Text="Footer Color" />
+
+                                    <Grid
+                                        Grid.Row="3"
+                                        Margin="0,5,0,0"
+                                        ext:GridEx.ColDef="*,3,Auto">
+                                        <via:XBorder
+                                            x:Name="FooterColorPreview"
+                                            Grid.Row="1"
+                                            Height="34"
+                                            Padding="0"
+                                            Background="{Binding FooterBand.FooterBackground, Converter={StaticResource ColorToBrushConverter}}"
+                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                            BorderThickness="1"
+                                            CornerRadius="3" />
+                                        <via:XIconButton
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Margin="2,0,0,0"
+                                            Click="PickFooterColor_Click"
+                                            Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                            IconSize="12"
+                                            Size="Medium" />
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </via:XBorder>
+                        </via:XTabItem>
+
+                        <!--  Bands  -->
+                        <via:XTabItem Header="Bands &amp; Pages">
+
+                            <Grid ext:GridEx.RowDef="*,*">
+
+                                <via:XBorder
+                                    Margin="0,10,0,0"
+                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                    BorderThickness="1"
+                                    CornerRadius="6">
+
+                                    <Grid ext:GridEx.RowDef="Auto,*" Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}">
+
+                                        <Grid ext:GridEx.ColDef="*,Auto,Auto,Auto,Auto">
+                                            <via:XTextBlock
+                                                VerticalAlignment="Center"
+                                                FontSize="13"
+                                                FontWeight="SemiBold"
+                                                Text="Bands" />
+                                            <via:XIconButton
+                                                Grid.Column="1"
+                                                Click="AddBand_Click"
+                                                Icon="{via:MaterialIcon Kind=Plus}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Add Band" />
+                                            <via:XIconButton
+                                                Grid.Column="2"
+                                                Margin="4,0,0,0"
+                                                Click="MoveBandUp_Click"
+                                                Icon="{via:MaterialIcon Kind=ArrowUp}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Move Up" />
+                                            <via:XIconButton
+                                                Grid.Column="3"
+                                                Margin="4,0,0,0"
+                                                Click="MoveBandDown_Click"
+                                                Icon="{via:MaterialIcon Kind=ArrowDown}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Move Down" />
+                                            <via:XIconButton
+                                                Grid.Column="4"
+                                                Margin="4,0,0,0"
+                                                Click="DeleteBand_Click"
+                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
+                                                Icon="{via:MaterialIcon Kind=Delete}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Delete Band" />
+                                        </Grid>
+
+                                        <via:XListBox
+                                            Grid.Row="1"
+                                            Margin="-3,10,-3,0"
+                                            HorizontalContentAlignment="Stretch"
+                                            ItemsSource="{Binding ElementName=root, Path=CustomBandsView}"
+                                            Mode="Navigation"
+                                            SelectedItem="{Binding ElementName=root, Path=SelectedBand, Mode=TwoWay}">
+                                            <via:XListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid ext:GridEx.ColDef="*,Auto,Auto,Auto,Auto,90">
+                                                        <via:XTextBox
+                                                            Margin="-2,0,-2,0"
+                                                            VerticalAlignment="Center"
+                                                            VerticalContentAlignment="Center"
+                                                            BorderThickness="0.5"
+                                                            Size="Small"
+                                                            Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <via:XCheckBox
+                                                            Grid.Column="1"
+                                                            Margin="15,0,10,0"
+                                                            VerticalAlignment="Center"
+                                                            Content="Sticky"
+                                                            IsChecked="{Binding IsSticky, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <via:XCheckBox
+                                                            Grid.Column="2"
+                                                            Margin="10,0,10,0"
+                                                            VerticalAlignment="Center"
+                                                            Content="Exp."
+                                                            IsChecked="{Binding IsExpandable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <via:XCheckBox
+                                                            Grid.Column="3"
+                                                            Margin="10,0,10,0"
+                                                            VerticalAlignment="Center"
+                                                            Content="Tabs"
+                                                            IsChecked="{Binding ShowTabs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <via:XCheckBox
+                                                            Grid.Column="4"
+                                                            Margin="10,0,10,0"
+                                                            VerticalAlignment="Center"
+                                                            Content="Uniform"
+                                                            IsChecked="{Binding UniformPageHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <Grid
+                                                            Grid.Column="5"
+                                                            Margin="10,0,0,0"
+                                                            ext:GridEx.ColDef="*,Auto">
+                                                            <Border
+                                                                Height="26"
+                                                                VerticalAlignment="Stretch"
+                                                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                                                BorderThickness="1"
+                                                                CornerRadius="4">
+                                                                <Border.Background>
+                                                                    <SolidColorBrush Color="{Binding BandBackground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                </Border.Background>
+                                                            </Border>
+                                                            <via:XIconButton
+                                                                Grid.Column="1"
+                                                                Margin="5,0,0,0"
+                                                                Click="PickBandColor_Click"
+                                                                Cursor="Hand"
+                                                                Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                                                IconSize="12"
+                                                                Size="Small" />
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </via:XListBox.ItemTemplate>
+                                        </via:XListBox>
+                                    </Grid>
+
+                                </via:XBorder>
+
+                                <via:XBorder
+                                    Grid.Row="1"
+                                    Margin="0,15,0,5"
+                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                    BorderThickness="1"
+                                    CornerRadius="6">
+                                    <Grid ext:GridEx.RowDef="Auto,*" Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}">
+                                        <Grid ext:GridEx.ColDef="*,Auto,Auto">
+                                            <via:XTextBlock VerticalAlignment="Center" Text="Pages" />
+                                            <via:XIconButton
+                                                Grid.Column="1"
+                                                Margin="4,0,0,0"
+                                                Click="AddPage_Click"
+                                                Icon="{via:MaterialIcon Kind=Plus}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Add Page" />
+                                            <via:XIconButton
+                                                Grid.Column="2"
+                                                Margin="4,0,0,0"
+                                                Click="DeletePage_Click"
+                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
+                                                Icon="{via:MaterialIcon Kind=Delete}"
+                                                IconSize="12"
+                                                Size="Small"
+                                                ToolTip="Delete Page" />
+                                        </Grid>
+
+                                        <via:XListBox
+                                            Grid.Row="1"
+                                            Margin="-3,10,-3,0"
+                                            HorizontalContentAlignment="Stretch"
+                                            ItemsSource="{Binding ElementName=root, Path=SelectedBand.Pages}"
+                                            Mode="CompactNavigation"
+                                            SelectedItem="{Binding ElementName=root, Path=SelectedPage, Mode=TwoWay}">
+                                            <via:XListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <via:XTextBox
+                                                        Margin="-3,0,-2,0"
+                                                        VerticalAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderThickness="0.5"
+                                                        Size="Small"
+                                                        Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </via:XListBox.ItemTemplate>
+                                        </via:XListBox>
+                                    </Grid>
+
+                                </via:XBorder>
+                            </Grid>
+                        </via:XTabItem>
+                    </via:XTabControl>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region  === OK / CANCEL BUTTONS ===-->
+                <via:XBorder
+                    Grid.Row="1"
+                    Padding="28,14"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                    BorderThickness="0,1,0,0">
+                    <via:XStackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                    <via:XButton
+                        Width="110"
+                        Click="Ok_Click"
+                        Content="OK"
+                        Cursor="Hand"
+                        IsTabStop="False"
+                        Size="Large"
+                        Variant="Primary" />
+                    <via:XButton
+                        Width="92"
+                        Click="Cancel_Click"
+                        Content="Cancel"
+                        Cursor="Hand"
+                        IsTabStop="False"
+                        Size="Large"
+                         />
+                    </via:XStackPanel>
+                </via:XBorder>
+                <!--#endregion-->
+
+    </Grid>
+</dialogs:ModalDialogWindow>
+

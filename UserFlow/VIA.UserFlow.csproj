@@ -1,0 +1,167 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- ============================================================
+       GRUNDLEGENDE PROJEKTEINSTELLUNGEN
+       ============================================================ -->
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+
+		<!-- Allgemeine Projekteigenschaften -->
+		<AssemblyTitle>Meine WPF Anwendung</AssemblyTitle>
+		<AssemblyDescription>Beschreibung der Anwendung</AssemblyDescription>
+		<Copyright>Copyright © 2024</Copyright>
+	</PropertyGroup>
+
+	<!-- ============================================================
+       GLOBALE EINSTELLUNGEN FÜR ALLE KONFIGURATIONEN
+       ============================================================ -->
+	<PropertyGroup>
+		<!-- Unsicheren Code erlauben (für bestimmte Performance-Optimierungen) -->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<!-- Neueste C#-Sprachversion verwenden -->
+		<LangVersion>latest</LangVersion>
+
+		<!-- Alle Abhängigkeiten in Ausgabeverzeichnis kopieren -->
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+		<!-- Satellite Assemblies verhindern - keine Sprachunterordner im Output -->
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+
+		<!-- WARNUNGEN KONFIGURIEREN -->
+		<!-- NU1701-Warnungen komplett unterdrücken -->
+		<NoWarn>NU1701</NoWarn>
+		<!-- Warnungen NIEMALS als Fehler behandeln -->
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<!-- ============================================================
+       DEBUG-KONFIGURATION (Entwicklung)
+       ============================================================ -->
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<!-- Debug-Informationen -->
+		<Optimize>false</Optimize>
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+
+		<!-- Plattformtarget für Debugging (x86 für bessere Kompatibilität) -->
+		<PlatformTarget>x86</PlatformTarget>
+
+		<!-- Define DEBUG-Konstanten -->
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+
+		<!-- Zusätzliche Debug-Optionen -->
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+	</PropertyGroup>
+
+	<!-- ============================================================
+       RELEASE-KONFIGURATION (Produktion)
+       ============================================================ -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<!-- Basis-Optimierungen -->
+		<Optimize>true</Optimize>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+
+		<!-- Plattformtarget für Release (x64 für bessere Performance) -->
+		<PlatformTarget>x64</PlatformTarget>
+		<Prefer32Bit>false</Prefer32Bit>
+
+		<!-- Define RELEASE-Konstanten -->
+		<DefineConstants>TRACE</DefineConstants>
+
+		<!-- Performance-Optimierungen -->
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<TieredCompilation>false</TieredCompilation>
+
+		<!-- Sicherheits- und Code-Optimierungen -->
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+
+		<!-- EXPLIZIT in Release: Warnungen NICHT als Fehler behandeln -->
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Models\**" />
+	  <Compile Remove="Services\**" />
+	  <Compile Remove="Views\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Models\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <EmbeddedResource Remove="Views\**" />
+	  <None Remove="Converters\**" />
+	  <None Remove="Models\**" />
+	  <None Remove="Services\**" />
+	  <None Remove="Views\**" />
+	  <Page Remove="Converters\**" />
+	  <Page Remove="Models\**" />
+	  <Page Remove="Services\**" />
+	  <Page Remove="Views\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\png\splashScreen.png" />
+	</ItemGroup>
+
+	<!-- ============================================================
+       DESIGN-TIME RESSOURCEN (für WPF Designer)
+       ============================================================ -->
+	<!--<ItemGroup>
+		<Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+			<ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+		</Page>
+	</ItemGroup>-->
+
+	<!-- ============================================================
+       PROJEKTORDNER STRUKTUR
+       ============================================================ -->
+	<ItemGroup>
+		<Folder Include="ViewModels\" />
+	</ItemGroup>
+
+	<!-- ============================================================
+       NUGET PACKAGE REFERENCES
+       ============================================================ -->
+	<ItemGroup>
+		<!-- MVVM Framework -->
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+
+		<!-- UI Controls und Toolkits -->
+		<PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
+		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
+
+		<!-- Icons -->
+
+		<!-- Logging -->
+		<PackageReference Include="Serilog" Version="4.3.1" />
+
+		<!-- Grafik und Rendering -->
+		<PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.4" />
+		<PackageReference Include="SkiaSharp.Extended" Version="3.0.0" />
+		<PackageReference Include="Svg.Skia" Version="5.0.0" />
+
+		<!-- Text Rendering -->
+		<PackageReference Include="Topten.RichTextKit" Version="0.4.167" />
+
+		<!-- UI Performance -->
+		<PackageReference Include="VirtualizingWrapPanel" Version="2.5.1" />
+	</ItemGroup>
+
+	<!-- ============================================================
+       PROJEKTREFERENCES (interne Abhängigkeiten)
+       ============================================================ -->
+	<ItemGroup>
+		<ProjectReference Include="..\Mockup\VIA.Mockup.csproj" />
+		<ProjectReference Include="..\..\VIA.WPF\VIA.WPF\VIA.WPF\VIA.WPF.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Resources\png\splashScreen.png" />
+	</ItemGroup>
+
+</Project>

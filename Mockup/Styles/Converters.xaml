@@ -1,0 +1,59 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Mockup.Converter">
+
+
+    <!--  Boolean to Visibility Converters  -->
+    <local:AndBooleanToVisibilityConverter x:Key="AndBooleanToVisibilityConverter" />
+    <local:BooleanOrToVisibilityConverter x:Key="BooleanOrToVisibilityConverter" />
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <local:InversBoolToVisibilityConverter x:Key="InversBoolToVisibilityConverter" />
+
+    <!--  Boolean Converters  -->
+    <local:BooleanToWidthConverter x:Key="BooleanToWidthConverter" />
+    <local:BoolInverseConverter x:Key="BoolInverseConverter" />
+    <local:BoolToArrowConverter x:Key="BoolToArrowConverter" />
+    <local:BoolToThicknessConverter x:Key="BoolToThicknessConverter" />
+    <local:CountToBooleanConverter x:Key="CountToBooleanConverter" />
+    <local:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter" />
+    <local:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+    <local:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+
+
+    <!--  Margin Converters  -->
+    <local:FirstItemMarginConverter x:Key="FirstItemMarginConverter" />
+    <local:FooterThumbMarginConverter x:Key="FooterThumbMarginConverter" />
+    <local:HeaderThumbMarginConverter x:Key="HeaderThumbMarginConverter" />
+    <local:NegWidthToThicknessConverter x:Key="NegWidthToThicknessConverter" />
+
+    <!--  Size and Visibility Converters  -->
+    <local:HeightToVisibilityConverter x:Key="HeightToVisibilityConverter" />
+    <local:IsNotFirstToVisibilityConverter x:Key="IsNotFirstToVisibilityConverter" />
+
+    <!--  Null Value Converters  -->
+    <local:NullToDisabledConverter x:Key="NullToDisabledConverter" />
+    <local:NullToEnabledConverter x:Key="NullToEnabledConverter" />
+    <local:NullToInversVisibilityConverter x:Key="NullToInversVisibilityConverter" />
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+
+    <!--  String Converters  -->
+    <local:PathToFileNameConverter x:Key="PathToFileNameConverter" />
+    <local:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    <local:StringNotEmptyToBoolConverter x:Key="StringNotEmptyToBoolConverter" />
+
+    <!--  Scale and Zoom Converters  -->
+    <local:PercentToScaleConverter x:Key="PercentToScaleConverter" />
+    <local:ZoomPercentToScaleConverter x:Key="ZoomPercentToScaleConverter" />
+    <local:ZoomPercentToSizeConverter x:Key="ZoomPercentToSizeConverter" />
+    <local:ScaleConverter x:Key="ScaleConverter" />
+
+    <!--  Other Converters  -->
+    <local:PixelGridLengthConverter x:Key="PixelGridLengthConverter" />
+    <local:EnumEqualsConverter x:Key="EnumEqualsConverter" />
+    <local:HexToBrushConverter x:Key="HexToBrushConverter" />
+    <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    <local:GreaterThanToVisibilityConverter x:Key="GreaterThanToVisibilityConverter" />
+
+
+</ResourceDictionary>

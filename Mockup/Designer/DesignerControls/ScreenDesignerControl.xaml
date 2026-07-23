@@ -1,0 +1,13 @@
+﻿<UserControl
+    x:Class="Mockup.Designer.ScreenDesignerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    PreviewKeyDown="UserControl_PreviewKeyDown"
+    PreviewKeyUp="UserControl_PreviewKeyUp"
+    xmlns:designer="clr-namespace:Mockup.Designer">
+
+    <Grid x:Name="LayoutRoot">
+        <designer:ScreenDesigner x:Name="PART_Designer" />
+    </Grid>
+
+</UserControl>

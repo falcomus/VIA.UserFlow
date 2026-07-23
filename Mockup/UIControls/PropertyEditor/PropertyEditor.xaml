@@ -1,0 +1,221 @@
+<UserControl
+    x:Class="Mockup.UIControls.PropertyEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:via="http://schemas.via.dev/wpf"
+    x:Name="root"
+    MinWidth="280"
+    d:DesignHeight="700"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+        <Style TargetType="{x:Type via:XTextBlock}">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="PropertyGroupStyle" TargetType="{x:Type via:XExpander}">
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}" />
+            <Setter Property="HeaderPadding" Value="12,0,12,0" />
+            <Setter Property="ContentPadding" Value="10,8,10,4" />
+        </Style>
+    </UserControl.Resources>
+
+    <via:XBorder
+        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+        BorderThickness="0,1,0,0">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <via:XBorder
+                Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
+                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                BorderThickness="0,0,0,1">
+                <via:XTextBlock
+                    Margin="14,0"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
+            </via:XBorder>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding ElementName=root, Path=PropertyGroups}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <via:XExpander
+                                Header="{Binding Name}"
+                                IsExpanded="{Binding IsExpanded, Mode=TwoWay}"
+                                Style="{StaticResource PropertyGroupStyle}">
+                                <ItemsControl ItemsSource="{Binding Items}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,0,0,7">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="148" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <via:XTextBlock
+                                                    Grid.Column="0"
+                                                    Margin="0,0,10,0"
+                                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                                    Text="{Binding DisplayName}" />
+
+                                                <Grid Grid.Column="1">
+                                                    <via:XTextBox
+                                                        AcceptsReturn="True"
+                                                        FontSize="13"
+                                                        GotKeyboardFocus="TextEditor_GotKeyboardFocus"
+                                                        LostFocus="TextEditor_LostFocus"
+                                                        Tag="{Binding}"
+                                                        Text="{Binding CurrentTextValue, Mode=OneWay}"
+                                                        TextChanged="TextEditor_TextChanged"
+                                                        Visibility="{Binding IsTextEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <via:XTextBox
+                                                        Height="64"
+                                                        MinHeight="64"
+                                                        AcceptsReturn="True"
+                                                        FontSize="13"
+                                                        LostFocus="ItemsEditor_LostFocus"
+                                                        Tag="{Binding}"
+                                                        Text="{Binding CurrentItemsText, Mode=OneWay}"
+                                                        TextWrapping="Wrap"
+                                                        VerticalScrollBarVisibility="Auto"
+                                                        Visibility="{Binding IsItemsEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <via:XNumberBox
+                                                        FontSize="13"
+                                                        Loaded="NumericEditor_Loaded"
+                                                        LostFocus="NumericEditor_LostFocus"
+                                                        PreviewKeyDown="NumericEditor_PreviewKeyDown"
+                                                        Tag="{Binding}"
+                                                        Unloaded="NumericEditor_Unloaded"
+                                                        Visibility="{Binding IsNumericEditor, Converter={StaticResource BoolToVisibility}}"
+                                                        Value="{Binding CurrentNumericValue, Mode=OneWay}" />
+
+                                                    <via:XDatePicker
+                                                        FontSize="13"
+                                                        Loaded="DateTimeEditor_Loaded"
+                                                        SelectedDate="{Binding CurrentDateTimeValue, Mode=OneWay}"
+                                                        Tag="{Binding}"
+                                                        Unloaded="DateTimeEditor_Unloaded"
+                                                        Visibility="{Binding IsDateTimeEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <via:XCheckBox
+                                                        VerticalAlignment="Center"
+                                                        Checked="BoolEditor_Changed"
+                                                        FontSize="13"
+                                                        IsChecked="{Binding CurrentBoolValue, Mode=OneWay}"
+                                                        Tag="{Binding}"
+                                                        Unchecked="BoolEditor_Changed"
+                                                        Visibility="{Binding IsBoolEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <via:XComboBox
+                                                        FontSize="13"
+                                                        ItemsSource="{Binding EnumValues}"
+                                                        SelectedItem="{Binding CurrentValue, Mode=OneWay}"
+                                                        SelectionChanged="EnumEditor_SelectionChanged"
+                                                        Tag="{Binding}"
+                                                        Visibility="{Binding IsEnumEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <via:XComboBox
+                                                        FontSize="13"
+                                                        ItemsSource="{Binding FontWeightValues}"
+                                                        SelectedItem="{Binding CurrentValue, Mode=OneWay}"
+                                                        SelectionChanged="FontWeightEditor_SelectionChanged"
+                                                        Tag="{Binding}"
+                                                        Visibility="{Binding IsFontWeightEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <Grid Visibility="{Binding IsImageRefEditor, Converter={StaticResource BoolToVisibility}}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <via:XTextBlock
+                                                            Grid.Column="0"
+                                                            Margin="0,0,6,0"
+                                                            FontWeight="Medium"
+                                                            Text="{Binding CurrentTextValue}"
+                                                            TextTrimming="CharacterEllipsis" />
+
+                                                        <via:XButton
+                                                            Grid.Column="1"
+                                                            Width="30"
+                                                            Height="28"
+                                                            Margin="0,0,4,0"
+                                                            Click="SelectImageRef_Click"
+                                                            Content="..."
+                                                            FontSize="14"
+                                                            Tag="{Binding}" />
+
+                                                        <via:XButton
+                                                            Grid.Column="2"
+                                                            Width="30"
+                                                            Height="28"
+                                                            Click="ClearValue_Click"
+                                                            Content="×"
+                                                            FontSize="19"
+                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
+                                                            Tag="{Binding}" />
+                                                    </Grid>
+
+                                                    <via:XTextBlock
+                                                        FontWeight="Medium"
+                                                        Text="{Binding CurrentTextValue}"
+                                                        Visibility="{Binding IsReadOnlyEditor, Converter={StaticResource BoolToVisibility}}" />
+
+                                                    <Grid Visibility="{Binding IsColorEditor, Converter={StaticResource BoolToVisibility}}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <via:XBorder
+                                                            Grid.Column="0"
+                                                            Height="28"
+                                                            Margin="0,0,6,0"
+                                                            Background="{Binding CurrentBrush}"
+                                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="3" />
+
+                                                        <via:XButton
+                                                            Grid.Column="1"
+                                                            Width="34"
+                                                            Height="28"
+                                                            Click="PickColor_Click"
+                                                            Content="..."
+                                                            FontWeight="Medium"
+                                                            Tag="{Binding}" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </via:XExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </via:XBorder>
+</UserControl>

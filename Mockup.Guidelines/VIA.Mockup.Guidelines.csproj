@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- ═══════════════════════════════════════════════════════════
+         GRUNDLEGENDE PROJEKTEINSTELLUNGEN
+         ═══════════════════════════════════════════════════════════ -->
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AssemblyTitle>VIA Mockup Guidelines</AssemblyTitle>
+		<AssemblyDescription>Alignment Guideline Engine für VIA UserFlow</AssemblyDescription>
+		<Copyright>Copyright © 2024</Copyright>
+		<LangVersion>latest</LangVersion>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Platforms>AnyCPU;x64</Platforms>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+</Project>

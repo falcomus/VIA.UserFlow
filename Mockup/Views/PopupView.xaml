@@ -168,8 +168,6 @@
                     HorizontalContentAlignment="Stretch"
                     Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
                     BorderThickness="0"
-                    ItemContainerStyle="{StaticResource GroupedListBoxItemStyle}"
-                    ItemTemplate="{StaticResource GroupedPopupItemTemplate}"
                     ItemsSource="{Binding PopupsGroupedView}"
                     MouseDoubleClick="ListBox_MouseDoubleClick"
                     ScrollViewer.CanContentScroll="False"
@@ -177,77 +175,19 @@
                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
                     SelectedItem="{Binding CurrentPopup, Mode=TwoWay}"
                     SelectionChanged="PopupListBox_SelectionChanged"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    ContextMenu="{StaticResource PopupListContextMenu}">
 
-                    <via:XListBox.ContextMenu>
-                        <ContextMenu>
-                            <ContextMenu.Resources>
-                                <Style BasedOn="{StaticResource XMenuItem}" TargetType="MenuItem">
-                                    <Setter Property="FontSize" Value="14" />
-                                    <Setter Property="Margin" Value="-10,2,0,2" />
-                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                </Style>
-                            </ContextMenu.Resources>
+                    <via:XListBox.ItemContainerStyle>
+                        <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
 
-                            <MenuItem Command="{Binding NewPopupCommand}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="13"
-                                            Height="13"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryBrush}"
-                                            Kind="Add" />
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="New Popup" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
+                            <Setter Property="Margin" Value="4,1" />
+                            <Setter Property="Padding" Value="12,5,10,6" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
-                            <MenuItem Command="{Binding EditPopupCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="13"
-                                            Height="13"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryBrush}"
-                                            Kind="Edit" />
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="Edit Popup" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
+</Style>
+                    </via:XListBox.ItemContainerStyle>
 
-                            <MenuItem Command="{Binding DeletePopupCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
-                                <MenuItem.Header>
-                                    <Grid ext:GridEx.ColDef="Auto,*">
-                                        <ico:PackIconMaterialDesign
-                                            Width="14"
-                                            Height="14"
-                                            VerticalAlignment="Center"
-                                            Foreground="{DynamicResource DangerBrush}"
-                                            Kind="Delete" />
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Margin="10,0,0,1"
-                                            FontWeight="Medium"
-                                            Opacity="0.9"
-                                            Text="Delete Popup" />
-                                    </Grid>
-                                </MenuItem.Header>
-                            </MenuItem>
-                        </ContextMenu>
-                    </via:XListBox.ContextMenu>
 
                     <via:XListBox.GroupStyle>
                         <GroupStyle>

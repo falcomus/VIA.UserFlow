@@ -49,7 +49,13 @@ internal static class UserFlowThemeBridge
     {
         if (e.PropertyName is nameof(XThemeManager.CurrentTheme) or nameof(XThemeManager.CurrentMode))
         {
-            Application.Current.Dispatcher.BeginInvoke(Apply, DispatcherPriority.ApplicationIdle);
+            Application? application = Application.Current;
+            if (application is null)
+            {
+                return;
+            }
+
+            application.Dispatcher.BeginInvoke(Apply, DispatcherPriority.ApplicationIdle);
         }
     }
 
@@ -57,12 +63,18 @@ internal static class UserFlowThemeBridge
     {
         Application application = Application.Current;
 
+        XTheme? theme = XThemeManager.Current.CurrentTheme;
+        if (theme is null)
+        {
+            return;
+        }
+
         foreach ((string targetKey, ComponentResourceKey sourceKey) in Mappings)
         {
             if (targetKey is "BorderBrush" or "DarkBorderBrush" or "ToolBarElemBorderBrush")
             {
                 application.Resources[targetKey] = new SolidColorBrush(
-                    XThemeManager.Current.CurrentTheme.PanelBorder.GetColor(XThemeManager.Current.CurrentMode));
+                    theme.PanelBorder.GetColor(XThemeManager.Current.CurrentMode));
                 continue;
             }
 

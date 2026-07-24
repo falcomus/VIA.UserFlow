@@ -636,34 +636,11 @@
                                         ShowResetButton="True"
                                         Text="{Binding TemplateToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <via:XTextBlock
-                                            Margin="0,8,0,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="13"
-                                            FontWeight="SemiBold"
-                                            Foreground="{DynamicResource TextPrimaryBrush}"
-                                            Text="{Binding CurrentTemplateToolboxGroup.GroupName, TargetNullValue=Templates}" />
-
-                                        <via:XTextBlock
-                                            Grid.Column="1"
-                                            Margin="0,8,2,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="12"
-                                            Foreground="{DynamicResource TextSecondaryBrush}"
-                                            Text="Drag to designer" />
-                                    </Grid>-->
 
                                     <via:XListBox
                                         x:Name="TemplateListBox"
                                         Grid.Row="2"
                                         Padding="7,4,7,7"
-                                        HorizontalContentAlignment="Left"
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ClipToBounds="False"
@@ -671,6 +648,7 @@
                                         ScrollViewer.CanContentScroll="True"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                        HorizontalContentAlignment="Stretch"
                                         SelectedItem="{Binding CurrentTemplate, Mode=TwoWay}"
                                         SelectionMode="Single"
                                         ShowSelectionIndicator="False"
@@ -681,19 +659,8 @@
                                         <gong:DragDrop.IsDropTarget>False</gong:DragDrop.IsDropTarget>
                                         <gong:DragDrop.UseDefaultDragAdorner>False</gong:DragDrop.UseDefaultDragAdorner>
 
-                                        <via:XListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel
-                                                    VerticalAlignment="Top"
-                                                    ClipToBounds="False"
-                                                    ItemWidth="185"
-                                                    Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </via:XListBox.ItemsPanel>
-
                                         <via:XListBox.ItemContainerStyle>
                                             <Style TargetType="{x:Type via:XListBoxItem}">
-                                                <Setter Property="Width" Value="185" />
                                                 <Setter Property="Margin" Value="0" />
                                                 <Setter Property="ClipToBounds" Value="False" />
                                                 <Setter Property="Padding" Value="3" />
@@ -845,34 +812,11 @@
                                         ShowResetButton="True"
                                         Text="{Binding PopupToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <via:XTextBlock
-                                            Margin="0,8,0,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="13"
-                                            FontWeight="SemiBold"
-                                            Foreground="{DynamicResource TextPrimaryBrush}"
-                                            Text="{Binding CurrentPopupToolboxGroup.GroupName, TargetNullValue=Popups}" />
-
-                                        <via:XTextBlock
-                                            Grid.Column="1"
-                                            Margin="0,8,2,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="12"
-                                            Foreground="{DynamicResource TextSecondaryBrush}"
-                                            Text="Drag to designer" />
-                                    </Grid>-->
-
                                     <via:XListBox
                                         x:Name="PopupListBox"
                                         Grid.Row="2"
                                         Padding="7,4,7,7"
-                                        HorizontalContentAlignment="Left"
+                                        HorizontalContentAlignment="Stretch"
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ClipToBounds="False"
@@ -890,19 +834,8 @@
                                         <gong:DragDrop.IsDropTarget>False</gong:DragDrop.IsDropTarget>
                                         <gong:DragDrop.UseDefaultDragAdorner>False</gong:DragDrop.UseDefaultDragAdorner>
 
-                                        <via:XListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel
-                                                    VerticalAlignment="Top"
-                                                    ClipToBounds="False"
-                                                    ItemWidth="185"
-                                                    Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </via:XListBox.ItemsPanel>
-
                                         <via:XListBox.ItemContainerStyle>
                                             <Style TargetType="{x:Type via:XListBoxItem}">
-                                                <Setter Property="Width" Value="185" />
                                                 <Setter Property="Margin" Value="0" />
                                                 <Setter Property="ClipToBounds" Value="False" />
                                                 <Setter Property="Padding" Value="3" />

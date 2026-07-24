@@ -213,7 +213,7 @@
 
                 <via:XIconButton
                     Click="RailButton_Click"
-                    Icon="{via:MaterialIcon Kind=ContentCopy}"
+                    Icon="{via:MaterialIcon Kind=Application}"
                     Tag="1"
                     ToolTip="Templates">
                     <via:XIconButton.Style>
@@ -235,7 +235,7 @@
 
                 <via:XIconButton
                     Click="RailButton_Click"
-                    Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                    Icon="{via:MaterialIcon Kind=BorderRightVariant}"
                     Tag="2"
                     ToolTip="Popups">
                     <via:XIconButton.Style>
@@ -391,7 +391,7 @@
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="44" />
-                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
@@ -405,7 +405,7 @@
                                         ShowResetButton="True"
                                         Text="{Binding ControlToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <Grid Grid.Row="1" Margin="14,0,12,0">
+                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
@@ -426,7 +426,7 @@
                                             FontSize="12"
                                             Foreground="{DynamicResource TextSecondaryBrush}"
                                             Text="Drag to designer" />
-                                    </Grid>
+                                    </Grid>-->
 
                                     <via:XListBox
                                         Grid.Row="2"
@@ -574,7 +574,7 @@
                         <TabItem Header="Templates" Visibility="{Binding IsTemplateTabVisible, Converter={StaticResource BoolToVisibilityConverter}}">
                             <Grid Background="#FAFCFF">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition Width="175" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
@@ -622,7 +622,7 @@
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="44" />
-                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
@@ -636,7 +636,7 @@
                                         ShowResetButton="True"
                                         Text="{Binding TemplateToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <Grid Grid.Row="1" Margin="14,0,12,0">
+                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
@@ -657,7 +657,7 @@
                                             FontSize="12"
                                             Foreground="{DynamicResource TextSecondaryBrush}"
                                             Text="Drag to designer" />
-                                    </Grid>
+                                    </Grid>-->
 
                                     <via:XListBox
                                         x:Name="TemplateListBox"
@@ -783,7 +783,7 @@
                         <TabItem Header="Popups" Visibility="{Binding IsTemplateTabVisible, Converter={StaticResource BoolToVisibilityConverter}}">
                             <Grid Background="#FAFCFF">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition Width="175" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
@@ -831,7 +831,7 @@
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="44" />
-                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
@@ -845,7 +845,7 @@
                                         ShowResetButton="True"
                                         Text="{Binding PopupToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <Grid Grid.Row="1" Margin="14,0,12,0">
+                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
@@ -866,7 +866,7 @@
                                             FontSize="12"
                                             Foreground="{DynamicResource TextSecondaryBrush}"
                                             Text="Drag to designer" />
-                                    </Grid>
+                                    </Grid>-->
 
                                     <via:XListBox
                                         x:Name="PopupListBox"

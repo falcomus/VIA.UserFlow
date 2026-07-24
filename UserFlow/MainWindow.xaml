@@ -55,7 +55,7 @@
         </StackPanel>
     </via:XWindow.TitleBarContent>
 
-    <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="54,*,28">
+    <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="56,*,28">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="0" />
@@ -173,6 +173,7 @@
             x:Name="PART_ToolboxView"
             Grid.Row="1"
             Grid.Column="0"
+            Margin="0 0 0 0"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
             Panel.ZIndex="20"
@@ -303,10 +304,9 @@
             Grid.Column="2"
             Width="32"
             Height="30"
-            Margin="0,8,14,0"
             Padding="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             Appearance="Ghost"
             CheckedAppearance="Ghost"
             CheckedIcon="{via:MaterialDesignIcon Kind=Close}"

@@ -168,6 +168,7 @@
                     HorizontalContentAlignment="Stretch"
                     Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
                     BorderThickness="0"
+                    ContextMenu="{StaticResource PopupListContextMenu}"
                     ItemsSource="{Binding PopupsGroupedView}"
                     MouseDoubleClick="ListBox_MouseDoubleClick"
                     ScrollViewer.CanContentScroll="False"
@@ -175,8 +176,7 @@
                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
                     SelectedItem="{Binding CurrentPopup, Mode=TwoWay}"
                     SelectionChanged="PopupListBox_SelectionChanged"
-                    SelectionMode="Single"
-                    ContextMenu="{StaticResource PopupListContextMenu}">
+                    SelectionMode="Single">
 
                     <via:XListBox.ItemContainerStyle>
                         <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
@@ -185,7 +185,7 @@
                             <Setter Property="Padding" Value="12,5,10,6" />
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
-</Style>
+                        </Style>
                     </via:XListBox.ItemContainerStyle>
 
 
@@ -243,12 +243,13 @@
 
                         <via:XIconButton
                             Grid.Column="1"
+                            Width="50"
                             Margin="0,0,10,0"
                             Command="{Binding NewPopupCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=Plus}"
                             IconSize="16"
-                            Size="Small"
+                            Size="Medium"
                             ToolTip="New Popup"
                             Variant="Primary" />
 

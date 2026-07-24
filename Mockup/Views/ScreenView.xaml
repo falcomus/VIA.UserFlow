@@ -150,7 +150,8 @@
                     Cursor="Hand"
                     Icon="{via:MaterialIcon Kind=Plus}"
                     IconSize="16"
-                    Size="Small"
+                    Width="50"
+                    Size="Medium"
                     ToolTip="New Screen"
                     Variant="Primary" />
 

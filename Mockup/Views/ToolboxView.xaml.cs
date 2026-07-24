@@ -148,8 +148,10 @@ public partial class ToolboxView : UserControl
     {
         PART_FlyoutSurface.Width = PART_Tabs.SelectedIndex switch
         {
+            //0 => 570,
+            //_ => 660,
             0 => 570,
-            _ => 660,
+            _ => 570,
         };
 
         PART_HeaderTitle.Text = PART_Tabs.SelectedIndex switch

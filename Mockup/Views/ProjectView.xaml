@@ -71,85 +71,74 @@
                     ShadowDepth="3" />
             </via:XBorder.Effect>
 
-            <Grid ext:GridEx.ColDef="*,Auto">
-
-                <Grid VerticalAlignment="Center" ext:GridEx.ColDef="*,Auto">
 
 
-                    <via:XStackPanel
-                        HorizontalAlignment="Left"
-                        Orientation="Horizontal"
-                        Spacing="5">
+            <Grid VerticalAlignment="Stretch" ext:GridEx.ColDef="*,*,80,20" Margin="0 5">
 
-                        <via:XButton
-                            Grid.Column="0"
-                            MinWidth="96"
-                            Command="{Binding LoadProjectCommand}"
-                            Cursor="Hand"
-                            ToolTip="Open Project"
-                            Variant="Primary">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <ico:PackIconMaterial
-                                    Width="17"
-                                    Height="17"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Kind="FolderOpen" />
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="8,0,0,0"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Text="Open .." />
-                            </Grid>
-                        </via:XButton>
-                        <via:XButton
-                            MinWidth="84"
-                            Command="{Binding SaveProjectCommand}"
-                            Cursor="Hand"
-                            ToolTip="Save Project"
-                            Variant="Primary">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <ico:PackIconMaterialDesign
-                                    Width="16"
-                                    Height="16"
-                                    VerticalAlignment="Center"
-                                    Kind="Save" />
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="8,0,0,1"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Text="Save" />
-                            </Grid>
-                        </via:XButton>
-                        <via:XButton
-                            Command="{Binding ElementName=root, Path=DataContext.NewProjectCommand}"
-                            Cursor="Hand"
-                            Icon="{via:MaterialIcon Kind=Plus}"
-                            ToolTip="New Project"
-                            Variant="Primary" />
-                    </via:XStackPanel>
+                <via:XButton
+                    Grid.Column="0"
+                    MinWidth="84"
+                    BorderThickness="0"
+                    Command="{Binding LoadProjectCommand}"
+                    Content="Open .."
+                    Cursor="Hand"
+                    Focusable="False"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Icon="{via:MaterialIcon Kind=ContentSave}"
+                    Size="Large"
+                    ToolTip="Open Project"
+                    Variant="Primary" />
+
+                <via:XButton
+                    Grid.Column="1"
+                    MinWidth="84"
+                    Margin="5,0,0,0"
+                    BorderThickness="0"
+                    Command="{Binding SaveProjectCommand}"
+                    Content="Save"
+                    Cursor="Hand"
+                    Focusable="False"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Icon="{via:MaterialIcon Kind=ContentSave}"
+                    Size="Large"
+                    ToolTip="Save Project"
+                    Variant="Primary" />
+
+                <via:XButton
+                    Grid.Column="2"
+                    Width="60"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Right"
+                    BorderThickness="0"
+                    Command="{Binding ElementName=root, Path=DataContext.NewProjectCommand}"
+                    Cursor="Hand"
+                    Focusable="False"
+                    Icon="{via:MaterialIcon Kind=Plus}"
+                    Size="Large"
+                    ToolTip="New Project"
+                    Variant="Primary" />
 
 
-                    <via:XStackPanel
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Orientation="Horizontal"
-                        Spacing="4">
 
-                        <via:XMoreButton
-                            Margin="5,0,0,0"
-                            Foreground="#5D6673"
-                            Menu="{StaticResource ProjectActionsContextMenu}"
-                            ToolTip="More Project Actions" />
+                <via:XMenuButton
+                    Grid.Column="3"
+                    Width="30"
+                    MinWidth="30"
+                    Margin="0,0,-0,0"
+                    Padding="20,0,0,0"
+                    HorizontalAlignment="Right"
+                    BorderThickness="0"
+                    Content="{via:MaterialIcon Kind=DotsVertical}"
+                    Focusable="False"
+                    Menu="{StaticResource ProjectActionsContextMenu}"
+                    ToolTip="More Project Actions" />
 
-                    </via:XStackPanel>
-
-                </Grid>
 
             </Grid>
+
+
         </via:XBorder>
 
         <!--  PROJECT DESCRIPTION AND PROJECT INFO  -->
@@ -685,6 +674,7 @@
                 VerticalContentAlignment="Top"
                 Background="Transparent"
                 BorderThickness="0"
+                ContextMenu="{StaticResource ProjectScreenListContextMenu}"
                 ItemsSource="{Binding ScreensGroupedView}"
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -693,8 +683,7 @@
                 Style="{DynamicResource WrapPanelHorizontalListBox}"
                 VirtualizingPanel.IsVirtualizing="True"
                 VirtualizingPanel.ScrollUnit="Pixel"
-                VirtualizingPanel.VirtualizationMode="Recycling"
-                ContextMenu="{StaticResource ProjectScreenListContextMenu}">
+                VirtualizingPanel.VirtualizationMode="Recycling">
 
                 <via:XListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -711,9 +700,7 @@
 
                 <via:XListBox.ItemTemplate>
                     <DataTemplate>
-                                                <Border
-                            Margin="0"
-                            Padding="6">
+                        <Border Margin="0" Padding="6">
                             <Border
                                 Background="#1A1C1F"
                                 BorderThickness="0"
@@ -743,12 +730,8 @@
 
                                         <via:XBorder.Tag>
                                             <MultiBinding Converter="{via:BooleanOr}">
-                                                <Binding
-                                                    Path="IsMouseOver"
-                                                    RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
-                                                <Binding
-                                                    Path="IsSelected"
-                                                    RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
+                                                <Binding Path="IsMouseOver" RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
+                                                <Binding Path="IsSelected" RelativeSource="{RelativeSource AncestorType={x:Type ListBoxItem}}" />
                                             </MultiBinding>
                                         </via:XBorder.Tag>
 
@@ -761,9 +744,7 @@
                                                 <Setter Property="IsHitTestVisible" Value="False" />
 
                                                 <Style.Triggers>
-                                                    <DataTrigger
-                                                        Binding="{Binding Tag, RelativeSource={RelativeSource Self}}"
-                                                        Value="True">
+                                                    <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
 
                                                         <Setter Property="IsHitTestVisible" Value="True" />
 
@@ -772,8 +753,8 @@
                                                                 <Storyboard>
                                                                     <DoubleAnimation
                                                                         Storyboard.TargetProperty="Opacity"
-                                                                        Duration="0:0:0.22"
-                                                                        To="1">
+                                                                        To="1"
+                                                                        Duration="0:0:0.22">
                                                                         <DoubleAnimation.EasingFunction>
                                                                             <QuadraticEase EasingMode="EaseOut" />
                                                                         </DoubleAnimation.EasingFunction>
@@ -781,8 +762,8 @@
 
                                                                     <DoubleAnimation
                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                        Duration="0:0:0.22"
-                                                                        To="0">
+                                                                        To="0"
+                                                                        Duration="0:0:0.22">
                                                                         <DoubleAnimation.EasingFunction>
                                                                             <QuadraticEase EasingMode="EaseOut" />
                                                                         </DoubleAnimation.EasingFunction>
@@ -796,8 +777,8 @@
                                                                 <Storyboard>
                                                                     <DoubleAnimation
                                                                         Storyboard.TargetProperty="Opacity"
-                                                                        Duration="0:0:0.16"
-                                                                        To="0">
+                                                                        To="0"
+                                                                        Duration="0:0:0.16">
                                                                         <DoubleAnimation.EasingFunction>
                                                                             <QuadraticEase EasingMode="EaseIn" />
                                                                         </DoubleAnimation.EasingFunction>
@@ -805,8 +786,8 @@
 
                                                                     <DoubleAnimation
                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                        Duration="0:0:0.16"
-                                                                        To="36">
+                                                                        To="36"
+                                                                        Duration="0:0:0.16">
                                                                         <DoubleAnimation.EasingFunction>
                                                                             <QuadraticEase EasingMode="EaseIn" />
                                                                         </DoubleAnimation.EasingFunction>
@@ -877,7 +858,7 @@
                                                 Text="{Binding Name}"
                                                 TextTrimming="CharacterEllipsis" />
 
-<via:XIconButton
+                                            <via:XIconButton
                                                 Grid.Column="2"
                                                 Background="Transparent"
                                                 BorderThickness="0"
@@ -895,9 +876,7 @@
                                                         <Setter Property="Opacity" Value="0.75" />
 
                                                         <Style.Triggers>
-                                                            <DataTrigger
-                                                                Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}"
-                                                                Value="True">
+                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}" Value="True">
 
                                                                 <Setter Property="Foreground" Value="LightSkyBlue" />
                                                                 <Setter Property="Opacity" Value="1" />
@@ -1173,5 +1152,5 @@
             </Grid>
         </via:XBorder>
 
-</Grid>
+    </Grid>
 </UserControl>

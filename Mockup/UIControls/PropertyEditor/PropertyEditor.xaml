@@ -27,37 +27,38 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}" />
             <Setter Property="HeaderPadding" Value="12,0,12,0" />
-            <Setter Property="ContentPadding" Value="10,8,10,4" />
+            <Setter Property="ContentPadding" Value="10,4,10,4" />
         </Style>
     </UserControl.Resources>
 
     <via:XBorder
         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-        BorderThickness="0,1,0,0">
+        BorderThickness="0"
+        CornerRadius="0">
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="42" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <via:XBorder
-                Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
-                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                BorderThickness="0,0,0,1">
-                <via:XTextBlock
-                    Margin="14,0"
-                    FontSize="14"
-                    FontWeight="SemiBold"
-                    Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
-            </via:XBorder>
+            <via:XTextBlock
+                Margin="2,-5,4,10"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding ElementName=root, Path=PropertyGroups}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <via:XExpander
+                                Padding="0"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceDark}}"
+                                ContentPadding="10 11 10 5"
                                 Header="{Binding Name}"
                                 IsExpanded="{Binding IsExpanded, Mode=TwoWay}"
                                 Style="{StaticResource PropertyGroupStyle}">
@@ -190,7 +191,6 @@
 
                                                         <via:XBorder
                                                             Grid.Column="0"
-                                                            Height="28"
                                                             Margin="0,0,6,0"
                                                             Background="{Binding CurrentBrush}"
                                                             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"

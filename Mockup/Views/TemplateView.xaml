@@ -69,6 +69,7 @@
                     HorizontalContentAlignment="Stretch"
                     Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
                     BorderThickness="0"
+                    ContextMenu="{StaticResource TemplateListContextMenu}"
                     ItemsSource="{Binding TemplatesGroupedView}"
                     MouseDoubleClick="ListBox_MouseDoubleClick"
                     ScrollViewer.CanContentScroll="False"
@@ -77,13 +78,10 @@
                     SelectedItem="{Binding CurrentTemplate, Mode=TwoWay}"
                     SelectionChanged="TemplateListBox_SelectionChanged"
                     SelectionMode="Single"
-                    VirtualizingPanel.IsVirtualizing="True"
-                    ContextMenu="{StaticResource TemplateListContextMenu}">
+                    VirtualizingPanel.IsVirtualizing="True">
 
                     <via:XListBox.ItemContainerStyle>
-                        <Style
-                            BasedOn="{StaticResource {x:Type via:XListBoxItem}}"
-                            TargetType="{x:Type via:XListBoxItem}">
+                        <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
 
                             <Setter Property="Margin" Value="4,1" />
                             <Setter Property="Padding" Value="12,5,10,6" />
@@ -95,14 +93,10 @@
                             <Setter Property="ShowEdit" Value="True" />
                             <Setter Property="ShowDelete" Value="True" />
 
-                            <Setter
-                                Property="EditCommand"
-                                Value="{Binding DataContext.EditTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
+                            <Setter Property="EditCommand" Value="{Binding DataContext.EditTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
                             <Setter Property="EditCommandParameter" Value="{Binding}" />
 
-                            <Setter
-                                Property="DeleteCommand"
-                                Value="{Binding DataContext.DeleteTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
+                            <Setter Property="DeleteCommand" Value="{Binding DataContext.DeleteTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
                             <Setter Property="DeleteCommandParameter" Value="{Binding}" />
                         </Style>
                     </via:XListBox.ItemContainerStyle>
@@ -161,12 +155,13 @@
                             Text="Templates" />
                         <via:XIconButton
                             Grid.Column="1"
+                            Width="50"
                             Margin="0,0,10,0"
                             Command="{Binding NewTemplateCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=Plus}"
                             IconSize="16"
-                            Size="Small"
+                            Size="Medium"
                             ToolTip="New Template"
                             Variant="Primary" />
                     </Grid>

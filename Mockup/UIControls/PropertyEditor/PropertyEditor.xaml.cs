@@ -415,7 +415,9 @@ public partial class PropertyEditor : UserControl
             return;
 
         if (e.PropertyName == nameof(DesignControl.X)
-            || e.PropertyName == nameof(DesignControl.Y))
+            || e.PropertyName == nameof(DesignControl.Y)
+            || e.PropertyName == nameof(DesignControl.Width)
+            || e.PropertyName == nameof(DesignControl.Height))
         {
             QueuePositionRefresh();
             return;
@@ -785,6 +787,45 @@ public partial class PropertyEditor : UserControl
         if (sender is not XNumberBox editor || editor.Tag is not PropertyItemTemp item || editor.Value is not double value)
             return;
 
+        if (ShouldDeferSizeTextEntry(editor, item))
+            return;
+
+        ApplyNumericEditorValue(item, value);
+    }
+
+    private void NumericEditor_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is not XNumberBox editor || editor.Tag is not PropertyItemTemp item)
+            return;
+
+        CommitNumericEditorValue(editor, item);
+        EndNumericEditSession(item);
+    }
+
+    private void NumericEditor_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if (sender is not XNumberBox editor || editor.Tag is not PropertyItemTemp item)
+            return;
+
+        if (e.Key == System.Windows.Input.Key.Enter)
+        {
+            CommitNumericEditorValue(editor, item);
+            EndNumericEditSession(item);
+            return;
+        }
+
+        if (e.Key == System.Windows.Input.Key.Escape)
+            EndNumericEditSession(item);
+    }
+
+    private void CommitNumericEditorValue(XNumberBox editor, PropertyItemTemp item)
+    {
+        if (editor.Value is double value)
+            ApplyNumericEditorValue(item, value);
+    }
+
+    private void ApplyNumericEditorValue(PropertyItemTemp item, double value)
+    {
         if (IsEditorWriteBlocked())
             return;
 
@@ -796,21 +837,33 @@ public partial class PropertyEditor : UserControl
         ArmNumericEditSessionTimeout(item);
     }
 
-    private void NumericEditor_LostFocus(object sender, RoutedEventArgs e)
+    private static bool ShouldDeferSizeTextEntry(XNumberBox editor, PropertyItemTemp item)
     {
-        if (sender is not FrameworkElement fe || fe.Tag is not PropertyItemTemp item)
-            return;
+        if (item.Property.Name != nameof(DesignControl.Width)
+            && item.Property.Name != nameof(DesignControl.Height))
+        {
+            return false;
+        }
 
-        EndNumericEditSession(item);
+        return System.Windows.Input.Keyboard.FocusedElement is TextBox focusedTextBox
+            && IsVisualDescendantOf(focusedTextBox, editor);
     }
 
-    private void NumericEditor_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    private static bool IsVisualDescendantOf(
+        DependencyObject descendant,
+        DependencyObject ancestor)
     {
-        if (sender is not FrameworkElement fe || fe.Tag is not PropertyItemTemp item)
-            return;
+        DependencyObject? current = descendant;
 
-        if (e.Key == System.Windows.Input.Key.Enter || e.Key == System.Windows.Input.Key.Escape)
-            EndNumericEditSession(item);
+        while (current != null)
+        {
+            if (ReferenceEquals(current, ancestor))
+                return true;
+
+            current = VisualTreeHelper.GetParent(current);
+        }
+
+        return false;
     }
 
     private void ArmNumericEditSessionTimeout(PropertyItemTemp item)

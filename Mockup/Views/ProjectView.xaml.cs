@@ -3,6 +3,7 @@ using Mockup.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Mockup.Views;
 
@@ -19,7 +20,9 @@ public partial class ProjectView : UserControl
 
     private void ProjectView_Loaded(object sender, RoutedEventArgs e)
     {
-        ScreenThumbnail.RefreshVisibleThumbnails(this);
+        Dispatcher.BeginInvoke(
+            new Action(() => ScreenThumbnail.RefreshVisibleThumbnails(this)),
+            DispatcherPriority.Background);
     }
 
     private void Root_PreviewMouseWheel(object sender, MouseWheelEventArgs e)

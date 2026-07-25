@@ -79,6 +79,36 @@ public abstract partial class BaseDesigner : Control
         Style = SKPaintStyle.Fill,
     };
 
+    private static readonly SKPaint _interactionHintShadowPaint = new()
+    {
+        Color = SKColors.Black.WithAlpha(24),
+        IsAntialias = true,
+        Style = SKPaintStyle.Fill,
+    };
+
+    private static readonly SKPaint _interactionHintFillPaint = new()
+    {
+        Color = new SKColor(32, 36, 43, 218),
+        IsAntialias = true,
+        Style = SKPaintStyle.Fill,
+    };
+
+    private static readonly SKPaint _interactionHintBorderPaint = new()
+    {
+        Color = SKColors.White.WithAlpha(42),
+        IsAntialias = true,
+        Style = SKPaintStyle.Stroke,
+        StrokeWidth = 0.75f,
+    };
+
+    private static readonly SKPaint _interactionHintMeasurePaint = new()
+    {
+        Color = SKColors.White,
+        IsAntialias = true,
+        TextSize = 10.5f,
+        Typeface = SKTypeface.Default,
+    };
+
     #endregion === BRUSHES ===
 
     #region === RENDER ENTRY POINT (OnPaintSurface) ===
@@ -277,9 +307,95 @@ public abstract partial class BaseDesigner : Control
         }
 
         RenderAlignmentGuidelines(canvas);
+        RenderDesignerInteractionHint(canvas);
     }
 
     #endregion === RENDER ENTRY POINT (OnPaintSurface) ===
+
+    #region === DESIGNER INTERACTION HINT ===
+
+    private void RenderDesignerInteractionHint(SKCanvas canvas)
+    {
+        if (PART_Canvas == null || string.IsNullOrWhiteSpace(_designerInteractionHintText))
+            return;
+
+        const float fontSize = 10.5f;
+        const float horizontalPadding = 6f;
+        const float verticalPadding = 2.5f;
+        const float textLayoutHeight = 18f;
+        const float cornerRadius = 3f;
+        const float outerMargin = 4f;
+        const float targetGap = 8f;
+        const float widthSafety = 3f;
+
+        var fontWeight = FontWeight.FromOpenTypeWeight(500);
+
+        float richTextWidth = TextRenderer.MeasureTextWidth(
+            _designerInteractionHintText,
+            fontSize,
+            fontWeight: fontWeight);
+
+        float skiaWidth = _interactionHintMeasurePaint.MeasureText(
+            _designerInteractionHintText);
+
+        float textWidth = MathF.Max(richTextWidth, skiaWidth);
+        float width = MathF.Ceiling(
+            textWidth + horizontalPadding * 2f + widthSafety);
+        float height = MathF.Ceiling(
+            textLayoutHeight + verticalPadding * 2f);
+
+        float canvasWidth = (float)PART_Canvas.ActualWidth;
+        float canvasHeight = (float)PART_Canvas.ActualHeight;
+
+        float x = _designerInteractionHintAnchor.X - width / 2f;
+        float y = _designerInteractionHintAnchor.Y - height - targetGap;
+
+        if (y < outerMargin)
+            y = _designerInteractionHintFallbackY + targetGap;
+
+        x = Math.Clamp(x, outerMargin, Math.Max(outerMargin, canvasWidth - width - outerMargin));
+        y = Math.Clamp(y, outerMargin, Math.Max(outerMargin, canvasHeight - height - outerMargin));
+
+        var rect = new SKRect(x, y, x + width, y + height);
+        var shadowRect = rect;
+        shadowRect.Offset(0f, 1f);
+
+        canvas.DrawRoundRect(
+            shadowRect,
+            cornerRadius,
+            cornerRadius,
+            _interactionHintShadowPaint);
+
+        canvas.DrawRoundRect(
+            rect,
+            cornerRadius,
+            cornerRadius,
+            _interactionHintFillPaint);
+
+        canvas.DrawRoundRect(
+            rect,
+            cornerRadius,
+            cornerRadius,
+            _interactionHintBorderPaint);
+
+        var textRect = new SKRect(
+            rect.Left + horizontalPadding,
+            rect.Top + verticalPadding,
+            rect.Right - horizontalPadding,
+            rect.Bottom - verticalPadding);
+
+        TextRenderer.Draw(
+            canvas,
+            _designerInteractionHintText,
+            textRect,
+            fontSize,
+            SKColors.White,
+            textAlignment: TextAlignment.Left,
+            padding: 0f,
+            fontWeight: fontWeight);
+    }
+
+    #endregion === DESIGNER INTERACTION HINT ===
 
     #region === DESIGNER OVERLAY HOOK ===
 

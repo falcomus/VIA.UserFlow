@@ -1,6 +1,8 @@
 using SkiaSharp;
 using SkiaSharp.Views.WPF;
 using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -22,6 +24,12 @@ public partial class ScreenThumbnail : UserControl
 
     private static readonly ConcurrentDictionary<string, ImageSource> ThumbnailCache = new();
     private static readonly ConcurrentQueue<string> ThumbnailCacheOrder = new();
+    private static readonly ConditionalWeakTable<Screen, ScreenCacheState> ScreenCacheStates = new();
+
+    private static readonly object ActiveThumbnailsSync = new();
+    private static readonly HashSet<ScreenThumbnail> ActiveThumbnails = [];
+
+    private static long _nextScreenCacheIdentity;
 
     private bool _renderQueued;
 
@@ -29,9 +37,28 @@ public partial class ScreenThumbnail : UserControl
     {
         InitializeComponent();
 
-        Loaded += (_, _) => QueueRenderThumbnail();
-        SizeChanged += (_, _) => QueueRenderThumbnail();
+        Loaded += ScreenThumbnail_Loaded;
+        Unloaded += ScreenThumbnail_Unloaded;
+        SizeChanged += ScreenThumbnail_SizeChanged;
+    }
 
+    private void ScreenThumbnail_Loaded(object sender, RoutedEventArgs e)
+    {
+        lock (ActiveThumbnailsSync)
+            ActiveThumbnails.Add(this);
+
+        QueueRenderThumbnail();
+    }
+
+    private void ScreenThumbnail_Unloaded(object sender, RoutedEventArgs e)
+    {
+        lock (ActiveThumbnailsSync)
+            ActiveThumbnails.Remove(this);
+    }
+
+    private void ScreenThumbnail_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        QueueRenderThumbnail();
     }
 
     // =====================================================================
@@ -66,29 +93,67 @@ public partial class ScreenThumbnail : UserControl
     // =====================================================================
 
     /// <summary>
-    /// Leert den gemeinsamen Thumbnail-Cache und rendert alle aktuell sichtbaren
-    /// ScreenThumbnail-Instanzen unterhalb des angegebenen Visual-Tree-Knotens neu.
+    /// Invalidiert nur die aktuell geladenen ScreenThumbnail-Instanzen unterhalb
+    /// des angegebenen Visual-Tree-Knotens und rendert diese erneut.
     /// </summary>
     public static void RefreshVisibleThumbnails(DependencyObject root)
     {
         ArgumentNullException.ThrowIfNull(root);
 
-        ClearThumbnailCache();
+        if (!root.Dispatcher.CheckAccess())
+        {
+            root.Dispatcher.BeginInvoke(
+                new Action(() => RefreshVisibleThumbnails(root)),
+                DispatcherPriority.Background);
+            return;
+        }
+
         RefreshVisibleThumbnailsCore(root);
     }
 
-    private static void RefreshVisibleThumbnailsCore(DependencyObject current)
+    private static void RefreshVisibleThumbnailsCore(DependencyObject root)
     {
-        if (current is ScreenThumbnail thumbnail)
-            thumbnail.QueueRenderThumbnail();
+        ScreenThumbnail[] activeThumbnails;
 
-        int childCount = System.Windows.Media.VisualTreeHelper.GetChildrenCount(current);
+        lock (ActiveThumbnailsSync)
+            activeThumbnails = [.. ActiveThumbnails];
 
-        for (int index = 0; index < childCount; index++)
+        var visibleThumbnails = new List<ScreenThumbnail>();
+        var screensToInvalidate = new HashSet<Screen>(ReferenceEqualityComparer.Instance);
+
+        foreach (var thumbnail in activeThumbnails)
         {
-            DependencyObject child = System.Windows.Media.VisualTreeHelper.GetChild(current, index);
-            RefreshVisibleThumbnailsCore(child);
+            if (!thumbnail.IsLoaded || !IsVisualDescendantOf(thumbnail, root))
+                continue;
+
+            visibleThumbnails.Add(thumbnail);
+
+            if (thumbnail.Screen != null)
+                screensToInvalidate.Add(thumbnail.Screen);
         }
+
+        foreach (var screen in screensToInvalidate)
+            ClearCachedScreen(screen);
+
+        foreach (var thumbnail in visibleThumbnails)
+            thumbnail.QueueRenderThumbnail();
+    }
+
+    private static bool IsVisualDescendantOf(
+        DependencyObject descendant,
+        DependencyObject ancestor)
+    {
+        DependencyObject? current = descendant;
+
+        while (current != null)
+        {
+            if (ReferenceEquals(current, ancestor))
+                return true;
+
+            current = VisualTreeHelper.GetParent(current);
+        }
+
+        return false;
     }
 
     private void QueueRenderThumbnail()
@@ -168,8 +233,12 @@ public partial class ScreenThumbnail : UserControl
 
     private static string CreateCacheKey(Screen screen, int pixelW, int pixelH)
     {
+        ScreenCacheState cacheState = GetScreenCacheState(screen);
+
         return string.Join(
             "|",
+            cacheState.Identity,
+            Volatile.Read(ref cacheState.Revision),
             screen.Id,
             pixelW,
             pixelH,
@@ -177,6 +246,14 @@ public partial class ScreenThumbnail : UserControl
             MathF.Round(screen.ScreenHeight),
             screen.ShowHeader,
             screen.ShowFooter);
+    }
+
+    private static ScreenCacheState GetScreenCacheState(Screen screen)
+    {
+        return ScreenCacheStates.GetValue(
+            screen,
+            static _ => new ScreenCacheState(
+                Interlocked.Increment(ref _nextScreenCacheIdentity)));
     }
 
     private static void ClearThumbnailCache()
@@ -193,15 +270,8 @@ public partial class ScreenThumbnail : UserControl
         if (screen == null)
             return;
 
-        string prefix = $"{screen.Id}|";
-
-        foreach (var key in ThumbnailCache.Keys)
-        {
-            if (key.StartsWith(prefix, StringComparison.Ordinal))
-                ThumbnailCache.TryRemove(key, out _);
-        }
-
-        EvictOldThumbnailCacheEntries();
+        ScreenCacheState cacheState = GetScreenCacheState(screen);
+        Interlocked.Increment(ref cacheState.Revision);
     }
 
     private static void EvictOldThumbnailCacheEntries()
@@ -216,6 +286,18 @@ public partial class ScreenThumbnail : UserControl
         {
             ThumbnailCache.TryRemove(oldKey, out _);
         }
+    }
+
+    private sealed class ScreenCacheState
+    {
+        public ScreenCacheState(long identity)
+        {
+            Identity = identity;
+        }
+
+        public long Identity { get; }
+
+        public long Revision;
     }
 
     // =====================================================================

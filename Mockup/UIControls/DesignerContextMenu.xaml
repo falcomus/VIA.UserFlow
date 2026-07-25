@@ -1,122 +1,97 @@
-﻿<!--
+<!--
     ======================================================================================
     FILE: Mockup.UIControls/DesignerContextMenu.xaml
     ======================================================================================
 -->
 
-<ContextMenu
+<via:XContextMenu
   x:Class="Mockup.UIControls.DesignerContextMenu"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:via="http://schemas.via.dev/wpf"
   xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
   d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
-  Style="{StaticResource XContextMenu}"
   mc:Ignorable="d"
 >
   <!--  =========================================================  -->
   <!--  SCREEN ROOT (nur wenn KEIN Control-/AA-Kontext)  -->
   <!--  =========================================================  -->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding EditScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Edit Screen"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Pencil}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Edit" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding NewScreenCommand}"
     Header="New Screen"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Plus}"
+    Variant="Primary"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Add" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
     Header="Paste Control(s)"
+    Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DeleteScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Delete Screen"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Command="{Binding ChangeScreenBackgroundCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Change Screen Background"
+    Icon="{via:MaterialIcon Kind=PaletteOutline}"
     IsEnabled="True"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="ColorLens" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding SelectScreenImageCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Select Screen Image"
+    Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
     IsEnabled="False"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Show Header"
+    Icon="{via:MaterialIcon Kind=ViewHeadline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentScreen.ShowHeader, Mode=TwoWay}"
-    Style="{StaticResource XMenuItemCheck}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Show Footer"
+    Icon="{via:MaterialIcon Kind=ViewHeadline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentScreen.ShowFooter, Mode=TwoWay}"
-    Style="{StaticResource XMenuItemCheck}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -124,164 +99,125 @@
   <!--  TEMPLATE ROOT (nur wenn KEIN Control-/AA-Kontext)  -->
   <!--  =========================================================  -->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding EditTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
     Header="Edit Template"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Pencil}"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Edit" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding NewTemplateCommand}"
     Header="New Template"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Plus}"
+    Variant="Primary"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Add" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
     Header="Paste Control(s)"
+    Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DeleteTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
     Header="Delete Template"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
   <!--  =========================================================  -->
   <!--  POPUP ROOT (nur wenn KEIN Control-/AA-Kontext)  -->
   <!--  =========================================================  -->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding EditPopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
     Header="Edit Popup"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Pencil}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Edit" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding NewPopupCommand}"
     Header="New Popup"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Plus}"
+    Variant="Primary"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Add" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
     Header="Paste Control(s)"
+    Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DeletePopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
     Header="Delete Popup"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Header="Dock Left"
+    Icon="{via:MaterialIcon Kind=ChevronLeft}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Left}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Dock Right"
+    Icon="{via:MaterialIcon Kind=ChevronRight}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Right}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Dock Top"
+    Icon="{via:MaterialIcon Kind=ChevronUp}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Top}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Dock Bottom"
+    Icon="{via:MaterialIcon Kind=ChevronDown}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Bottom}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="Dock Center"
+    Icon="{via:MaterialIcon Kind=VectorSquare}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Center}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Header="At Mouse Position"
+    Icon="{via:MaterialIcon Kind=ApplicationOutline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=MousePos}"
-    Style="{StaticResource XMenuItemRadio}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -289,242 +225,177 @@
   <!--  BAND MENU (nur wenn Band-Kontext & KEIN Control-/AA-Kontext)  -->
   <!--  =========================================================  -->
 
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
     Visibility="{Binding ShowSeparator_RootToBand, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding MoveBandUpCommand}"
     CommandParameter="{Binding ContextBand}"
     Header="Move Band Up"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="ArrowUpward" />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <MenuItem
-    Command="{Binding MoveBandDownCommand}"
-    CommandParameter="{Binding ContextBand}"
-    Header="Move Band Down"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="ArrowDownward" />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=ArrowUp}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
+    Command="{Binding MoveBandDownCommand}"
+    CommandParameter="{Binding ContextBand}"
+    Header="Move Band Down"
+    Icon="{via:MaterialIcon Kind=ArrowDown}"
+    Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Command="{Binding AddBandCommand}"
     CommandParameter="{Binding ContextBand}"
     Header="New Band"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Plus}"
+    Variant="Primary"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Add" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <!--<MenuItem
+  <!--<via:XMenuItem
     Command="{Binding PasteControlsCommand}"
     Header="Paste Control(s)"
     IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   >
-    <MenuItem.Icon>
+    <via:XMenuItem.Icon>
       <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>-->
+    </via:XMenuItem.Icon>
+  </via:XMenuItem>-->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DuplicateBandCommand}"
     CommandParameter="{Binding ContextBand}"
     Header="Duplicate Band"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentCopy" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DeleteBandCommand}"
     CommandParameter="{Binding ContextBand}"
     Header="Delete Band"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
   <!--  =========================================================  -->
   <!--  ACTION AREA MENU (exklusiv für einzelne ActionArea)  -->
   <!--  =========================================================  -->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding EditActionAreaActionsCommand}"
     CommandParameter="{Binding CurrentActionArea}"
     Header="Edit Actions"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="12" Height="12" Kind="Edit" />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=Pencil}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Command="{Binding CopyControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Copy ActionArea"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentCopy" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
     Header="Paste ActionArea"
+    Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Delete ActionArea"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
+  />
 
   <!--  =========================================================  -->
   <!--  CONTROL MENU (exklusiv)  -->
   <!--  =========================================================  -->
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding CopyControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Copy Control(s)"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentCopy" />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <MenuItem
-    Command="{Binding PasteControlsCommand}"
-    Header="Paste Control(s)"
-    IsEnabled="{Binding CanPasteControls}"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign Width="14" Height="14" Kind="ContentPaste" />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
+    Command="{Binding PasteControlsCommand}"
+    Header="Paste Control(s)"
+    Icon="{via:MaterialIcon Kind=ContentPaste}"
+    IsEnabled="{Binding CanPasteControls}"
+    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Delete Control(s)"
-    Style="{StaticResource XMenuItem}"
-    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
-  >
-    <MenuItem.Icon>
-      <ico:PackIconMaterialDesign
-        Width="12"
-        Height="12"
-        Foreground="{DynamicResource DangerBrush}"
-        Kind="Delete"
-      />
-    </MenuItem.Icon>
-  </MenuItem>
-
-  <Separator
-    Style="{StaticResource XMenuSeparator}"
+    Icon="{via:MaterialIcon Kind=Delete}"
+    Variant="Danger"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <Separator Style="{DynamicResource XMenuSeparatorStyle}"
+    Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+  />
+
+  <via:XMenuItem
     Command="{Binding BringToFrontCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Bring To Front"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ArrowUp}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding SendToBackCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Send To Back"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ArrowDown}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding BringForwardCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Bring Forward"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ChevronUp}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
-  <MenuItem
+  <via:XMenuItem
     Command="{Binding SendBackwardCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Send Backward"
-    Style="{StaticResource XMenuItem}"
+    Icon="{via:MaterialIcon Kind=ChevronDown}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
-</ContextMenu>
+</via:XContextMenu>
 
 <!--
     ======================================================================================

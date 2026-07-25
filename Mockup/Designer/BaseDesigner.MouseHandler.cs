@@ -165,10 +165,15 @@ public partial class BaseDesigner
     #region === CONTROL DRAG STATE ===
 
     private bool _isDraggingControls;
+    private bool _controlDragCopyRequested;
     private bool _controlDragSnapshotPushed;
     private bool _controlResizeSnapshotPushed;
     private bool _bandResizeSnapshotPushed;
+    private DesignControl? _pendingCtrlClickToggleControl;
     private SKPoint _controlDragStartMouseWorld;
+    private string? _designerInteractionHintText;
+    private SKPoint _designerInteractionHintAnchor = SKPoint.Empty;
+    private float _designerInteractionHintFallbackY;
 
     private readonly Dictionary<DesignControl, SKPoint> _controlDragStartLocal = new();
 
@@ -218,6 +223,7 @@ public partial class BaseDesigner
         FocusDesignerSurface();
 
         var pt = MouseWorldPoint;
+        ClearDesignerInteractionHint();
 
         bool ctrlKey = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
 
@@ -284,10 +290,12 @@ public partial class BaseDesigner
                 return;
             }
 
+            _pendingCtrlClickToggleControl = null;
+
             if (ctrlKey)
             {
                 if (hitCtrl.IsSelected)
-                    DeselectControl(hitCtrl);
+                    _pendingCtrlClickToggleControl = hitCtrl;
                 else
                     SelectControl(hitCtrl);
             }
@@ -303,6 +311,7 @@ public partial class BaseDesigner
             SelectedBand = ctrlBand;
 
             _isDraggingControls = false;
+            _controlDragCopyRequested = ctrlKey;
             _controlDragSnapshotPushed = false;
             _controlDragStartMouseWorld = pt;
             _controlDragStartLocal.Clear();
@@ -538,18 +547,38 @@ public partial class BaseDesigner
             var dx = pt.X - _resizeStartMouseWorld.X;
             var dy = pt.Y - _resizeStartMouseWorld.Y;
 
-            if (!_controlResizeSnapshotPushed && (Math.Abs(dx) > 1 || Math.Abs(dy) > 1))
-            {
-                var snapshotContext = GetSnapshotContextForDesigner();
-                if (snapshotContext != null)
+            bool geometryChanged = ApplyControlResize(
+                _activeResizeControl,
+                _activeResizeHandle,
+                dx,
+                dy,
+                _resizeStartRect,
+                () =>
                 {
-                    MockupService.Mockup.PushSnapshot(snapshotContext.Value, SnapshotLabels.ControlResized);
-                    _controlResizeSnapshotPushed = true;
-                }
-            }
+                    if (_controlResizeSnapshotPushed
+                        || (Math.Abs(dx) <= 1 && Math.Abs(dy) <= 1))
+                    {
+                        return;
+                    }
 
-            ApplyControlResize(_activeResizeControl, _activeResizeHandle, dx, dy, _resizeStartRect);
-            UpdateAlignmentGuidelinesDuringControlResize(_activeResizeControl, _activeResizeHandle);
+                    var snapshotContext = GetSnapshotContextForDesigner();
+                    if (snapshotContext != null)
+                    {
+                        MockupService.Mockup.PushSnapshot(
+                            snapshotContext.Value,
+                            SnapshotLabels.ControlResized);
+                        _controlResizeSnapshotPushed = true;
+                    }
+                });
+
+            if (!geometryChanged)
+                return;
+
+            UpdateAlignmentGuidelinesDuringControlResize(
+                _activeResizeControl,
+                _activeResizeHandle);
+
+            UpdateControlResizeInteractionHint(pt, _activeResizeControl);
 
             InvalidateDesigner();
             return;
@@ -645,6 +674,22 @@ public partial class BaseDesigner
             upCtrl.OnPointerUp(in ctx);
         }
 
+        if (!_isDraggingControls
+            && _activeResizeControl == null
+            && _pendingCtrlClickToggleControl != null)
+        {
+            DeselectControl(_pendingCtrlClickToggleControl);
+            ResetControlDragModifierState();
+            ClearDesignerInteractionHint();
+
+            if (PART_Canvas.IsMouseCaptured)
+                PART_Canvas.ReleaseMouseCapture();
+
+            Cursor = Cursors.Arrow;
+            InvalidateDesigner();
+            return;
+        }
+
         if (_isDraggingControls)
         {
             _isDraggingControls = false;
@@ -665,6 +710,8 @@ public partial class BaseDesigner
                 PART_Canvas.ReleaseMouseCapture();
 
             _controlDragSnapshotPushed = false;
+            ResetControlDragModifierState();
+            ClearDesignerInteractionHint();
 
             Cursor = Cursors.Arrow;
 
@@ -672,6 +719,9 @@ public partial class BaseDesigner
 
             return;
         }
+
+        ResetControlDragModifierState();
+        ClearDesignerInteractionHint();
 
         if (PopupSuppressAllBandActions)
         {
@@ -700,6 +750,7 @@ public partial class BaseDesigner
             _activeResizeControl = null;
             _activeResizeHandle = ControlResizeHandle.None;
             _controlResizeSnapshotPushed = false;
+            ClearDesignerInteractionHint();
 
             if (PART_Canvas.IsMouseCaptured)
                 PART_Canvas.ReleaseMouseCapture();
@@ -811,6 +862,7 @@ public partial class BaseDesigner
             CancelRubberbandSelection();
 
         ClearAlignmentGuidelines();
+        ClearDesignerInteractionHint();
 
         Cursor = Cursors.Arrow;
         Mouse.OverrideCursor = null!;
@@ -1208,6 +1260,33 @@ public partial class BaseDesigner
             return false;
         }
 
+        _isDraggingControls = true;
+
+        ClampGroupDeltaToBoundsFromStart(_controlDragStartLocal, ref dx, ref dy);
+
+        bool geometryChanged = false;
+
+        foreach (var kv in _controlDragStartLocal)
+        {
+            var ctrl = kv.Key;
+            float targetX = MathF.Round(kv.Value.X + dx);
+            float targetY = MathF.Round(kv.Value.Y + dy);
+
+            if (ctrl.X != targetX || ctrl.Y != targetY)
+            {
+                geometryChanged = true;
+                break;
+            }
+        }
+
+        Cursor = Cursors.Hand;
+
+        if (!geometryChanged)
+            return true;
+
+        if (_controlDragCopyRequested)
+            StartControlCopyDrag();
+
         if (!_controlDragSnapshotPushed)
         {
             var snapshotContext = GetSnapshotContextForDesigner();
@@ -1218,22 +1297,234 @@ public partial class BaseDesigner
             }
         }
 
-        _isDraggingControls = true;
-
-        ClampGroupDeltaToBoundsFromStart(_controlDragStartLocal, ref dx, ref dy);
-
         foreach (var kv in _controlDragStartLocal)
         {
             var ctrl = kv.Key;
-            ctrl.X = MathF.Round(kv.Value.X + dx);
-            ctrl.Y = MathF.Round(kv.Value.Y + dy);
+            float targetX = MathF.Round(kv.Value.X + dx);
+            float targetY = MathF.Round(kv.Value.Y + dy);
+
+            if (ctrl.X != targetX)
+                ctrl.X = targetX;
+
+            if (ctrl.Y != targetY)
+                ctrl.Y = targetY;
         }
 
         UpdateAlignmentGuidelinesDuringControlDrag(dx, dy);
+        UpdateControlDragInteractionHint(pt, dx, dy);
 
-        Cursor = Cursors.Hand;
         InvalidateDesigner();
         return true;
+    }
+
+    private void UpdateControlDragInteractionHint(SKPoint pointer, float dx, float dy)
+    {
+        _ = pointer;
+        _ = dx;
+        _ = dy;
+
+        var selectedControls = VM?.SelectedControls;
+        if (selectedControls == null || selectedControls.Count == 0)
+        {
+            ClearDesignerInteractionHint();
+            return;
+        }
+
+        if (selectedControls.Count == 1)
+        {
+            var ctrl = selectedControls[0];
+
+            _designerInteractionHintText =
+                $"X {MathF.Round(ctrl.X):0}   Y {MathF.Round(ctrl.Y):0}";
+        }
+        else
+        {
+            var groupPosition = GetCurrentSelectionPosition(selectedControls);
+            if (groupPosition == null)
+            {
+                ClearDesignerInteractionHint();
+                return;
+            }
+
+            _designerInteractionHintText =
+                $"X {MathF.Round(groupPosition.Value.X):0}"
+                + $"   Y {MathF.Round(groupPosition.Value.Y):0}";
+        }
+
+        UpdateDesignerInteractionHintAnchor(selectedControls);
+    }
+
+    private static SKPoint? GetCurrentSelectionPosition(
+        IEnumerable<DesignControl> controls)
+    {
+        var selectedControls = controls
+            .Where(ctrl => ctrl?.ParentBandPage != null)
+            .Distinct()
+            .ToList();
+
+        if (selectedControls.Count == 0)
+            return null;
+
+        var firstPage = selectedControls[0].ParentBandPage;
+
+        bool samePage = selectedControls.All(
+            ctrl => ReferenceEquals(ctrl.ParentBandPage, firstPage));
+
+        if (samePage)
+        {
+            return new SKPoint(
+                selectedControls.Min(ctrl => ctrl.X),
+                selectedControls.Min(ctrl => ctrl.Y));
+        }
+
+        float left = float.MaxValue;
+        float top = float.MaxValue;
+
+        foreach (var ctrl in selectedControls)
+        {
+            var page = ctrl.ParentBandPage;
+            if (page == null)
+                continue;
+
+            left = Math.Min(left, page.WorldBounds.Left + ctrl.X);
+            top = Math.Min(top, page.WorldBounds.Top + ctrl.Y);
+        }
+
+        return left == float.MaxValue
+            ? null
+            : new SKPoint(left, top);
+    }
+
+    private void UpdateControlResizeInteractionHint(SKPoint pointer, DesignControl ctrl)
+    {
+        _ = pointer;
+
+        _designerInteractionHintText =
+            $"W {MathF.Round(ctrl.Width):0}   H {MathF.Round(ctrl.Height):0}";
+
+        UpdateDesignerInteractionHintAnchor([ctrl]);
+    }
+
+    private void UpdateDesignerInteractionHintAnchor(
+        IEnumerable<DesignControl> controls)
+    {
+        float left = float.MaxValue;
+        float top = float.MaxValue;
+        float right = float.MinValue;
+        float bottom = float.MinValue;
+
+        foreach (var ctrl in controls)
+        {
+            var page = ctrl.ParentBandPage;
+            if (page == null)
+                continue;
+
+            float controlLeft = page.WorldBounds.Left + ctrl.X;
+            float controlTop = page.WorldBounds.Top + ctrl.Y;
+            float controlRight = controlLeft + ctrl.Width;
+            float controlBottom = controlTop + ctrl.Height;
+
+            left = Math.Min(left, controlLeft);
+            top = Math.Min(top, controlTop);
+            right = Math.Max(right, controlRight);
+            bottom = Math.Max(bottom, controlBottom);
+        }
+
+        if (left == float.MaxValue)
+        {
+            _designerInteractionHintAnchor = SKPoint.Empty;
+            _designerInteractionHintFallbackY = 0f;
+            return;
+        }
+
+        _designerInteractionHintAnchor = new SKPoint(
+            MathF.Round((left + right) / 2f),
+            MathF.Round(top));
+
+        _designerInteractionHintFallbackY = MathF.Round(bottom);
+    }
+
+    private void ClearDesignerInteractionHint()
+    {
+        _designerInteractionHintText = null;
+        _designerInteractionHintAnchor = SKPoint.Empty;
+        _designerInteractionHintFallbackY = 0f;
+    }
+
+    private static string FormatSignedDesignerValue(float value)
+    {
+        return value > 0f
+            ? $"+{value:0}"
+            : $"{value:0}";
+    }
+
+    private void StartControlCopyDrag()
+    {
+        _controlDragCopyRequested = false;
+        _pendingCtrlClickToggleControl = null;
+
+        if (VM?.SelectedControls == null || VM.SelectedControls.Count == 0)
+            return;
+
+        var sourceGroups = VM.SelectedControls
+            .Where(ctrl => ctrl?.ParentBandPage != null)
+            .Distinct()
+            .GroupBy(ctrl => ctrl.ParentBandPage!)
+            .ToList();
+
+        if (sourceGroups.Count == 0)
+            return;
+
+        var snapshotContext = GetSnapshotContextForDesigner();
+        if (snapshotContext != null)
+            MockupService.Mockup.PushSnapshot(
+                snapshotContext.Value,
+                SnapshotLabels.ControlDuplicated);
+
+        _controlDragSnapshotPushed = true;
+
+        var copies = new List<DesignControl>();
+
+        foreach (var sourceGroup in sourceGroups)
+        {
+            var page = sourceGroup.Key;
+            int nextZ = page.Controls.Count == 0
+                ? 0
+                : page.Controls.Max(ctrl => ctrl.ZIndex) + 1;
+
+            foreach (var source in sourceGroup.OrderBy(ctrl => ctrl.ZIndex))
+            {
+                var copy = source.DeepClone();
+
+                copy.ParentBand = source.ParentBand;
+                copy.ParentBandPage = page;
+                copy.ZIndex = nextZ++;
+
+                page.Controls.Add(copy);
+                copies.Add(copy);
+            }
+
+            NormalizeZOrder(page);
+        }
+
+        if (copies.Count == 0)
+            return;
+
+        DeselectAllControls();
+
+        _controlDragStartLocal.Clear();
+
+        foreach (var copy in copies)
+        {
+            SelectControl(copy);
+            _controlDragStartLocal[copy] = new SKPoint(copy.X, copy.Y);
+        }
+    }
+
+    private void ResetControlDragModifierState()
+    {
+        _controlDragCopyRequested = false;
+        _pendingCtrlClickToggleControl = null;
     }
 
     protected void ClampGroupDeltaToBoundsFromStart(
@@ -1372,17 +1663,18 @@ public partial class BaseDesigner
     {
         return NormalizeResizeHandleForControl(ctrl, handle) != ControlResizeHandle.None;
     }
-    private void ApplyControlResize(
+    private bool ApplyControlResize(
         DesignControl ctrl,
         ControlResizeHandle handle,
         float dx,
         float dy,
-        SKRect startRect
+        SKRect startRect,
+        Action beforeApply
     )
     {
         handle = NormalizeResizeHandleForControl(ctrl, handle);
         if (handle == ControlResizeHandle.None)
-            return;
+            return false;
 
         float x = startRect.Left;
         float y = startRect.Top;
@@ -1400,7 +1692,7 @@ public partial class BaseDesigner
             || ctrl.ResizeStyle == ResizeStyles.KeepRatio;
 
         if (ctrl.ResizeStyle == ResizeStyles.KeepRatio && handle != ControlResizeHandle.BottomRight)
-            return;
+            return false;
 
         switch (handle)
         {
@@ -1558,7 +1850,7 @@ public partial class BaseDesigner
 
         var page = ctrl.ParentBandPage;
         if (page == null)
-            return;
+            return false;
 
         float maxWidthInPage = IsLeftResizeHandle(handle)
             ? startRect.Right - page.WorldBounds.Left
@@ -1608,10 +1900,34 @@ public partial class BaseDesigner
                 localY = SnapLocalToGrid(localY, grid, 0f, maxY);
         }
 
-        ctrl.X = MathF.Round(localX);
-        ctrl.Y = MathF.Round(localY);
-        ctrl.Width = MathF.Round(w);
-        ctrl.Height = MathF.Round(h);
+        float targetX = MathF.Round(localX);
+        float targetY = MathF.Round(localY);
+        float targetWidth = MathF.Round(w);
+        float targetHeight = MathF.Round(h);
+
+        if (ctrl.X == targetX
+            && ctrl.Y == targetY
+            && ctrl.Width == targetWidth
+            && ctrl.Height == targetHeight)
+        {
+            return false;
+        }
+
+        beforeApply();
+
+        if (ctrl.X != targetX)
+            ctrl.X = targetX;
+
+        if (ctrl.Y != targetY)
+            ctrl.Y = targetY;
+
+        if (ctrl.Width != targetWidth)
+            ctrl.Width = targetWidth;
+
+        if (ctrl.Height != targetHeight)
+            ctrl.Height = targetHeight;
+
+        return true;
     }
 
     private bool IsGridResizeSnapEnabled(out float grid)

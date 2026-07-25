@@ -16,6 +16,7 @@ using SkiaSharp.Views.WPF;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Mockup.Designer;
 
@@ -209,13 +210,30 @@ public abstract partial class BaseDesigner : System.Windows.Controls.Control
 
     #region === Designer Flags / State (shared, not duplicated) ===
 
+    private DispatcherOperation? _pendingDesignerInvalidation;
+
     public DesignerKind DesignerKind { get; set; } = DesignerKind.Screen;
 
     public bool AllowBandInteraction { get; set; } = true;
 
     public float ScrollOffsetY { get; set; }
 
-    public void InvalidateDesigner() => PART_Canvas?.InvalidateVisual();
+    public void InvalidateDesigner()
+    {
+        if (PART_Canvas == null)
+            return;
+
+        if (_pendingDesignerInvalidation?.Status == DispatcherOperationStatus.Pending)
+            return;
+
+        _pendingDesignerInvalidation = Dispatcher.BeginInvoke(
+            DispatcherPriority.Render,
+            new Action(() =>
+            {
+                _pendingDesignerInvalidation = null;
+                PART_Canvas?.InvalidateVisual();
+            }));
+    }
 
     #endregion
 
@@ -356,4 +374,3 @@ public abstract partial class BaseDesigner : System.Windows.Controls.Control
 
     #endregion
 }
-

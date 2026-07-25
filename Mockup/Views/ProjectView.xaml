@@ -73,7 +73,10 @@
 
 
 
-            <Grid VerticalAlignment="Stretch" ext:GridEx.ColDef="*,*,80,20" Margin="0 5">
+            <Grid
+                Margin="0,5"
+                VerticalAlignment="Stretch"
+                ext:GridEx.ColDef="*,*,80,20">
 
                 <via:XButton
                     Grid.Column="0"
@@ -680,7 +683,6 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                 SelectedItem="{Binding CurrentScreen}"
-                Style="{DynamicResource WrapPanelHorizontalListBox}"
                 VirtualizingPanel.IsVirtualizing="True"
                 VirtualizingPanel.ScrollUnit="Pixel"
                 VirtualizingPanel.VirtualizationMode="Recycling">
@@ -704,7 +706,7 @@
                             <Border
                                 Background="#1A1C1F"
                                 BorderThickness="0"
-                                CornerRadius="14">
+                                CornerRadius="8 8 5 5">
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="12"
@@ -724,7 +726,7 @@
                                         Margin="0,-45,0,0"
                                         Padding="8,0"
                                         HorizontalAlignment="Center"
-                                        Background="{DynamicResource SubHeaderBrush}"
+                                        Background="{DynamicResource ToolBarElemBGBrush}"
                                         CornerRadius="6 6 0 0"
                                         Opacity="0">
 
@@ -846,7 +848,7 @@
                                         </via:XStackPanel>
                                     </via:XBorder>
 
-                                    <Border Background="#1A1C1F" CornerRadius="11 11 0 0">
+                                    <Border Background="#1A1C1F" CornerRadius="10 10 0 0">
                                         <Grid ext:GridEx.ColDef="*,Auto,Auto">
                                             <TextBlock
                                                 Margin="5,0,4,1"
@@ -860,6 +862,8 @@
 
                                             <via:XIconButton
                                                 Grid.Column="2"
+                                                MinHeight="30"
+                                                Margin="0,0,-2,0"
                                                 Background="Transparent"
                                                 BorderThickness="0"
                                                 Command="{Binding ElementName=root, Path=DataContext.SetAsHomeScreenCommand}"
@@ -1021,10 +1025,9 @@
                     </DataTemplate>
                 </via:XListBox.ItemTemplate>
 
-
                 <via:XListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="Padding" Value="25,20" />
+                        <Setter Property="Padding" Value="15" />
                         <Setter Property="Margin" Value="15" />
                         <Setter Property="ClipToBounds" Value="False" />
                         <Setter Property="Background" Value="Transparent" />
@@ -1068,6 +1071,7 @@
                     SelectedItem="{Binding CurrentScreenFilterGroupName, Mode=TwoWay}"
                     SelectionMode="Single"
                     VirtualizingPanel.IsVirtualizing="True">
+                    
                     <via:XListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="BorderBrush" Value="Transparent" />
@@ -1085,7 +1089,7 @@
 
                     <via:XListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel />
+                            <vwp:VirtualizingWrapPanel VirtualizingPanel.IsVirtualizing="True"/>
                         </ItemsPanelTemplate>
                     </via:XListBox.ItemsPanel>
 

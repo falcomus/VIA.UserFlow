@@ -46,6 +46,7 @@ public abstract partial class BaseDesigner
         IsAntialias = false,
         Style = SKPaintStyle.Stroke,
         StrokeWidth = 1.5f,
+        PathEffect = SKPathEffect.CreateDash([3f, 2f], 0f),
     };
 
     private static readonly SKPaint _alignmentTargetHighlightFillPaint = new()

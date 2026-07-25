@@ -499,7 +499,7 @@
                             Margin="3,0,3,0"
                             HorizontalAlignment="Center" />
 
-                        <ui:XZoomSlider
+                        <via:XZoomSlider
                             x:Name="PART_ZoomSlider"
                             Margin="3,0,5,0"
                             HorizontalAlignment="Right"

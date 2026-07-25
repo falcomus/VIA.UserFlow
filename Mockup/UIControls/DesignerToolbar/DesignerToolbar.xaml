@@ -1,0 +1,19 @@
+<UserControl
+    x:Class="Mockup.UIControls.DesignerToolbar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:via="http://schemas.via.dev/wpf">
+
+    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+        <via:XToggleButton
+            Width="32"
+            Height="32"
+            Padding="0"
+            Background="Transparent"
+            BorderThickness="0"
+            IsChecked="{Binding CurrentProject.ShowAlignmentGuidelines, Mode=TwoWay}"
+            ToolTip="Smart guides: show and snap to matching control edges and centers">
+            <via:XMaterialIcon Height="16" Kind="FormatAlignCenter" Size="16" />
+        </via:XToggleButton>
+    </StackPanel>
+</UserControl>

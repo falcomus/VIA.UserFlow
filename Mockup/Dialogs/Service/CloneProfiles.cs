@@ -52,6 +52,7 @@ public static class CloneProfiles
             ActiveColorSchema = p.ActiveColorSchema,
             DeviceWidth = p.DeviceWidth,
             DeviceHeight = p.DeviceHeight,
+            ShowAlignmentGuidelines = p.ShowAlignmentGuidelines,
             ScreenZoomPercent = p.ScreenZoomPercent,
             PreviewZoomPercent = p.PreviewZoomPercent,
             TemplateZoomPercent = p.TemplateZoomPercent,

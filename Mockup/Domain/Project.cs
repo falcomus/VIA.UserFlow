@@ -57,6 +57,15 @@ public sealed partial class Project : ObservableObject
 
     #region === SHARING / PERMISSIONS ===
 
+    #region === DESIGNER GUIDES ===
+
+    [ObservableProperty]
+    private bool showAlignmentGuidelines = true;
+
+    partial void OnShowAlignmentGuidelinesChanged(bool value) => MSG.UI.InvalidateDesigner();
+
+    #endregion === DESIGNER GUIDES ===
+
     [ObservableProperty]
     [property: System.ComponentModel.Browsable(false)]
     private bool isShared;
@@ -209,6 +218,7 @@ public sealed partial class Project : ObservableObject
             Description = this.Description,
             DeviceWidth = this.DeviceWidth,
             DeviceHeight = this.DeviceHeight,
+            ShowAlignmentGuidelines = this.ShowAlignmentGuidelines,
             ScreenZoomPercent = this.ScreenZoomPercent,
             PreviewZoomPercent = this.PreviewZoomPercent,
             TemplateZoomPercent = this.TemplateZoomPercent,

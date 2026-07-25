@@ -311,12 +311,18 @@
                             BorderThickness="0"
                             Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                        <via:XSeparator
-                            Grid.Column="1"
-                            Margin="10,0,10,0"
-                            HorizontalAlignment="Center" />
+                    <via:XSeparator
+                        Grid.Column="1"
+                        Margin="10,0,10,0"
+                        HorizontalAlignment="Center" />
 
-                        <ui:UndoRedoBar />
+                    <ui:DesignerToolbar />
+
+                    <via:XSeparator
+                        Margin="10,0,10,0"
+                        HorizontalAlignment="Center" />
+
+                    <ui:UndoRedoBar />
 
                         <via:XSeparator
                             Grid.Column="1"

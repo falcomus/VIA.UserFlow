@@ -63,6 +63,8 @@ public abstract partial class BaseDesigner
         StrokeWidth = 1.25f,
     };
 
+    private bool AreAlignmentGuidelinesEnabled => VM?.CurrentProject?.ShowAlignmentGuidelines ?? true;
+
     #endregion === ALIGNMENT GUIDELINES STATE ===
 
     #region === ALIGNMENT GUIDELINES UPDATE ===
@@ -87,7 +89,7 @@ public abstract partial class BaseDesigner
 
     private void UpdateAlignmentGuidelinesDuringControlDrag(float dx, float dy)
     {
-        if (VM?.SelectedControls == null || VM.SelectedControls.Count == 0)
+        if (!AreAlignmentGuidelinesEnabled || VM?.SelectedControls == null || VM.SelectedControls.Count == 0)
         {
             ClearAlignmentGuidelines();
             return;
@@ -117,7 +119,7 @@ public abstract partial class BaseDesigner
         DesignControl ctrl,
         ControlResizeHandle handle)
     {
-        if (ctrl == null)
+        if (!AreAlignmentGuidelinesEnabled || ctrl == null)
         {
             ClearAlignmentGuidelines();
             return;
@@ -202,6 +204,12 @@ public abstract partial class BaseDesigner
     /// </summary>
     protected void UpdateAlignmentGuidelinesDuringToolboxControlDrop(DesignControl previewCtrl)
     {
+        if (!AreAlignmentGuidelinesEnabled)
+        {
+            ClearAlignmentGuidelines();
+            return;
+        }
+
         ResolveToolboxControlDropAlignment(previewCtrl);
     }
 
@@ -211,6 +219,9 @@ public abstract partial class BaseDesigner
     /// </summary>
     protected bool TryApplyAlignmentGuidelineSnapToToolboxControlDrop(DesignControl ctrl)
     {
+        if (!AreAlignmentGuidelinesEnabled)
+            return false;
+
         return ResolveToolboxControlDropAlignment(ctrl);
     }
 
@@ -717,6 +728,9 @@ public abstract partial class BaseDesigner
     }
     private bool TryApplyAlignmentGuidelineSnapAfterControlDrag()
     {
+        if (!AreAlignmentGuidelinesEnabled)
+            return false;
+
         if (!_activeAlignmentGuidelines.HasAnyMatch)
             return false;
 
@@ -758,6 +772,9 @@ public abstract partial class BaseDesigner
 
     private bool TryApplyAlignmentGuidelineSnapAfterControlResize()
     {
+        if (!AreAlignmentGuidelinesEnabled)
+            return false;
+
         if (!_controlResizeSnapshotPushed)
             return false;
 
@@ -1068,6 +1085,9 @@ public abstract partial class BaseDesigner
 
     private void RenderAlignmentGuidelines(SKCanvas canvas)
     {
+        if (!AreAlignmentGuidelinesEnabled)
+            return;
+
         if (canvas == null)
             return;
 

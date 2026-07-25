@@ -364,7 +364,7 @@
                         <Grid ext:GridEx.ColDef="4,*">
                             <via:XBorder
                                 Padding="0"
-                                Background="DodgerBlue"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                 CornerRadius="1" />
                             <via:XStackPanel
                                 Grid.Column="1"
@@ -716,7 +716,7 @@
                     <DataTemplate>
                         <Border Margin="0" Padding="6">
                             <Border
-                                Background="#1A1C1F"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                                 BorderThickness="0"
                                 CornerRadius="8 8 5 5">
                                 <Border.Effect>
@@ -860,14 +860,14 @@
                                         </via:XStackPanel>
                                     </via:XBorder>
 
-                                    <Border Background="#1A1C1F" CornerRadius="10 10 0 0">
+                                    <Border Background="{DynamicResource {x:Static via:XBrushKeys.PrimaryStrong}}" CornerRadius="4 4 0 0">
                                         <Grid ext:GridEx.ColDef="*,Auto,Auto">
                                             <TextBlock
                                                 Margin="5,0,4,1"
                                                 VerticalAlignment="Center"
                                                 FontSize="13"
                                                 FontWeight="SemiBold"
-                                                Foreground="White"
+                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                 Opacity="0.92"
                                                 Text="{Binding Name}"
                                                 TextTrimming="CharacterEllipsis" />
@@ -888,13 +888,13 @@
                                                 ToolTip="Set as Home Screen">
                                                 <via:XIconButton.Style>
                                                     <Style TargetType="{x:Type via:XIconButton}">
-                                                        <Setter Property="Foreground" Value="#7B8290" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}" />
                                                         <Setter Property="Opacity" Value="0.75" />
 
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}" Value="True">
 
-                                                                <Setter Property="Foreground" Value="LightSkyBlue" />
+                                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
                                                                 <Setter Property="Opacity" Value="1" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
@@ -907,7 +907,7 @@
 
                                     <Grid
                                         Grid.Row="1"
-                                        Background="#1A1C1F"
+                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                                         ClipToBounds="True">
                                         <Grid
                                             HorizontalAlignment="Left"
@@ -922,7 +922,7 @@
                                                     Margin="0"
                                                     Padding="0"
                                                     VerticalAlignment="Top"
-                                                    Background="White"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                                     UseLayoutRounding="False">
                                                     <render:ScreenThumbnail
                                                         x:Name="PART_ScreenThumbnail"
@@ -937,7 +937,7 @@
                                                     Padding="8,3,8,3"
                                                     HorizontalAlignment="Right"
                                                     VerticalAlignment="Top"
-                                                    Background="#CC1E88E5"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                                     CornerRadius="10"
                                                     IsHitTestVisible="False">
                                                     <Border.Visibility>
@@ -950,7 +950,7 @@
                                                     <TextBlock
                                                         FontSize="10"
                                                         FontWeight="SemiBold"
-                                                        Foreground="White"
+                                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                         Text="LONG" />
                                                 </Border>
 
@@ -995,7 +995,7 @@
                                                             VerticalAlignment="Bottom"
                                                             FontSize="20"
                                                             FontWeight="Medium"
-                                                            Foreground="White"
+                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                             Opacity="0.95"
                                                             Text="Continues .." />
 
@@ -1008,19 +1008,19 @@
                                                             <TextBlock
                                                                 FontSize="20"
                                                                 FontWeight="Medium"
-                                                                Foreground="White"
+                                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                                 Opacity="0.8"
                                                                 Text="{Binding Width}" />
                                                             <TextBlock
                                                                 FontSize="20"
                                                                 FontWeight="Medium"
-                                                                Foreground="White"
+                                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                                 Opacity="0.8"
                                                                 Text="x" />
                                                             <TextBlock
                                                                 FontSize="20"
                                                                 FontWeight="Medium"
-                                                                Foreground="White"
+                                                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                                 Opacity="0.8"
                                                                 Text="{Binding ScreenHeight}" />
                                                         </via:XStackPanel>
@@ -1138,7 +1138,7 @@
                                             <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
-                                                    <Setter Property="Foreground" Value="White" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

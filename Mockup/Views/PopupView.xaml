@@ -185,6 +185,18 @@
                             <Setter Property="Padding" Value="12,5,10,6" />
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
+                            <Setter Property="Title" Value="{Binding Name}" />
+                            <Setter Property="SubTitle" Value="{Binding Description}" />
+
+                            <Setter Property="ShowEdit" Value="True" />
+                            <Setter Property="ShowDelete" Value="True" />
+
+                            <Setter Property="EditCommand" Value="{Binding DataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
+                            <Setter Property="EditCommandParameter" Value="{Binding}" />
+
+                            <Setter Property="DeleteCommand" Value="{Binding DataContext.DeletePopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
+                            <Setter Property="DeleteCommandParameter" Value="{Binding}" />
+
                         </Style>
                     </via:XListBox.ItemContainerStyle>
 

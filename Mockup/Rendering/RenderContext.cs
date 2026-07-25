@@ -22,10 +22,6 @@ public class RenderContext
 
     public static readonly RenderContext Default = new();
 
-    public bool ShowGrid { get; set; }
-
-    public float GridSize { get; set; }
-
     public bool ShowActionAreas { get; set; }
 
     public bool ShowBandBorders { get; set; } = true;

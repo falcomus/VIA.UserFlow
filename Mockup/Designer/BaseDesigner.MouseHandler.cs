@@ -1775,55 +1775,6 @@ public partial class BaseDesigner
         w = Math.Clamp(w, ctrl.MinWidth, ctrl.MaxWidth);
         h = Math.Clamp(h, ctrl.MinHeight, ctrl.MaxHeight);
 
-        bool snapResizeToGrid = IsGridResizeSnapEnabled(out float grid);
-
-        if (snapResizeToGrid)
-        {
-            bool leftHandle = IsLeftResizeHandle(handle);
-            bool topHandle = IsTopResizeHandle(handle);
-            bool rightHandle = IsRightResizeHandle(handle);
-            bool bottomHandle = IsBottomResizeHandle(handle);
-
-            if (allowWidth)
-            {
-                if (leftHandle && !rightHandle)
-                {
-                    float snappedLeft = SnapWorldToGrid(startRect.Right - w, grid);
-                    x = snappedLeft;
-                    w = startRect.Right - snappedLeft;
-                }
-                else if (rightHandle)
-                {
-                    float snappedRight = SnapWorldToGrid(startRect.Left + w, grid);
-                    w = snappedRight - startRect.Left;
-                }
-            }
-
-            if (allowHeight)
-            {
-                if (topHandle && !bottomHandle)
-                {
-                    float snappedTop = SnapWorldToGrid(startRect.Bottom - h, grid);
-                    y = snappedTop;
-                    h = startRect.Bottom - snappedTop;
-                }
-                else if (bottomHandle)
-                {
-                    float snappedBottom = SnapWorldToGrid(startRect.Top + h, grid);
-                    h = snappedBottom - startRect.Top;
-                }
-            }
-
-            w = SnapResizeValueToGrid(w, grid, ctrl.MinWidth, ctrl.MaxWidth);
-            h = SnapResizeValueToGrid(h, grid, ctrl.MinHeight, ctrl.MaxHeight);
-
-            if (leftHandle && !rightHandle)
-                x = startRect.Right - w;
-
-            if (topHandle && !bottomHandle)
-                y = startRect.Bottom - h;
-        }
-
         w = Math.Clamp(w, ctrl.MinWidth, ctrl.MaxWidth);
         h = Math.Clamp(h, ctrl.MinHeight, ctrl.MaxHeight);
 
@@ -1890,15 +1841,6 @@ public partial class BaseDesigner
         localX = Math.Clamp(localX, 0f, maxX);
         localY = Math.Clamp(localY, 0f, maxY);
 
-        if (snapResizeToGrid)
-        {
-            if (IsLeftResizeHandle(handle))
-                localX = SnapLocalToGrid(localX, grid, 0f, maxX);
-
-            if (IsTopResizeHandle(handle))
-                localY = SnapLocalToGrid(localY, grid, 0f, maxY);
-        }
-
         float targetX = MathF.Round(localX);
         float targetY = MathF.Round(localY);
         float targetWidth = MathF.Round(w);
@@ -1927,53 +1869,6 @@ public partial class BaseDesigner
             ctrl.Height = targetHeight;
 
         return true;
-    }
-
-    private bool IsGridResizeSnapEnabled(out float grid)
-    {
-        grid = 0f;
-
-        if (!Keyboard.IsKeyDown(Key.LeftCtrl) && !Keyboard.IsKeyDown(Key.RightCtrl))
-            return false;
-
-        if (DataContext is not MockupViewModel vm)
-            return false;
-
-        if (!vm.CurrentProject.ShowGrid || vm.CurrentProject.GridSize <= 1f)
-            return false;
-
-        grid = vm.CurrentProject.GridSize;
-        return true;
-    }
-
-    private static float SnapResizeValueToGrid(float value, float grid, float min, float max)
-    {
-        if (grid <= 1f)
-            return Math.Clamp(value, min, max);
-
-        float snapped = MathF.Round(value / grid) * grid;
-
-        if (snapped < min)
-            snapped = MathF.Ceiling(min / grid) * grid;
-
-        return Math.Clamp(snapped, min, max);
-    }
-
-    private static float SnapWorldToGrid(float value, float grid)
-    {
-        if (grid <= 1f)
-            return value;
-
-        return MathF.Round(value / grid) * grid;
-    }
-
-    private static float SnapLocalToGrid(float value, float grid, float min, float max)
-    {
-        if (grid <= 1f)
-            return Math.Clamp(value, min, max);
-
-        float snapped = MathF.Round(value / grid) * grid;
-        return Math.Clamp(snapped, min, max);
     }
 
     private static bool IsLeftResizeHandle(ControlResizeHandle handle)
@@ -2106,58 +2001,6 @@ public partial class BaseDesigner
     #endregion === HITTEST BAND / PAGE ===
 
     #region === HELPERS ===
-    private void TrySnapSelectionToGrid()
-    {
-        if (IsPreview)
-            return;
-
-        if (VM.SelectedControls.Count == 0)
-            return;
-
-        if (DataContext is not MockupViewModel vm)
-            return;
-
-        if (!vm.CurrentProject.ShowGrid || vm.CurrentProject.GridSize <= 1)
-            return;
-
-        if (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt))
-            return;
-
-        float grid = vm.CurrentProject.GridSize;
-
-        foreach (var ctrl in VM.SelectedControls)
-            SnapControlToGrid(ctrl, grid);
-    }
-
-    private static void SnapControlToGrid(DesignControl ctrl, float grid)
-    {
-        if (grid <= 1)
-            return;
-
-        var band = ctrl.ParentBand;
-        if (band == null)
-            return;
-
-        float Snap(float v) => MathF.Round(v / grid) * grid;
-
-        float newX = Snap(ctrl.X);
-        float newY = Snap(ctrl.Y);
-
-        float maxX = band.ContentRect.Width - ctrl.Width;
-        float maxY = band.ContentRect.Height - ctrl.Height;
-
-        if (maxX < 0)
-            maxX = 0;
-        if (maxY < 0)
-            maxY = 0;
-
-        newX = Math.Clamp(newX, 0, maxX);
-        newY = Math.Clamp(newY, 0, maxY);
-
-        ctrl.X = MathF.Round(newX);
-        ctrl.Y = MathF.Round(newY);
-    }
-
     private static SKRect GetSelectionWorldBounds(IEnumerable<DesignControl> controls)
     {
         float left = float.MaxValue;
@@ -2393,10 +2236,7 @@ public partial class BaseDesigner
         if (!ctrl)
             return 1f;
 
-        if (DataContext is not MockupViewModel vm)
-            return 10f;
-
-        return vm.CurrentProject.ShowGrid && vm.CurrentProject.GridSize > 1f ? vm.CurrentProject.GridSize : 10f;
+        return 10f;
     }
 
     private void NudgeSelectedControls(float dx, float dy)

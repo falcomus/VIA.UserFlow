@@ -206,7 +206,6 @@ public partial class ScreenDesigner : BaseDesigner
         ctrl.X = MathF.Round(local.X);
         ctrl.Y = MathF.Round(local.Y);
 
-        TrySnapControlToGridOnDrop(ctrl);
         TryApplyAlignmentGuidelineSnapToToolboxControlDrop(ctrl);
 
         ctrl.ZIndex = GetNextTopZ(ctx.TargetPage);
@@ -305,7 +304,6 @@ public partial class ScreenDesigner : BaseDesigner
         previewCtrl.X = MathF.Round(local.X);
         previewCtrl.Y = MathF.Round(local.Y);
 
-        TrySnapControlToGridOnDrop(previewCtrl);
         UpdateAlignmentGuidelinesDuringToolboxControlDrop(previewCtrl);
 
         float left = ctx.TargetPage.WorldBounds.Left + previewCtrl.X;
@@ -502,44 +500,4 @@ public partial class ScreenDesigner : BaseDesigner
         InvalidateDesigner();
     }
 
-    private void TrySnapControlToGridOnDrop(DesignControl ctrl)
-    {
-        if (DataContext is not Mockup.ViewModel.MockupViewModel vm)
-            return;
-
-        if (!vm.CurrentProject.ShowGrid || vm.CurrentProject.GridSize <= 1)
-            return;
-
-        if (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt))
-            return;
-
-        var page = ctrl.ParentBandPage;
-        if (page == null)
-            return;
-
-        float grid = vm.CurrentProject.GridSize;
-
-        float Snap(float v) => MathF.Round(v / grid) * grid;
-
-        float newX = Snap(ctrl.X);
-        float newY = Snap(ctrl.Y);
-
-        var band = ctrl.ParentBand;
-        if (band == null)
-            return;
-
-        float maxX = band.ContentRect.Width - ctrl.Width;
-        float maxY = band.ContentRect.Height - ctrl.Height;
-
-        if (maxX < 0)
-            maxX = 0;
-        if (maxY < 0)
-            maxY = 0;
-
-        newX = Math.Clamp(newX, 0, maxX);
-        newY = Math.Clamp(newY, 0, maxY);
-
-        ctrl.X = MathF.Round(newX);
-        ctrl.Y = MathF.Round(newY);
-    }
 }

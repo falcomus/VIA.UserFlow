@@ -32,12 +32,6 @@ public sealed class ProjectConverter : JsonConverter<Project>
         if (root.TryGetProperty("deviceHeight", out var heightProp))
             project.DeviceHeight = heightProp.GetSingle();
 
-        if (root.TryGetProperty("showGrid", out var showGrid))
-            project.ShowGrid = showGrid.GetBoolean();
-
-        if (root.TryGetProperty("gridSize", out var gridSize))
-            project.GridSize = (float)gridSize.GetDouble();
-
         if (root.TryGetProperty("isShared", out var isShared))
             project.IsShared = isShared.GetBoolean();
 
@@ -126,9 +120,6 @@ public sealed class ProjectConverter : JsonConverter<Project>
         // ⬇️ korrektes Mapping zurück ins JSON
         writer.WriteNumber("deviceWidth", value.DeviceWidth);
         writer.WriteNumber("deviceHeight", value.DeviceHeight);
-
-        writer.WriteBoolean("showGrid", value.ShowGrid);
-        writer.WriteNumber("gridSize", value.GridSize);
 
         writer.WriteBoolean("isShared", value.IsShared);
         writer.WriteBoolean("isSharedReadonly", value.IsSharedReadonly);

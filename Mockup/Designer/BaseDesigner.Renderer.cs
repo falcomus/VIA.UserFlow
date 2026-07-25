@@ -113,8 +113,6 @@ public abstract partial class BaseDesigner : Control
 
     #region === RENDER ENTRY POINT (OnPaintSurface) ===
 
-    private const bool SupressGrid = true;
-
     private void OnPaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
         if (DesignerHeight <= 0 || PART_Canvas == null)
@@ -150,8 +148,6 @@ public abstract partial class BaseDesigner : Control
             SelectedPage = null,
             SelectedScreen = MockupService.Mockup.CurrentScreen,
             SelectedControls = VM.SelectedControls,
-            ShowGrid = !SupressGrid && !preview && !popupPreview && viewModel.CurrentProject.ShowGrid,
-            GridSize = viewModel.CurrentProject.GridSize,
         };
 
         ctx.ShowActionAreas = !IsPreview || (IsPreview && Keyboard.IsKeyDown(Key.Space));
@@ -201,33 +197,7 @@ public abstract partial class BaseDesigner : Control
         }
 
         // ============================================================
-        // PASS 2: GRID
-        // ============================================================
-
-        if (ctx.ShowGrid && ctx.GridSize > 1)
-        {
-            if (preview)
-            {
-                canvas.Save();
-                canvas.ClipRect(
-                    new SKRect(0, clipTop, (float)PART_Canvas.ActualWidth, clipBottom),
-                    SKClipOperation.Intersect,
-                    true
-                );
-            }
-
-            foreach (var band in customBands)
-                band.RenderGrid(canvas, ctx);
-
-            if (preview)
-                canvas.Restore();
-
-            headerBand?.RenderGrid(canvas, ctx);
-            footerBand?.RenderGrid(canvas, ctx);
-        }
-
-        // ============================================================
-        // PASS 3: CONTROLS
+        // PASS 2: CONTROLS
         // ============================================================
 
         if (preview)

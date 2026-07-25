@@ -371,8 +371,6 @@ public partial class ScreenThumbnail : UserControl
             SelectedPage = null,
             SelectedScreen = screen,
             SelectedControls = null,
-            ShowGrid = false,
-            GridSize = 0,
             ShowBandBorders = false,
         };
 

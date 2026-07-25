@@ -4,7 +4,7 @@
 // MO44 – Band-Handling bereinigt
 // - Zentrale Rect-/Header-/Content-Logik
 // - ActivePage.WorldBounds folgt dem ContentRect
-// - RenderGrid / RenderControls / HitTests nutzen dieselbe Basis
+// - RenderControls / HitTests nutzen dieselbe Basis
 // - Default-Band-Identity vorbereitet:
 //   - Title standardmäßig "<Title>"
 //   - Name automatisch "CustomBand1", "CustomBand2", ...
@@ -1159,17 +1159,6 @@ public partial class Band : DesignControl
 
     #endregion === EVENT HOOKS ===
 
-    #region === BRUSHES ===
-
-    private static SKPaint gridPaint = new()
-    {
-        Color = SKColors.Black.WithAlpha(15),
-        StrokeWidth = 1,
-        IsAntialias = true,
-    };
-
-    #endregion === BRUSHES ===
-
     #region === WORLD BOUNDS ===
 
     [JsonIgnore]
@@ -1193,40 +1182,6 @@ public partial class Band : DesignControl
     #endregion === WORLD BOUNDS ===
 
     #region === RENDERING ===
-
-    public void RenderGrid(SKCanvas canvas, RenderContext ctx)
-    {
-        if (!ctx.ShowGrid || ctx.GridSize <= 1f)
-            return;
-
-        var page = ActivePage;
-        if (page == null)
-            return;
-
-        if (IsExpandable && !IsExpanded)
-            return;
-
-        var content = page.WorldBounds;
-        if (content.IsEmpty || content.Width <= 0 || content.Height <= 0)
-            return;
-
-        float grid = ctx.GridSize;
-        float left = content.Left;
-        float right = content.Right;
-        float top = content.Top;
-        float bottom = content.Bottom;
-
-        canvas.Save();
-        canvas.ClipRect(content, SKClipOperation.Intersect, true);
-
-        for (float x = left; x <= right; x += grid)
-            canvas.DrawLine(x, top, x, bottom, gridPaint);
-
-        for (float y = top; y <= bottom; y += grid)
-            canvas.DrawLine(left, y, right, y, gridPaint);
-
-        canvas.Restore();
-    }
 
     public void RenderBackground(SKCanvas canvas, RenderContext ctx)
     {

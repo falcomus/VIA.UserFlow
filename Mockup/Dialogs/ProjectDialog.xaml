@@ -75,11 +75,9 @@
                 </Grid>
             </via:XTabItem>
 
-            <via:XTabItem Header="Device &amp; guides">
+            <via:XTabItem Header="Device">
                 <Grid Margin="0,18,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="18" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="18" />
                         <RowDefinition Height="Auto" />
@@ -114,38 +112,6 @@
                         Header="Device preset"
                         SelectionChanged="PART_ScreenSizes_SelectionChanged" />
 
-                    <via:XBorder
-                        Grid.Row="4"
-                        Grid.ColumnSpan="3"
-                        Padding="16,14"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                        BorderThickness="1"
-                        CornerRadius="6">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <via:XCheckBox
-                                Content="Show guides"
-                                IsChecked="{Binding ShowGrid, Mode=TwoWay}" />
-                            <via:XSlider
-                                Grid.Column="1"
-                                Margin="22,0,14,0"
-                                IsEnabled="{Binding ShowGrid}"
-                                IsSnapToTickEnabled="True"
-                                Maximum="20"
-                                Minimum="4"
-                                TickFrequency="2"
-                                Value="{Binding GridSize, Mode=TwoWay}" />
-                            <via:XTextBlock
-                                Grid.Column="2"
-                                VerticalAlignment="Center"
-                                Text="{Binding GridSize, StringFormat={}{0:0} px}" />
-                        </Grid>
-                    </via:XBorder>
                 </Grid>
             </via:XTabItem>
 

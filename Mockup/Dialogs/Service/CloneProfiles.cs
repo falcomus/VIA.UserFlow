@@ -46,8 +46,6 @@ public static class CloneProfiles
             Description = p.Description,
             FilePath = p.FilePath,
             LastOpenedUtc = p.LastOpenedUtc,
-            ShowGrid = p.ShowGrid,
-            GridSize = p.GridSize,
             IsShared = p.IsShared,
             IsSharedReadonly = p.IsSharedReadonly,
             ColorSchemaKey = p.ColorSchemaKey,

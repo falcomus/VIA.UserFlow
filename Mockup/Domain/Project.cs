@@ -55,24 +55,6 @@ public sealed partial class Project : ObservableObject
 
     #endregion
 
-    #region === GRID SETTINGS ===
-
-    [ObservableProperty]
-    private bool showGrid = true;
-
-    partial void OnShowGridChanged(bool value) => MSG.UI.InvalidateDesigner();
-
-    [ObservableProperty]
-    private float gridSize = 10f;
-
-    partial void OnGridSizeChanged(float oldValue, float newValue)
-    {
-        MSG.UI.InvalidateDesigner();
-    }
-
-    #endregion === GRID SETTINGS ===
-
-
     #region === SHARING / PERMISSIONS ===
 
     [ObservableProperty]
@@ -227,8 +209,6 @@ public sealed partial class Project : ObservableObject
             Description = this.Description,
             DeviceWidth = this.DeviceWidth,
             DeviceHeight = this.DeviceHeight,
-            ShowGrid = this.ShowGrid,
-            GridSize = this.GridSize,
             ScreenZoomPercent = this.ScreenZoomPercent,
             PreviewZoomPercent = this.PreviewZoomPercent,
             TemplateZoomPercent = this.TemplateZoomPercent,

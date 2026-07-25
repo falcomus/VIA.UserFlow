@@ -359,7 +359,7 @@
                                         BorderThickness="0"
                                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                         ItemCornerRadius="4"
-                                        ItemHoverBackground="#100078D4"
+                                        ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
                                         ItemMargin="0,1"
                                         ItemPadding="10,7,8,7"
                                         ItemsSource="{Binding ControlGroups}"
@@ -367,9 +367,9 @@
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                                         SelectedItem="{Binding CurrentControlGroup, Mode=TwoWay}"
-                                        SelectedItemBackground="#1C0078D4"
-                                        SelectedItemForeground="{DynamicResource TextPrimaryBrush}"
-                                        SelectionIndicatorBrush="{DynamicResource PrimaryBrush}"
+                                        SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
+                                        SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                                        SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                         SelectionIndicatorCornerRadius="0,2,2,0"
                                         SelectionIndicatorWidth="3"
                                         ShowSelectionIndicator="True"
@@ -399,7 +399,7 @@
                                         Margin="10,6,10,4"
                                         VerticalAlignment="Stretch"
                                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                                        BorderBrush="{DynamicResource DarkBorderBrush}"
+                                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                         BorderThickness="1"
                                         Placeholder="Search controls"
                                         ShowResetButton="True"
@@ -478,7 +478,7 @@
                                             <DataTemplate DataType="{x:Type registry:ControlDescriptor}">
                                                 <via:XBorder
                                                     Padding="0"
-                                                    Background="#2B78B8"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                                     Style="{StaticResource ToolboxControlCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -491,7 +491,7 @@
                                                             VerticalAlignment="Top"
                                                             FontSize="12"
                                                             FontWeight="SemiBold"
-                                                            Foreground="White"
+                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                             Opacity="0.8"
                                                             Text="{Binding DisplayName}"
                                                             TextTrimming="CharacterEllipsis" />
@@ -516,8 +516,8 @@
 
                                                                 <via:XBorder
                                                                     Margin="4"
-                                                                    Background="#303236"
-                                                                    BorderBrush="#59606B"
+                                                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                                                     BorderThickness="1"
                                                                     CornerRadius="6"
                                                                     Visibility="{Binding PreviewImage, Converter={StaticResource ControlPreviewVisibilityConverter}, ConverterParameter=Missing}">
@@ -535,12 +535,12 @@
                                                                             Width="28"
                                                                             Height="28"
                                                                             HorizontalAlignment="Center">
-                                                                            <Ellipse Fill="#F0283D" />
-                                                                            <Ellipse Margin="5" Fill="#303236" />
+                                                                            <Ellipse Fill="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}" />
+                                                                            <Ellipse Margin="5" Fill="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}" />
                                                                             <Border
                                                                                 Width="22"
                                                                                 Height="5"
-                                                                                Background="#F0283D"
+                                                                                Background="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
                                                                                 CornerRadius="2.5"
                                                                                 RenderTransformOrigin="0.5,0.5">
                                                                                 <Border.RenderTransform>
@@ -555,7 +555,7 @@
                                                                             VerticalAlignment="Center"
                                                                             FontSize="11"
                                                                             FontWeight="SemiBold"
-                                                                            Foreground="#F5F7FA"
+                                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                                                             Text="NO IMAGE" />
                                                                     </Grid>
                                                                 </via:XBorder>
@@ -572,7 +572,7 @@
 
                         <!--  TabItem Templates  -->
                         <TabItem Header="Templates" Visibility="{Binding IsTemplateTabVisible, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <Grid Background="#FAFCFF">
+                            <Grid Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="175" />
                                     <ColumnDefinition Width="*" />
@@ -590,7 +590,7 @@
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ItemCornerRadius="4"
-                                        ItemHoverBackground="#100078D4"
+                                        ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
                                         ItemMargin="0,1"
                                         ItemPadding="10,7,8,7"
                                         ItemsSource="{Binding TemplateToolboxGroups}"
@@ -598,7 +598,7 @@
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                                         SelectedItem="{Binding CurrentTemplateToolboxGroup, Mode=TwoWay}"
-                                        SelectedItemBackground="#1C0078D4"
+                                        SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
                                         SelectedItemForeground="{DynamicResource TextPrimaryBrush}"
                                         SelectionIndicatorBrush="{DynamicResource PrimaryBrush}"
                                         SelectionIndicatorCornerRadius="0,2,2,0"
@@ -677,7 +677,7 @@
                                             <DataTemplate DataType="{x:Type mockup:ScreenTemplate}">
                                                 <via:XBorder
                                                     Padding="0"
-                                                    Background="#2B78B8"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                                     Style="{StaticResource ToolboxControlCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -690,7 +690,7 @@
                                                             VerticalAlignment="Top"
                                                             FontSize="12"
                                                             FontWeight="SemiBold"
-                                                            Foreground="White"
+                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                             Opacity="0.8"
                                                             Text="{Binding Name}"
                                                             TextTrimming="CharacterEllipsis" />
@@ -748,7 +748,7 @@
 
                         <!--  Tab PROPERTIES  -->
                         <TabItem Header="Popups" Visibility="{Binding IsTemplateTabVisible, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <Grid Background="#FAFCFF">
+                            <Grid Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="175" />
                                     <ColumnDefinition Width="*" />
@@ -766,7 +766,7 @@
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ItemCornerRadius="4"
-                                        ItemHoverBackground="#100078D4"
+                                        ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
                                         ItemMargin="0,1"
                                         ItemPadding="10,7,8,7"
                                         ItemsSource="{Binding PopupToolboxGroups}"
@@ -774,7 +774,7 @@
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                                         SelectedItem="{Binding CurrentPopupToolboxGroup, Mode=TwoWay}"
-                                        SelectedItemBackground="#1C0078D4"
+                                        SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
                                         SelectedItemForeground="{DynamicResource TextPrimaryBrush}"
                                         SelectionIndicatorBrush="{DynamicResource PrimaryBrush}"
                                         SelectionIndicatorCornerRadius="0,2,2,0"
@@ -852,7 +852,7 @@
                                             <DataTemplate DataType="{x:Type mockup:ScreenPopup}">
                                                 <via:XBorder
                                                     Padding="0"
-                                                    Background="#2B78B8"
+                                                    Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                                     Style="{StaticResource ToolboxControlCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -865,7 +865,7 @@
                                                             VerticalAlignment="Top"
                                                             FontSize="12"
                                                             FontWeight="SemiBold"
-                                                            Foreground="White"
+                                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                                             Opacity="0.8"
                                                             Text="{Binding Name}"
                                                             TextTrimming="CharacterEllipsis" />

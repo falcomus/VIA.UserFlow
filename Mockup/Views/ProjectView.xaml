@@ -612,7 +612,19 @@
             BorderThickness="0,0,1,0"
             Visibility="Collapsed">
             <!--  Background="White"  -->
-            <views:ColorSchemeView Grid.Row="1" BorderThickness="1" />
+            <via:XColorSchemeView
+                Grid.Row="1"
+                AccentBrush="{Binding CurrentProject.ActiveColorSchema.AccentBrush}"
+                SchemeBorderBrush="{Binding CurrentProject.ActiveColorSchema.BorderBrush}"
+                ControlBackgroundBrush="{Binding CurrentProject.ActiveColorSchema.ControlBGBrush}"
+                ControlBorderBrush="{Binding CurrentProject.ActiveColorSchema.ControlBorderBrush}"
+                DangerBrush="{Binding CurrentProject.ActiveColorSchema.ErrorBrush}"
+                InfoBrush="{Binding CurrentProject.ActiveColorSchema.InfoBrush}"
+                NeutralBrush="{Binding CurrentProject.ActiveColorSchema.NeutralBrush}"
+                PrimaryBrush="{Binding CurrentProject.ActiveColorSchema.PrimaryBrush}"
+                SuccessBrush="{Binding CurrentProject.ActiveColorSchema.SuccessBrush}"
+                TextBrush="{Binding CurrentProject.ActiveColorSchema.TextBrush}"
+                WarningBrush="{Binding CurrentProject.ActiveColorSchema.WarningBrush}" />
         </via:XBorder>
 
 

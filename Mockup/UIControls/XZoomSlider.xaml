@@ -22,7 +22,7 @@
             <!--<Border
                 Height="32"
                 VerticalAlignment="Center"
-                Background="#EFFFFFFF"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="0"
                 CornerRadius="3"

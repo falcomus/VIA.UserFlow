@@ -231,14 +231,14 @@
                                     VerticalAlignment="Top"
                                     FontSize="13"
                                     FontWeight="Normal"
-                                    Foreground="DodgerBlue"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Text="Device Top" />
 
                                 <Line
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     SnapsToDevicePixels="True"
-                                    Stroke="DodgerBlue"
+                                    Stroke="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     StrokeDashArray="3 4"
                                     StrokeDashCap="Flat"
                                     StrokeThickness="1"
@@ -252,7 +252,7 @@
                                     VerticalAlignment="Bottom"
                                     FontSize="13"
                                     FontWeight="Normal"
-                                    Foreground="DodgerBlue"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Text="Device Bottom" />
 
                                 <Line
@@ -260,7 +260,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
                                     SnapsToDevicePixels="True"
-                                    Stroke="DodgerBlue"
+                                    Stroke="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     StrokeDashArray="3 4"
                                     StrokeDashCap="Flat"
                                     StrokeThickness="1"

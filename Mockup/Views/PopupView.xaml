@@ -292,7 +292,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Fill="{DynamicResource DesignAreaBackground}"
-                                    Stroke="#80A7B7C8"
+                                    Stroke="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                     StrokeDashArray="2 2"
                                     StrokeThickness="1" />
 
@@ -309,7 +309,7 @@
                                             Padding="4"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
-                                            Background="#20242A"
+                                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                                             CornerRadius="8"
                                             SnapsToDevicePixels="False"
                                             UseLayoutRounding="True">
@@ -334,12 +334,12 @@
                                             Background="Transparent"
                                             Cursor="SizeNS"
                                             DragDelta="ResizeHeight"
-                                            Foreground="White"
+                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                             Style="{StaticResource TopHeightHandleStyle}">
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
                                                     <Border
-                                                        Background="#303133"
+                                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                                         BorderThickness="0"
                                                         CornerRadius="4 4 0 0">
                                                         <ico:PackIconMaterial
@@ -362,12 +362,12 @@
                                             Background="Transparent"
                                             Cursor="SizeNS"
                                             DragDelta="ResizeHeight"
-                                            Foreground="White"
+                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                             Style="{StaticResource BottomHeightHandleStyle}">
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
                                                     <Border
-                                                        Background="#303133"
+                                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                                         BorderThickness="0"
                                                         CornerRadius="0 0 4 4">
                                                         <ico:PackIconMaterial
@@ -391,12 +391,12 @@
                                             Background="Transparent"
                                             Cursor="SizeWE"
                                             DragDelta="ResizeWidth"
-                                            Foreground="White"
+                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                             Style="{StaticResource LeftWidthHandleStyle}">
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
                                                     <Border
-                                                        Background="#303133"
+                                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                                         BorderThickness="0"
                                                         CornerRadius="4 0 0 4">
                                                         <ico:PackIconMaterial
@@ -419,12 +419,12 @@
                                             Background="Transparent"
                                             Cursor="SizeWE"
                                             DragDelta="ResizeWidth"
-                                            Foreground="White"
+                                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                             Style="{StaticResource RightWidthHandleStyle}">
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
                                                     <Border
-                                                        Background="#303133"
+                                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                                         BorderThickness="0"
                                                         CornerRadius="0 4 4 0">
                                                         <ico:PackIconMaterial

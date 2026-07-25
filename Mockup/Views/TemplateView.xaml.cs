@@ -3,7 +3,6 @@
 // ======================================================================================
 
 using Mockup.Helper;
-using Mockup.Messages;
 using Mockup.ViewModel;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Mockup.ColorSystem;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Mockup.ColorSystem;
 
 namespace Mockup.Dialogs;
 

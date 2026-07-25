@@ -113,7 +113,7 @@ public partial class MockupViewModel : ObservableObject
     {
         ToolboxToggleText = value ? "Hide Toolbox" : "Show Toolbox";
         ToolboxIcon = value ? "EyeSlash" : "Eye";
-        if (value) 
+        if (value)
         {
             XNotifications.Info("Not yet implemented");
         }

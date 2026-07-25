@@ -11,7 +11,6 @@
 //   - Snap erfolgt erst final bei MouseUp.
 // ======================================================================================
 
-using Mockup.ViewModel;
 using SkiaSharp;
 using VIA.Mockup.Guidelines;
 

@@ -18,7 +18,6 @@ using Mockup.ViewModel;
 using SkiaSharp;
 using System.Windows;
 using System.Windows.Input;
-using static Mockup.Messages.MSG;
 
 namespace Mockup.Designer;
 

@@ -2,7 +2,6 @@ using SkiaSharp;
 using SkiaSharp.Views.WPF;
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

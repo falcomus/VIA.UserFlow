@@ -777,7 +777,7 @@ public partial class Screen : ObservableObject
 
         if (invalidatePreview)
 
-        MSG.UI.InvalidateDesigner();
+            MSG.UI.InvalidateDesigner();
     }
 
 
@@ -788,7 +788,7 @@ public partial class Screen : ObservableObject
 
         if (invalidatePreview)
 
-        MSG.UI.InvalidateDesigner();
+            MSG.UI.InvalidateDesigner();
     }
 
     #endregion

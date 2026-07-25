@@ -1,4 +1,3 @@
-using System.Windows.Controls;
 using VIA.WPF.Controls;
 
 namespace Mockup.UIControls;

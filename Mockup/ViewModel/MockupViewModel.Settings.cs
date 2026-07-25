@@ -101,6 +101,46 @@ public partial class MockupViewModel : ObservableObject
 
     #region === UI VISIBILITY FLAGS ===
 
+    #region === APPLICATION SETTINGS ===
+
+    [ObservableProperty]
+    private bool autoSaveEnabled = true;
+
+    partial void OnAutoSaveEnabledChanged(bool value)
+    {
+        Settings.Designer.AutoSaveEnabled = value;
+        SetupAutoSaveTimer();
+        SaveSettings();
+    }
+
+    [ObservableProperty]
+    private int autoSaveIntervalMinutes = 2;
+
+    partial void OnAutoSaveIntervalMinutesChanged(int value)
+    {
+        int safeValue = Math.Clamp(value, 1, 60);
+        if (safeValue != value)
+        {
+            AutoSaveIntervalMinutes = safeValue;
+            return;
+        }
+
+        Settings.Designer.AutoSaveIntervalMinutes = safeValue;
+        SetupAutoSaveTimer();
+        SaveSettings();
+    }
+
+    [ObservableProperty]
+    private bool openLastProjectOnStartup = true;
+
+    partial void OnOpenLastProjectOnStartupChanged(bool value)
+    {
+        Settings.Storage.AutoLoadLastProject = value;
+        SaveSettings();
+    }
+
+    #endregion === APPLICATION SETTINGS ===
+
     [ObservableProperty]
     private bool _showHamburgerButton;
 

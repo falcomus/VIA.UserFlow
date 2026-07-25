@@ -201,9 +201,12 @@ public partial class MockupViewModel : ObservableObject
 
     private void ApplySettingsToViewModel()
     {
+        AutoSaveEnabled = Settings.Designer.AutoSaveEnabled;
+        AutoSaveIntervalMinutes = Settings.Designer.AutoSaveIntervalMinutes;
         ShowToolbox = Settings.UI.ShowToolbox;
         MainTabSelectedIndex = Settings.UI.MainTabSelectedIndex;
         ScreenTabSelectedIndex = Settings.UI.ScreenTabSelectedIndex;
+        OpenLastProjectOnStartup = Settings.Storage.AutoLoadLastProject;
 
         RecentColors.Clear();
         foreach (var hex in Settings.UI.RecentColors ?? new ObservableCollection<string>())
@@ -217,9 +220,12 @@ public partial class MockupViewModel : ObservableObject
 
     private void ApplyViewModelToSettings()
     {
+        Settings.Designer.AutoSaveEnabled = AutoSaveEnabled;
+        Settings.Designer.AutoSaveIntervalMinutes = AutoSaveIntervalMinutes;
         Settings.UI.ShowToolbox = ShowToolbox;
         Settings.UI.MainTabSelectedIndex = MainTabSelectedIndex;
         Settings.UI.ScreenTabSelectedIndex = ScreenTabSelectedIndex;
+        Settings.Storage.AutoLoadLastProject = OpenLastProjectOnStartup;
 
         Settings.UI.RecentColors = new ObservableCollection<string>(
             RecentColors

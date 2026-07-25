@@ -4,208 +4,179 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="clr-namespace:Mockup.Extensions"
-    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     d:DesignHeight="850"
     d:DesignWidth="800"
-    Background="{DynamicResource DesignerBackgroundBrush}"
-    Foreground="{DynamicResource TextPrimaryBrush}"
-    TextOptions.TextFormattingMode="Display"
-    TextOptions.TextRenderingMode="ClearType"
+    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
     mc:Ignorable="d">
 
-    <Grid ext:GridEx.RowDef="45,*">
-        <Border
-            Background="{DynamicResource HeaderBackgroundBrush}"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="0,0,0,1">
-            <Border.Effect>
-                <DropShadowEffect
-                    BlurRadius="8"
-                    Direction="270"
-                    Opacity="0.12"
-                    ShadowDepth="2" />
-            </Border.Effect>
-            <Grid Margin="16,0" ext:GridEx.ColDef="Auto,*">
-                <ico:PackIconFontAwesome5
-                    Width="20"
-                    Height="20"
-                    VerticalAlignment="Center"
-                    Foreground="{DynamicResource PrimaryBrush}"
-                    Kind="CogSolid" />
+    <Grid ext:GridEx.RowDef="48,*">
+        <via:XBorder
+            Padding="16,0"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+            BorderThickness="0,0,0,1"
+            CornerRadius="0">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <via:XIcon
+                    Width="18"
+                    Height="18"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                    Kind="Cog"
+                    Pack="Material" />
                 <TextBlock
-                    Grid.Column="1"
-                    Margin="10,0,0,1"
+                    Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     FontSize="16"
                     FontWeight="SemiBold"
                     Text="Options" />
-            </Grid>
-        </Border>
+            </StackPanel>
+        </via:XBorder>
 
-        <Grid Grid.Row="1" Margin="24">
-            <Border
-                Width="590"
-                MaxWidth="780"
-                Padding="26"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="1"
-                CornerRadius="12">
-                <Border.Effect>
-                    <DropShadowEffect
-                        BlurRadius="18"
-                        Direction="315"
-                        Opacity="0.08"
-                        ShadowDepth="3" />
-                </Border.Effect>
-
-                <Grid ext:GridEx.RowDef="Auto,Auto,*">
-                    <Border
-                        Width="48"
-                        Height="48"
-                        HorizontalAlignment="Left"
-                        Background="{DynamicResource PrimaryBrush}"
-                        CornerRadius="12">
-                        <ico:PackIconFontAwesome5
-                            Width="26"
-                            Height="26"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
-                            Kind="CogSolid" />
-                    </Border>
-
-                    <StackPanel Grid.Row="1" Margin="0,18,0,18">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid MaxWidth="760" Margin="24" HorizontalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock FontSize="24" FontWeight="SemiBold" Text="Application options" />
                         <TextBlock
-                            FontSize="24"
-                            FontWeight="SemiBold"
-                            Foreground="{DynamicResource TextPrimaryBrush}"
-                            Text="Options" />
-                        <TextBlock
-                            Margin="0,8,0,0"
-                            FontSize="14"
-                            Foreground="{DynamicResource TextSecondaryBrush}"
-                            Text="Application and workspace settings will be managed here."
+                            Margin="0,6,0,0"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                            Text="Changes are saved immediately and loaded the next time UserFlow starts."
                             TextWrapping="Wrap" />
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2">
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleSolid" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                    <via:XBorder
+                        Padding="20"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <via:XIcon
+                                    Width="18"
+                                    Height="18"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                    Kind="ContentSaveOutline"
+                                    Pack="MaterialDesign" />
+                                <TextBlock
+                                    Margin="9,0,0,0"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Saving" />
+                            </StackPanel>
+
+                            <via:XCheckBox
+                                Margin="0,16,0,0"
+                                Content="Save changes automatically"
+                                IsChecked="{Binding AutoSaveEnabled, Mode=TwoWay}" />
+
+                            <Grid Margin="0,12,0,0" IsEnabled="{Binding AutoSaveEnabled}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock FontWeight="SemiBold" Text="Save interval" />
                                     <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Workspace defaults" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="Default project behavior, preview zoom and editor preferences."
+                                        Margin="0,3,0,0"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                        Text="UserFlow saves projects, templates and options in the background."
                                         TextWrapping="Wrap" />
                                 </StackPanel>
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{Binding AutoSaveIntervalMinutes, StringFormat={}{0} min}" />
                             </Grid>
-                        </Border>
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleSolid" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                    <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Theme and appearance" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="Central place for UI appearance options once they are exposed."
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleSolid" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                    <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Storage" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="Project folders and backup behavior can be connected here later."
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
+                            <via:XSlider
+                                Margin="0,8,0,0"
+                                IsEnabled="{Binding AutoSaveEnabled}"
+                                IsSnapToTickEnabled="True"
+                                Maximum="30"
+                                Minimum="1"
+                                TickFrequency="1"
+                                Value="{Binding AutoSaveIntervalMinutes, Mode=TwoWay}" />
+                        </StackPanel>
+                    </via:XBorder>
+
+                    <via:XBorder
+                        Margin="0,14,0,0"
+                        Padding="20"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <via:XIcon
+                                    Width="18"
+                                    Height="18"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                    Kind="ViewDashboardOutline"
+                                    Pack="MaterialDesign" />
+                                <TextBlock
+                                    Margin="9,0,0,0"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Workspace" />
+                            </StackPanel>
+
+                            <via:XCheckBox
+                                Margin="0,16,0,0"
+                                Content="Show the toolbox"
+                                IsChecked="{Binding ShowToolbox, Mode=TwoWay}" />
+                            <TextBlock
+                                Margin="25,4,0,0"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                Text="Keeps the control toolbox visible in the designer."
+                                TextWrapping="Wrap" />
+
+                            <via:XCheckBox
+                                Margin="0,14,0,0"
+                                Content="Open the last project at startup"
+                                IsChecked="{Binding OpenLastProjectOnStartup, Mode=TwoWay}" />
+                            <TextBlock
+                                Margin="25,4,0,0"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                Text="When disabled, UserFlow opens without a project selected."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </via:XBorder>
+
+                    <via:XBorder
+                        Margin="0,14,0,0"
+                        Padding="20"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <via:XIcon
+                                    Width="18"
+                                    Height="18"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                    Kind="FolderOutline"
+                                    Pack="MaterialDesign" />
+                                <TextBlock
+                                    Margin="9,0,0,0"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Storage" />
+                            </StackPanel>
+                            <TextBlock
+                                Margin="0,16,0,0"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                Text="Application settings are stored in Data\settings.json next to UserFlow. Projects, templates and color schemes stay in the same Data folder."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </via:XBorder>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

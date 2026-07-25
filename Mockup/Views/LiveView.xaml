@@ -34,7 +34,7 @@
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
                         <via:XBorder
                             Padding="0"
-                            Background="#E0E1E3"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                             BorderThickness="0"
                             CornerRadius="4">
                             <Grid Margin="5" Background="{TemplateBinding Background}">
@@ -132,7 +132,7 @@
                     Margin="0,0,-50,0"
                     HorizontalAlignment="Right"
                     HorizontalContentAlignment="Center"
-                    Background="White"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                     LargeChange="60"
                     Minimum="0"
                     Orientation="Vertical"

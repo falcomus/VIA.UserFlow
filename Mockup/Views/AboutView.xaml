@@ -7,6 +7,7 @@
     xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="clr-namespace:Mockup.UIControls"
+    xmlns:via="http://schemas.via.dev/wpf"
     d:DesignHeight="850"
     d:DesignWidth="800"
     Background="{DynamicResource DesignerBackgroundBrush}"
@@ -51,7 +52,7 @@
                 Padding="26"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="#F9FAFB"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="1"
                 CornerRadius="12">
@@ -75,7 +76,7 @@
                             Height="25"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                             Kind="InfoCircleSolid" />
                     </Border>
 
@@ -97,7 +98,7 @@
                         <Border
                             Margin="0,0,0,10"
                             Padding="16,14,16,14"
-                            Background="White"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                             BorderBrush="{DynamicResource BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="8">
@@ -105,7 +106,7 @@
                                 <Border
                                     Width="32"
                                     Height="32"
-                                    Background="#EEF4FF"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
                                     CornerRadius="16">
                                     <ico:PackIconFontAwesome5
                                         Width="16"
@@ -133,7 +134,7 @@
                         <Border
                             Margin="0,0,0,10"
                             Padding="16,14,16,14"
-                            Background="White"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                             BorderBrush="{DynamicResource BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="8">
@@ -141,7 +142,7 @@
                                 <Border
                                     Width="32"
                                     Height="32"
-                                    Background="#EEF4FF"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
                                     CornerRadius="16">
                                     <ico:PackIconFontAwesome5
                                         Width="16"
@@ -169,7 +170,7 @@
                         <Border
                             Margin="0,0,0,10"
                             Padding="16,14,16,14"
-                            Background="White"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                             BorderBrush="{DynamicResource BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="8">
@@ -177,7 +178,7 @@
                                 <Border
                                     Width="32"
                                     Height="32"
-                                    Background="#EEF4FF"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
                                     CornerRadius="16">
                                     <ico:PackIconFontAwesome5
                                         Width="16"

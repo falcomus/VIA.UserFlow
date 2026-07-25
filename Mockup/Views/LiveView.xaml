@@ -318,7 +318,7 @@
                         Padding="0"
                         Click="HomeButton_Click"
                         Cursor="Hand"
-                        Icon="{via:MaterialDesignIcon Kind=Home}"
+                        Icon="{via:MaterialDesignIcon Kind=HomeOutline}"
                         IconSize="18"
                         Size="Medium"
                         ToolTip="Goto Home Screen"

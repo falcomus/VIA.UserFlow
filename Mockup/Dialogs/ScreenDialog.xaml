@@ -332,7 +332,7 @@
                                                 Margin="4,0,0,0"
                                                 Click="DeleteBand_Click"
                                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
-                                                Icon="{via:MaterialIcon Kind=Delete}"
+                                                Icon="{via:MaterialIcon Kind=DeleteOutline}"
                                                 IconSize="12"
                                                 Size="Small"
                                                 ToolTip="Delete Band" />
@@ -432,7 +432,7 @@
                                                 Margin="4,0,0,0"
                                                 Click="DeletePage_Click"
                                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.Danger}}"
-                                                Icon="{via:MaterialIcon Kind=Delete}"
+                                                Icon="{via:MaterialIcon Kind=DeleteOutline}"
                                                 IconSize="12"
                                                 Size="Small"
                                                 ToolTip="Delete Page" />

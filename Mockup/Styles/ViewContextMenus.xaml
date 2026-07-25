@@ -17,7 +17,7 @@
             Command="{Binding TargetDataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Edit Screen"
-            Icon="{via:MaterialIcon Kind=Pencil}" />
+            Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Header="Duplicate Screen"
@@ -27,7 +27,7 @@
             Command="{Binding TargetDataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Delete Screen"
-            Icon="{via:MaterialIcon Kind=Delete}"
+            Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
     </via:XContextMenu>
@@ -46,13 +46,13 @@
             Command="{Binding TargetDataContext.EditTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Edit Template"
-            Icon="{via:MaterialIcon Kind=Pencil}" />
+            Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Delete Template"
-            Icon="{via:MaterialIcon Kind=Delete}"
+            Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
     </via:XContextMenu>
@@ -71,13 +71,13 @@
             Command="{Binding TargetDataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Edit Popup"
-            Icon="{via:MaterialIcon Kind=Pencil}" />
+            Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeletePopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Delete Popup"
-            Icon="{via:MaterialIcon Kind=Delete}"
+            Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
     </via:XContextMenu>
@@ -96,13 +96,13 @@
             Command="{Binding TargetDataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Edit Screen"
-            Icon="{via:MaterialIcon Kind=Pencil}" />
+            Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Delete Screen"
-            Icon="{via:MaterialIcon Kind=Delete}"
+            Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
         <Separator Style="{DynamicResource XMenuSeparatorStyle}" />
@@ -111,7 +111,7 @@
             Command="{Binding TargetDataContext.SetAsHomeScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Set as Home Screen"
-            Icon="{via:MaterialIcon Kind=Home}" />
+            Icon="{via:MaterialIcon Kind=HomeOutline}" />
 
     </via:XContextMenu>
     <via:XContextMenu
@@ -130,13 +130,13 @@
             Command="{Binding TargetDataContext.EditProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Edit Project Settings"
-            Icon="{via:MaterialIcon Kind=Pencil}" />
+            Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             Header="Delete Project"
-            Icon="{via:MaterialIcon Kind=Delete}"
+            Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
     </via:XContextMenu>

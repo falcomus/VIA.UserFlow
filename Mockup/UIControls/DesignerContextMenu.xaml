@@ -24,7 +24,7 @@
     Command="{Binding EditScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Edit Screen"
-    Icon="{via:MaterialIcon Kind=Pencil}"
+    Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -48,7 +48,7 @@
     Command="{Binding DeleteScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
     Header="Delete Screen"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -103,7 +103,7 @@
     Command="{Binding EditTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
     Header="Edit Template"
-    Icon="{via:MaterialIcon Kind=Pencil}"
+    Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -127,7 +127,7 @@
     Command="{Binding DeleteTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
     Header="Delete Template"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -140,7 +140,7 @@
     Command="{Binding EditPopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
     Header="Edit Popup"
-    Icon="{via:MaterialIcon Kind=Pencil}"
+    Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -164,7 +164,7 @@
     Command="{Binding DeletePopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
     Header="Delete Popup"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -281,7 +281,7 @@
     Command="{Binding DeleteBandCommand}"
     CommandParameter="{Binding ContextBand}"
     Header="Delete Band"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -294,7 +294,7 @@
     Command="{Binding EditActionAreaActionsCommand}"
     CommandParameter="{Binding CurrentActionArea}"
     Header="Edit Actions"
-    Icon="{via:MaterialIcon Kind=Pencil}"
+    Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
@@ -322,7 +322,7 @@
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Delete ActionArea"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -355,7 +355,7 @@
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
     Header="Delete Control(s)"
-    Icon="{via:MaterialIcon Kind=Delete}"
+    Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />

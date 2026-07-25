@@ -2,7 +2,6 @@
     x:Class="Mockup.Dialogs.XColorPickerDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     Title="Edit color"
     Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
@@ -18,7 +17,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <local:XColorPicker
+        <via:XColorPicker
             x:Name="PART_ColorPicker"
             Grid.Row="0"
             SelectedColor="{Binding SelectedColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using VIA.WPF.Controls;
 using VIA.WPF.Windowing;
 
 namespace Mockup.ColorSystem;
@@ -18,14 +19,12 @@ public partial class ColorSchemaEditor : XWindow
     [ObservableProperty] private string displayName = "";
 
     // === COLOR MODEL FOR THE UI ===
-    public partial class ColorItem : ObservableObject
+    public sealed class ColorItem : XColorToken
     {
-        public string Label { get; init; } = "";
-        public string Key { get; init; } = "";
-
-        [ObservableProperty] private Color color;
-        [ObservableProperty] private string hex = "";
-        [ObservableProperty] private bool isPickerOpen;
+        public ColorItem(string label, string key, Color color)
+            : base(label, key, color)
+        {
+        }
     }
 
     // COLOR LIST
@@ -73,13 +72,7 @@ public partial class ColorSchemaEditor : XWindow
 
     private void AddColor(string label, string key, Color value)
     {
-        var ci = new ColorItem
-        {
-            Label = label,
-            Key = key,
-            Color = value,
-            Hex = ColorToHex(value)
-        };
+        var ci = new ColorItem(label, key, value);
 
         // HEX -> COLOR sync
         ci.PropertyChanged += (s, e) =>

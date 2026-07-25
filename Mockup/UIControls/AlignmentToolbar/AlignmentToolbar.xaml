@@ -34,8 +34,8 @@
         <via:XToggleDropDown.DropDownContent>
             <Border
                 Padding="8"
-                Background="White"
-                BorderBrush="{DynamicResource BorderBrush}"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                 BorderThickness="1"
                 CornerRadius="8">
                 <Border.Effect>
@@ -51,7 +51,7 @@
                         Margin="2,0,0,8"
                         FontSize="12"
                         FontWeight="SemiBold"
-                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                         Text="ALIGNMENT" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">
@@ -79,7 +79,7 @@
                         Margin="2,12,0,8"
                         FontSize="12"
                         FontWeight="SemiBold"
-                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                         Text="SIZE &amp; SPACING" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">
@@ -104,7 +104,7 @@
                         Margin="2,12,0,8"
                         FontSize="12"
                         FontWeight="SemiBold"
-                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                         Text="STACK" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">

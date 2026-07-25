@@ -38,14 +38,14 @@
         <!--  Trigger  -->
         <via:XBorder
             Height="40"
-            Background="#FF305575"
+            Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
             CornerRadius="4">
             <via:XTextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="14"
                 FontWeight="SemiBold"
-                Foreground="White"
+                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                 Text="{Binding Trigger}" />
         </via:XBorder>
 

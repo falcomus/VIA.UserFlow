@@ -16,7 +16,7 @@
 
     <Border
         Padding="2,0,4,0"
-        BorderBrush="{DynamicResource DarkBorderBrush}"
+        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
         BorderThickness="{Binding ElementName=root, Path=BorderThickness}">
         <Grid ext:GridEx.ColDef="*,Auto">
             <!--<Border
@@ -34,7 +34,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 AutoToolTipPlacement="None"
-                Background="#B0B1B3"
+                Background="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                 BorderThickness="0"
                 Cursor="Hand"
                 Focusable="False"
@@ -60,7 +60,7 @@
                 Height="25"
                 Padding="0"
                 MinHeight="20"
-                Foreground="{DynamicResource PrimaryBrush}"
+                Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                 Size="Small"
                 ToolTip="Reset to 100%"
                 Variant="Default"

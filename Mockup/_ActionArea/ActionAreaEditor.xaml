@@ -31,7 +31,7 @@
     <via:XBorder Padding="20">
         <via:XBorder
             Background="Transparent"
-            BorderBrush="#005070"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderStrong}}"
             BorderThickness="1.5"
             CornerRadius="8"
             UseLayoutRounding="True">
@@ -53,7 +53,7 @@
                     <!--#region === HEADER ===-->
                     <via:XBorder
                         Grid.ColumnSpan="2"
-                        Background="{DynamicResource DarkPrimaryBrush}"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.PrimaryStrong}}"
                         BorderThickness="0"
                         CornerRadius="7 7 0 0"
                         MouseLeftButtonDown="TitleBorder_MouseLeftButtonDown">
@@ -63,7 +63,7 @@
                             FontSize="17"
                             FontStretch="ExtraExpanded"
                             FontWeight="SemiBold"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                             Text="ACTION ASSIGNMENT" />
                     </via:XBorder>
                     <!--#endregion === HEADER ===-->
@@ -148,7 +148,7 @@
                                 Width="80"
                                 Height="35"
                                 Margin="5,0,16,0"
-                                BorderBrush="{DynamicResource DarkBorderBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                 BorderThickness="1"
                                 Command="{Binding CancelCommand}"
                                 Content="Cancel"

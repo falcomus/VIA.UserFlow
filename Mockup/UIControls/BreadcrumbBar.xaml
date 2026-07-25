@@ -7,6 +7,7 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:vm="clr-namespace:Mockup.ViewModel"
+    xmlns:via="http://schemas.via.dev/wpf"
     Focusable="False"
     IsTabStop="True">
 
@@ -15,18 +16,10 @@
         <!--  Converter  -->
         <converter:IsNotFirstToVisibilityConverter x:Key="IsNotFirstToVisibility" />
 
-        <!--  Farben  -->
-        <SolidColorBrush x:Key="BreadcrumbBg" Color="#E0E2E8" />
-        <SolidColorBrush x:Key="BreadcrumbBgHover" Color="#FFB5D6FB" />
-        <SolidColorBrush x:Key="BreadcrumbFg" Color="#FF104070" />
-
-        <!--  BreadCrumb Background  -->
-        <SolidColorBrush x:Key="BreadcrumbHostBg" Color="#00FFFFFF" />
-
         <!--  Chevron-Template (Body + rechter Pfeil + linke Kerbe)  -->
         <Style x:Key="ChevronBreadcrumbButton" TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource BreadcrumbFg}" />
-            <Setter Property="Background" Value="{StaticResource BreadcrumbBg}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Focusable" Value="true" />
             <Setter Property="IsTabStop" Value="True" />
@@ -56,7 +49,7 @@
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 Data="M0,0 L12,15 L0,30 Z"
-                                Fill="{StaticResource BreadcrumbHostBg}">
+                                Fill="Transparent">
                                 <Path.Visibility>
                                     <Binding
                                         Converter="{StaticResource IsNotFirstToVisibility}"
@@ -80,8 +73,8 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Body" Property="Background" Value="{StaticResource BreadcrumbBgHover}" />
-                                <Setter TargetName="RightArrow" Property="Fill" Value="{StaticResource BreadcrumbBgHover}" />
+                                <Setter TargetName="Body" Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.StateHover}}" />
+                                <Setter TargetName="RightArrow" Property="Fill" Value="{DynamicResource {x:Static via:XBrushKeys.StateHover}}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.6" />

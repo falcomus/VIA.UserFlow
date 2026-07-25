@@ -13,30 +13,36 @@ internal static class UserFlowThemeBridge
 {
     private static readonly (string Target, ComponentResourceKey Source)[] Mappings =
     [
+        ("AppShellBrush", XBrushKeys.NavigationPanelBackground),
+        ("AppShellAltBrush", XBrushKeys.NavigationPanelItemHoverBackground),
+        ("AppShellBorderBrush", XBrushKeys.NavigationPanelBorder),
+        ("AppStatusBarBrush", XBrushKeys.NavigationPanelBackground),
+        ("AppStatusBarItemBrush", XBrushKeys.NavigationPanelItemHoverBackground),
         ("BorderBrush", XBrushKeys.BorderSubtle),
-        ("DarkBorderBrush", XBrushKeys.BorderSubtle),
+        ("DarkBorderBrush", XBrushKeys.BorderDefault),
         ("PanelBorder", XBrushKeys.BorderSubtle),
-        ("SubHeaderBrush", XBrushKeys.SurfaceLight),
+        ("SubHeaderBrush", XBrushKeys.SurfaceSunken),
         ("DesignerBackgroundBrush", XBrushKeys.SurfaceRaised),
         ("TabHeaderBrush", XBrushKeys.NavigationPanelBackground),
-        ("SearchBoxBrush", XBrushKeys.SurfaceLight),
-        ("ListBoxBrush", XBrushKeys.Background),
+        ("SearchBoxBrush", XBrushKeys.InputBackground),
+        ("ListBoxBrush", XBrushKeys.Surface),
         ("ToolBarElemBorderBrush", XBrushKeys.BorderSubtle),
-        ("ToolBarElemBGBrush", XBrushKeys.SurfaceLight),
-        ("NoDataBackground", XBrushKeys.Background),
+        ("ToolBarElemBGBrush", XBrushKeys.SurfaceSunken),
+        ("NoDataBackground", XBrushKeys.SurfaceSunken),
+        ("DesignAreaBackground", XBrushKeys.ScrimSubtle),
         ("PrimaryBrush", XBrushKeys.Primary),
-        ("DarkPrimaryBrush", XBrushKeys.PrimaryDark),
-        ("LightPrimaryBrush", XBrushKeys.PrimaryLight),
-        ("DangerBrush", XBrushKeys.Danger),
-        ("LightDangerBrush", XBrushKeys.DangerLight),
+        ("DarkPrimaryBrush", XBrushKeys.PrimaryStrong),
+        ("LightPrimaryBrush", XBrushKeys.PrimarySubtleHover),
+        ("DangerBrush", XBrushKeys.StatusDanger),
+        ("LightDangerBrush", XBrushKeys.StatusDangerSubtle),
         ("SelectionBrush", XBrushKeys.SelectionBackground),
         ("SelectionBorder", XBrushKeys.SelectionBorder),
         ("TextPrimaryBrush", XBrushKeys.TextPrimary),
         ("TextSecondaryBrush", XBrushKeys.TextSecondary),
         ("TextMutedBrush", XBrushKeys.TextTertiary),
         ("HeaderBackgroundBrush", XBrushKeys.Surface),
-        ("SubHeaderBackgroundBrush", XBrushKeys.SurfaceDark),
-        ("ExpanderHeaderBrush", XBrushKeys.SurfaceLight),
+        ("SubHeaderBackgroundBrush", XBrushKeys.SurfaceSunken),
+        ("ExpanderHeaderBrush", XBrushKeys.SurfaceSunken),
     ];
 
     public static void Initialize()
@@ -71,13 +77,6 @@ internal static class UserFlowThemeBridge
 
         foreach ((string targetKey, ComponentResourceKey sourceKey) in Mappings)
         {
-            if (targetKey is "BorderBrush" or "DarkBorderBrush" or "ToolBarElemBorderBrush")
-            {
-                application.Resources[targetKey] = new SolidColorBrush(
-                    theme.PanelBorder.GetColor(XThemeManager.Current.CurrentMode));
-                continue;
-            }
-
             if (application.TryFindResource(sourceKey) is SolidColorBrush source)
             {
                 application.Resources[targetKey] = new SolidColorBrush(source.Color);

@@ -2,16 +2,12 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Mockup.UIControls">
-
-    <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#FFF7F9FC" />
-
-    <SolidColorBrush x:Key="PanelSurfaceBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="PanelSurfaceBorderBrush" Color="#FFD8E0EA" />
+    xmlns:local="clr-namespace:Mockup.UIControls"
+    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes">
 
     <Style TargetType="{x:Type local:XPanel}">
-        <Setter Property="Background" Value="{StaticResource PanelSurfaceBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PanelBorder}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static themes:XBrushKeys.SurfaceRaised}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static themes:XBrushKeys.BorderSubtle}}" />
         <Setter Property="BorderThickness" Value="0,0,1,0" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />

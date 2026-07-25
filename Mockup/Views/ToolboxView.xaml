@@ -31,8 +31,8 @@
 
         <Style x:Key="ToolboxControlCardStyle" TargetType="via:XBorder">
             <Setter Property="Margin" Value="4" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="BorderBrush" Value="#D4DBE5" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="7" />
             <Setter Property="Cursor" Value="Hand" />
@@ -49,7 +49,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="#8FB5DA" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}" />
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect
@@ -61,8 +61,8 @@
                     </Setter>
                 </Trigger>
                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type via:XListBoxItem}}}" Value="True">
-                    <Setter Property="Background" Value="#F1F7FD" />
-                    <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.SelectionBorder}}" />
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect
@@ -88,16 +88,16 @@
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="Foreground" Value="#FAFBFD" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}" />
             <Setter Property="IconSize" Value="22" />
             <Setter Property="Size" Value="Medium" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#243041" />
-                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#1C2736" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -114,18 +114,18 @@
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="Foreground" Value="#FAFBFD" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#243041" />
-                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
                 </Trigger>
                 <Trigger Property="IsChecked" Value="True">
                     <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Foreground" Value="DodgerBlue" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#1C2736" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -133,7 +133,7 @@
         <Style x:Key="ToolboxRailSeparatorStyle" TargetType="Border">
             <Setter Property="Height" Value="1" />
             <Setter Property="Margin" Value="12,6" />
-            <Setter Property="Background" Value="#3A4656" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBorder}}" />
             <Setter Property="Opacity" Value="0.55" />
         </Style>
 
@@ -162,8 +162,8 @@
             Grid.Column="1"
             Width="60"
             HorizontalAlignment="Right"
-            Background="{DynamicResource AppShellBrush}"
-            BorderBrush="{DynamicResource DarkBorderBrush}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBorder}}"
             BorderThickness="1,0,0,0">
             <StackPanel Margin="0,-3.5,0,0" VerticalAlignment="Top">
 
@@ -202,8 +202,8 @@
                                         <Condition Binding="{Binding ElementName=PART_Tabs, Path=SelectedIndex}" Value="0" />
                                         <Condition Binding="{Binding ElementName=root, Path=IsFlyoutOpen}" Value="True" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
-                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
 
                                 </MultiDataTrigger>
                             </Style.Triggers>
@@ -224,8 +224,8 @@
                                         <Condition Binding="{Binding ElementName=PART_Tabs, Path=SelectedIndex}" Value="1" />
                                         <Condition Binding="{Binding ElementName=root, Path=IsFlyoutOpen}" Value="True" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
-                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
 
                                 </MultiDataTrigger>
                             </Style.Triggers>
@@ -246,8 +246,8 @@
                                         <Condition Binding="{Binding ElementName=PART_Tabs, Path=SelectedIndex}" Value="2" />
                                         <Condition Binding="{Binding ElementName=root, Path=IsFlyoutOpen}" Value="True" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
-                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
 
                                 </MultiDataTrigger>
                             </Style.Triggers>
@@ -268,8 +268,8 @@
                                         <Condition Binding="{Binding ElementName=PART_Tabs, Path=SelectedIndex}" Value="3" />
                                         <Condition Binding="{Binding ElementName=root, Path=IsFlyoutOpen}" Value="True" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
-                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
 
                                 </MultiDataTrigger>
                             </Style.Triggers>
@@ -286,8 +286,8 @@
             Margin="0,45,0,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
-            Background="{DynamicResource DesignerBackgroundBrush}"
-            BorderBrush="{DynamicResource DarkBorderBrush}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
             BorderThickness="1"
             Effect="{StaticResource EffectShadow3}"
             MouseEnter="Flyout_MouseEnter"
@@ -307,8 +307,8 @@
 
                 <Border
                     Grid.Row="0"
-                    Background="{DynamicResource AppShellBrush}"
-                    BorderBrush="{DynamicResource DarkBorderBrush}"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBorder}}"
                     BorderThickness="0,0,0,1">
                     <Grid Margin="14,0,14,0">
                         <TextBlock
@@ -317,7 +317,7 @@
                             VerticalAlignment="Center"
                             FontSize="17"
                             FontWeight="Medium"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                             Text="Toolbox - Controls" />
                     </Grid>
                 </Border>
@@ -349,8 +349,8 @@
                                 <via:XBorder
                                     Grid.Column="0"
                                     Padding="0"
-                                    Background="{DynamicResource HeaderBackgroundBrush}"
-                                    BorderBrush="{DynamicResource DarkBorderBrush}"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                                     BorderThickness="0,0,1,0">
                                     <via:XNavigationList
                                         Padding="4"

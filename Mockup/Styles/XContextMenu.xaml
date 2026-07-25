@@ -44,16 +44,6 @@
     <!--  THEME TOKENS  -->
     <!--  =========================================================  -->
 
-    <!--  Farben  -->
-    <SolidColorBrush x:Key="XCtxBg" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="XCtxBorder" Color="#D9D9D9" />
-    <SolidColorBrush x:Key="XCtxText" Color="#222222" />
-    <SolidColorBrush x:Key="XCtxTextDisabled" Color="#9A9A9A" />
-    <SolidColorBrush x:Key="XCtxHoverBg" Color="#F3F5F7" />
-    <SolidColorBrush x:Key="XCtxHoverBorder" Color="#E6E6E6" />
-    <SolidColorBrush x:Key="XCtxAccent" Color="#2F80ED" />
-    <SolidColorBrush x:Key="XCtxSep" Color="#E5E5E5" />
-
     <!--  =========================================================  -->
     <!--  LAYOUT TOKENS (zentral, konsistent)  -->
     <!--  =========================================================  -->
@@ -230,8 +220,8 @@
                         x:Name="CheckBox"
                         Width="{StaticResource XCtxCheckSize}"
                         Height="{StaticResource XCtxCheckSize}"
-                        Background="{StaticResource XCtxBg}"
-                        BorderBrush="{StaticResource XCtxBorder}"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                         BorderThickness="1"
                         CornerRadius="3"
                         SnapsToDevicePixels="True" />
@@ -244,7 +234,7 @@
                         VerticalAlignment="Center"
                         Data="M 1 3 L 3 6 L 7 1"
                         SnapsToDevicePixels="True"
-                        Stroke="{StaticResource XCtxBg}"
+                        Stroke="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                         StrokeEndLineCap="Round"
                         StrokeStartLineCap="Round"
                         StrokeThickness="2"
@@ -273,18 +263,18 @@
 
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource XCtxTextDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
                 <Setter Property="Opacity" Value="0.65" />
             </Trigger>
 
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter TargetName="Bd" Property="Background" Value="{StaticResource XCtxHoverBg}" />
-                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource XCtxHoverBorder}" />
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.StateHover}}" />
+                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}" />
             </Trigger>
 
             <Trigger Property="IsChecked" Value="True">
-                <Setter TargetName="CheckBox" Property="Background" Value="{StaticResource XCtxAccent}" />
-                <Setter TargetName="CheckBox" Property="BorderBrush" Value="{StaticResource XCtxAccent}" />
+                <Setter TargetName="CheckBox" Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                <Setter TargetName="CheckBox" Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
                 <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
             </Trigger>
         </ControlTemplate.Triggers>
@@ -322,9 +312,9 @@
                         x:Name="Outer"
                         Width="{StaticResource XCtxRadioSize}"
                         Height="{StaticResource XCtxRadioSize}"
-                        Fill="{StaticResource XCtxBg}"
+                        Fill="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                         SnapsToDevicePixels="True"
-                        Stroke="{StaticResource XCtxBorder}"
+                        Stroke="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                         StrokeThickness="1" />
 
                     <Ellipse
@@ -333,7 +323,7 @@
                         Height="{StaticResource XCtxRadioInnerSize}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Fill="{StaticResource XCtxAccent}"
+                        Fill="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                         SnapsToDevicePixels="True"
                         Visibility="Collapsed" />
                 </Grid>
@@ -361,17 +351,17 @@
 
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource XCtxTextDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
                 <Setter Property="Opacity" Value="0.65" />
             </Trigger>
 
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter TargetName="Bd" Property="Background" Value="{StaticResource XCtxHoverBg}" />
-                <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource XCtxHoverBorder}" />
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.StateHover}}" />
+                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}" />
             </Trigger>
 
             <Trigger Property="IsChecked" Value="True">
-                <Setter TargetName="Outer" Property="Stroke" Value="{StaticResource XCtxAccent}" />
+                <Setter TargetName="Outer" Property="Stroke" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
                 <Setter TargetName="Inner" Property="Visibility" Value="Visible" />
             </Trigger>
         </ControlTemplate.Triggers>

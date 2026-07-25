@@ -35,7 +35,7 @@
             Orientation="Vertical">
 
             <!--  Format Toggle Chips  -->
-            <via:XBorder BorderBrush="#A0A0A0" BorderThickness="0,0,0,0.5">
+            <via:XBorder BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}" BorderThickness="0,0,0,0.5">
                 <StackPanel
                     x:Name="PART_FormatSelector"
                     Margin="5,5,0,5"
@@ -65,7 +65,7 @@
                         Margin="30,0,0,0"
                         Padding="6,0,12,0"
                         Command="{Binding AddAssetCommand}"
-                        Foreground="Black">
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}">
                         <StackPanel Orientation="Horizontal">
                             <via:XTextBlock
                                 x:Name="PART_AddImageButton"
@@ -117,7 +117,7 @@
 
             <via:XBorder
                 Padding="5"
-                Background="#0D000103"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                 CornerRadius="5">
                 <via:XListBox ItemsSource="{Binding FilteredAssets}">
                     <via:XListBox.ItemsPanel>
@@ -136,7 +136,7 @@
                             <via:XBorder
                                 Width="85"
                                 Height="85"
-                                BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                                 BorderThickness="0.5"
                                 CornerRadius="4">
                                 <Grid ext:GridEx.RowDef="*,Auto">
@@ -154,7 +154,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="9"
-                                        Foreground="{DynamicResource MaterialDesignBody}"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                         Text="{Binding Id}"
                                         TextAlignment="Center"
                                         TextTrimming="CharacterEllipsis" />
@@ -184,7 +184,7 @@
                     VerticalAlignment="Center"
                     FontSize="13"
                     FontStyle="Italic"
-                    Foreground="{DynamicResource MaterialDesignBody}"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                     Text="No icons found" />
             </StackPanel>
 

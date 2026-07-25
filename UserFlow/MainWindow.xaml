@@ -164,7 +164,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            Background="{DynamicResource AppShellBrush}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
             UseLayoutRounding="True" />
 
 
@@ -191,7 +191,7 @@
             x:Name="PART_Overlay"
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Background="#99000000"
+            Background="{DynamicResource {x:Static via:XBrushKeys.Scrim}}"
             IsHitTestVisible="False"
             Visibility="Collapsed" />
         <!--#endregion === OVERLAY ===-->
@@ -202,7 +202,7 @@
             Grid.ColumnSpan="2"
             Height="28"
             Padding="0,1,0,0"
-            Background="{DynamicResource AppStatusBarBrush}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
             BorderThickness="0"
             Style="{DynamicResource StatusBarBaseStyle}">
             <StatusBarItem>
@@ -210,12 +210,12 @@
                     <Border
                         Grid.Column="1"
                         Padding="6,0,6,1"
-                        Background="{DynamicResource AppStatusBarItemBrush}"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}"
                         CornerRadius="3">
                         <TextBlock
                             VerticalAlignment="Center"
                             FontSize="11"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                             Opacity="0.6"
                             Text="Screens" />
                     </Border>
@@ -224,7 +224,7 @@
                         VerticalAlignment="Center"
                         FontSize="11"
                         FontWeight="Medium"
-                        Foreground="White"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                         Text="{Binding CurrentProject.Screens.Count, FallbackValue='ScreensCount'}" />
                 </StackPanel>
             </StatusBarItem>
@@ -233,12 +233,12 @@
                     <Border
                         Grid.Column="1"
                         Padding="6,0,6,1"
-                        Background="{DynamicResource AppStatusBarItemBrush}"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}"
                         CornerRadius="4">
                         <TextBlock
                             VerticalAlignment="Center"
                             FontSize="11"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                             Opacity="0.6"
                             Text="Templates" />
                     </Border>
@@ -247,7 +247,7 @@
                         VerticalAlignment="Center"
                         FontSize="11"
                         FontWeight="Medium"
-                        Foreground="White"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                         Text="{Binding Templates.Count, FallbackValue='ScreensCount'}" />
                 </StackPanel>
             </StatusBarItem>
@@ -256,11 +256,11 @@
                     <Border
                         Grid.Column="1"
                         Padding="6,0,6,1"
-                        Background="{DynamicResource AppStatusBarItemBrush}"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}"
                         CornerRadius="4">
                         <TextBlock
                             FontSize="11"
-                            Foreground="White"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                             Opacity="0.6"
                             Text="Popups" />
                     </Border>
@@ -269,18 +269,18 @@
                         VerticalAlignment="Center"
                         FontSize="11"
                         FontWeight="Medium"
-                        Foreground="White"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                         Text="{Binding CurrentProject.Popups.Count, FallbackValue='PopupCount'}" />
                 </StackPanel>
             </StatusBarItem>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <Border
                     Padding="6,0,7,1"
-                    Background="{DynamicResource AppStatusBarItemBrush}"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}"
                     CornerRadius="4">
                     <TextBlock
                         FontSize="11"
-                        Foreground="White"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                         Opacity="0.6"
                         Text="File Path:" />
                 </Border>
@@ -289,7 +289,7 @@
                     VerticalAlignment="Center"
                     Cursor="Hand"
                     FontSize="11"
-                    Foreground="White"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
                     Opacity="0.6"
                     Text="{Binding CurrentProject.FilePath, FallbackValue='Project Filepath'}"
                     TextTrimming="CharacterEllipsis"
@@ -315,7 +315,7 @@
             CornerRadius="4"
             Cursor="Hand"
             Focusable="False"
-            Foreground="White"
+            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
             IconSize="15"
             IsChecked="{Binding ElementName=PART_ToolboxView, Path=IsFlyoutOpen, Mode=OneWay}"
             ToolTip="Open/Close Toolbox"
@@ -328,7 +328,7 @@
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
             Padding="0"
-            Background="{DynamicResource DesignerBackgroundBrush}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
             BorderThickness="0,0,1,0"
             CornerRadius="0"
             Visibility="{Binding CurrentProject, Converter={StaticResource NullToInversVisibilityConverter}, FallbackValue=Collapsed}">
@@ -337,14 +337,14 @@
                     Width="48"
                     Height="48"
                     HorizontalAlignment="Center"
-                    Foreground="{DynamicResource PrimaryBrush}"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                     Kind="Information" />
                 <TextBlock
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     FontSize="20"
                     FontWeight="SemiBold"
-                    Foreground="{DynamicResource PrimaryBrush}"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                     Text="No current Project" />
 
                 <via:XStackPanel
@@ -366,14 +366,14 @@
                                 Width="20"
                                 Height="20"
                                 Margin="15,2,0,0"
-                                Foreground="White"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusWarningForeground}}"
                                 Kind="FolderOpen" />
                             <TextBlock
                                 Grid.Column="1"
                                 Margin="15,0,20,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Foreground="White"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusWarningForeground}}"
                                 Text="Import project" />
                         </Grid>
                     </Button>
@@ -393,14 +393,14 @@
                                 Width="16"
                                 Height="16"
                                 Margin="15,3,0,0"
-                                Foreground="White"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                 Kind="Plus" />
                             <TextBlock
                                 Grid.Column="1"
                                 Margin="15,0,20,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Foreground="White"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                                 Text="Create new project" />
                         </Grid>
                     </Button>

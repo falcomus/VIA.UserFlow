@@ -10,8 +10,8 @@
     <via:XBorder
         Width="300"
         Padding="0"
-        Background="White"
-        BorderBrush="{DynamicResource BorderBrush}"
+        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
         BorderThickness="1"
         Effect="{StaticResource EffectShadow3}"
         Visibility="{Binding IsActionAreaHintVisible, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -25,12 +25,12 @@
             <!--  Header  -->
             <via:XBorder
                 Padding="10,6"
-                Background="{DynamicResource PrimaryBrush}"
+                Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                 CornerRadius="5 5 0 0">
                 <via:XTextBlock
                     FontSize="14"
                     FontWeight="SemiBold"
-                    Foreground="White"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                     Text="ACTIONS" />
             </via:XBorder>
 
@@ -47,7 +47,7 @@
                             <via:XBorder
                                 Height="1"
                                 Margin="0,3,0,6"
-                                Background="#66000000" />
+                                Background="{DynamicResource {x:Static via:XBrushKeys.Divider}}" />
 
                             <via:XTextBlock
                                 FontSize="13"

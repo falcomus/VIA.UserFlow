@@ -106,8 +106,8 @@
                                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                         Text="{Binding Label}" />
                                     <via:XBadge
-                                        Background="#10808080"
-                                        BorderBrush="#30808080"
+                                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                                         Margin="0 0 4 0"
                                         Grid.Column="2"
                                         CornerRadius="4"

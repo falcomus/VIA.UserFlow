@@ -27,7 +27,7 @@
             HorizontalAlignment="Left"
             FontSize="18"
             FontWeight="Bold"
-            Foreground="Black"
+            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
             Text="Startup process" />
 
@@ -36,7 +36,7 @@
             Grid.Row="1"
             Margin="25,195,0,0"
             FontSize="13"
-            Foreground="Black"
+            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
             Text="The launch is being prepared..."
             TextTrimming="CharacterEllipsis" />
@@ -51,9 +51,9 @@
             Maximum="100"
             Minimum="0"
             MinHeight="0"
-            ProgressBrush="#2050A0"
+            ProgressBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
             ShowValue="False"
-            TrackBrush="#EAEBEF"
+            TrackBrush="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             TrackThickness="18"
             Value="50" />
 
@@ -63,7 +63,7 @@
             HorizontalAlignment="Left"
             FontSize="12"
             FontWeight="SemiBold"
-            Foreground="Black"
+            Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
             Text="0 %" />
     </Grid>

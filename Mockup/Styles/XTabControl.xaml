@@ -11,7 +11,7 @@
     <!--  =========================================================  -->
 
     <Style x:Key="CustomTabItemStyle" TargetType="TabItem">
-        <Setter Property="Foreground" Value="#A7B2C2" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -62,8 +62,8 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White" />
-                            <Setter TargetName="Underline" Property="Background" Value="White" />
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
+                            <Setter TargetName="Underline" Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="ContentSite" Property="Opacity" Value="0.35" />
@@ -79,7 +79,7 @@
                 <Setter Property="FontWeight" Value="Bold" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -102,7 +102,7 @@
                         <via:XBorder
                             Grid.Row="0"
                             Padding="0"
-                            Background="{DynamicResource AppShellBrush}"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
                             BorderThickness="0"
                             CornerRadius="0"
                             SnapsToDevicePixels="True">

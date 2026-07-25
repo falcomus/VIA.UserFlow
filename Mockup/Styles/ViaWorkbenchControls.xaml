@@ -1,7 +1,8 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks">
+    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:via="http://schemas.via.dev/wpf">
 
     <DropShadowEffect
         x:Key="EffectShadow1"
@@ -24,74 +25,9 @@
         Opacity="0.20"
         ShadowDepth="4" />
 
-    <ControlTemplate x:Key="WorkbenchButtonTemplate" TargetType="Button">
-        <Border
-            x:Name="PART_Border"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="6"
-            SnapsToDevicePixels="True">
-            <ContentPresenter
-                Margin="{TemplateBinding Padding}"
-                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                RecognizesAccessKey="True" />
-        </Border>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="PART_Border" Property="Opacity" Value="0.9" />
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="PART_Border" Property="Opacity" Value="0.78" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="PART_Border" Property="Opacity" Value="0.45" />
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-
-    <Style x:Key="TabItemStyle" TargetType="TabItem">
-        <Setter Property="Padding" Value="12,6" />
-        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
-    </Style>
-
-    <Style x:Key="DataGridBaseStyle" TargetType="DataGrid">
-        <Setter Property="Background" Value="{DynamicResource DesignerBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="GridLinesVisibility" Value="Horizontal" />
-        <Setter Property="HeadersVisibility" Value="Column" />
-    </Style>
-
-    <Style x:Key="DataGridRowStyle" TargetType="DataGridRow" />
-
-    <Style x:Key="DataGridCellStyle.Small" TargetType="DataGridCell">
-        <Setter Property="Padding" Value="6,2" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-    </Style>
-
     <Style x:Key="StatusBarBaseStyle" TargetType="StatusBar">
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 
-    <Style x:Key="ToggleButtonCustom" TargetType="ToggleButton">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-    </Style>
-
-    <Style x:Key="ContextMenuBaseStyle" TargetType="ContextMenu">
-        <Setter Property="Background" Value="{DynamicResource DesignerBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-    </Style>
-
-    <Style x:Key="MenuItemBaseStyle" TargetType="MenuItem">
-        <Setter Property="Padding" Value="10,5" />
-    </Style>
 </ResourceDictionary>

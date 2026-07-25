@@ -10,16 +10,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
     d:DataContext="{d:DesignInstance Type=mockup:Screen}"
     d:DesignHeight="350"
     d:DesignWidth="500"
-    Background="White"
+    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
     TextOptions.TextFormattingMode="Display"
     TextOptions.TextRenderingMode="ClearType"
     mc:Ignorable="d">
 
-    <Grid ext:GridEx.ColDef="240,Auto,*" Background="White">
+    <Grid ext:GridEx.ColDef="240,Auto,*" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
 
         <!--#region === LEFT GRID ===-->
         <Grid ext:GridEx.RowDef="*,120,Auto">
@@ -37,13 +38,13 @@
                     Height="48"
                     Margin="0,40,0,15"
                     Padding="0"
-                    Background="#303133"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimaryStrong}}"
                     Cursor="Hand"
                     IsHitTestVisible="False">
                     <ico:PackIconMaterialDesign
                         Width="20"
                         Height="20"
-                        Foreground="White"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
                         Kind="FileDownload" />
                 </Button>
                 <TextBlock
@@ -74,7 +75,7 @@
                     HorizontalAlignment="Center"
                     FontSize="14"
                     FontWeight="Medium"
-                    Foreground="{DynamicResource PrimaryBrush}"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                     Text="{Binding ElementName=root, Path=ImageSizeHint, FallbackValue='SIZE INFO'}" />
             </StackPanel>
             <!--#endregion === RECOMMENDED SIZE INFO ===-->
@@ -90,8 +91,8 @@
                     Height="35"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Background="White"
-                    BorderBrush="#DADBDB"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                     BorderThickness="1"
                     Click="RemoveImageButton_Click">
                     <Grid ext:GridEx.ColDef="Auto,*">
@@ -100,7 +101,7 @@
                             Height="15"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Foreground="{DynamicResource DangerBrush}"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
                             Kind="CloseCircle" />
                         <TextBlock
                             Grid.Column="1"
@@ -109,7 +110,7 @@
                             VerticalAlignment="Center"
                             FontSize="14"
                             FontWeight="Medium"
-                            Foreground="{DynamicResource DangerBrush}"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
                             Text="Clear" />
                     </Grid>
                 </Button>
@@ -120,8 +121,8 @@
                     Height="35"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Background="White"
-                    BorderBrush="#DADBDB"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                     BorderThickness="1"
                     Click="SelectImageButton_Click">
                     <Grid ext:GridEx.ColDef="Auto,*">
@@ -130,7 +131,7 @@
                             Height="15"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Foreground="{DynamicResource PrimaryBrush}"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                             Kind="FolderOpen" />
                         <TextBlock
                             Grid.Column="1"
@@ -139,7 +140,7 @@
                             VerticalAlignment="Center"
                             FontSize="14"
                             FontWeight="Medium"
-                            Foreground="{DynamicResource PrimaryBrush}"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                             Text="Browse" />
                     </Grid>
                 </Button>
@@ -154,7 +155,7 @@
         <Border
             Grid.Column="1"
             Width="1"
-            Background="#DADBDD" />
+            Background="{DynamicResource {x:Static via:XBrushKeys.Divider}}" />
         <!--#endregion === VERTIKAL SEPARATOR ===-->
 
         <!--#region === PREVIEW IMAGE ===-->
@@ -163,8 +164,8 @@
             Margin="30,10"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Background="White"
-            BorderBrush="#202121"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderStrong}}"
             BorderThickness="14"
             CornerRadius="15">
             <Border.LayoutTransform>

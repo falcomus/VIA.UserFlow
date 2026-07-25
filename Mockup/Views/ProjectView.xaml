@@ -91,7 +91,7 @@
                     Icon="{via:MaterialIcon Kind=ContentSave}"
                     Size="Large"
                     ToolTip="Open Project"
-                    Variant="Primary" />
+                    Variant="Warning" />
 
                 <via:XButton
                     Grid.Column="1"
@@ -107,7 +107,7 @@
                     Icon="{via:MaterialIcon Kind=ContentSave}"
                     Size="Large"
                     ToolTip="Save Project"
-                    Variant="Primary" />
+                    Variant="Warning" />
 
                 <via:XButton
                     Grid.Column="2"
@@ -543,7 +543,7 @@
                                 BorderThickness="0"
                                 Command="{Binding DeleteColorSchemaCommand}"
                                 Foreground="{DynamicResource DangerBrush}"
-                                Icon="{via:MaterialIcon Kind=Close}"
+                                Icon="{via:MaterialIcon Kind=Delete}"
                                 IconSize="12"
                                 Size="Small"
                                 ToolTip="Delete Color Scheme" />
@@ -815,7 +815,7 @@
                                                 Command="{Binding ElementName=root, Path=DataContext.EditScreenCoreCommand}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
-                                                Icon="{via:MaterialIcon Kind=Launch}"
+                                                Icon="{via:MaterialIcon Kind=Pencil}"
                                                 IconSize="16"
                                                 Size="Small"
                                                 ToolTip="Edit screen"
@@ -827,7 +827,7 @@
                                                 Command="{Binding ElementName=root, Path=DataContext.DeleteScreenCommand}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
-                                                Icon="{via:MaterialIcon Kind=Close}"
+                                                Icon="{via:MaterialIcon Kind=Delete}"
                                                 IconSize="14"
                                                 Size="Small"
                                                 ToolTip="Delete screen"
@@ -839,8 +839,8 @@
                                                 Command="{Binding ElementName=root, Path=DataContext.GotoScreenPageCommand}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
-                                                Icon="{via:MaterialIcon Kind=Eye}"
-                                                IconSize="22"
+                                                Icon="{via:MaterialIcon Kind=ArrowRightBold}"
+                                                IconSize="18"
                                                 Size="Small"
                                                 ToolTip="Goto screen"
                                                 Variant="Primary" />

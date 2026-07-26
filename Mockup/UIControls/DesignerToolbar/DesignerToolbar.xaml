@@ -10,17 +10,15 @@
     </UserControl.Resources>
 
     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-        <local:AlignmentToolbar
-            HorizontalAlignment="Right"
-            Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <local:AlignmentToolbar HorizontalAlignment="Right" Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
 
         <via:XToggleButton
-            Variant="Info"
+            Margin="8,0,0,0"
             CheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             IconSize="16"
-            Margin="8 0 0 0"
             IsChecked="{Binding CurrentProject.ShowAlignmentGuidelines, Mode=TwoWay}"
             ToolTip="Smart guides: show and snap to matching control edges and centers"
-            UncheckedIcon="{via:MaterialIcon Kind=RulerSquare}" />
+            UncheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
+            Variant="Info" />
     </StackPanel>
 </UserControl>

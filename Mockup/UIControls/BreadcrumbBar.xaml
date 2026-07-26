@@ -6,8 +6,8 @@
     xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:vm="clr-namespace:Mockup.ViewModel"
     xmlns:via="http://schemas.via.dev/wpf"
+    xmlns:vm="clr-namespace:Mockup.ViewModel"
     Focusable="False"
     IsTabStop="True">
 

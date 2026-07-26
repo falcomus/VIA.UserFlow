@@ -3,9 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:via="http://schemas.via.dev/wpf">
 
-    <via:XContextMenu
-        x:Key="ScreenListContextMenu"
-        x:Shared="False">
+    <via:XContextMenu x:Key="ScreenListContextMenu" x:Shared="False">
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
@@ -19,9 +17,7 @@
             Header="Edit Screen"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
-        <via:XMenuItem
-            Header="Duplicate Screen"
-            Icon="{via:MaterialIcon Kind=ContentCopy}" />
+        <via:XMenuItem Header="Duplicate Screen" Icon="{via:MaterialIcon Kind=ContentCopy}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
@@ -32,9 +28,7 @@
 
     </via:XContextMenu>
 
-    <via:XContextMenu
-        x:Key="TemplateListContextMenu"
-        x:Shared="False">
+    <via:XContextMenu x:Key="TemplateListContextMenu" x:Shared="False">
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
@@ -57,9 +51,7 @@
 
     </via:XContextMenu>
 
-    <via:XContextMenu
-        x:Key="PopupListContextMenu"
-        x:Shared="False">
+    <via:XContextMenu x:Key="PopupListContextMenu" x:Shared="False">
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
@@ -82,9 +74,7 @@
 
     </via:XContextMenu>
 
-    <via:XContextMenu
-        x:Key="ProjectScreenListContextMenu"
-        x:Shared="False">
+    <via:XContextMenu x:Key="ProjectScreenListContextMenu" x:Shared="False">
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
@@ -114,9 +104,7 @@
             Icon="{via:MaterialIcon Kind=HomeOutline}" />
 
     </via:XContextMenu>
-    <via:XContextMenu
-        x:Key="ProjectActionsContextMenu"
-        x:Shared="False">
+    <via:XContextMenu x:Key="ProjectActionsContextMenu" x:Shared="False">
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.SaveProjectAsCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"

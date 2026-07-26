@@ -502,7 +502,7 @@
 
                         <via:XZoomSlider
                             x:Name="PART_ZoomSlider"
-                            Margin="3,0,5,0"
+                            Margin="3,0,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             BorderThickness="0"

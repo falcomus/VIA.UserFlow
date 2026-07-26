@@ -405,29 +405,6 @@
                                         ShowResetButton="True"
                                         Text="{Binding ControlToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <!--<Grid Grid.Row="1" Margin="14,0,12,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <via:XTextBlock
-                                            Margin="0,8,0,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="13"
-                                            FontWeight="SemiBold"
-                                            Foreground="{DynamicResource TextPrimaryBrush}"
-                                            Text="{Binding CurrentControlGroup.GroupName, TargetNullValue=Controls}" />
-
-                                        <via:XTextBlock
-                                            Grid.Column="1"
-                                            Margin="0,8,2,0"
-                                            VerticalAlignment="Top"
-                                            FontSize="12"
-                                            Foreground="{DynamicResource TextSecondaryBrush}"
-                                            Text="Drag to designer" />
-                                    </Grid>-->
-
                                     <via:XListBox
                                         Grid.Row="2"
                                         Padding="7,4,7,7"

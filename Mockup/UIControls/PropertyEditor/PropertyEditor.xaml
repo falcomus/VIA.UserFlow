@@ -23,33 +23,21 @@
     </UserControl.Resources>
 
     <via:XBorder
-        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+        Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
         BorderThickness="0"
         CornerRadius="0">
 
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <via:XTextBlock
-                Margin="12,10,12,10"
-                FontSize="14"
-                FontWeight="SemiBold"
-                Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
                 <via:XBorder
                     Grid.Column="0"
                     Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
-                    BorderThickness="0,1,1,0">
+                    BorderThickness="0,0,1,0">
                     <via:XNavigationList
                         Padding="4"
                         HorizontalContentAlignment="Stretch"
@@ -62,13 +50,19 @@
                         ItemMargin="0,1"
                         ItemPadding="10,7,8,7"
                         ItemsSource="{Binding ElementName=root, Path=PropertyCategories}"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SelectedItem="{Binding ElementName=root, Path=SelectedPropertyCategory, Mode=TwoWay}"
                         SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
                         SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                         SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                         SelectionIndicatorCornerRadius="0,2,2,0"
                         SelectionIndicatorWidth="3"
-                        ShowSelectionIndicator="True">
+                        ShowSelectionIndicator="True"
+                        VirtualizingPanel.IsVirtualizing="True"
+                        VirtualizingPanel.ScrollUnit="Pixel"
+                        VirtualizingPanel.VirtualizationMode="Recycling">
                         <via:XNavigationList.ItemContainerStyle>
                             <Style TargetType="{x:Type via:XNavigationListItem}">
                                 <Setter Property="MinHeight" Value="34" />
@@ -81,7 +75,7 @@
                     </via:XNavigationList>
                 </via:XBorder>
 
-                <Grid Grid.Column="1">
+            <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="42" />
                         <RowDefinition Height="*" />
@@ -247,7 +241,6 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                </Grid>
             </Grid>
         </Grid>
     </via:XBorder>

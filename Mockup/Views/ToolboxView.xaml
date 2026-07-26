@@ -902,7 +902,7 @@
                         <TabItem Header="Properties">
                             <Border
                                 Grid.Row="2"
-                                Background="{DynamicResource ListBoxBrush}"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
                                 BorderThickness="0"
                                 ClipToBounds="True">
                                 <Grid x:Name="PART_PROPERTIES" ext:GridEx.RowDef="Auto,*">

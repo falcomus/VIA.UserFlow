@@ -24,6 +24,8 @@
     <via:XToggleDropDown
         Height="34"
         Padding="10,0,10,1"
+        Background="Transparent"
+        BorderThickness="0"
         VerticalContentAlignment="Center"
         Content="Alignment"
         Cursor="Hand"

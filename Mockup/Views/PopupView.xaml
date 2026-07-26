@@ -487,23 +487,6 @@
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 
-                        <via:XSeparator
-                            Grid.Column="1"
-                            Margin="10,0,10,0"
-                            HorizontalAlignment="Center"
-                            Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <ui:AlignmentToolbar
-                            HorizontalAlignment="Right"
-                            BorderBrush="{DynamicResource DarkBorderBrush}"
-                            BorderThickness="0"
-                            Visibility="{Binding IsMultipleControlsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                        <via:XSeparator
-                            Grid.Column="1"
-                            Margin="10,0,10,0"
-                            HorizontalAlignment="Center" />
-
                         <ui:DesignerToolbar />
 
                         <via:XSeparator

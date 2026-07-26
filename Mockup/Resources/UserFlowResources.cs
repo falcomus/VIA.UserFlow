@@ -8,7 +8,7 @@ namespace Mockup.Resources;
 public static class UserFlowResources
 {
     private static readonly ResourceManager ResourceManagerInstance = new(
-        "Mockup.Resources.UserFlowStrings",
+        "VIA.Mockup.Resources.UserFlowStrings",
         typeof(UserFlowResources).Assembly);
 
     public static ResourceManager ResourceManager => ResourceManagerInstance;

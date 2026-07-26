@@ -24,7 +24,11 @@
 
         <via:XSeparator Margin="8,0" />
 
-        <local:UndoRedoBar />
+        <via:XUndoRedoBar
+            UndoCommand="{Binding UndoCommand}"
+            RedoCommand="{Binding RedoCommand}"
+            UndoToolTip="{Binding UndoLabel, FallbackValue='Undo (Ctrl+Z)'}"
+            RedoToolTip="{Binding RedoLabel, FallbackValue='Redo (Ctrl+Y)'}" />
 
         <via:XSeparator Margin="8,0" />
 

@@ -108,7 +108,7 @@
 
         <Style x:Key="BottomHeightHandleStyle" TargetType="Thumb">
             <Setter Property="Visibility" Value="Visible" />
-            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="Margin" Value="0,-1,0,0" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentPopup.Position}" Value="{x:Static mockup:ScreenPopupPosition.Bottom}">
                     <Setter Property="Visibility" Value="Collapsed" />
@@ -341,6 +341,7 @@
                                             Width="22"
                                             Height="22"
                                             Padding="0"
+                                            Panel.ZIndex="10"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Top"
                                             Background="Transparent"
@@ -370,6 +371,7 @@
                                             Width="22"
                                             Height="22"
                                             Padding="0"
+                                            Panel.ZIndex="10"
                                             HorizontalAlignment="Center"
                                             Background="Transparent"
                                             Cursor="SizeNS"

@@ -35,6 +35,7 @@
 
                 <via:XBorder
                     Grid.Column="0"
+                    Padding="0"
                     Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                     BorderThickness="0,0,1,0">

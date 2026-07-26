@@ -23,6 +23,7 @@
     </UserControl.Resources>
 
     <via:XBorder
+        Padding="0"
         Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
         BorderThickness="0"
         CornerRadius="0">

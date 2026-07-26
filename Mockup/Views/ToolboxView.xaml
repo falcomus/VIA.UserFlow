@@ -908,7 +908,7 @@
                                 <Grid x:Name="PART_PROPERTIES" ext:GridEx.RowDef="Auto,*">
                                     <ui:PropertyEditor
                                         Grid.Row="1"
-                                        VerticalAlignment="Top"
+                                        VerticalAlignment="Stretch"
                                         Control="{Binding CurrentControl}"
                                         SelectedControls="{Binding SelectedControls}" />
                                 </Grid>

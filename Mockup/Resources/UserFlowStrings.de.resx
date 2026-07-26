@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Main.Theme" xml:space="preserve"><value>Design</value></data>
+  <data name="Main.TabProject" xml:space="preserve"><value>PROJEKT</value></data>
+  <data name="Main.TabScreen" xml:space="preserve"><value>SCREEN</value></data>
+  <data name="Main.TabTemplate" xml:space="preserve"><value>VORLAGE</value></data>
+  <data name="Main.TabPopup" xml:space="preserve"><value>POPUP</value></data>
+  <data name="Main.TabPreview" xml:space="preserve"><value>VORSCHAU</value></data>
+  <data name="Main.TabActionFlow" xml:space="preserve"><value>AKTIONSABLAUF</value></data>
+  <data name="Main.TabOptions" xml:space="preserve"><value>OPTIONEN</value></data>
+  <data name="Main.TabHelp" xml:space="preserve"><value>HILFE</value></data>
+  <data name="Main.TabAbout" xml:space="preserve"><value>ÜBER</value></data>
+  <data name="Main.ToolboxToggle" xml:space="preserve"><value>Toolbox öffnen oder schließen</value></data>
+  <data name="Options.Title" xml:space="preserve"><value>Optionen</value></data>
+  <data name="Options.Heading" xml:space="preserve"><value>Anwendungsoptionen</value></data>
+  <data name="Options.Introduction" xml:space="preserve"><value>Änderungen werden sofort gespeichert und beim nächsten Start von UserFlow geladen.</value></data>
+  <data name="Options.Saving" xml:space="preserve"><value>Speichern</value></data>
+  <data name="Options.AutoSave" xml:space="preserve"><value>Änderungen automatisch speichern</value></data>
+  <data name="Options.SaveInterval" xml:space="preserve"><value>Speicherintervall</value></data>
+  <data name="Options.SaveDescription" xml:space="preserve"><value>UserFlow speichert Projekte, Vorlagen und Optionen im Hintergrund.</value></data>
+  <data name="Options.Workspace" xml:space="preserve"><value>Arbeitsbereich</value></data>
+  <data name="Options.ShowToolbox" xml:space="preserve"><value>Toolbox anzeigen</value></data>
+  <data name="Options.ShowToolboxDescription" xml:space="preserve"><value>Hält die Control-Toolbox im Designer sichtbar.</value></data>
+  <data name="Options.OpenLastProject" xml:space="preserve"><value>Letztes Projekt beim Start öffnen</value></data>
+  <data name="Options.OpenLastProjectDescription" xml:space="preserve"><value>Wenn deaktiviert, startet UserFlow ohne ausgewähltes Projekt.</value></data>
+  <data name="Options.Storage" xml:space="preserve"><value>Speicherort</value></data>
+  <data name="Options.StorageDescription" xml:space="preserve"><value>Anwendungsoptionen werden in Data\settings.json neben UserFlow gespeichert. Projekte, Vorlagen und Farbschemata bleiben im selben Data-Ordner.</value></data>
+</root>

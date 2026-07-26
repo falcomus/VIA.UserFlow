@@ -24,8 +24,8 @@
          ═══════════════════════════════════════════════════════════ -->
 	<PropertyGroup>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+		<SatelliteResourceLanguages>en;de</SatelliteResourceLanguages>
+		<GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
 		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 		<NoWarn>NU1701;CS0618;CS8600;CS8602;CS8603;CS8625;CS8618;CS0649;CS0169;CS0472</NoWarn>
 	</PropertyGroup>

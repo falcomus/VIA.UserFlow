@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="clr-namespace:Mockup.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     d:DesignHeight="850"
     d:DesignWidth="800"
@@ -31,7 +32,7 @@
                     VerticalAlignment="Center"
                     FontSize="16"
                     FontWeight="SemiBold"
-                    Text="Options" />
+                    Text="{via:XLoc Options.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </StackPanel>
         </via:XBorder>
 
@@ -39,11 +40,11 @@
             <Grid MaxWidth="760" Margin="24" HorizontalAlignment="Center">
                 <StackPanel>
                     <StackPanel Margin="0,0,0,20">
-                        <TextBlock FontSize="24" FontWeight="SemiBold" Text="Application options" />
+                        <TextBlock FontSize="24" FontWeight="SemiBold" Text="{via:XLoc Options.Heading, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <TextBlock
                             Margin="0,6,0,0"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                            Text="Changes are saved immediately and loaded the next time UserFlow starts."
+                            Text="{via:XLoc Options.Introduction, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                             TextWrapping="Wrap" />
                     </StackPanel>
 
@@ -65,12 +66,12 @@
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
-                                    Text="Saving" />
+                                    Text="{via:XLoc Options.Saving, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </StackPanel>
 
                             <via:XCheckBox
                                 Margin="0,16,0,0"
-                                Content="Save changes automatically"
+                                Content="{via:XLoc Options.AutoSave, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 IsChecked="{Binding AutoSaveEnabled, Mode=TwoWay}" />
 
                             <Grid Margin="0,12,0,0" IsEnabled="{Binding AutoSaveEnabled}">
@@ -79,11 +80,11 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel>
-                                    <TextBlock FontWeight="SemiBold" Text="Save interval" />
+                                    <TextBlock FontWeight="SemiBold" Text="{via:XLoc Options.SaveInterval, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <TextBlock
                                         Margin="0,3,0,0"
                                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                                        Text="UserFlow saves projects, templates and options in the background."
+                                        Text="{via:XLoc Options.SaveDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
                                 <TextBlock
@@ -122,27 +123,27 @@
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
-                                    Text="Workspace" />
+                                    Text="{via:XLoc Options.Workspace, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </StackPanel>
 
                             <via:XCheckBox
                                 Margin="0,16,0,0"
-                                Content="Show the toolbox"
+                                Content="{via:XLoc Options.ShowToolbox, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 IsChecked="{Binding ShowToolbox, Mode=TwoWay}" />
                             <TextBlock
                                 Margin="25,4,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                                Text="Keeps the control toolbox visible in the designer."
+                                Text="{via:XLoc Options.ShowToolboxDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
 
                             <via:XCheckBox
                                 Margin="0,14,0,0"
-                                Content="Open the last project at startup"
+                                Content="{via:XLoc Options.OpenLastProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 IsChecked="{Binding OpenLastProjectOnStartup, Mode=TwoWay}" />
                             <TextBlock
                                 Margin="25,4,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                                Text="When disabled, UserFlow opens without a project selected."
+                                Text="{via:XLoc Options.OpenLastProjectDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </via:XBorder>
@@ -166,12 +167,12 @@
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
-                                    Text="Storage" />
+                                    Text="{via:XLoc Options.Storage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </StackPanel>
                             <TextBlock
                                 Margin="0,16,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                                Text="Application settings are stored in Data\settings.json next to UserFlow. Projects, templates and color schemes stay in the same Data folder."
+                                Text="{via:XLoc Options.StorageDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </via:XBorder>

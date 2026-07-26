@@ -29,9 +29,9 @@
 		<!-- Alle Abhängigkeiten in Ausgabeverzeichnis kopieren -->
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
-		<!-- Satellite Assemblies verhindern - keine Sprachunterordner im Output -->
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+		<!-- Satellite Assemblies für die unterstützten UI-Sprachen erzeugen. -->
+		<SatelliteResourceLanguages>en;de</SatelliteResourceLanguages>
+		<GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
 
 		<!-- WARNUNGEN KONFIGURIEREN -->
 		<!-- NU1701-Warnungen komplett unterdrücken -->

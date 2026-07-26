@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="Main.Theme" xml:space="preserve"><value>Design</value></data>
   <data name="Main.TabProject" xml:space="preserve"><value>PROJEKT</value></data>
-  <data name="Main.TabScreen" xml:space="preserve"><value>SCREEN</value></data>
+  <data name="Main.TabScreen" xml:space="preserve"><value>BILDSCHIRM</value></data>
   <data name="Main.TabTemplate" xml:space="preserve"><value>VORLAGE</value></data>
   <data name="Main.TabPopup" xml:space="preserve"><value>POPUP</value></data>
   <data name="Main.TabPreview" xml:space="preserve"><value>VORSCHAU</value></data>
@@ -30,13 +30,13 @@
   <data name="Options.Storage" xml:space="preserve"><value>Speicherort</value></data>
   <data name="Options.StorageDescription" xml:space="preserve"><value>Anwendungsoptionen werden in Data\settings.json neben UserFlow gespeichert. Projekte, Vorlagen und Farbschemata bleiben im selben Data-Ordner.</value></data>
   <data name="Designer.Search" xml:space="preserve"><value>Suchen...</value></data>
-  <data name="Screen.Title" xml:space="preserve"><value>Screens</value></data>
-  <data name="Screen.New" xml:space="preserve"><value>Neuer Screen</value></data>
-  <data name="Screen.None" xml:space="preserve"><value>Kein Screen ausgewählt</value></data>
+  <data name="Screen.Title" xml:space="preserve"><value>Bildschirme</value></data>
+  <data name="Screen.New" xml:space="preserve"><value>Neuer Bildschirm</value></data>
+  <data name="Screen.None" xml:space="preserve"><value>Kein Bildschirm ausgewählt</value></data>
   <data name="Screen.DeviceTop" xml:space="preserve"><value>Geräteoberkante</value></data>
   <data name="Screen.DeviceBottom" xml:space="preserve"><value>Geräteunterkante</value></data>
-  <data name="Screen.Edit" xml:space="preserve"><value>Screen bearbeiten</value></data>
-  <data name="Screen.Delete" xml:space="preserve"><value>Screen löschen</value></data>
+  <data name="Screen.Edit" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
+  <data name="Screen.Delete" xml:space="preserve"><value>Bildschirm löschen</value></data>
   <data name="Screen.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
   <data name="Screen.ShowFooter" xml:space="preserve"><value>Fußbereich anzeigen</value></data>
   <data name="Template.Title" xml:space="preserve"><value>Vorlagen</value></data>
@@ -45,4 +45,80 @@
   <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
   <data name="Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
   <data name="Popup.None" xml:space="preserve"><value>Kein Popup ausgewählt</value></data>
+  <data name="Main.NoCurrentProject" xml:space="preserve"><value>Kein Projekt ausgewählt</value></data>
+  <data name="Main.ProjectActionTooltip" xml:space="preserve"><value>Ausgewähltes Projekt öffnen</value></data>
+  <data name="Main.ImportProject" xml:space="preserve"><value>Projekt importieren</value></data>
+  <data name="Main.CreateProject" xml:space="preserve"><value>Neues Projekt</value></data>
+  <data name="Main.ImportProjectTooltip" xml:space="preserve"><value>Projekt importieren</value></data>
+  <data name="Main.CreateProjectTooltip" xml:space="preserve"><value>Neues Projekt erstellen</value></data>
+  <data name="Splash.HeadingStartup" xml:space="preserve"><value>Startvorgang</value></data>
+  <data name="Splash.StatusPreparing" xml:space="preserve"><value>Der Start wird vorbereitet...</value></data>
+  <data name="Splash.StatusStarting" xml:space="preserve"><value>UserFlow wird gestartet...</value></data>
+  <data name="Splash.StatusPreparingViewModel" xml:space="preserve"><value>ViewModel wird vorbereitet...</value></data>
+  <data name="Splash.StatusPreparingMainWindow" xml:space="preserve"><value>Hauptfenster wird vorbereitet...</value></data>
+  <data name="Main.ProjectLoadingHeading" xml:space="preserve"><value>Projekt wird geladen</value></data>
+  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>Lade {0} ...</value></data>
+  <data name="Main.UnsupportedFileType" xml:space="preserve"><value>Dateityp wird nicht unterstützt: {0}</value></data>
+  <data name="Splash.PleaseWait" xml:space="preserve"><value>Bitte warten...</value></data>
+  <data name="Startup.PreparingDataFolder" xml:space="preserve"><value>Datenordner wird vorbereitet...</value></data>
+  <data name="Startup.LoadingSettings" xml:space="preserve"><value>Einstellungen werden geladen...</value></data>
+  <data name="Startup.InitializingColorScheme" xml:space="preserve"><value>Farbschema wird initialisiert...</value></data>
+  <data name="Startup.PreparingAutosave" xml:space="preserve"><value>Automatisches Speichern wird vorbereitet...</value></data>
+  <data name="Startup.LoadingLastProject" xml:space="preserve"><value>Letztes Projekt wird geladen...</value></data>
+  <data name="Startup.LoadingTemplates" xml:space="preserve"><value>Vorlagen werden geladen...</value></data>
+  <data name="Startup.PreparingToolbox" xml:space="preserve"><value>Toolbox wird vorbereitet...</value></data>
+  <data name="Startup.RegisteringMessages" xml:space="preserve"><value>Nachrichten werden registriert...</value></data>
+  <data name="Startup.Complete" xml:space="preserve"><value>\n\nStart abgeschlossen.</value></data>
+  <data name="Startup.PreparingStartupSelection" xml:space="preserve"><value>Startauswahl wird vorbereitet...</value></data>
+  <data name="Startup.PreparingUndoRedo" xml:space="preserve"><value>Undo/Redo wird vorbereitet...\n\n</value></data>
+  <data name="Startup.ReadProjectFile" xml:space="preserve"><value>Projektdatei wird gelesen: {0} ...</value></data>
+  <data name="Startup.DeserializeProject" xml:space="preserve"><value>Projekt wird deserialisiert: {0} ...</value></data>
+  <data name="Startup.CheckProjectStructure" xml:space="preserve"><value>Projektstruktur wird geprüft ...</value></data>
+  <data name="Startup.ReconstructScreens" xml:space="preserve"><value>Screens werden rekonstruiert ({0}/{1}) ...</value></data>
+  <data name="Startup.ApplyProject" xml:space="preserve"><value>Projekt wird angewendet ...</value></data>
+  <data name="Startup.ApplyProjectTheme" xml:space="preserve"><value>Projekt-Design wird angewendet ...</value></data>
+  <data name="Startup.UpdateProjectList" xml:space="preserve"><value>Projektliste wird aktualisiert ...</value></data>
+  <data name="Startup.OpenLastProject" xml:space="preserve"><value>Letztes Projekt wird geöffnet: {0} ...</value></data>
+  <data name="Startup.UpdateProjectUi" xml:space="preserve"><value>Projektoberfläche wird aktualisiert ...</value></data>
+  <data name="Startup.ReadingTemplates" xml:space="preserve"><value>Vorlagen werden gelesen ...</value></data>
+  <data name="Startup.PreparingTemplates" xml:space="preserve"><value>Vorlagen werden vorbereitet ({0}/{1}) ...</value></data>
+  <data name="Main.StatusScreens" xml:space="preserve"><value>Bildschirme</value></data>
+  <data name="Main.StatusTemplates" xml:space="preserve"><value>Vorlagen</value></data>
+  <data name="Main.StatusPopups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Main.StatusFilePath" xml:space="preserve"><value>Dateipfad:</value></data>
+  <data name="Project.OpenProjectShort" xml:space="preserve"><value>Öffnen ...</value></data>
+  <data name="Project.OpenProjectTooltip" xml:space="preserve"><value>Projekt öffnen</value></data>
+  <data name="Project.SaveProject" xml:space="preserve"><value>Speichern</value></data>
+  <data name="Project.SaveProjectTooltip" xml:space="preserve"><value>Projekt speichern</value></data>
+  <data name="Project.NewProjectTooltip" xml:space="preserve"><value>Neues Projekt</value></data>
+  <data name="Project.MoreProjectActionsTooltip" xml:space="preserve"><value>Weitere Projektaktionen</value></data>
+  <data name="Project.ProjectInfo" xml:space="preserve"><value>Projektinfo</value></data>
+  <data name="Project.Device" xml:space="preserve"><value>Gerät</value></data>
+  <data name="Project.Screens" xml:space="preserve"><value>Bildschirme</value></data>
+  <data name="Project.Templates" xml:space="preserve"><value>Vorlagen</value></data>
+  <data name="Project.Popups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Project.Controls" xml:space="preserve"><value>Steuerelemente</value></data>
+  <data name="Project.Sharing" xml:space="preserve"><value>Freigabe</value></data>
+  <data name="Project.Shared" xml:space="preserve"><value>Freigegeben</value></data>
+  <data name="Project.Readonly" xml:space="preserve"><value>Schreibgeschützt</value></data>
+  <data name="Project.File" xml:space="preserve"><value>Datei</value></data>
+  <data name="Project.Description" xml:space="preserve"><value>Beschreibung</value></data>
+  <data name="Project.Theme" xml:space="preserve"><value>Design</value></data>
+  <data name="Project.NewColorSchemeTooltip" xml:space="preserve"><value>Neues Farbschema</value></data>
+  <data name="Project.EditColorSchemeTooltip" xml:space="preserve"><value>Farbschema bearbeiten</value></data>
+  <data name="Project.DeleteColorSchemeTooltip" xml:space="preserve"><value>Farbschema löschen</value></data>
+  <data name="Project.EditScreenTooltip" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
+  <data name="Project.DeleteScreenTooltip" xml:space="preserve"><value>Bildschirm löschen</value></data>
+  <data name="Project.GotoScreenTooltip" xml:space="preserve"><value>Zum Bildschirm wechseln</value></data>
+  <data name="Project.SetAsHomeScreenTooltip" xml:space="preserve"><value>Als Startbildschirm festlegen</value></data>
+  <data name="Project.NewScreenTooltip" xml:space="preserve"><value>Neuer Bildschirm</value></data>
+  <data name="Project.SaveProjectAs" xml:space="preserve"><value>Projekt speichern unter...</value></data>
+  <data name="Project.SaveProjectAsTooltip" xml:space="preserve"><value>Projekt unter neuem Dateinamen speichern</value></data>
+  <data name="Project.EditProjectSettings" xml:space="preserve"><value>Projekteinstellungen bearbeiten</value></data>
+  <data name="Project.EditProjectSettingsTooltip" xml:space="preserve"><value>Projekteinstellungen bearbeiten</value></data>
+  <data name="Project.DeleteProject" xml:space="preserve"><value>Projekt löschen</value></data>
+  <data name="Project.DeleteProjectTooltip" xml:space="preserve"><value>Projekt löschen</value></data>
+  <data name="Project.ResetZoomTooltip" xml:space="preserve"><value>Zoom auf 100 % zurücksetzen</value></data>
+  <data name="Screen.HeaderShort" xml:space="preserve"><value>K</value></data>
+  <data name="Screen.FooterShort" xml:space="preserve"><value>F</value></data>
 </root>

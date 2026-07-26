@@ -177,7 +177,7 @@
                 BorderThickness="0,0,1,0"
                 CornerRadius="0"
                 Visibility="{Binding CurrentScreen, Converter={StaticResource NullToInversVisibilityConverter}, FallbackValue=Collapsed}">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <via:XStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ico:PackIconMaterial
                         Width="18"
                         Height="18"
@@ -188,7 +188,7 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
                         Text="{via:XLoc Screen.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                </StackPanel>
+                </via:XStackPanel>
             </via:XBorder>
 
         </Grid>
@@ -355,7 +355,7 @@
                                             Height="22"
                                             Margin="2,1,2,0"
                                             Padding="4,0,4,1"
-                                            Content="H"
+                                            Content="{via:XLoc Screen.HeaderShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                             FontSize="11"
                                             FontWeight="Medium"
                                             IsChecked="{Binding CurrentScreen.ShowHeader, Mode=TwoWay}"
@@ -366,7 +366,7 @@
                                             Height="22"
                                             Margin="2,1,2,1"
                                             Padding="4,0,4,1"
-                                            Content="F"
+                                            Content="{via:XLoc Screen.FooterShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                             FontSize="11"
                                             FontWeight="Medium"
                                             IsChecked="{Binding CurrentScreen.ShowFooter, Mode=TwoWay}"
@@ -436,14 +436,14 @@
                     Opacity="0.9"
                     Text="{Binding CurrentScreen.Name, FallbackValue='Screen Name'}" />
 
-                <StackPanel
+                <via:XStackPanel
                     Grid.Column="1"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
 
                     <ui:DesignerToolbar x:Name="PART_DesignerToolbar" ZoomPercent="{Binding CurrentProject.ScreenZoomPercent, Mode=TwoWay}" />
 
-                </StackPanel>
+                </via:XStackPanel>
 
             </Grid>
 
@@ -457,19 +457,19 @@
             BorderThickness="0,0,1,0"
             CornerRadius="0"
             Visibility="{Binding CurrentScreen, Converter={StaticResource NullToInversVisibilityConverter}, FallbackValue=Collapsed}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <via:XStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ico:PackIconMaterial
                     Width="24"
                     Height="24"
                     HorizontalAlignment="Center"
                     Foreground="{DynamicResource DangerBrush}"
                     Kind="Information" />
-                <TextBlock
+                <via:XTextBlock
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     Foreground="{DynamicResource TextSecondaryBrush}"
                     Text="{via:XLoc Screen.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-            </StackPanel>
+            </via:XStackPanel>
         </via:XBorder>
 
     </Grid>

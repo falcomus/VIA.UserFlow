@@ -1,6 +1,5 @@
 <UserControl
     x:Class="Mockup.Views.ProjectView"
-    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behav="clr-namespace:Mockup.Behaviors"
@@ -14,7 +13,9 @@
     xmlns:local="clr-namespace:Mockup.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:render="clr-namespace:Mockup.Rendering"
+    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
@@ -39,10 +40,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid
-        ext:GridEx.ColDef="360,*"
-        ext:GridEx.RowDef="45,45,*,Auto,0"
-        ShowGridLines="False">
+    <via:XGrid Columns="360,*" Rows="45,45,*,Auto,0">
 
         <!--  PROJECT HEADER  -->
         <via:XBorder
@@ -74,25 +72,25 @@
 
 
 
-            <Grid
+            <via:XGrid
                 Margin="0,5"
                 VerticalAlignment="Stretch"
-                ext:GridEx.ColDef="*,*,80,20">
+                Columns="*,*,80,20">
 
                 <via:XButton
                     Grid.Column="0"
                     MinWidth="84"
+                    Appearance="Outline"
                     BorderThickness="0"
                     Command="{Binding LoadProjectCommand}"
-                    Content="Open .."
+                    Content="{via:XLoc Project.OpenProjectShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
-                    Appearance="Outline"
                     Size="Large"
-                    ToolTip="Open Project"
+                    ToolTip="{via:XLoc Project.OpenProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
                 <via:XButton
@@ -101,14 +99,14 @@
                     Margin="5,0,0,0"
                     BorderThickness="0"
                     Command="{Binding SaveProjectCommand}"
-                    Content="Save"
+                    Content="{via:XLoc Project.SaveProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=ContentSave}"
                     Size="Large"
-                    ToolTip="Save Project"
+                    ToolTip="{via:XLoc Project.SaveProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
                 <via:XButton
@@ -122,7 +120,7 @@
                     Focusable="False"
                     Icon="{via:MaterialIcon Kind=Plus}"
                     Size="Large"
-                    ToolTip="New Project"
+                    ToolTip="{via:XLoc Project.NewProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
 
@@ -138,10 +136,10 @@
                     Content="{via:MaterialIcon Kind=DotsVertical}"
                     Focusable="False"
                     Menu="{StaticResource ProjectActionsContextMenu}"
-                    ToolTip="More Project Actions" />
+                    ToolTip="{via:XLoc Project.MoreProjectActionsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
 
-            </Grid>
+            </via:XGrid>
 
 
         </via:XBorder>
@@ -152,14 +150,14 @@
             Padding="14,12,14,14"
             BorderThickness="0,0,1,1"
             CornerRadius="0">
-            <Grid ext:GridEx.RowDef="Auto,Auto,Auto,Auto,Auto,*">
+            <via:XGrid Rows="Auto,Auto,Auto,Auto,Auto,*">
 
                 <via:XTextBlock
                     Grid.Row="0"
                     FontSize="12"
                     FontWeight="SemiBold"
                     Opacity="0.62"
-                    Text="PROJECT INFO" />
+                    Text="{via:XLoc Project.ProjectInfo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                 <via:XTextBlock
                     Grid.Row="1"
@@ -182,12 +180,12 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid Margin="0,1,0,0" ext:GridEx.ColDef="Auto,*">
+                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
                             <via:XTextBlock
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="Device" />
+                                Text="{via:XLoc Project.Device, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
@@ -200,12 +198,12 @@
                                     </MultiBinding>
                                 </via:XTextBlock.Text>
                             </via:XTextBlock>
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
 
                 </via:XStackPanel>
 
-                <UniformGrid
+                <via:XUniformGrid
                     Grid.Row="3"
                     Margin="0,3,0,12"
                     Columns="2">
@@ -242,7 +240,7 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="Screens" />
+                                    Text="{via:XLoc Project.Screens, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
                         </Grid>
                     </via:XBorder>
@@ -259,7 +257,7 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid ext:GridEx.ColDef="4,*">
+                        <via:XGrid Columns="4,*">
                             <via:XBorder
                                 Padding="0"
                                 Background="DarkTurquoise"
@@ -280,9 +278,9 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="Templates" />
+                                    Text="{via:XLoc Project.Templates, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
 
                     <via:XBorder
@@ -297,7 +295,7 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid ext:GridEx.ColDef="4,*">
+                        <via:XGrid Columns="4,*">
                             <via:XBorder
                                 Padding="0"
                                 Background="DarkViolet"
@@ -318,9 +316,9 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="Popups" />
+                                    Text="{via:XLoc Project.Popups, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
 
                     <via:XBorder
@@ -335,7 +333,7 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid ext:GridEx.ColDef="4,*">
+                        <via:XGrid Columns="4,*">
                             <via:XBorder
                                 Padding="0"
                                 Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
@@ -356,11 +354,11 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="Controls" />
+                                    Text="{via:XLoc Project.Controls, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
-                </UniformGrid>
+                </via:XUniformGrid>
 
                 <via:XStackPanel
                     Grid.Row="4"
@@ -375,25 +373,28 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid Margin="0,1,0,0" ext:GridEx.ColDef="Auto,*">
+                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
                             <via:XTextBlock
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="Sharing" />
+                                Text="{via:XLoc Project.Sharing, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 FontSize="12"
                                 FontWeight="SemiBold">
-                                <via:XTextBlock.Text>
-                                    <MultiBinding StringFormat="{}Shared {0} · Readonly {1}">
-                                        <Binding Path="CurrentProject.IsShared" />
-                                        <Binding Path="CurrentProject.IsSharedReadonly" />
-                                    </MultiBinding>
-                                </via:XTextBlock.Text>
+                                <via:XTextBlock.Inlines>
+                                    <Run Text="{via:XLoc Project.Shared, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding CurrentProject.IsShared, Mode=OneWay}" />
+                                    <Run Text=" · " />
+                                    <Run Text="{via:XLoc Project.Readonly, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding CurrentProject.IsSharedReadonly, Mode=OneWay}" />
+                                </via:XTextBlock.Inlines>
                             </via:XTextBlock>
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
 
                     <via:XBorder Padding="10,7" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
@@ -404,12 +405,12 @@
                                 Opacity="0.15"
                                 ShadowDepth="2" />
                         </via:XBorder.Effect>
-                        <Grid Margin="0,1,0,0" ext:GridEx.ColDef="Auto,*">
+                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
                             <via:XTextBlock
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="File" />
+                                Text="{via:XLoc Project.File, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 Margin="10,0,0,0"
@@ -421,19 +422,19 @@
                                 TextAlignment="Right"
                                 TextTrimming="CharacterEllipsis"
                                 ToolTip="{Binding CurrentProject.FilePath}" />
-                        </Grid>
+                        </via:XGrid>
                     </via:XBorder>
                 </via:XStackPanel>
 
-                <Grid
+                <via:XGrid
                     Grid.Row="5"
                     Margin="0,10,0,0"
-                    ext:GridEx.RowDef="Auto,Auto,*">
+                    Rows="Auto,Auto,*">
                     <via:XTextBlock
                         FontSize="12"
                         FontWeight="SemiBold"
                         Opacity="0.62"
-                        Text="DESCRIPTION" />
+                        Text="{via:XLoc Project.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     <ScrollViewer
                         Grid.Row="1"
                         MaxHeight="128"
@@ -447,8 +448,8 @@
                             TextWrapping="WrapWithOverflow"
                             Visibility="Visible" />
                     </ScrollViewer>
-                </Grid>
-            </Grid>
+                </via:XGrid>
+            </via:XGrid>
         </via:XBorder>
 
         <!--  PROJECT SETTINGS SUMMARY  -->
@@ -458,7 +459,7 @@
             Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
             BorderThickness="0,0,1,0"
             CornerRadius="0">
-            <Grid>
+            <via:XGrid>
                 <via:XBorder Padding="10,8,10,10" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
                     <via:XBorder.Effect>
                         <DropShadowEffect
@@ -467,12 +468,12 @@
                             Opacity="0.15"
                             ShadowDepth="2" />
                     </via:XBorder.Effect>
-                    <Grid ext:GridEx.ColDef="*,Auto" ext:GridEx.RowDef="Auto,Auto">
+                    <via:XGrid Columns="*,Auto" Rows="Auto,Auto">
                         <via:XTextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
                             Opacity="0.62"
-                            Text="Theme" />
+                            Text="{via:XLoc Project.Theme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                         <via:XStackPanel
                             Grid.Column="1"
@@ -483,44 +484,44 @@
                             Spacing="3">
 
                             <via:XIconButton
-                                Width="26"
-                                Height="26"
-                                MinWidth="26"
-                                MinHeight="26"
+                                Width="30"
+                                Height="30"
+                                MinWidth="30"
+                                MinHeight="30"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding NewColorSchemaCommand}"
                                 Icon="{via:MaterialIcon Kind=Plus}"
-                                IconSize="12"
+                                IconSize="16"
                                 Size="Small"
-                                ToolTip="New Color Scheme" />
+                                ToolTip="{via:XLoc Project.NewColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                             <via:XIconButton
-                                Width="26"
-                                Height="26"
-                                MinWidth="26"
-                                MinHeight="26"
+                                Width="30"
+                                Height="30"
+                                MinWidth="30"
+                                MinHeight="30"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding EditColorSchemaCommand}"
                                 Icon="{via:MaterialIcon Kind=PencilOutline}"
-                                IconSize="12"
+                                IconSize="16"
                                 Size="Small"
-                                ToolTip="Edit Color Scheme" />
+                                ToolTip="{via:XLoc Project.EditColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                             <via:XIconButton
-                                Width="26"
-                                Height="26"
-                                MinWidth="26"
-                                MinHeight="26"
+                                Width="30"
+                                Height="30"
+                                MinWidth="30"
+                                MinHeight="30"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding DeleteColorSchemaCommand}"
                                 Foreground="{DynamicResource DangerBrush}"
                                 Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                IconSize="12"
+                                IconSize="16"
                                 Size="Small"
-                                ToolTip="Delete Color Scheme" />
+                                ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         </via:XStackPanel>
 
                         <via:XComboBox
@@ -574,9 +575,9 @@
                                 </DataTemplate>
                             </via:XComboBox.ItemTemplate>
                         </via:XComboBox>
-                    </Grid>
+                    </via:XGrid>
                 </via:XBorder>
-            </Grid>
+            </via:XGrid>
         </via:XBorder>
 
         <!--  COLOR SCHEMES  -->
@@ -589,13 +590,13 @@
             <via:XColorSchemeView
                 Grid.Row="1"
                 AccentBrush="{Binding CurrentProject.ActiveColorSchema.AccentBrush}"
-                SchemeBorderBrush="{Binding CurrentProject.ActiveColorSchema.BorderBrush}"
                 ControlBackgroundBrush="{Binding CurrentProject.ActiveColorSchema.ControlBGBrush}"
                 ControlBorderBrush="{Binding CurrentProject.ActiveColorSchema.ControlBorderBrush}"
                 DangerBrush="{Binding CurrentProject.ActiveColorSchema.ErrorBrush}"
                 InfoBrush="{Binding CurrentProject.ActiveColorSchema.InfoBrush}"
                 NeutralBrush="{Binding CurrentProject.ActiveColorSchema.NeutralBrush}"
                 PrimaryBrush="{Binding CurrentProject.ActiveColorSchema.PrimaryBrush}"
+                SchemeBorderBrush="{Binding CurrentProject.ActiveColorSchema.BorderBrush}"
                 SuccessBrush="{Binding CurrentProject.ActiveColorSchema.SuccessBrush}"
                 TextBrush="{Binding CurrentProject.ActiveColorSchema.TextBrush}"
                 WarningBrush="{Binding CurrentProject.ActiveColorSchema.WarningBrush}" />
@@ -615,7 +616,7 @@
             Background="{DynamicResource HeaderBackgroundBrush}"
             BorderThickness="0,0,0,1"
             CornerRadius="0">
-            <Grid ext:GridEx.ColDef="*,Auto">
+            <via:XGrid Columns="*,Auto">
 
                 <StackPanel Orientation="Horizontal">
                     <via:XTextBlock
@@ -630,7 +631,7 @@
                         VerticalAlignment="Center"
                         FontSize="16"
                         FontWeight="Medium"
-                        Text="Screens"
+                        Text="{via:XLoc Project.Screens, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Visibility="{Binding CurrentProject, Converter={StaticResource NullToVisibilityConverter}}" />
                 </StackPanel>
 
@@ -640,18 +641,18 @@
                         Margin="3,0,10,0"
                         HorizontalAlignment="Right"
                         BorderThickness="1,0,0,0"
-                        Cursor="Hand"
                         MaxZoomPercent="100"
+                        ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         MinZoomPercent="25"
                         TickFrequency="1"
                         ZoomPercent="{Binding CurrentProject.ProjectZoomPercent, Mode=TwoWay}" />
                 </StackPanel>
 
-            </Grid>
+            </via:XGrid>
         </via:XBorder>
 
         <!--  SCREENS LIST  -->
-        <Grid
+        <via:XGrid
             x:Name="PART_ScreensHost"
             Grid.Row="2"
             Grid.RowSpan="3"
@@ -701,15 +702,15 @@
                                         ShadowDepth="2" />
                                 </Border.Effect>
 
-                                <Grid
+                                <via:XGrid
                                     Margin="7"
-                                    ext:GridEx.RowDef="Auto,*"
-                                    Background="Transparent">
+                                    Background="Transparent"
+                                    Rows="Auto,*">
 
                                     <!--  SCREEN ACTION PANEL  -->
                                     <via:XBorder
-                                        Height="45"
-                                        Margin="0,-45,0,0"
+                                        Height="50"
+                                        Margin="0,-50,0,0"
                                         Padding="8,0"
                                         HorizontalAlignment="Center"
                                         Background="{DynamicResource ToolBarElemBGBrush}"
@@ -790,7 +791,7 @@
                                         </via:XBorder.Style>
 
                                         <via:XStackPanel
-                                            Margin="0,-12,0,0"
+                                            Margin="0,-13,0,0"
                                             HorizontalAlignment="Center"
                                             Orientation="Horizontal"
                                             Spacing="5">
@@ -804,7 +805,7 @@
                                                 Icon="{via:MaterialIcon Kind=PencilOutline}"
                                                 IconSize="16"
                                                 Size="Small"
-                                                ToolTip="Edit screen"
+                                                ToolTip="{via:XLoc Project.EditScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Primary" />
 
                                             <via:XIconButton
@@ -816,7 +817,7 @@
                                                 Icon="{via:MaterialIcon Kind=DeleteOutline}"
                                                 IconSize="14"
                                                 Size="Small"
-                                                ToolTip="Delete screen"
+                                                ToolTip="{via:XLoc Project.DeleteScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Danger" />
 
                                             <via:XIconButton
@@ -826,9 +827,9 @@
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=ArrowRightBold}"
-                                                IconSize="18"
+                                                IconSize="16"
                                                 Size="Small"
-                                                ToolTip="Goto screen"
+                                                ToolTip="{via:XLoc Project.GotoScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Primary" />
 
                                         </via:XStackPanel>
@@ -850,7 +851,6 @@
                                                 Grid.Column="2"
                                                 MinHeight="30"
                                                 Margin="0,0,2,2"
-                                                Variant="Default"
                                                 Appearance="Ghost"
                                                 Command="{Binding DataContext.SetAsHomeScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
@@ -859,15 +859,24 @@
                                                 IconSize="18"
                                                 Opacity="0.9"
                                                 Size="Small"
-                                                ToolTip="Set as Home Screen">
+                                                ToolTip="{via:XLoc Project.SetAsHomeScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                                Variant="Default">
                                                 <via:XIconButton.Style>
                                                     <Style TargetType="{x:Type via:XIconButton}">
-                                                        <Setter Property="Foreground" Value="{themes:AppThemeBinding Light='#909295',Dark='#505255'}" />
+                                                        <Setter Property="Foreground">
+                                                            <Setter.Value>
+                                                                <SolidColorBrush Color="{themes:AppThemeBinding Light=#FF909295, Dark=#FF505255}" />
+                                                            </Setter.Value>
+                                                        </Setter>
                                                         <Setter Property="Opacity" Value="1" />
                                                         <Setter Property="Visibility" Value="Visible" />
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsHomeScreen}" Value="True">
-                                                                <Setter Property="Foreground" Value="White" />
+                                                                <Setter Property="Foreground">
+                                                                    <Setter.Value>
+                                                                        <SolidColorBrush Color="White" />
+                                                                    </Setter.Value>
+                                                                </Setter>
                                                                 <Setter Property="Opacity" Value="1" />
                                                                 <Setter Property="Visibility" Value="Visible" />
                                                             </DataTrigger>
@@ -879,7 +888,7 @@
                                         </Grid>
                                     </Border>
 
-                                    <Grid
+                                    <via:XGrid
                                         Grid.Row="1"
                                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceOverlay}}"
                                         ClipToBounds="True">
@@ -958,10 +967,10 @@
                                                         StrokeThickness="0" />
 
                                                     <!--  Inhalt  -->
-                                                    <Grid
+                                                    <via:XGrid
                                                         Margin="0,0,0,7"
                                                         VerticalAlignment="Stretch"
-                                                        ext:GridEx.ColDef="*,Auto">
+                                                        Columns="*,Auto">
 
                                                         <TextBlock
                                                             Margin="15,0,0,2"
@@ -998,12 +1007,12 @@
                                                                 Opacity="0.8"
                                                                 Text="{Binding ScreenHeight}" />
                                                         </via:XStackPanel>
-                                                    </Grid>
+                                                    </via:XGrid>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-                                </Grid>
+                                    </via:XGrid>
+                                </via:XGrid>
 
 
                             </Border>
@@ -1026,7 +1035,7 @@
                 </via:XListBox.ItemContainerStyle>
 
             </via:XListBox>
-        </Grid>
+        </via:XGrid>
 
         <!--  SCREEN BUTTONS  -->
         <via:XBorder
@@ -1044,7 +1053,7 @@
                     Opacity="0.18"
                     ShadowDepth="3" />
             </via:XBorder.Effect>
-            <Grid ext:GridEx.ColDef="*,Auto,Auto">
+            <via:XGrid Columns="*,Auto,Auto">
                 <via:XListBox
                     x:Name="PART_ScreenGroupList"
                     Margin="5,0,5,2"
@@ -1057,7 +1066,7 @@
                     SelectedItem="{Binding CurrentScreenFilterGroupName, Mode=TwoWay}"
                     SelectionMode="Single"
                     VirtualizingPanel.IsVirtualizing="True">
-                    
+
                     <via:XListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="BorderBrush" Value="Transparent" />
@@ -1075,7 +1084,7 @@
 
                     <via:XListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <vwp:VirtualizingWrapPanel VirtualizingPanel.IsVirtualizing="True"/>
+                            <vwp:VirtualizingWrapPanel VirtualizingPanel.IsVirtualizing="True" />
                         </ItemsPanelTemplate>
                     </via:XListBox.ItemsPanel>
 
@@ -1132,15 +1141,14 @@
                     <via:XButton
                         Margin="5,0,0,0"
                         Command="{Binding NewScreenCommand}"
-                        Cursor="Hand"
                         Icon="{via:MaterialIcon Kind=Plus}"
-                        ToolTip="New Screen"
+                        ToolTip="{via:XLoc Project.NewScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Variant="Primary" />
 
                 </via:XStackPanel>
 
-            </Grid>
+            </via:XGrid>
         </via:XBorder>
 
-    </Grid>
+    </via:XGrid>
 </UserControl>

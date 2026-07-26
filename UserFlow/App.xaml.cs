@@ -1,12 +1,17 @@
 using Mockup;
+using Mockup.Resources;
 using Mockup.ViewModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
+using VIA.WPF.Localization;
 using VIA.WPF.Themes;
 
+
+using System.Globalization;
+using System.Text.Json;
 namespace UserFlow;
 
 /// <summary>
@@ -23,6 +28,8 @@ public partial class App : Application
         XThemeService.Initialize();
         UserFlowThemeBridge.Initialize();
 
+
+        ApplyStartupLanguage();
         InitializeCrashLogging();
         WriteLog("Application startup.");
 
@@ -37,10 +44,10 @@ public partial class App : Application
             {
                 splash = new SplashWindow();
                 splash.Show();
-                UpdateSplash(splash, "UserFlow is starting...", 2);
+                UpdateSplash(splash, Localize("Splash.StatusStarting", "UserFlow is starting..."), 2);
 
                 // 1) EIN globales ViewModel erzeugen
-                UpdateSplash(splash, "Preparing ViewModel...", 4);
+                UpdateSplash(splash, Localize("Splash.StatusPreparingViewModel", "Preparing ViewModel..."), 4);
                 MockupService.Mockup = new MockupViewModel();
                 WriteLog("MockupViewModel created.");
 
@@ -52,10 +59,13 @@ public partial class App : Application
 
                 // 2) Storage laden
                 MockupService.Mockup.LoadAll(progress);
+
+                XLocalizationService.Current.LanguageChanged -= StoreSelectedLanguage;
+                XLocalizationService.Current.LanguageChanged += StoreSelectedLanguage;
                 WriteLog("LoadAll finished.");
 
                 // 3) MainWindow erstellen
-                UpdateSplash(splash, "Preparing main window...", 99);
+                UpdateSplash(splash, Localize("Splash.StatusPreparingMainWindow", "Preparing main window..."), 99);
                 var main = new MainWindow
                 {
                     DataContext = MockupService.Mockup,
@@ -78,6 +88,82 @@ public partial class App : Application
         }
     }
 
+
+    private static string Localize(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+
+    private static void ApplyStartupLanguage()
+    {
+        string? configuredCultureName = ReadConfiguredLanguageCultureName();
+
+        CultureInfo culture = CultureInfo.CurrentUICulture;
+
+        if (!string.IsNullOrWhiteSpace(configuredCultureName))
+        {
+            try
+            {
+                culture = CultureInfo.GetCultureInfo(configuredCultureName);
+            }
+            catch (CultureNotFoundException)
+            {
+                culture = CultureInfo.CurrentUICulture;
+            }
+        }
+
+        XLocalizationService.Current.SetCulture(culture, applyFormattingCulture: true);
+    }
+
+    private static string? ReadConfiguredLanguageCultureName()
+    {
+        try
+        {
+            string settingsFilePath = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "Data",
+                "settings.json");
+
+            if (!File.Exists(settingsFilePath))
+                return null;
+
+            using JsonDocument document = JsonDocument.Parse(File.ReadAllText(settingsFilePath));
+
+            if (!document.RootElement.TryGetProperty("UI", out JsonElement uiElement))
+                return null;
+
+            if (!uiElement.TryGetProperty("LanguageCultureName", out JsonElement cultureElement))
+                return null;
+
+            return cultureElement.ValueKind == JsonValueKind.String
+                ? cultureElement.GetString()
+                : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private void StoreSelectedLanguage(object? sender, XLanguageChangedEventArgs e)
+    {
+        try
+        {
+            if (MockupService.Mockup is null)
+                return;
+
+            MockupService.Mockup.SetConfiguredLanguageCultureName(e.CurrentCulture.Name);
+            WriteLog($"Language selected: {e.CurrentCulture.Name}");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Store selected language failed: {ex}");
+        }
+    }
 
     private static void UpdateSplash(SplashWindow splash, string message, double? percent)
     {

@@ -20,33 +20,33 @@
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
             BorderThickness="0,0,0,1"
             CornerRadius="0">
-            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+            <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <via:XIcon
                     Width="18"
                     Height="18"
                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                     Kind="Cog"
                     Pack="Material" />
-                <TextBlock
+                <via:XTextBlock
                     Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     FontSize="16"
                     FontWeight="SemiBold"
                     Text="{via:XLoc Options.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-            </StackPanel>
+            </via:XStackPanel>
         </via:XBorder>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid MaxWidth="760" Margin="24" HorizontalAlignment="Center">
-                <StackPanel>
-                    <StackPanel Margin="0,0,0,20">
-                        <TextBlock FontSize="24" FontWeight="SemiBold" Text="{via:XLoc Options.Heading, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        <TextBlock
+                <via:XStackPanel>
+                    <via:XStackPanel Margin="0,0,0,20">
+                        <via:XTextBlock FontSize="24" FontWeight="SemiBold" Text="{via:XLoc Options.Heading, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        <via:XTextBlock
                             Margin="0,6,0,0"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                             Text="{via:XLoc Options.Introduction, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                             TextWrapping="Wrap" />
-                    </StackPanel>
+                    </via:XStackPanel>
 
                     <via:XBorder
                         Padding="20"
@@ -54,20 +54,20 @@
                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
                         BorderThickness="1"
                         CornerRadius="8">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                        <via:XStackPanel>
+                            <via:XStackPanel Orientation="Horizontal">
                                 <via:XIcon
                                     Width="18"
                                     Height="18"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Kind="ContentSaveOutline"
                                     Pack="MaterialDesign" />
-                                <TextBlock
+                                <via:XTextBlock
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
                                     Text="{via:XLoc Options.Saving, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                            </StackPanel>
+                            </via:XStackPanel>
 
                             <via:XCheckBox
                                 Margin="0,16,0,0"
@@ -79,15 +79,15 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel>
-                                    <TextBlock FontWeight="SemiBold" Text="{via:XLoc Options.SaveInterval, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <TextBlock
+                                <via:XStackPanel>
+                                    <via:XTextBlock FontWeight="SemiBold" Text="{via:XLoc Options.SaveInterval, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <via:XTextBlock
                                         Margin="0,3,0,0"
                                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                         Text="{via:XLoc Options.SaveDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                                <TextBlock
+                                </via:XStackPanel>
+                                <via:XTextBlock
                                     Grid.Column="1"
                                     VerticalAlignment="Center"
                                     FontWeight="SemiBold"
@@ -101,7 +101,7 @@
                                 Minimum="1"
                                 TickFrequency="1"
                                 Value="{Binding AutoSaveIntervalMinutes, Mode=TwoWay}" />
-                        </StackPanel>
+                        </via:XStackPanel>
                     </via:XBorder>
 
                     <via:XBorder
@@ -111,26 +111,26 @@
                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
                         BorderThickness="1"
                         CornerRadius="8">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                        <via:XStackPanel>
+                            <via:XStackPanel Orientation="Horizontal">
                                 <via:XIcon
                                     Width="18"
                                     Height="18"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Kind="ViewDashboardOutline"
                                     Pack="MaterialDesign" />
-                                <TextBlock
+                                <via:XTextBlock
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
                                     Text="{via:XLoc Options.Workspace, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                            </StackPanel>
+                            </via:XStackPanel>
 
                             <via:XCheckBox
                                 Margin="0,16,0,0"
                                 Content="{via:XLoc Options.ShowToolbox, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 IsChecked="{Binding ShowToolbox, Mode=TwoWay}" />
-                            <TextBlock
+                            <via:XTextBlock
                                 Margin="25,4,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                 Text="{via:XLoc Options.ShowToolboxDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
@@ -140,12 +140,12 @@
                                 Margin="0,14,0,0"
                                 Content="{via:XLoc Options.OpenLastProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 IsChecked="{Binding OpenLastProjectOnStartup, Mode=TwoWay}" />
-                            <TextBlock
+                            <via:XTextBlock
                                 Margin="25,4,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                 Text="{via:XLoc Options.OpenLastProjectDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
-                        </StackPanel>
+                        </via:XStackPanel>
                     </via:XBorder>
 
                     <via:XBorder
@@ -155,28 +155,28 @@
                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
                         BorderThickness="1"
                         CornerRadius="8">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                        <via:XStackPanel>
+                            <via:XStackPanel Orientation="Horizontal">
                                 <via:XIcon
                                     Width="18"
                                     Height="18"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Kind="FolderOutline"
                                     Pack="MaterialDesign" />
-                                <TextBlock
+                                <via:XTextBlock
                                     Margin="9,0,0,0"
                                     FontSize="16"
                                     FontWeight="SemiBold"
                                     Text="{via:XLoc Options.Storage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                            </StackPanel>
-                            <TextBlock
+                            </via:XStackPanel>
+                            <via:XTextBlock
                                 Margin="0,16,0,0"
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                 Text="{via:XLoc Options.StorageDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
-                        </StackPanel>
+                        </via:XStackPanel>
                     </via:XBorder>
-                </StackPanel>
+                </via:XStackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>

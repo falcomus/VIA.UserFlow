@@ -143,7 +143,7 @@
                                 FontSize="14"
                                 FontWeight="Medium"
                                 IsTabStop="False"
-                                Style="{StaticResource ButtonPrimary}" />
+                                Variant="Primary" />
                             <via:XButton
                                 Width="80"
                                 Height="35"
@@ -155,7 +155,7 @@
                                 FontSize="14"
                                 FontWeight="Medium"
                                 IsTabStop="False"
-                                Style="{StaticResource ButtonCustom}" />
+                                Variant="Default" />
                         </StackPanel>
                     </via:XBorder>
                     <!--#endregion === FOOTER ===-->

@@ -163,8 +163,8 @@ public partial class TemplateView : UserControl
             return;
 
         int step = 10;
-        int maxZoomPercent = PART_ZoomSlider.MaxZoomPercent;
-        int minZoomPercent = PART_ZoomSlider.MinZoomPercent;
+        int maxZoomPercent = PART_DesignerToolbar.MaxZoomPercent;
+        int minZoomPercent = PART_DesignerToolbar.MinZoomPercent;
 
         double newZoom = e.Delta > 0
             ? vm.CurrentProject.TemplateZoomPercent += step

@@ -487,29 +487,8 @@
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 
-                        <ui:DesignerToolbar />
-
-                        <via:XSeparator
-                            Margin="10,0,10,0"
-                            HorizontalAlignment="Center" />
-
-                        <ui:UndoRedoBar />
-
-                        <via:XSeparator
-                            Grid.Column="1"
-                            Margin="3,0,3,0"
-                            HorizontalAlignment="Center" />
-
-                        <via:XZoomSlider
-                            x:Name="PART_ZoomSlider"
-                            Margin="3,0,10,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            MaxZoomPercent="200"
-                            MinZoomPercent="25"
-                            TickFrequency="1"
+                        <ui:DesignerToolbar
+                            x:Name="PART_DesignerToolbar"
                             ZoomPercent="{Binding CurrentProject.PopupZoomPercent, Mode=TwoWay}" />
 
                     </StackPanel>

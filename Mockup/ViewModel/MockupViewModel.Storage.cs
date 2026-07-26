@@ -347,7 +347,7 @@ public partial class MockupViewModel : ObservableObject
         SaveProject(CurrentProject);
     }
 
-    public void SaveProject(Project project)
+    public void SaveProject(Project project, bool refreshProjectFiles = true)
     {
         MakeProjectCorrections(project);
 
@@ -358,6 +358,9 @@ public partial class MockupViewModel : ObservableObject
                 JsonSerializer.Serialize(project, JsonOptions));
 
             RememberLastOpenedProject(project.FilePath);
+            if (!refreshProjectFiles)
+                return;
+
             RefreshProjectFiles();
 
             _suppressProjectFileSelectionChanged = true;
@@ -388,11 +391,11 @@ public partial class MockupViewModel : ObservableObject
         if (project == null)
             return;
 
-        bool hasHomeScreen = false;
+        Screen? homeScreen = project.Screens.FirstOrDefault(screen => screen.IsHomeScreen);
 
         foreach (var screen in project.Screens)
         {
-            hasHomeScreen |= screen.IsHomeScreen;
+            screen.IsHomeScreen = ReferenceEquals(screen, homeScreen);
 
             foreach (Band band in screen.Bands)
             {
@@ -411,10 +414,10 @@ public partial class MockupViewModel : ObservableObject
             }
         }
 
-        if (!hasHomeScreen)
+        if (homeScreen == null)
         {
-            var homeScreen = project.Screens.FirstOrDefault(s => s.GroupName == MockupViewModel.DEFAULT_SCREEN_GROUPNAME)
-                             ?? project.Screens.FirstOrDefault();
+            homeScreen = project.Screens.FirstOrDefault(s => s.GroupName == MockupViewModel.DEFAULT_SCREEN_GROUPNAME)
+                         ?? project.Screens.FirstOrDefault();
 
             if (homeScreen != null)
                 homeScreen.IsHomeScreen = true;

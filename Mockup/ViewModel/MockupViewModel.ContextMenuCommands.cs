@@ -911,14 +911,15 @@ public sealed partial class MockupViewModel : ObservableObject
         if (CurrentProject == null || screen == null)
             return;
 
-        ResetHomeScreen();
+        if (ReferenceEquals(HomeScreen, screen) && screen.IsHomeScreen)
+            return;
 
-        screen.IsHomeScreen = true;
+        foreach (Screen projectScreen in CurrentProject.Screens)
+            projectScreen.IsHomeScreen = ReferenceEquals(projectScreen, screen);
 
         HomeScreen = screen;
         MockupService.Mockup.HomeScreen = screen;
-        SaveCurrentProject();
-        MSG.UI.InvalidateDesigner();
+        SaveProject(CurrentProject, refreshProjectFiles: false);
     }
 
     [RelayCommand]

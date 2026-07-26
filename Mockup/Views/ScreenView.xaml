@@ -13,6 +13,7 @@
     xmlns:local="clr-namespace:Mockup.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
@@ -48,6 +49,7 @@
                     HorizontalContentAlignment="Stretch"
                     Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
                     BorderThickness="0"
+                    ContextMenu="{StaticResource ScreenListContextMenu}"
                     ItemsSource="{Binding ScreensGroupedView}"
                     MouseDoubleClick="ListBox_MouseDoubleClick"
                     ScrollViewer.CanContentScroll="False"
@@ -56,8 +58,7 @@
                     SelectedItem="{Binding CurrentScreen, Mode=TwoWay}"
                     SelectionChanged="ScreenListBox_SelectionChanged"
                     SelectionMode="Single"
-                    VirtualizingPanel.IsVirtualizing="True"
-                    ContextMenu="{StaticResource ScreenListContextMenu}">
+                    VirtualizingPanel.IsVirtualizing="True">
 
                     <via:XListBox.ItemContainerStyle>
                         <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
@@ -145,12 +146,12 @@
 
                 <via:XIconButton
                     Grid.Column="1"
+                    Width="50"
                     Margin="0,0,10,0"
                     Command="{Binding NewScreenCommand}"
                     Cursor="Hand"
                     Icon="{via:MaterialIcon Kind=Plus}"
                     IconSize="16"
-                    Width="50"
                     Size="Medium"
                     ToolTip="New Screen"
                     Variant="Primary" />
@@ -378,9 +379,9 @@
                                     Width="22"
                                     Height="22"
                                     Margin="0,-1,0,0"
-                                    Panel.ZIndex="10"
                                     Padding="0"
                                     HorizontalAlignment="Center"
+                                    Panel.ZIndex="10"
                                     Background="Transparent"
                                     Cursor="SizeNS"
                                     DragDelta="Thumb_DragDelta"
@@ -388,7 +389,8 @@
                                     <Thumb.Template>
                                         <ControlTemplate TargetType="Thumb">
                                             <Border
-                                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                                Background="{themes:AppThemeBinding Light='White',
+                                                                                    Dark='#606265'}"
                                                 BorderThickness="0"
                                                 CornerRadius="0 0 4 4">
                                                 <ico:PackIconMaterial
@@ -438,9 +440,7 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
 
-                    <ui:DesignerToolbar
-                        x:Name="PART_DesignerToolbar"
-                        ZoomPercent="{Binding CurrentProject.ScreenZoomPercent, Mode=TwoWay}" />
+                    <ui:DesignerToolbar x:Name="PART_DesignerToolbar" ZoomPercent="{Binding CurrentProject.ScreenZoomPercent, Mode=TwoWay}" />
 
                 </StackPanel>
 

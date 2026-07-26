@@ -15,6 +15,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
     xmlns:render="clr-namespace:Mockup.Rendering"
+    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
@@ -251,7 +252,7 @@
                                 <Thumb.Template>
                                     <ControlTemplate TargetType="Thumb">
                                         <Border
-                                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                            Background="{themes:AppThemeBinding Light='White',Dark='#606265'}"
                                             BorderThickness="0"
                                             CornerRadius="0 0 4 4">
                                             <ico:PackIconMaterial
@@ -299,9 +300,7 @@
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 
-                        <ui:DesignerToolbar
-                            x:Name="PART_DesignerToolbar"
-                            ZoomPercent="{Binding CurrentProject.TemplateZoomPercent, Mode=TwoWay}" />
+                        <ui:DesignerToolbar x:Name="PART_DesignerToolbar" ZoomPercent="{Binding CurrentProject.TemplateZoomPercent, Mode=TwoWay}" />
 
                     </StackPanel>
 

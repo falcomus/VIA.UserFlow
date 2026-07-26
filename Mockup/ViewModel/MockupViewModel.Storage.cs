@@ -14,6 +14,9 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Threading;
 
+
+using Mockup.Resources;
+using VIA.WPF.Localization;
 namespace Mockup.ViewModel;
 
 public sealed record StartupProgress(string Message, double? Percent = null);
@@ -59,6 +62,8 @@ public partial class MockupViewModel : ObservableObject
         public int MainTabSelectedIndex { get; set; } = 0;
         public int ScreenTabSelectedIndex { get; set; } = 0;
 
+
+        public string? LanguageCultureName { get; set; }
         public ObservableCollection<string> RecentColors { get; set; } = [];
     }
 
@@ -81,38 +86,38 @@ public partial class MockupViewModel : ObservableObject
 
     public void LoadAll(IProgress<StartupProgress>? progress = null)
     {
-        progress?.Report(new StartupProgress("Preparing data folder...", 5));
+        progress?.Report(new StartupProgress(StartupText("Startup.PreparingDataFolder", "Preparing data folder..."), 5));
         EnsureDataFolders();
 
-        progress?.Report(new StartupProgress("Loading settings...", 10));
+        progress?.Report(new StartupProgress(StartupText("Startup.LoadingSettings", "Loading settings..."), 10));
         LoadSettings();
 
-        progress?.Report(new StartupProgress("Initializing color scheme...", 18));
+        progress?.Report(new StartupProgress(StartupText("Startup.InitializingColorScheme", "Initializing color scheme..."), 18));
         InitializeThemeService();
 
-        progress?.Report(new StartupProgress("Preparing autosave...", 24));
+        progress?.Report(new StartupProgress(StartupText("Startup.PreparingAutosave", "Preparing autosave..."), 24));
         SetupAutoSaveTimer();
 
-        progress?.Report(new StartupProgress("Loading last project...", 32));
+        progress?.Report(new StartupProgress(StartupText("Startup.LoadingLastProject", "Loading last project..."), 32));
         AutoLoadLastProject(progress);
 
-        progress?.Report(new StartupProgress("Loading templates...", 72));
+        progress?.Report(new StartupProgress(StartupText("Startup.LoadingTemplates", "Loading templates..."), 72));
         LoadTemplates(progress);
 
-        progress?.Report(new StartupProgress("Preparing toolbox...", 84));
+        progress?.Report(new StartupProgress(StartupText("Startup.PreparingToolbox", "Preparing toolbox..."), 84));
         RebuildControlGroups();
 
-        progress?.Report(new StartupProgress("Registering messages...", 90));
+        progress?.Report(new StartupProgress(StartupText("Startup.RegisteringMessages", "Registering messages..."), 90));
         RegisterMessages();
 
         if (CurrentProject == null)
         {
-            progress?.Report(new StartupProgress("\n\nStartup complete.", 100));
+            progress?.Report(new StartupProgress(StartupText("Startup.Complete", "\n\nStartup complete."), 100));
             InitializeSnapshots();
             return;
         }
 
-        progress?.Report(new StartupProgress("Preparing startup selection...", 94));
+        progress?.Report(new StartupProgress(StartupText("Startup.PreparingStartupSelection", "Preparing startup selection..."), 94));
         CurrentScreen = CurrentProject.Screens.FirstOrDefault();
 
         HomeScreen = CurrentProject?.Screens.FirstOrDefault(x => x.IsHomeScreen);
@@ -120,12 +125,12 @@ public partial class MockupViewModel : ObservableObject
         if (CurrentTemplate == null && Templates.Any())
             CurrentTemplate = Templates.FirstOrDefault();
 
-        progress?.Report(new StartupProgress("Preparing Undo/Redo...\n\n", 98));
+        progress?.Report(new StartupProgress(StartupText("Startup.PreparingUndoRedo", "Preparing Undo/Redo...\n\n"), 98));
 
         //Snapshot Library initialisieren
         InitializeSnapshots();
 
-        progress?.Report(new StartupProgress("\n\nStartup complete.", 100));
+        progress?.Report(new StartupProgress(StartupText("Startup.Complete", "\n\nStartup complete."), 100));
     }
 
     public void SaveAll()
@@ -233,6 +238,32 @@ public partial class MockupViewModel : ObservableObject
                 .Select(x => x.Trim()));
     }
 
+    public void SetConfiguredLanguageCultureName(string? cultureName)
+    {
+        Settings.UI.LanguageCultureName = string.IsNullOrWhiteSpace(cultureName)
+            ? null
+            : cultureName.Trim();
+
+        SaveSettings();
+    }
+
+    private static string StartupText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+    private static string StartupText(string key, string fallbackText, params object[] args)
+    {
+        return XLocalizationService.Current.Format(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText,
+            args);
+    }
+
     private void EnsureRecentColorsCount()
     {
         if (RecentColors.Count == 0)
@@ -266,10 +297,10 @@ public partial class MockupViewModel : ObservableObject
             if (showProjectLoading)
                 MSG.UI.ShowProjectLoading(projectName);
 
-            progress?.Report(new StartupProgress($"Read project file: {projectName} ...", 36));
+            progress?.Report(new StartupProgress(StartupText("Startup.ReadProjectFile", "Read project file: {0} ...", projectName), 36));
             string json = File.ReadAllText(filePath);
 
-            progress?.Report(new StartupProgress($"Deserialize project: {projectName} ...", 46));
+            progress?.Report(new StartupProgress(StartupText("Startup.DeserializeProject", "Deserialize project: {0} ...", projectName), 46));
             var project = JsonSerializer.Deserialize<Project>(
                 json,
                 JsonOptions);
@@ -277,7 +308,7 @@ public partial class MockupViewModel : ObservableObject
             if (project == null)
                 return;
 
-            progress?.Report(new StartupProgress("Check project structure ...", 54));
+            progress?.Report(new StartupProgress(StartupText("Startup.CheckProjectStructure", "Check project structure ..."), 54));
             MakeProjectCorrections(project);
 
             project.FilePath = filePath;
@@ -289,14 +320,14 @@ public partial class MockupViewModel : ObservableObject
             {
                 screenIndex++;
                 double percent = 56 + (screenIndex / (double)screenCount * 10);
-                progress?.Report(new StartupProgress($"Reconstruct Screens ({screenIndex}/{screenCount}) ...", percent));
+                progress?.Report(new StartupProgress(StartupText("Startup.ReconstructScreens", "Reconstruct Screens ({0}/{1}) ...", screenIndex, screenCount), percent));
                 screen.Reconstruct(project);
             }
 
-            progress?.Report(new StartupProgress("Apply project ...", 67));
+            progress?.Report(new StartupProgress(StartupText("Startup.ApplyProject", "Apply project ..."), 67));
             CurrentProject = project;
 
-            progress?.Report(new StartupProgress("Apply project theme ...", 69));
+            progress?.Report(new StartupProgress(StartupText("Startup.ApplyProjectTheme", "Apply project theme ..."), 69));
             CurrentProject.InitializeTheme();
 
             CurrentScreen = project.Screens.FirstOrDefault();
@@ -310,7 +341,7 @@ public partial class MockupViewModel : ObservableObject
                     SetAsHomeScreen(HomeScreen);
             }
 
-            progress?.Report(new StartupProgress("Update project list ...", 70));
+            progress?.Report(new StartupProgress(StartupText("Startup.UpdateProjectList", "Update project list ..."), 70));
             RememberLastOpenedProject(filePath);
             RefreshProjectFiles();
 
@@ -484,10 +515,10 @@ public partial class MockupViewModel : ObservableObject
             if (string.IsNullOrWhiteSpace(path))
                 return;
 
-            progress?.Report(new StartupProgress($"Open last project: {Path.GetFileNameWithoutExtension(path)} ...", 34));
+            progress?.Report(new StartupProgress(StartupText("Startup.OpenLastProject", "Open last project: {0} ...", Path.GetFileNameWithoutExtension(path)), 34));
             LoadProject(path, progress);
 
-            progress?.Report(new StartupProgress("Update project UI ...", 71));
+            progress?.Report(new StartupProgress(StartupText("Startup.UpdateProjectUi", "Update project UI ..."), 71));
             RefreshProjectUiInfo();
         }
         catch (Exception ex)
@@ -562,7 +593,7 @@ public partial class MockupViewModel : ObservableObject
 
         try
         {
-            progress?.Report(new StartupProgress("Reading Templates ...", 73));
+            progress?.Report(new StartupProgress(StartupText("Startup.ReadingTemplates", "Reading Templates ..."), 73));
             var templates = JsonSerializer.Deserialize<ScreenTemplate[]>(
                 File.ReadAllText(TemplatesFilePath),
                 JsonOptions) ?? Array.Empty<ScreenTemplate>();
@@ -574,7 +605,7 @@ public partial class MockupViewModel : ObservableObject
             {
                 templateIndex++;
                 double percent = 74 + (templateIndex / (double)templateCount * 6);
-                progress?.Report(new StartupProgress($"Preparing Templates ({templateIndex}/{templateCount}) ...", percent));
+                progress?.Report(new StartupProgress(StartupText("Startup.PreparingTemplates", "Preparing Templates ({0}/{1}) ...", templateIndex, templateCount), percent));
 
                 if (CurrentProject != null)
                     template.Width = CurrentProject.DeviceWidth;

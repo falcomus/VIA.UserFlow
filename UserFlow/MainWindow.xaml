@@ -46,7 +46,8 @@
                 VerticalAlignment="Center"
                 FontSize="12"
                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                Text="{via:XLoc Main.Theme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                Text="{via:XLoc Main.Theme,
+                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             <via:XThemeSelector
                 Width="132"
                 Height="24"
@@ -87,28 +88,32 @@
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                Header="{via:XLoc Main.TabProject,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                 <views:ProjectView />
             </TabItem>
 
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabScreen, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabScreen,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEnabled="{Binding CurrentProject, Converter={StaticResource NullToDisabledConverter}, FallbackValue=true}">
                 <views:ScreenView Grid.RowSpan="2" />
             </TabItem>
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabTemplate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabTemplate,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEnabled="{Binding CurrentProject, Converter={StaticResource NullToDisabledConverter}, FallbackValue=true}">
                 <views:TemplateView Grid.RowSpan="2" />
             </TabItem>
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabPopup, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabPopup,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEnabled="{Binding CurrentProject, Converter={StaticResource NullToDisabledConverter}, FallbackValue=true}">
                 <views:PopupView Grid.RowSpan="2" />
             </TabItem>
@@ -119,7 +124,8 @@
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabPreview, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabPreview,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Tag="PREVIEW">
                 <views:LiveView />
             </TabItem>
@@ -127,7 +133,8 @@
             <!--  Tab ACTION FLOW  -->
             <TabItem
                 FontSize="15"
-                Header="{via:XLoc Main.TabActionFlow, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabActionFlow,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEnabled="False">
                 <views:FlowView />
             </TabItem>
@@ -141,7 +148,8 @@
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabOptions, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Header="{via:XLoc Main.TabOptions,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEnabled="{Binding CurrentProject, Converter={StaticResource NullToDisabledConverter}, FallbackValue=true}">
                 <views:OptionsView />
             </TabItem>
@@ -149,14 +157,16 @@
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabHelp, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                Header="{via:XLoc Main.TabHelp,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                 <views:HelpView />
             </TabItem>
             <!--  Tab ABOUT  -->
             <TabItem
                 FontSize="15"
                 FontWeight="Medium"
-                Header="{via:XLoc Main.TabAbout, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                Header="{via:XLoc Main.TabAbout,
+                                  ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                 <views:AboutView />
             </TabItem>
         </TabControl>
@@ -320,7 +330,8 @@
             Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
             IconSize="15"
             IsChecked="{Binding ElementName=PART_ToolboxView, Path=IsFlyoutOpen, Mode=OneWay}"
-            ToolTip="{via:XLoc Main.ToolboxToggle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ToolTip="{via:XLoc Main.ToolboxToggle,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             UncheckedIcon="{via:MaterialDesignIcon Kind=Menu}"
             Variant="Default"
             Visibility="{Binding ShowHamburgerButton, Converter={StaticResource BoolToVisibilityConverter}}" />
@@ -416,4 +427,3 @@
 
 
 </via:XWindow>
-

@@ -45,4 +45,41 @@
   <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
   <data name="Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
   <data name="Popup.None" xml:space="preserve"><value>Kein Popup ausgewählt</value></data>
+  <data name="Main.NoCurrentProject" xml:space="preserve"><value>Kein Projekt ausgewählt</value></data>
+  <data name="Main.ProjectActionTooltip" xml:space="preserve"><value>Ausgewähltes Projekt öffnen</value></data>
+  <data name="Main.ImportProject" xml:space="preserve"><value>Projekt importieren</value></data>
+  <data name="Main.CreateProject" xml:space="preserve"><value>Neues Projekt</value></data>
+  <data name="Main.ImportProjectTooltip" xml:space="preserve"><value>Projekt importieren</value></data>
+  <data name="Main.CreateProjectTooltip" xml:space="preserve"><value>Neues Projekt erstellen</value></data>
+  <data name="Splash.HeadingStartup" xml:space="preserve"><value>Startvorgang</value></data>
+  <data name="Splash.StatusPreparing" xml:space="preserve"><value>Der Start wird vorbereitet...</value></data>
+  <data name="Splash.StatusStarting" xml:space="preserve"><value>UserFlow wird gestartet...</value></data>
+  <data name="Splash.StatusPreparingViewModel" xml:space="preserve"><value>ViewModel wird vorbereitet...</value></data>
+  <data name="Splash.StatusPreparingMainWindow" xml:space="preserve"><value>Hauptfenster wird vorbereitet...</value></data>
+  <data name="Main.ProjectLoadingHeading" xml:space="preserve"><value>Projekt wird geladen</value></data>
+  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>{0} wird geladen...</value></data>
+  <data name="Main.UnsupportedFileType" xml:space="preserve"><value>Dateityp wird nicht unterstützt: {0}</value></data>
+  <data name="Splash.PleaseWait" xml:space="preserve"><value>Bitte warten...</value></data>
+  <data name="Startup.PreparingDataFolder" xml:space="preserve"><value>Datenordner wird vorbereitet...</value></data>
+  <data name="Startup.LoadingSettings" xml:space="preserve"><value>Einstellungen werden geladen...</value></data>
+  <data name="Startup.InitializingColorScheme" xml:space="preserve"><value>Farbschema wird initialisiert...</value></data>
+  <data name="Startup.PreparingAutosave" xml:space="preserve"><value>Automatisches Speichern wird vorbereitet...</value></data>
+  <data name="Startup.LoadingLastProject" xml:space="preserve"><value>Letztes Projekt wird geladen...</value></data>
+  <data name="Startup.LoadingTemplates" xml:space="preserve"><value>Vorlagen werden geladen...</value></data>
+  <data name="Startup.PreparingToolbox" xml:space="preserve"><value>Toolbox wird vorbereitet...</value></data>
+  <data name="Startup.RegisteringMessages" xml:space="preserve"><value>Nachrichten werden registriert...</value></data>
+  <data name="Startup.Complete" xml:space="preserve"><value>\n\nStart abgeschlossen.</value></data>
+  <data name="Startup.PreparingStartupSelection" xml:space="preserve"><value>Startauswahl wird vorbereitet...</value></data>
+  <data name="Startup.PreparingUndoRedo" xml:space="preserve"><value>Undo/Redo wird vorbereitet...\n\n</value></data>
+  <data name="Startup.ReadProjectFile" xml:space="preserve"><value>Projektdatei wird gelesen: {0} ...</value></data>
+  <data name="Startup.DeserializeProject" xml:space="preserve"><value>Projekt wird deserialisiert: {0} ...</value></data>
+  <data name="Startup.CheckProjectStructure" xml:space="preserve"><value>Projektstruktur wird geprüft ...</value></data>
+  <data name="Startup.ReconstructScreens" xml:space="preserve"><value>Screens werden rekonstruiert ({0}/{1}) ...</value></data>
+  <data name="Startup.ApplyProject" xml:space="preserve"><value>Projekt wird angewendet ...</value></data>
+  <data name="Startup.ApplyProjectTheme" xml:space="preserve"><value>Projekt-Design wird angewendet ...</value></data>
+  <data name="Startup.UpdateProjectList" xml:space="preserve"><value>Projektliste wird aktualisiert ...</value></data>
+  <data name="Startup.OpenLastProject" xml:space="preserve"><value>Letztes Projekt wird geöffnet: {0} ...</value></data>
+  <data name="Startup.UpdateProjectUi" xml:space="preserve"><value>Projektoberfläche wird aktualisiert ...</value></data>
+  <data name="Startup.ReadingTemplates" xml:space="preserve"><value>Vorlagen werden gelesen ...</value></data>
+  <data name="Startup.PreparingTemplates" xml:space="preserve"><value>Vorlagen werden vorbereitet ({0}/{1}) ...</value></data>
 </root>

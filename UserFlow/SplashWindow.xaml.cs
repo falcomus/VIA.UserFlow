@@ -1,4 +1,6 @@
+using Mockup.Resources;
 using System.Windows;
+using VIA.WPF.Localization;
 
 namespace UserFlow;
 
@@ -12,7 +14,7 @@ public partial class SplashWindow : Window
     public void UpdateStatus(string message, double? percent)
     {
         PART_StatusText.Text = string.IsNullOrWhiteSpace(message)
-            ? "The launch is being prepared..."
+            ? Localize("Splash.StatusPreparing", "The launch is being prepared...")
             : message;
 
         if (percent.HasValue)
@@ -32,7 +34,15 @@ public partial class SplashWindow : Window
     public void SetHeading(string heading)
     {
         PART_HeadingText.Text = string.IsNullOrWhiteSpace(heading)
-            ? "Startup process"
+            ? Localize("Splash.HeadingStartup", "Startup process")
             : heading;
+    }
+
+    private static string Localize(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
     }
 }

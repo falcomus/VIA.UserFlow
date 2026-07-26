@@ -45,4 +45,41 @@
   <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
   <data name="Popup.New" xml:space="preserve"><value>New popup</value></data>
   <data name="Popup.None" xml:space="preserve"><value>No current popup</value></data>
+  <data name="Main.NoCurrentProject" xml:space="preserve"><value>No current Project</value></data>
+  <data name="Main.ProjectActionTooltip" xml:space="preserve"><value>Open Selected Project</value></data>
+  <data name="Main.ImportProject" xml:space="preserve"><value>Import project</value></data>
+  <data name="Main.CreateProject" xml:space="preserve"><value>Create new project</value></data>
+  <data name="Main.ImportProjectTooltip" xml:space="preserve"><value>Import project</value></data>
+  <data name="Main.CreateProjectTooltip" xml:space="preserve"><value>Create new project</value></data>
+  <data name="Splash.HeadingStartup" xml:space="preserve"><value>Startup process</value></data>
+  <data name="Splash.StatusPreparing" xml:space="preserve"><value>The launch is being prepared...</value></data>
+  <data name="Splash.StatusStarting" xml:space="preserve"><value>UserFlow is starting...</value></data>
+  <data name="Splash.StatusPreparingViewModel" xml:space="preserve"><value>Preparing ViewModel...</value></data>
+  <data name="Splash.StatusPreparingMainWindow" xml:space="preserve"><value>Preparing main window...</value></data>
+  <data name="Main.ProjectLoadingHeading" xml:space="preserve"><value>Loading project</value></data>
+  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>Loading {0}...</value></data>
+  <data name="Main.UnsupportedFileType" xml:space="preserve"><value>File type is not supported: {0}</value></data>
+  <data name="Splash.PleaseWait" xml:space="preserve"><value>Please wait...</value></data>
+  <data name="Startup.PreparingDataFolder" xml:space="preserve"><value>Preparing data folder...</value></data>
+  <data name="Startup.LoadingSettings" xml:space="preserve"><value>Loading settings...</value></data>
+  <data name="Startup.InitializingColorScheme" xml:space="preserve"><value>Initializing color scheme...</value></data>
+  <data name="Startup.PreparingAutosave" xml:space="preserve"><value>Preparing autosave...</value></data>
+  <data name="Startup.LoadingLastProject" xml:space="preserve"><value>Loading last project...</value></data>
+  <data name="Startup.LoadingTemplates" xml:space="preserve"><value>Loading templates...</value></data>
+  <data name="Startup.PreparingToolbox" xml:space="preserve"><value>Preparing toolbox...</value></data>
+  <data name="Startup.RegisteringMessages" xml:space="preserve"><value>Registering messages...</value></data>
+  <data name="Startup.Complete" xml:space="preserve"><value>\n\nStartup complete.</value></data>
+  <data name="Startup.PreparingStartupSelection" xml:space="preserve"><value>Preparing startup selection...</value></data>
+  <data name="Startup.PreparingUndoRedo" xml:space="preserve"><value>Preparing Undo/Redo...\n\n</value></data>
+  <data name="Startup.ReadProjectFile" xml:space="preserve"><value>Read project file: {0} ...</value></data>
+  <data name="Startup.DeserializeProject" xml:space="preserve"><value>Deserialize project: {0} ...</value></data>
+  <data name="Startup.CheckProjectStructure" xml:space="preserve"><value>Check project structure ...</value></data>
+  <data name="Startup.ReconstructScreens" xml:space="preserve"><value>Reconstruct Screens ({0}/{1}) ...</value></data>
+  <data name="Startup.ApplyProject" xml:space="preserve"><value>Apply project ...</value></data>
+  <data name="Startup.ApplyProjectTheme" xml:space="preserve"><value>Apply project theme ...</value></data>
+  <data name="Startup.UpdateProjectList" xml:space="preserve"><value>Update project list ...</value></data>
+  <data name="Startup.OpenLastProject" xml:space="preserve"><value>Open last project: {0} ...</value></data>
+  <data name="Startup.UpdateProjectUi" xml:space="preserve"><value>Update project UI ...</value></data>
+  <data name="Startup.ReadingTemplates" xml:space="preserve"><value>Reading Templates ...</value></data>
+  <data name="Startup.PreparingTemplates" xml:space="preserve"><value>Preparing Templates ({0}/{1}) ...</value></data>
 </root>

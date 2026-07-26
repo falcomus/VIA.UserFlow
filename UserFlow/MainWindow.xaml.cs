@@ -2,6 +2,7 @@
 using Mockup.Actions;
 using Mockup.Helper;
 using Mockup.Messages;
+using Mockup.Resources;
 using Mockup.Services;
 using Mockup.ViewModel;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using VIA.WPF.Localization;
 
 namespace UserFlow;
 
@@ -119,9 +121,20 @@ public partial class MainWindow
     {
         Dispatcher.Invoke(() =>
         {
+            string heading = XLocalizationService.Current.GetString(
+                UserFlowResources.ResourceManager,
+                "Main.ProjectLoadingHeading",
+                "Loading project");
+
+            string status = XLocalizationService.Current.Format(
+                UserFlowResources.ResourceManager,
+                "Main.ProjectLoadingStatus",
+                "Loading {0}...",
+                projectName);
+
             if (projectLoadingWindow is not null)
             {
-                projectLoadingWindow.UpdateStatus($"Lade {projectName} ...", null);
+                projectLoadingWindow.UpdateStatus(status, null);
                 return;
             }
 
@@ -131,8 +144,8 @@ public partial class MainWindow
             {
                 Owner = this,
             };
-            projectLoadingWindow.SetHeading("Lade Projekt");
-            projectLoadingWindow.UpdateStatus($"Lade {projectName} ...", null);
+            projectLoadingWindow.SetHeading(heading);
+            projectLoadingWindow.UpdateStatus(status, null);
             projectLoadingWindow.Show();
 
             Dispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.Render);
@@ -258,7 +271,12 @@ public partial class MainWindow
                 break;
 
             default:
-                XNotifications.Error($"Dateityp wird nicht unterstützt: {extension}");
+                XNotifications.Error(
+                    XLocalizationService.Current.Format(
+                        UserFlowResources.ResourceManager,
+                        "Main.UnsupportedFileType",
+                        "File type is not supported: {0}",
+                        extension));
                 break;
         }
     }

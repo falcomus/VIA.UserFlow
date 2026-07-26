@@ -29,4 +29,20 @@
   <data name="Options.OpenLastProjectDescription" xml:space="preserve"><value>Wenn deaktiviert, startet UserFlow ohne ausgewähltes Projekt.</value></data>
   <data name="Options.Storage" xml:space="preserve"><value>Speicherort</value></data>
   <data name="Options.StorageDescription" xml:space="preserve"><value>Anwendungsoptionen werden in Data\settings.json neben UserFlow gespeichert. Projekte, Vorlagen und Farbschemata bleiben im selben Data-Ordner.</value></data>
+  <data name="Designer.Search" xml:space="preserve"><value>Suchen...</value></data>
+  <data name="Screen.Title" xml:space="preserve"><value>Screens</value></data>
+  <data name="Screen.New" xml:space="preserve"><value>Neuer Screen</value></data>
+  <data name="Screen.None" xml:space="preserve"><value>Kein Screen ausgewählt</value></data>
+  <data name="Screen.DeviceTop" xml:space="preserve"><value>Geräteoberkante</value></data>
+  <data name="Screen.DeviceBottom" xml:space="preserve"><value>Geräteunterkante</value></data>
+  <data name="Screen.Edit" xml:space="preserve"><value>Screen bearbeiten</value></data>
+  <data name="Screen.Delete" xml:space="preserve"><value>Screen löschen</value></data>
+  <data name="Screen.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
+  <data name="Screen.ShowFooter" xml:space="preserve"><value>Fußbereich anzeigen</value></data>
+  <data name="Template.Title" xml:space="preserve"><value>Vorlagen</value></data>
+  <data name="Template.New" xml:space="preserve"><value>Neue Vorlage</value></data>
+  <data name="Template.None" xml:space="preserve"><value>Keine Vorlage ausgewählt</value></data>
+  <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
+  <data name="Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
+  <data name="Popup.None" xml:space="preserve"><value>Kein Popup ausgewählt</value></data>
 </root>

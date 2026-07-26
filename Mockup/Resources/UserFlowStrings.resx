@@ -29,4 +29,20 @@
   <data name="Options.OpenLastProjectDescription" xml:space="preserve"><value>When disabled, UserFlow opens without a project selected.</value></data>
   <data name="Options.Storage" xml:space="preserve"><value>Storage</value></data>
   <data name="Options.StorageDescription" xml:space="preserve"><value>Application settings are stored in Data\settings.json next to UserFlow. Projects, templates and color schemes stay in the same Data folder.</value></data>
+  <data name="Designer.Search" xml:space="preserve"><value>Search...</value></data>
+  <data name="Screen.Title" xml:space="preserve"><value>Screens</value></data>
+  <data name="Screen.New" xml:space="preserve"><value>New screen</value></data>
+  <data name="Screen.None" xml:space="preserve"><value>No current screen</value></data>
+  <data name="Screen.DeviceTop" xml:space="preserve"><value>Device top</value></data>
+  <data name="Screen.DeviceBottom" xml:space="preserve"><value>Device bottom</value></data>
+  <data name="Screen.Edit" xml:space="preserve"><value>Edit screen</value></data>
+  <data name="Screen.Delete" xml:space="preserve"><value>Delete screen</value></data>
+  <data name="Screen.ShowHeader" xml:space="preserve"><value>Show header</value></data>
+  <data name="Screen.ShowFooter" xml:space="preserve"><value>Show footer</value></data>
+  <data name="Template.Title" xml:space="preserve"><value>Templates</value></data>
+  <data name="Template.New" xml:space="preserve"><value>New template</value></data>
+  <data name="Template.None" xml:space="preserve"><value>No current template</value></data>
+  <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
+  <data name="Popup.New" xml:space="preserve"><value>New popup</value></data>
+  <data name="Popup.None" xml:space="preserve"><value>No current popup</value></data>
 </root>

@@ -13,6 +13,7 @@
     xmlns:local="clr-namespace:Mockup.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
@@ -158,7 +159,7 @@
                         FontWeight="Normal"
                         IsHitTestVisible="True"
                         IsTabStop="False"
-                        Placeholder="Search .."
+                        Placeholder="{via:XLoc Designer.Search, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         ShowResetButton="True" />
                 </via:XBorder>
 
@@ -252,7 +253,7 @@
                             VerticalAlignment="Center"
                             FontSize="15"
                             FontWeight="SemiBold"
-                            Text="Popups" />
+                            Text="{via:XLoc Popup.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                         <via:XIconButton
                             Grid.Column="1"
@@ -263,7 +264,7 @@
                             Icon="{via:MaterialIcon Kind=Plus}"
                             IconSize="16"
                             Size="Medium"
-                            ToolTip="New Popup"
+                            ToolTip="{via:XLoc Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                             Variant="Primary" />
 
                     </Grid>
@@ -522,7 +523,7 @@
                     <via:XTextBlock
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
-                        Text="No current Popup" />
+                        Text="{via:XLoc Popup.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                 </StackPanel>
             </via:XBorder>
         </Grid>

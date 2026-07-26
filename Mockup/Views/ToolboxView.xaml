@@ -121,8 +121,12 @@
                     <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
                 </Trigger>
                 <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                    <!--<Setter Property="Background" Value="Transparent" />-->
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <!--<Setter Property="Background" Value="Transparent" />-->
+                    <Setter Property="Foreground" Value="#B0B2B5" />
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
@@ -169,8 +173,12 @@
 
                 <via:XSeparator Opacity="0.15" Orientation="Horizontal" />
 
+                <!--  CheckedAppearance="Solid"  -->
+                <!--  CheckedVariant="Warning"  -->
                 <via:XToggleButton
-                    Margin="0,-2,0,0"
+                    Height="48"
+                    Margin="0,-5,0,0"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
                     BorderThickness="0"
                     Click="PinButton_Click"
                     IsChecked="{Binding ElementName=root, Path=IsFlyoutPinned}"
@@ -179,9 +187,9 @@
                     <ico:PackIconMaterial
                         Width="16"
                         Height="16"
-                        Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=via:XToggleButton}}"
                         Kind="Pin" />
                 </via:XToggleButton>
+                <!--  Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=via:XToggleButton}}"  -->
 
                 <via:XSeparator
                     Margin="0,-4,0,0"
@@ -351,12 +359,14 @@
                                     Padding="0"
                                     Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
-                                    BorderThickness="0,0,1,0">
+                                    BorderThickness="0,0,1,0"
+                                    CornerRadius="0">
                                     <via:XNavigationList
                                         Padding="4"
                                         HorizontalContentAlignment="Stretch"
                                         Background="Transparent"
                                         BorderThickness="0"
+                                        CornerRadius="0"
                                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                                         ItemCornerRadius="4"
                                         ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
@@ -456,6 +466,7 @@
                                                 <via:XBorder
                                                     Padding="0"
                                                     Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                                    CornerRadius="0"
                                                     Style="{StaticResource ToolboxControlCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -560,7 +571,8 @@
                                     Padding="0"
                                     Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
-                                    BorderThickness="0,0,1,0">
+                                    BorderThickness="0,0,1,0"
+                                    CornerRadius="0">
                                     <via:XNavigationList
                                         Padding="4"
                                         HorizontalContentAlignment="Stretch"
@@ -619,6 +631,7 @@
                                         x:Name="TemplateListBox"
                                         Grid.Row="2"
                                         Padding="7,4,7,7"
+                                        HorizontalContentAlignment="Stretch"
                                         Background="Transparent"
                                         BorderThickness="0"
                                         ClipToBounds="False"
@@ -626,7 +639,6 @@
                                         ScrollViewer.CanContentScroll="True"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                        HorizontalContentAlignment="Stretch"
                                         SelectedItem="{Binding CurrentTemplate, Mode=TwoWay}"
                                         SelectionMode="Single"
                                         ShowSelectionIndicator="False"
@@ -737,7 +749,8 @@
                                     Padding="0"
                                     Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
                                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
-                                    BorderThickness="0,0,1,0">
+                                    BorderThickness="0,0,1,0"
+                                    CornerRadius="0">
                                     <via:XNavigationList
                                         Padding="4"
                                         HorizontalContentAlignment="Stretch"

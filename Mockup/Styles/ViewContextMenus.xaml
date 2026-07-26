@@ -1,6 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf">
 
     <via:XContextMenu x:Key="ScreenListContextMenu" x:Shared="False">
@@ -108,7 +109,8 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.SaveProjectAsCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="Save Project As..."
+            Header="{via:XLoc Project.SaveProjectAs, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ToolTip="{via:XLoc Project.SaveProjectAsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=ContentSave}"
             Variant="Primary" />
 
@@ -117,13 +119,15 @@
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="Edit Project Settings"
+            Header="{via:XLoc Project.EditProjectSettings, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ToolTip="{via:XLoc Project.EditProjectSettingsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="Delete Project"
+            Header="{via:XLoc Project.DeleteProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ToolTip="{via:XLoc Project.DeleteProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 

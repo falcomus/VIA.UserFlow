@@ -57,7 +57,7 @@
   <data name="Splash.StatusPreparingViewModel" xml:space="preserve"><value>Preparing ViewModel...</value></data>
   <data name="Splash.StatusPreparingMainWindow" xml:space="preserve"><value>Preparing main window...</value></data>
   <data name="Main.ProjectLoadingHeading" xml:space="preserve"><value>Loading project</value></data>
-  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>Loading {0}...</value></data>
+  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>Loading {0} ...</value></data>
   <data name="Main.UnsupportedFileType" xml:space="preserve"><value>File type is not supported: {0}</value></data>
   <data name="Splash.PleaseWait" xml:space="preserve"><value>Please wait...</value></data>
   <data name="Startup.PreparingDataFolder" xml:space="preserve"><value>Preparing data folder...</value></data>
@@ -82,4 +82,43 @@
   <data name="Startup.UpdateProjectUi" xml:space="preserve"><value>Update project UI ...</value></data>
   <data name="Startup.ReadingTemplates" xml:space="preserve"><value>Reading Templates ...</value></data>
   <data name="Startup.PreparingTemplates" xml:space="preserve"><value>Preparing Templates ({0}/{1}) ...</value></data>
+  <data name="Main.StatusScreens" xml:space="preserve"><value>Screens</value></data>
+  <data name="Main.StatusTemplates" xml:space="preserve"><value>Templates</value></data>
+  <data name="Main.StatusPopups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Main.StatusFilePath" xml:space="preserve"><value>File path:</value></data>
+  <data name="Project.OpenProjectShort" xml:space="preserve"><value>Open ...</value></data>
+  <data name="Project.OpenProjectTooltip" xml:space="preserve"><value>Open project</value></data>
+  <data name="Project.SaveProject" xml:space="preserve"><value>Save</value></data>
+  <data name="Project.SaveProjectTooltip" xml:space="preserve"><value>Save project</value></data>
+  <data name="Project.NewProjectTooltip" xml:space="preserve"><value>New project</value></data>
+  <data name="Project.MoreProjectActionsTooltip" xml:space="preserve"><value>More project actions</value></data>
+  <data name="Project.ProjectInfo" xml:space="preserve"><value>Project info</value></data>
+  <data name="Project.Device" xml:space="preserve"><value>Device</value></data>
+  <data name="Project.Screens" xml:space="preserve"><value>Screens</value></data>
+  <data name="Project.Templates" xml:space="preserve"><value>Templates</value></data>
+  <data name="Project.Popups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Project.Controls" xml:space="preserve"><value>Controls</value></data>
+  <data name="Project.Sharing" xml:space="preserve"><value>Sharing</value></data>
+  <data name="Project.Shared" xml:space="preserve"><value>Shared</value></data>
+  <data name="Project.Readonly" xml:space="preserve"><value>Readonly</value></data>
+  <data name="Project.File" xml:space="preserve"><value>File</value></data>
+  <data name="Project.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Project.Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="Project.NewColorSchemeTooltip" xml:space="preserve"><value>New color scheme</value></data>
+  <data name="Project.EditColorSchemeTooltip" xml:space="preserve"><value>Edit color scheme</value></data>
+  <data name="Project.DeleteColorSchemeTooltip" xml:space="preserve"><value>Delete color scheme</value></data>
+  <data name="Project.EditScreenTooltip" xml:space="preserve"><value>Edit screen</value></data>
+  <data name="Project.DeleteScreenTooltip" xml:space="preserve"><value>Delete screen</value></data>
+  <data name="Project.GotoScreenTooltip" xml:space="preserve"><value>Go to screen</value></data>
+  <data name="Project.SetAsHomeScreenTooltip" xml:space="preserve"><value>Set as home screen</value></data>
+  <data name="Project.NewScreenTooltip" xml:space="preserve"><value>New screen</value></data>
+  <data name="Project.SaveProjectAs" xml:space="preserve"><value>Save Project As...</value></data>
+  <data name="Project.SaveProjectAsTooltip" xml:space="preserve"><value>Save project as a new file</value></data>
+  <data name="Project.EditProjectSettings" xml:space="preserve"><value>Edit Project Settings</value></data>
+  <data name="Project.EditProjectSettingsTooltip" xml:space="preserve"><value>Edit project settings</value></data>
+  <data name="Project.DeleteProject" xml:space="preserve"><value>Delete Project</value></data>
+  <data name="Project.DeleteProjectTooltip" xml:space="preserve"><value>Delete project</value></data>
+  <data name="Project.ResetZoomTooltip" xml:space="preserve"><value>Reset zoom to 100%</value></data>
+  <data name="Screen.HeaderShort" xml:space="preserve"><value>H</value></data>
+  <data name="Screen.FooterShort" xml:space="preserve"><value>F</value></data>
 </root>

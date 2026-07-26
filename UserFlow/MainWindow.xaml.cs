@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging;
 using Mockup.Actions;
 using Mockup.Helper;
 using Mockup.Messages;
@@ -167,6 +167,26 @@ public partial class MainWindow
 
     #endregion
 
+    #region === LOCALIZATION ===
+
+    private static string Localize(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+    private static string FormatLocalize(string key, string fallbackText, params object[] args)
+    {
+        return XLocalizationService.Current.Format(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText,
+            args);
+    }
+
+    #endregion
     #region === ACTION AREA EDITOR ===
 
     private void OpenActionAreaEditor(ActionArea area)

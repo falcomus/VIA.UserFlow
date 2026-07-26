@@ -54,7 +54,6 @@ public partial class PropertyEditor : UserControl
 
     private INotifyCollectionChanged? _observedSelectedControls;
     private readonly List<INotifyPropertyChanged> _observedTargets = new();
-    private readonly Dictionary<string, bool> _groupExpandedStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<PropertyItemTemp> _activeTextEditSnapshotItems = [];
     private readonly HashSet<PropertyItemTemp> _activeNumericEditSnapshotItems = [];
     private readonly Dictionary<TextBox, DispatcherTimer> _liveTextTimers = new();
@@ -159,6 +158,23 @@ public partial class PropertyEditor : UserControl
     #region ### Public State ###
 
     public ObservableCollection<PropertyGroupTemp> PropertyGroups { get; } = new();
+    public ObservableCollection<PropertyCategoryTemp> PropertyCategories { get; } = new();
+    public ObservableCollection<PropertyItemTemp> VisibleProperties { get; } = new();
+
+    private PropertyCategoryTemp? _selectedPropertyCategory;
+    public PropertyCategoryTemp? SelectedPropertyCategory
+    {
+        get => _selectedPropertyCategory;
+        set
+        {
+            if (ReferenceEquals(_selectedPropertyCategory, value))
+                return;
+
+            _selectedPropertyCategory = value;
+            OnPropertyChanged(nameof(SelectedPropertyCategory));
+            RefreshPropertyFilter();
+        }
+    }
 
     #endregion
 
@@ -284,19 +300,19 @@ public partial class PropertyEditor : UserControl
 
     private void RebuildPropertyGroups()
     {
-        CaptureGroupExpandedStates();
-
-        foreach (var group in PropertyGroups)
-            group.PropertyChanged -= PropertyGroup_PropertyChanged;
+        string selectedCategoryName = SelectedPropertyCategory?.Name ?? PropertyCategoryTemp.AllCategoryName;
 
         UnsubscribeFromCurrentTargets();
         PropertyGroups.Clear();
+        PropertyCategories.Clear();
+        VisibleProperties.Clear();
 
         var activeControl = ActiveControl;
         _currentSchemaType = activeControl?.GetType();
 
         if (activeControl == null)
         {
+            SelectedPropertyCategory = null;
             OnPropertyChanged(nameof(SelectionHeaderText));
             return;
         }
@@ -319,17 +335,24 @@ public partial class PropertyEditor : UserControl
         {
             var groupVm = new PropertyGroupTemp
             {
-                Name = group.Key,
-                IsExpanded = GetStoredGroupExpandedState(group.Key)
+                Name = group.Key
             };
-
-            groupVm.PropertyChanged += PropertyGroup_PropertyChanged;
 
             foreach (var item in group.OrderBy(x => x.DisplayName, StringComparer.OrdinalIgnoreCase))
                 groupVm.Items.Add(item);
 
             PropertyGroups.Add(groupVm);
         }
+
+        int propertyCount = PropertyGroups.Sum(group => group.Items.Count);
+        PropertyCategories.Add(new PropertyCategoryTemp(PropertyCategoryTemp.AllCategoryName, propertyCount));
+
+        foreach (var group in PropertyGroups)
+            PropertyCategories.Add(new PropertyCategoryTemp(group.Name, group.Items.Count));
+
+        SelectedPropertyCategory = PropertyCategories.FirstOrDefault(
+            category => string.Equals(category.Name, selectedCategoryName, StringComparison.OrdinalIgnoreCase))
+            ?? PropertyCategories.FirstOrDefault();
 
         OnPropertyChanged(nameof(SelectionHeaderText));
     }
@@ -359,34 +382,24 @@ public partial class PropertyEditor : UserControl
         }
     }
 
-    private void CaptureGroupExpandedStates()
+    private void RefreshPropertyFilter()
     {
-        foreach (var group in PropertyGroups)
+        VisibleProperties.Clear();
+
+        string? selectedCategory = SelectedPropertyCategory?.Name;
+        bool showAll = string.IsNullOrWhiteSpace(selectedCategory)
+            || string.Equals(selectedCategory, PropertyCategoryTemp.AllCategoryName, StringComparison.OrdinalIgnoreCase);
+
+        IEnumerable<PropertyGroupTemp> groups = showAll
+            ? PropertyGroups
+            : PropertyGroups.Where(
+                group => string.Equals(group.Name, selectedCategory, StringComparison.OrdinalIgnoreCase));
+
+        foreach (var group in groups)
         {
-            if (!string.IsNullOrWhiteSpace(group.Name))
-                _groupExpandedStates[group.Name] = group.IsExpanded;
+            foreach (var item in group.Items)
+                VisibleProperties.Add(item);
         }
-    }
-
-    private bool GetStoredGroupExpandedState(string key)
-    {
-        return _groupExpandedStates.TryGetValue(key, out bool expanded)
-            ? expanded
-            : true;
-    }
-
-    private void PropertyGroup_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (sender is not PropertyGroupTemp group)
-            return;
-
-        if (e.PropertyName != nameof(PropertyGroupTemp.IsExpanded))
-            return;
-
-        if (string.IsNullOrWhiteSpace(group.Name))
-            return;
-
-        _groupExpandedStates[group.Name] = group.IsExpanded;
     }
 
     private void SubscribeToCurrentTargets()
@@ -1191,14 +1204,25 @@ public sealed class PropertyGroupTemp : ObservableObject
         set => SetProperty(ref _name, value);
     }
 
-    private bool _isExpanded;
-    public bool IsExpanded
+    public ObservableCollection<PropertyItemTemp> Items { get; } = [];
+}
+
+#endregion
+
+#region ### PropertyCategoryTemp ###
+
+public sealed class PropertyCategoryTemp
+{
+    public const string AllCategoryName = "All";
+
+    public PropertyCategoryTemp(string name, int count)
     {
-        get => _isExpanded;
-        set => SetProperty(ref _isExpanded, value);
+        Name = name;
+        Count = count;
     }
 
-    public ObservableCollection<PropertyItemTemp> Items { get; } = [];
+    public string Name { get; }
+    public int Count { get; }
 }
 
 #endregion

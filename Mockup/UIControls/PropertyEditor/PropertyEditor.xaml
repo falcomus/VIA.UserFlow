@@ -20,15 +20,6 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="PropertyGroupStyle" TargetType="{x:Type via:XExpander}">
-            <Setter Property="Margin" Value="0,0,0,8" />
-            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}" />
-            <Setter Property="HeaderPadding" Value="12,0,12,0" />
-            <Setter Property="ContentPadding" Value="10,4,10,4" />
-        </Style>
     </UserControl.Resources>
 
     <via:XBorder
@@ -43,29 +34,73 @@
             </Grid.RowDefinitions>
 
             <via:XTextBlock
-                Margin="2,-5,4,10"
-                VerticalAlignment="Top"
+                Margin="12,10,12,10"
                 FontSize="14"
                 FontWeight="SemiBold"
                 Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding ElementName=root, Path=PropertyGroups}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <via:XExpander
-                                Padding="0"
-                                HorizontalAlignment="Stretch"
-                                HorizontalContentAlignment="Stretch"
-                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceDark}}"
-                                ContentPadding="10 11 10 5"
-                                Header="{Binding Name}"
-                                IsExpanded="{Binding IsExpanded, Mode=TwoWay}"
-                                Style="{StaticResource PropertyGroupStyle}">
-                                <ItemsControl ItemsSource="{Binding Items}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,0,0,7">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <via:XBorder
+                    Grid.Column="0"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                    BorderThickness="0,1,1,0">
+                    <via:XNavigationList
+                        Padding="4"
+                        HorizontalContentAlignment="Stretch"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        DisplayMemberPath="Name"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                        ItemCornerRadius="4"
+                        ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
+                        ItemMargin="0,1"
+                        ItemPadding="10,7,8,7"
+                        ItemsSource="{Binding ElementName=root, Path=PropertyCategories}"
+                        SelectedItem="{Binding ElementName=root, Path=SelectedPropertyCategory, Mode=TwoWay}"
+                        SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
+                        SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                        SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                        SelectionIndicatorCornerRadius="0,2,2,0"
+                        SelectionIndicatorWidth="3"
+                        ShowSelectionIndicator="True">
+                        <via:XNavigationList.ItemContainerStyle>
+                            <Style TargetType="{x:Type via:XNavigationListItem}">
+                                <Setter Property="MinHeight" Value="34" />
+                                <Setter Property="ShowBadge" Value="True" />
+                                <Setter Property="BadgeContent" Value="{Binding Count}" />
+                                <Setter Property="BadgeVariant" Value="Primary" />
+                                <Setter Property="ToolTip" Value="{Binding Name}" />
+                            </Style>
+                        </via:XNavigationList.ItemContainerStyle>
+                    </via:XNavigationList>
+                </via:XBorder>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="42" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <via:XTextBlock
+                        Margin="12,0"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Text="{Binding ElementName=root, Path=SelectedPropertyCategory.Name}" />
+
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Padding="0,8,0,0"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding ElementName=root, Path=VisibleProperties}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12,0,12,8">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="148" />
                                                     <ColumnDefinition Width="*" />
@@ -207,15 +242,13 @@
                                                             Tag="{Binding}" />
                                                     </Grid>
                                                 </Grid>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </via:XExpander>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
         </Grid>
     </via:XBorder>
 </UserControl>

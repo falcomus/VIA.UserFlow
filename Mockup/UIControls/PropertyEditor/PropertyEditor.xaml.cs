@@ -1222,6 +1222,11 @@ public sealed class PropertyCategoryTemp
     }
 
     public string Name { get; }
+
+    // XNavigationList uses the semantic Title property for its item label. Keeping
+    // Name for the editor's own selection logic avoids showing the CLR type name.
+    public string Title => Name;
+
     public int Count { get; }
 }
 

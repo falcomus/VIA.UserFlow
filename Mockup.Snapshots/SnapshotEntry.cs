@@ -102,6 +102,23 @@ public sealed class SnapshotEntry
         };
 
     /// <summary>
+    /// Creates a new history entry from an already compressed payload. This is used when
+    /// Undo/Redo switches away from an object that was restored from this snapshot and
+    /// has not been changed since. Reusing the payload avoids a complete JSON serialize,
+    /// hash and compression pass on every history step.
+    /// </summary>
+    internal SnapshotEntry CreateHistoryCopy(string label, SnapshotContext context, long targetId) => new()
+    {
+        _compressedJson = (byte[])_compressedJson.Clone(),
+        _jsonHash = (byte[])_jsonHash.Clone(),
+        _originalUtf8ByteCount = _originalUtf8ByteCount,
+        Label = label,
+        Context = context,
+        TargetId = targetId,
+        CreatedAt = DateTime.Now,
+    };
+
+    /// <summary>
     /// Vergleicht zwei Snapshot-Payloads ohne Dekompression.
     /// </summary>
     internal bool HasSamePayload(SnapshotEntry other)

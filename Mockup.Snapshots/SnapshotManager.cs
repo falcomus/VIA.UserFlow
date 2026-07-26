@@ -35,6 +35,11 @@ namespace Mockup.Snapshots;
 /// </summary>
 public static class SnapshotManager
 {
+    // A restored object is exactly represented by its source entry until the next
+    // mutation. ConditionalWeakTable keeps this optimisation from extending the
+    // lifetime of designer objects.
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<object, SnapshotEntry>
+        _restoredObjectEntries = new();
     // ─────────────────────────────────────────────────────────────
     //  Stacks pro Kontext
     // ─────────────────────────────────────────────────────────────
@@ -214,6 +219,10 @@ public static class SnapshotManager
     {
         EnsureInitialized();
 
+        // A new user action changes the object after this snapshot is taken, so a
+        // previously remembered restore payload may no longer represent it.
+        _restoredObjectEntries.Remove(target);
+
         var json = _serializer!.Serialize(target, context);
         if (string.IsNullOrEmpty(json))
             return false;
@@ -254,16 +263,13 @@ public static class SnapshotManager
         if (!stack.CanUndo)
             return SnapshotResult.NotAvailable(context);
 
-        // Aktuellen Zustand serialisieren (für Redo)
-        var currentJson = _serializer!.Serialize(currentTarget, context);
-        if (string.IsNullOrEmpty(currentJson))
-            return SnapshotResult.Failure(context, "Aktueller Zustand konnte nicht serialisiert werden.");
-
-        var currentEntry = SnapshotEntry.FromJson(
-            currentJson,
-            currentLabel,
+        var currentEntry = CreateCurrentStateEntry(
+            currentTarget,
             context,
+            currentLabel,
             currentTargetId);
+        if (currentEntry == null)
+            return SnapshotResult.Failure(context, "Aktueller Zustand konnte nicht serialisiert werden.");
 
         var undoEntry = stack.PopUndo(currentEntry);
         if (undoEntry == null)
@@ -273,6 +279,8 @@ public static class SnapshotManager
         var restored = _serializer.Deserialize(undoEntry.Json, context);
         if (restored == null)
             return SnapshotResult.Failure(context, "Snapshot konnte nicht deserialisiert werden.");
+
+        RememberRestoredObject(restored, undoEntry);
 
         return SnapshotResult.Ok(context, restored, undoEntry);
     }
@@ -299,15 +307,13 @@ public static class SnapshotManager
         if (!stack.CanRedo)
             return SnapshotResult.NotAvailable(context);
 
-        var currentJson = _serializer!.Serialize(currentTarget, context);
-        if (string.IsNullOrEmpty(currentJson))
-            return SnapshotResult.Failure(context, "Aktueller Zustand konnte nicht serialisiert werden.");
-
-        var currentEntry = SnapshotEntry.FromJson(
-            currentJson,
-            currentLabel,
+        var currentEntry = CreateCurrentStateEntry(
+            currentTarget,
             context,
+            currentLabel,
             currentTargetId);
+        if (currentEntry == null)
+            return SnapshotResult.Failure(context, "Aktueller Zustand konnte nicht serialisiert werden.");
 
         var redoEntry = stack.PopRedo(currentEntry);
         if (redoEntry == null)
@@ -317,7 +323,34 @@ public static class SnapshotManager
         if (restored == null)
             return SnapshotResult.Failure(context, "Snapshot konnte nicht deserialisiert werden.");
 
+        RememberRestoredObject(restored, redoEntry);
+
         return SnapshotResult.Ok(context, restored, redoEntry);
+    }
+
+    private static SnapshotEntry? CreateCurrentStateEntry(
+        object currentTarget,
+        SnapshotContext context,
+        string label,
+        long targetId)
+    {
+        if (_restoredObjectEntries.TryGetValue(currentTarget, out var restoredEntry)
+            && restoredEntry.Context == context
+            && restoredEntry.TargetId == targetId)
+        {
+            return restoredEntry.CreateHistoryCopy(label, context, targetId);
+        }
+
+        var currentJson = _serializer!.Serialize(currentTarget, context);
+        return string.IsNullOrEmpty(currentJson)
+            ? null
+            : SnapshotEntry.FromJson(currentJson, label, context, targetId);
+    }
+
+    private static void RememberRestoredObject(object restoredObject, SnapshotEntry sourceEntry)
+    {
+        _restoredObjectEntries.Remove(restoredObject);
+        _restoredObjectEntries.Add(restoredObject, sourceEntry);
     }
 
     // ─────────────────────────────────────────────────────────────

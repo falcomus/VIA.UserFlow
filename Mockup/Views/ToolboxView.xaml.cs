@@ -1,7 +1,9 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Mockup.Resources;
+using VIA.WPF.Localization;
 
 namespace Mockup.Views;
 
@@ -50,12 +52,21 @@ public partial class ToolboxView : UserControl
 
     private void ToolboxView_Loaded(object sender, RoutedEventArgs e)
     {
+        XLocalizationService.Current.LanguageChanged -= LocalizationService_LanguageChanged;
+        XLocalizationService.Current.LanguageChanged += LocalizationService_LanguageChanged;
+
         UpdateFlyoutPresentation();
     }
 
     private void ToolboxView_Unloaded(object sender, RoutedEventArgs e)
     {
         flyoutCloseTimer.Stop();
+        XLocalizationService.Current.LanguageChanged -= LocalizationService_LanguageChanged;
+    }
+
+    private void LocalizationService_LanguageChanged(object? sender, XLanguageChangedEventArgs e)
+    {
+        UpdateFlyoutPresentation();
     }
 
     private void ToolboxRoot_MouseLeave(object sender, MouseEventArgs e) => ScheduleFlyoutClose();
@@ -155,10 +166,17 @@ public partial class ToolboxView : UserControl
 
         PART_HeaderTitle.Text = PART_Tabs.SelectedIndex switch
         {
-            0 => "Toolbox - Controls",
-            1 => "Toolbox - Templates",
-            2 => "Toolbox - Popups",
-            _ => "Toolbox - Properties",
+            0 => Loc("Toolbox.HeaderControls"),
+            1 => Loc("Toolbox.HeaderTemplates"),
+            2 => Loc("Toolbox.HeaderPopups"),
+            _ => Loc("Toolbox.HeaderProperties"),
         };
+    }
+
+    private static string Loc(string key)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key);
     }
 }

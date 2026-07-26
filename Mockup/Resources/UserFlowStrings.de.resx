@@ -121,4 +121,41 @@
   <data name="Project.ResetZoomTooltip" xml:space="preserve"><value>Zoom auf 100 % zurücksetzen</value></data>
   <data name="Screen.HeaderShort" xml:space="preserve"><value>K</value></data>
   <data name="Screen.FooterShort" xml:space="preserve"><value>F</value></data>
+  <data name="Designer.SmartGuidesTooltip" xml:space="preserve"><value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value></data>
+  <data name="Toolbox.PinToolboxTooltip" xml:space="preserve"><value>Toolbox anheften</value></data>
+  <data name="Toolbox.Controls" xml:space="preserve"><value>Steuerelemente</value></data>
+  <data name="Toolbox.Templates" xml:space="preserve"><value>Vorlagen</value></data>
+  <data name="Toolbox.Popups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Toolbox.Properties" xml:space="preserve"><value>Eigenschaften</value></data>
+  <data name="Toolbox.HeaderControls" xml:space="preserve"><value>Toolbox - Steuerelemente</value></data>
+  <data name="Toolbox.HeaderTemplates" xml:space="preserve"><value>Toolbox - Vorlagen</value></data>
+  <data name="Toolbox.HeaderPopups" xml:space="preserve"><value>Toolbox - Popups</value></data>
+  <data name="Toolbox.HeaderProperties" xml:space="preserve"><value>Toolbox - Eigenschaften</value></data>
+  <data name="Toolbox.SearchControlsPlaceholder" xml:space="preserve"><value>Steuerelemente suchen</value></data>
+  <data name="Toolbox.SearchTemplatesPlaceholder" xml:space="preserve"><value>Vorlagen suchen</value></data>
+  <data name="Toolbox.SearchPopupsPlaceholder" xml:space="preserve"><value>Popups suchen</value></data>
+  <data name="Designer.Alignment.Title" xml:space="preserve"><value>Ausrichtung</value></data>
+  <data name="Designer.Alignment.GroupAlignment" xml:space="preserve"><value>AUSRICHTUNG</value></data>
+  <data name="Designer.Alignment.GroupSizeSpacing" xml:space="preserve"><value>GRÖSSE &amp; ABSTAND</value></data>
+  <data name="Designer.Alignment.GroupStack" xml:space="preserve"><value>STAPELN</value></data>
+  <data name="Designer.Alignment.AlignLeft" xml:space="preserve"><value>Links ausrichten</value></data>
+  <data name="Designer.Alignment.AlignCenter" xml:space="preserve"><value>Horizontal zentrieren</value></data>
+  <data name="Designer.Alignment.AlignRight" xml:space="preserve"><value>Rechts ausrichten</value></data>
+  <data name="Designer.Alignment.AlignTop" xml:space="preserve"><value>Oben ausrichten</value></data>
+  <data name="Designer.Alignment.AlignMiddle" xml:space="preserve"><value>Vertikal zentrieren</value></data>
+  <data name="Designer.Alignment.AlignBottom" xml:space="preserve"><value>Unten ausrichten</value></data>
+  <data name="Designer.Alignment.MakeSameWidth" xml:space="preserve"><value>Gleiche Breite</value></data>
+  <data name="Designer.Alignment.MakeSameHeight" xml:space="preserve"><value>Gleiche Höhe</value></data>
+  <data name="Designer.Alignment.MakeSameSize" xml:space="preserve"><value>Gleiche Größe</value></data>
+  <data name="Designer.Alignment.SpaceHorizontalEven" xml:space="preserve"><value>Horizontal gleichmäßig verteilen</value></data>
+  <data name="Designer.Alignment.SpaceVerticalEven" xml:space="preserve"><value>Vertikal gleichmäßig verteilen</value></data>
+  <data name="Designer.Alignment.StackHorizontal" xml:space="preserve"><value>Horizontal stapeln</value></data>
+  <data name="Designer.Alignment.StackVertical" xml:space="preserve"><value>Vertikal stapeln</value></data>
+  <data name="Designer.SmartGuides.ToolTip" xml:space="preserve"><value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value></data>
+  <data name="Designer.ResetZoom.ToolTip" xml:space="preserve"><value>Zoom zurücksetzen</value></data>
+  <data name="Undo.Fallback" xml:space="preserve"><value>Rückgängig (Ctrl+Z)</value></data>
+  <data name="Undo.Format" xml:space="preserve"><value>Rückgängig: {0}</value></data>
+  <data name="Redo.Fallback" xml:space="preserve"><value>Wiederholen (Ctrl+Y)</value></data>
+  <data name="Redo.Format" xml:space="preserve"><value>Wiederholen: {0}</value></data>
+  <data name="Undo.Label.ControlMoved" xml:space="preserve"><value>Steuerelement verschoben</value></data>
 </root>

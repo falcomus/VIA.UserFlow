@@ -8,17 +8,29 @@
 
 using CommunityToolkit.Mvvm.Input;
 using Mockup.Messages;
+using Mockup.Resources;
 using Mockup.Services;
 using Mockup.Snapshots;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Threading;
+using VIA.WPF.Localization;
 
 namespace Mockup.ViewModel;
 
 public partial class MockupViewModel
 {
     private bool _isApplyingSnapshotRestore;
+
+    partial void InitLocalization()
+    {
+        XLocalizationService.Current.LanguageChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(UndoLabel));
+            OnPropertyChanged(nameof(RedoLabel));
+            OnPropertyChanged(nameof(SnapshotStatusLabel));
+        };
+    }
 
     /// <summary>
     /// Lets WPF paint the changed designer before a synchronous JSON write starts. The
@@ -203,12 +215,14 @@ public partial class MockupViewModel
         get
         {
             var context = GetUndoSnapshotContext();
+            string fallback = UiText("Undo.Fallback", "Undo (Ctrl+Z)");
+
             if (context == null)
-                return "Rückgängig (Ctrl+Z)";
+                return fallback;
 
             return SnapshotManager.NextUndoLabel(context.Value) is string label
-                ? $"Rückgängig: {label}"
-                : "Rückgängig (Ctrl+Z)";
+                ? UiFormat("Undo.Format", "Undo: {0}", LocalizeSnapshotLabel(label))
+                : fallback;
         }
     }
 
@@ -217,15 +231,16 @@ public partial class MockupViewModel
         get
         {
             var context = GetRedoSnapshotContext();
+            string fallback = UiText("Redo.Fallback", "Redo (Ctrl+Y)");
+
             if (context == null)
-                return "Wiederholen (Ctrl+Y)";
+                return fallback;
 
             return SnapshotManager.NextRedoLabel(context.Value) is string label
-                ? $"Wiederholen: {label}"
-                : "Wiederholen (Ctrl+Y)";
+                ? UiFormat("Redo.Format", "Redo: {0}", LocalizeSnapshotLabel(label))
+                : fallback;
         }
     }
-
     public string SnapshotStatusLabel
     {
         get
@@ -245,6 +260,35 @@ public partial class MockupViewModel
         }
     }
 
+
+    private static string UiText(string key, string fallback)
+    {
+        return XLocalizationService.Current.GetString(UserFlowResources.ResourceManager, key, fallback);
+    }
+
+    private static string UiFormat(string key, string fallback, params object?[] arguments)
+    {
+        return XLocalizationService.Current.Format(UserFlowResources.ResourceManager, key, fallback, arguments);
+    }
+
+    private static string LocalizeSnapshotLabel(string label)
+    {
+        if (IsSnapshotLabel(label, SnapshotLabels.ControlMoved, "Control verschoben", "Steuerelement verschoben", "Control moved"))
+            return UiText("Undo.Label.ControlMoved", "Control moved");
+
+        return label;
+    }
+
+    private static bool IsSnapshotLabel(string label, params string[] candidates)
+    {
+        foreach (string candidate in candidates)
+        {
+            if (string.Equals(label, candidate, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
     // ─────────────────────────────────────────────────────────────
     //  Restored Object anwenden
     // ─────────────────────────────────────────────────────────────

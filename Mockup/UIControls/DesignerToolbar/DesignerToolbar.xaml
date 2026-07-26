@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Mockup.UIControls"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root">
 
@@ -18,13 +19,14 @@
             CheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             IconSize="16"
             IsChecked="{Binding CurrentProject.ShowAlignmentGuidelines, Mode=TwoWay}"
-            ToolTip="Smart guides: show and snap to matching control edges and centers"
+            ToolTip="{via:XLoc Designer.SmartGuidesTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             UncheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             Variant="Info" />
 
         <via:XSeparator Margin="8,0" />
 
         <via:XUndoRedoBar
+            Cursor="Hand"
             UndoCommand="{Binding UndoCommand}"
             RedoCommand="{Binding RedoCommand}"
             UndoToolTip="{Binding UndoLabel, FallbackValue='Undo (Ctrl+Z)'}"
@@ -35,9 +37,9 @@
         <via:XZoomSlider
             Margin="0,0,10,0"
             BorderThickness="0"
-            Cursor="Hand"
             MaxZoomPercent="{Binding ElementName=root, Path=MaxZoomPercent}"
             MinZoomPercent="{Binding ElementName=root, Path=MinZoomPercent}"
+            ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             TickFrequency="1"
             ZoomPercent="{Binding ElementName=root, Path=ZoomPercent, Mode=TwoWay}" />
     </StackPanel>

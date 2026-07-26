@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 // DATEI: Mockup.ViewModel/MockupViewModel.cs
 // ==========================================================================================
 // Diese Datei ist das Main Partial aller MockupViewModel.
@@ -20,6 +20,7 @@ public partial class MockupViewModel : ObservableObject
     partial void InitGrouping();
     partial void InitSettings();
     partial void InitContextMenu();
+    partial void InitLocalization();
 
 
     public MockupViewModel()
@@ -27,6 +28,7 @@ public partial class MockupViewModel : ObservableObject
         InitGrouping();
         InitSettings();
         InitContextMenu();
+        InitLocalization();
     }
 
     #endregion

@@ -45,8 +45,8 @@
             <via:XBorder
                 Width="825"
                 Height="570"
-                CornerRadius="8"
-                BorderThickness="0">
+                BorderThickness="0"
+                CornerRadius="8">
 
                 <Grid ext:GridEx.RowDef="45,*,Auto">
 

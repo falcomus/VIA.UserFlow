@@ -30,7 +30,8 @@
             FontWeight="Bold"
             Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
-            Text="{via:XLoc Splash.HeadingStartup, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+            Text="{via:XLoc Splash.HeadingStartup,
+                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
         <TextBlock
             x:Name="PART_StatusText"
@@ -39,19 +40,20 @@
             FontSize="13"
             Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
-            Text="{via:XLoc Splash.StatusPreparing, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Text="{via:XLoc Splash.StatusPreparing,
+                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             TextTrimming="CharacterEllipsis" />
 
         <via:XProgressBar
             x:Name="PART_ProgressBar"
             Width="300"
             Height="18"
+            MinHeight="0"
             Margin="25,175,0,0"
             HorizontalAlignment="Left"
             IsIndeterminate="False"
             Maximum="100"
             Minimum="0"
-            MinHeight="0"
             ProgressBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
             ShowValue="False"
             TrackBrush="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
@@ -67,7 +69,7 @@
             Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
             Opacity="0.9"
             Text="0 %" />
-    
+
         <Border
             x:Name="PART_PleaseWaitImageTextCover"
             Width="165"
@@ -85,8 +87,9 @@
             FontSize="13"
             Foreground="#6A7DA3"
             Opacity="0.9"
-            Text="{via:XLoc Splash.PleaseWait, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-</Grid>
+            Text="{via:XLoc Splash.PleaseWait,
+                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+    </Grid>
 
 
 </Window>

@@ -1,10 +1,10 @@
-﻿// ======================================================================================
+// ======================================================================================
 // FILE: Mockup.Snapshots/SnapshotLabels.cs
 //
 // ZWECK:
 //   Vordefinierte Label-Konstanten für alle Undo/Redo-Aktionen in UserFlow.
 //   Werden beim Push-Aufruf als "label"-Parameter übergeben und in der
-//   UI als "Undo: Control verschoben" angezeigt.
+//   UI als "Undo: Steuerelement verschoben" angezeigt.
 //
 // USAGE:
 //   SnapshotManager.Push(screen, SnapshotContext.Screen,
@@ -24,29 +24,29 @@ public static class SnapshotLabels
     // ─────────────────────────────────────────────────────────────
 
     /// <summary>Screen-Eigenschaften oder Screen-Aufbau geändert.</summary>
-    public const string ScreenChanged = "Screen geändert";
+    public const string ScreenChanged = "Bildschirm geändert";
 
     /// <summary>Screen zur Collection hinzugefügt.</summary>
-    public const string ScreenAdded = "Screen hinzugefügt";
+    public const string ScreenAdded = "Bildschirm hinzugefügt";
 
     /// <summary>Screen aus der Collection gelöscht.</summary>
-    public const string ScreenDeleted = "Screen gelöscht";
+    public const string ScreenDeleted = "Bildschirm gelöscht";
 
     // ─────────────────────────────────────────────────────────────
     //  Controls
     // ─────────────────────────────────────────────────────────────
 
     /// <summary>Control per Drag-Drop auf dem Designer abgelegt.</summary>
-    public const string ControlDropped = "Control hinzugefügt";
+    public const string ControlDropped = "Steuerelement hinzugefügt";
 
     /// <summary>Control(s) im Designer verschoben.</summary>
-    public const string ControlMoved = "Control verschoben";
+    public const string ControlMoved = "Steuerelement verschoben";
 
     /// <summary>Control im Designer in der Größe verändert.</summary>
-    public const string ControlResized = "Control skaliert";
+    public const string ControlResized = "Steuerelement skaliert";
 
     /// <summary>Control(s) gelöscht.</summary>
-    public const string ControlDeleted = "Control gelöscht";
+    public const string ControlDeleted = "Steuerelement gelöscht";
 
     /// <summary>Control-Eigenschaft im PropertyGrid geändert.</summary>
     public const string ControlPropChanged = "Eigenschaft geändert";
@@ -61,13 +61,13 @@ public static class SnapshotLabels
     public const string ControlZOrderChanged = "Z-Reihenfolge geändert";
 
     /// <summary>Controls ausgerichtet (Alignment-Toolbar).</summary>
-    public const string ControlsAligned = "Controls ausgerichtet";
+    public const string ControlsAligned = "Steuerelemente ausgerichtet";
 
     /// <summary>Controls gruppiert.</summary>
-    public const string ControlsGrouped = "Controls gruppiert";
+    public const string ControlsGrouped = "Steuerelemente gruppiert";
 
     /// <summary>Controls entgruppiert.</summary>
-    public const string ControlsUngrouped = "Controls entgruppiert";
+    public const string ControlsUngrouped = "Steuerelemente entgruppiert";
 
     // ─────────────────────────────────────────────────────────────
     //  Bands
@@ -113,13 +113,13 @@ public static class SnapshotLabels
     // ─────────────────────────────────────────────────────────────
 
     /// <summary>Template-Inhalt geändert.</summary>
-    public const string TemplateChanged = "Template geändert";
+    public const string TemplateChanged = "Vorlage geändert";
 
     /// <summary>Template zur Collection hinzugefügt.</summary>
-    public const string TemplateAdded = "Template hinzugefügt";
+    public const string TemplateAdded = "Vorlage hinzugefügt";
 
     /// <summary>Template aus der Collection gelöscht.</summary>
-    public const string TemplateDeleted = "Template gelöscht";
+    public const string TemplateDeleted = "Vorlage gelöscht";
 
     // ─────────────────────────────────────────────────────────────
     //  Popups

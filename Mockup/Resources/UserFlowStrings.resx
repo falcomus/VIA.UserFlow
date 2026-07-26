@@ -121,4 +121,41 @@
   <data name="Project.ResetZoomTooltip" xml:space="preserve"><value>Reset zoom to 100%</value></data>
   <data name="Screen.HeaderShort" xml:space="preserve"><value>H</value></data>
   <data name="Screen.FooterShort" xml:space="preserve"><value>F</value></data>
+  <data name="Designer.SmartGuidesTooltip" xml:space="preserve"><value>Smart guides: show and snap to matching control edges and centers</value></data>
+  <data name="Toolbox.PinToolboxTooltip" xml:space="preserve"><value>Pin Toolbox</value></data>
+  <data name="Toolbox.Controls" xml:space="preserve"><value>Controls</value></data>
+  <data name="Toolbox.Templates" xml:space="preserve"><value>Templates</value></data>
+  <data name="Toolbox.Popups" xml:space="preserve"><value>Popups</value></data>
+  <data name="Toolbox.Properties" xml:space="preserve"><value>Properties</value></data>
+  <data name="Toolbox.HeaderControls" xml:space="preserve"><value>Toolbox - Controls</value></data>
+  <data name="Toolbox.HeaderTemplates" xml:space="preserve"><value>Toolbox - Templates</value></data>
+  <data name="Toolbox.HeaderPopups" xml:space="preserve"><value>Toolbox - Popups</value></data>
+  <data name="Toolbox.HeaderProperties" xml:space="preserve"><value>Toolbox - Properties</value></data>
+  <data name="Toolbox.SearchControlsPlaceholder" xml:space="preserve"><value>Search controls</value></data>
+  <data name="Toolbox.SearchTemplatesPlaceholder" xml:space="preserve"><value>Search templates</value></data>
+  <data name="Toolbox.SearchPopupsPlaceholder" xml:space="preserve"><value>Search popups</value></data>
+  <data name="Designer.Alignment.Title" xml:space="preserve"><value>Alignment</value></data>
+  <data name="Designer.Alignment.GroupAlignment" xml:space="preserve"><value>ALIGNMENT</value></data>
+  <data name="Designer.Alignment.GroupSizeSpacing" xml:space="preserve"><value>SIZE &amp; SPACING</value></data>
+  <data name="Designer.Alignment.GroupStack" xml:space="preserve"><value>STACK</value></data>
+  <data name="Designer.Alignment.AlignLeft" xml:space="preserve"><value>Align left</value></data>
+  <data name="Designer.Alignment.AlignCenter" xml:space="preserve"><value>Align center</value></data>
+  <data name="Designer.Alignment.AlignRight" xml:space="preserve"><value>Align right</value></data>
+  <data name="Designer.Alignment.AlignTop" xml:space="preserve"><value>Align top</value></data>
+  <data name="Designer.Alignment.AlignMiddle" xml:space="preserve"><value>Align middle</value></data>
+  <data name="Designer.Alignment.AlignBottom" xml:space="preserve"><value>Align bottom</value></data>
+  <data name="Designer.Alignment.MakeSameWidth" xml:space="preserve"><value>Make same width</value></data>
+  <data name="Designer.Alignment.MakeSameHeight" xml:space="preserve"><value>Make same height</value></data>
+  <data name="Designer.Alignment.MakeSameSize" xml:space="preserve"><value>Make same size</value></data>
+  <data name="Designer.Alignment.SpaceHorizontalEven" xml:space="preserve"><value>Distribute horizontally</value></data>
+  <data name="Designer.Alignment.SpaceVerticalEven" xml:space="preserve"><value>Distribute vertically</value></data>
+  <data name="Designer.Alignment.StackHorizontal" xml:space="preserve"><value>Stack horizontally</value></data>
+  <data name="Designer.Alignment.StackVertical" xml:space="preserve"><value>Stack vertically</value></data>
+  <data name="Designer.SmartGuides.ToolTip" xml:space="preserve"><value>Smart guides: show and snap to matching control edges and centers</value></data>
+  <data name="Designer.ResetZoom.ToolTip" xml:space="preserve"><value>Reset zoom</value></data>
+  <data name="Undo.Fallback" xml:space="preserve"><value>Undo (Ctrl+Z)</value></data>
+  <data name="Undo.Format" xml:space="preserve"><value>Undo: {0}</value></data>
+  <data name="Redo.Fallback" xml:space="preserve"><value>Redo (Ctrl+Y)</value></data>
+  <data name="Redo.Format" xml:space="preserve"><value>Redo: {0}</value></data>
+  <data name="Undo.Label.ControlMoved" xml:space="preserve"><value>Control moved</value></data>
 </root>

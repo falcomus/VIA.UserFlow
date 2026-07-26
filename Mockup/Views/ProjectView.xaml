@@ -700,7 +700,7 @@
                                 </Border.Effect>
 
                                 <Grid
-                                    Margin="7,0,7,7"
+                                    Margin="7"
                                     ext:GridEx.RowDef="Auto,*"
                                     Background="Transparent">
 
@@ -796,7 +796,7 @@
                                             <via:XIconButton
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
-                                                Command="{Binding ElementName=root, Path=DataContext.EditScreenCoreCommand}"
+                                                Command="{Binding DataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=PencilOutline}"
@@ -808,7 +808,7 @@
                                             <via:XIconButton
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
-                                                Command="{Binding ElementName=root, Path=DataContext.DeleteScreenCommand}"
+                                                Command="{Binding DataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=DeleteOutline}"
@@ -820,7 +820,7 @@
                                             <via:XIconButton
                                                 VerticalAlignment="Center"
                                                 Appearance="Ghost"
-                                                Command="{Binding ElementName=root, Path=DataContext.GotoScreenPageCommand}"
+                                                Command="{Binding DataContext.GotoScreenPageCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=ArrowRightBold}"
@@ -850,7 +850,7 @@
                                                 Margin="0,0,-2,0"
                                                 Background="Transparent"
                                                 BorderThickness="0"
-                                                Command="{Binding ElementName=root, Path=DataContext.SetAsHomeScreenCommand}"
+                                                Command="{Binding DataContext.SetAsHomeScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=HomeOutline}"
@@ -860,13 +860,13 @@
                                                 ToolTip="Set as Home Screen">
                                                 <via:XIconButton.Style>
                                                     <Style TargetType="{x:Type via:XIconButton}">
-                                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
                                                         <Setter Property="Opacity" Value="0.75" />
 
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=DataContext.IsHomeScreen}" Value="True">
 
-                                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+                                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusWarning}}" />
                                                                 <Setter Property="Opacity" Value="1" />
                                                             </DataTrigger>
                                                         </Style.Triggers>

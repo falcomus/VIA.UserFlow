@@ -915,8 +915,10 @@ public sealed partial class MockupViewModel : ObservableObject
 
         screen.IsHomeScreen = true;
 
+        HomeScreen = screen;
         MockupService.Mockup.HomeScreen = screen;
-        OnPropertyChanged(nameof(HomeScreen));
+        SaveCurrentProject();
+        MSG.UI.InvalidateDesigner();
     }
 
     [RelayCommand]

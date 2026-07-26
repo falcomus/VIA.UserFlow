@@ -2136,8 +2136,8 @@ public sealed partial class MockupViewModel : ObservableObject
 
     private void SaveAfterControlAlignmentChange()
     {
-        SaveActiveContextMenuSnapshotContext();
         MSG.UI.InvalidateDesigner();
+        SaveActiveContextMenuSnapshotContextAfterRender();
     }
 
     #endregion

@@ -11,12 +11,33 @@ using Mockup.Messages;
 using Mockup.Services;
 using Mockup.Snapshots;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Mockup.ViewModel;
 
 public partial class MockupViewModel
 {
     private bool _isApplyingSnapshotRestore;
+
+    /// <summary>
+    /// Lets WPF paint the changed designer before a synchronous JSON write starts. The
+    /// persisted state remains identical; only the visual feedback is no longer delayed
+    /// by file IO and serialization.
+    /// </summary>
+    private void SaveActiveContextMenuSnapshotContextAfterRender()
+    {
+        Application.Current?.Dispatcher.BeginInvoke(
+            DispatcherPriority.Background,
+            new Action(SaveActiveContextMenuSnapshotContext));
+    }
+
+    private void SaveSnapshotContextAfterRender(SnapshotContext context)
+    {
+        Application.Current?.Dispatcher.BeginInvoke(
+            DispatcherPriority.Background,
+            new Action(() => SaveCurrentSnapshotContext(context)));
+    }
 
     // ─────────────────────────────────────────────────────────────
     //  Initialisierung
@@ -302,10 +323,9 @@ public partial class MockupViewModel
             PopupDesignerHeight = CurrentPopup.Height;
         }
 
-        SaveCurrentProject();
         RefreshProjectUiInfo();
-
         MSG.UI.InvalidateDesigner();
+        SaveSnapshotContextAfterRender(SnapshotContext.Project);
     }
 
     private void RestoreScreen(Screen restored)
@@ -325,9 +345,8 @@ public partial class MockupViewModel
         CurrentProject.Screens[idx] = restored;
         CurrentScreen = restored;
 
-        SaveCurrentProject();
-
         MSG.UI.InvalidateDesigner();
+        SaveSnapshotContextAfterRender(SnapshotContext.Screen);
     }
 
     private void RestoreTemplates(ObservableCollection<ScreenTemplate> restored, long preferredTargetId)
@@ -346,10 +365,9 @@ public partial class MockupViewModel
                           ?? Templates.FirstOrDefault(x => x.Id == previousTemplateId)
                           ?? Templates.FirstOrDefault();
 
-        SaveTemplates();
         RefreshProjectUiInfo();
-
         MSG.UI.InvalidateDesigner();
+        SaveSnapshotContextAfterRender(SnapshotContext.Templates);
     }
 
     private void NormalizeTemplateAfterRestore(ScreenTemplate template)
@@ -387,9 +405,8 @@ public partial class MockupViewModel
         Templates[idx] = restored;
         CurrentTemplate = restored;
 
-        SaveTemplates();
-
         MSG.UI.InvalidateDesigner();
+        SaveSnapshotContextAfterRender(SnapshotContext.Template);
     }
 
     private void RestorePopup(ScreenPopup restored)
@@ -407,9 +424,8 @@ public partial class MockupViewModel
         PopupDesignerWidth = CurrentPopup.Width;
         PopupDesignerHeight = CurrentPopup.Height;
 
-        SaveCurrentProject();
-
         MSG.UI.InvalidateDesigner();
+        SaveSnapshotContextAfterRender(SnapshotContext.Popup);
     }
 
     // ─────────────────────────────────────────────────────────────

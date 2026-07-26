@@ -344,7 +344,10 @@ public partial class MockupViewModel : ObservableObject
         if (CurrentProject == null || string.IsNullOrWhiteSpace(CurrentProject.FilePath))
             return;
 
-        SaveProject(CurrentProject);
+        // Editing a control must not rebuild the project-file list. That list only changes
+        // when projects are created, renamed, opened or deleted; rebuilding it on every
+        // designer action delayed the next visual render noticeably.
+        SaveProject(CurrentProject, refreshProjectFiles: false);
     }
 
     public void SaveProject(Project project, bool refreshProjectFiles = true)

@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:via="http://schemas.via.dev/wpf"
     xmlns:resources="clr-namespace:Mockup.Resources"
+    xmlns:via="http://schemas.via.dev/wpf"
     xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
     d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
     mc:Ignorable="d">
 
     <via:XToggleDropDown
-        Content="{via:XLoc Designer.Alignment.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+        Content="{via:XLoc Designer.Alignment.Title,
+                           ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
         Focusable="False"
         IsTabStop="False">
         <via:XToggleDropDown.DropDownContent>
@@ -35,34 +36,41 @@
                         FontSize="12"
                         FontWeight="SemiBold"
                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                        Text="{via:XLoc Designer.Alignment.GroupAlignment, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        Text="{via:XLoc Designer.Alignment.GroupAlignment,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">
                         <via:XIconButton
                             Command="{Binding AlignLeftCommand}"
                             Icon="{via:MaterialIcon Kind=FormatHorizontalAlignLeft}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignLeft, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignLeft,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding AlignCenterCommand}"
                             Icon="{via:MaterialIcon Kind=FormatHorizontalAlignCenter}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignCenter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignCenter,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding AlignRightCommand}"
                             Icon="{via:MaterialIcon Kind=FormatHorizontalAlignRight}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignRight, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignRight,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Margin="6,0,0,0"
                             Command="{Binding AlignTopCommand}"
                             Icon="{via:MaterialIcon Kind=FormatVerticalAlignTop}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignTop, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignTop,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding AlignMiddleCommand}"
                             Icon="{via:MaterialIcon Kind=FormatVerticalAlignCenter}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignMiddle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignMiddle,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding AlignBottomCommand}"
                             Icon="{via:MaterialIcon Kind=FormatVerticalAlignBottom}"
-                            ToolTip="{via:XLoc Designer.Alignment.AlignBottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.AlignBottom,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </via:XStackPanel>
 
                     <TextBlock
@@ -70,30 +78,36 @@
                         FontSize="12"
                         FontWeight="SemiBold"
                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                        Text="{via:XLoc Designer.Alignment.GroupSizeSpacing, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        Text="{via:XLoc Designer.Alignment.GroupSizeSpacing,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">
                         <via:XIconButton
                             Command="{Binding MakeSameWidthCommand}"
                             Icon="{via:MaterialIcon Kind=ArrowExpandHorizontal}"
-                            ToolTip="{via:XLoc Designer.Alignment.MakeSameWidth, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.MakeSameWidth,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding MakeSameHeightCommand}"
                             Icon="{via:MaterialIcon Kind=ArrowExpandVertical}"
-                            ToolTip="{via:XLoc Designer.Alignment.MakeSameHeight, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.MakeSameHeight,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding MakeSameSizeCommand}"
                             Icon="{via:MaterialIcon Kind=CropSquare}"
-                            ToolTip="{via:XLoc Designer.Alignment.MakeSameSize, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.MakeSameSize,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Margin="6,0,0,0"
                             Command="{Binding SpaceHorEvenCommand}"
                             Icon="{via:MaterialIcon Kind=UnfoldMoreVertical}"
-                            ToolTip="{via:XLoc Designer.Alignment.SpaceHorizontalEven, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.SpaceHorizontalEven,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding SpaceVerEvenCommand}"
                             Icon="{via:MaterialIcon Kind=UnfoldMoreHorizontal}"
-                            ToolTip="{via:XLoc Designer.Alignment.SpaceVerticalEven, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.SpaceVerticalEven,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </via:XStackPanel>
 
                     <TextBlock
@@ -101,17 +115,20 @@
                         FontSize="12"
                         FontWeight="SemiBold"
                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                        Text="{via:XLoc Designer.Alignment.GroupStack, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        Text="{via:XLoc Designer.Alignment.GroupStack,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                     <via:XStackPanel Orientation="Horizontal" Spacing="4">
                         <via:XIconButton
                             Command="{Binding StackHorCommand}"
                             Icon="{via:MaterialIcon Kind=ViewWeekOutline}"
-                            ToolTip="{via:XLoc Designer.Alignment.StackHorizontal, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.StackHorizontal,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XIconButton
                             Command="{Binding StackVerCommand}"
                             Icon="{via:MaterialIcon Kind=ViewAgendaOutline}"
-                            ToolTip="{via:XLoc Designer.Alignment.StackVertical, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            ToolTip="{via:XLoc Designer.Alignment.StackVertical,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </via:XStackPanel>
                 </StackPanel>
             </Border>

@@ -184,7 +184,8 @@
                     Click="PinButton_Click"
                     IsChecked="{Binding ElementName=root, Path=IsFlyoutPinned}"
                     Style="{StaticResource ToolboxRailToggleButtonStyle}"
-                    ToolTip="{via:XLoc Toolbox.PinToolboxTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                    ToolTip="{via:XLoc Toolbox.PinToolboxTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                     <ico:PackIconMaterial
                         Width="16"
                         Height="16"
@@ -202,7 +203,8 @@
                     Click="RailButton_Click"
                     Icon="{via:MaterialIcon Kind=ViewDashboard}"
                     Tag="0"
-                    ToolTip="{via:XLoc Toolbox.Controls, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                    ToolTip="{via:XLoc Toolbox.Controls,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                     <via:XIconButton.Style>
                         <Style BasedOn="{StaticResource ToolboxRailIconButtonStyle}" TargetType="via:XIconButton">
                             <Style.Triggers>
@@ -224,7 +226,8 @@
                     Click="RailButton_Click"
                     Icon="{via:MaterialIcon Kind=Application}"
                     Tag="1"
-                    ToolTip="{via:XLoc Toolbox.Templates, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                    ToolTip="{via:XLoc Toolbox.Templates,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                     <via:XIconButton.Style>
                         <Style BasedOn="{StaticResource ToolboxRailIconButtonStyle}" TargetType="via:XIconButton">
                             <Style.Triggers>
@@ -246,7 +249,8 @@
                     Click="RailButton_Click"
                     Icon="{via:MaterialIcon Kind=BorderRightVariant}"
                     Tag="2"
-                    ToolTip="{via:XLoc Toolbox.Popups, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                    ToolTip="{via:XLoc Toolbox.Popups,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                     <via:XIconButton.Style>
                         <Style BasedOn="{StaticResource ToolboxRailIconButtonStyle}" TargetType="via:XIconButton">
                             <Style.Triggers>
@@ -268,7 +272,8 @@
                     Click="RailButton_Click"
                     Icon="{via:MaterialIcon Kind=Tune}"
                     Tag="3"
-                    ToolTip="{via:XLoc Toolbox.Properties, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                    ToolTip="{via:XLoc Toolbox.Properties,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                     <via:XIconButton.Style>
                         <Style BasedOn="{StaticResource ToolboxRailIconButtonStyle}" TargetType="via:XIconButton">
                             <Style.Triggers>
@@ -327,7 +332,8 @@
                             FontSize="17"
                             FontWeight="Medium"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
-                            Text="{via:XLoc Toolbox.HeaderControls, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Toolbox.HeaderControls,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </Grid>
                 </Border>
 
@@ -412,7 +418,8 @@
                                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                         BorderThickness="1"
-                                        Placeholder="{via:XLoc Toolbox.SearchControlsPlaceholder, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        Placeholder="{via:XLoc Toolbox.SearchControlsPlaceholder,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         ShowResetButton="True"
                                         Text="{Binding ControlToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -623,7 +630,8 @@
                                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                         BorderThickness="1"
-                                        Placeholder="{via:XLoc Toolbox.SearchTemplatesPlaceholder, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        Placeholder="{via:XLoc Toolbox.SearchTemplatesPlaceholder,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         ShowResetButton="True"
                                         Text="{Binding TemplateToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -801,7 +809,8 @@
                                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
                                         BorderThickness="1"
-                                        Placeholder="{via:XLoc Toolbox.SearchPopupsPlaceholder, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        Placeholder="{via:XLoc Toolbox.SearchPopupsPlaceholder,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         ShowResetButton="True"
                                         Text="{Binding PopupToolboxSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 

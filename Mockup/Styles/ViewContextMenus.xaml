@@ -109,9 +109,11 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.SaveProjectAsCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc Project.SaveProjectAs, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-            ToolTip="{via:XLoc Project.SaveProjectAsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc Project.SaveProjectAs,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=ContentSave}"
+            ToolTip="{via:XLoc Project.SaveProjectAsTooltip,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Variant="Primary" />
 
         <Separator Style="{DynamicResource XMenuSeparatorStyle}" />
@@ -119,16 +121,20 @@
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc Project.EditProjectSettings, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-            ToolTip="{via:XLoc Project.EditProjectSettingsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-            Icon="{via:MaterialIcon Kind=PencilOutline}" />
+            Header="{via:XLoc Project.EditProjectSettings,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Icon="{via:MaterialIcon Kind=PencilOutline}"
+            ToolTip="{via:XLoc Project.EditProjectSettingsTooltip,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetDataContext.CurrentProjectFile, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc Project.DeleteProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-            ToolTip="{via:XLoc Project.DeleteProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc Project.DeleteProject,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
+            ToolTip="{via:XLoc Project.DeleteProjectTooltip,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Variant="Danger" />
 
     </via:XContextMenu>

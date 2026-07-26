@@ -19,7 +19,8 @@
             CheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             IconSize="16"
             IsChecked="{Binding CurrentProject.ShowAlignmentGuidelines, Mode=TwoWay}"
-            ToolTip="{via:XLoc Designer.SmartGuidesTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ToolTip="{via:XLoc Designer.SmartGuidesTooltip,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             UncheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             Variant="Info" />
 
@@ -27,10 +28,10 @@
 
         <via:XUndoRedoBar
             Cursor="Hand"
-            UndoCommand="{Binding UndoCommand}"
             RedoCommand="{Binding RedoCommand}"
-            UndoToolTip="{Binding UndoLabel, FallbackValue='Undo (Ctrl+Z)'}"
-            RedoToolTip="{Binding RedoLabel, FallbackValue='Redo (Ctrl+Y)'}" />
+            RedoToolTip="{Binding RedoLabel, FallbackValue='Redo (Ctrl+Y)'}"
+            UndoCommand="{Binding UndoCommand}"
+            UndoToolTip="{Binding UndoLabel, FallbackValue='Undo (Ctrl+Z)'}" />
 
         <via:XSeparator Margin="8,0" />
 
@@ -39,7 +40,8 @@
             BorderThickness="0"
             MaxZoomPercent="{Binding ElementName=root, Path=MaxZoomPercent}"
             MinZoomPercent="{Binding ElementName=root, Path=MinZoomPercent}"
-            ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             TickFrequency="1"
             ZoomPercent="{Binding ElementName=root, Path=ZoomPercent, Mode=TwoWay}" />
     </StackPanel>

@@ -193,6 +193,7 @@
                             <Setter Property="ShowEdit" Value="True" />
                             <Setter Property="ShowDelete" Value="True" />
 
+
                             <Setter Property="EditCommand" Value="{Binding DataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
                             <Setter Property="EditCommandParameter" Value="{Binding}" />
 
@@ -490,14 +491,14 @@
                         Opacity="0.9"
                         Text="{Binding CurrentPopup.Name, FallbackValue='Popup Name'}" />
 
-                    <via:XStackPanel
+                    <StackPanel
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 
                         <ui:DesignerToolbar x:Name="PART_DesignerToolbar" ZoomPercent="{Binding CurrentProject.PopupZoomPercent, Mode=TwoWay}" />
 
-                    </via:XStackPanel>
+                    </StackPanel>
 
                 </Grid>
 
@@ -513,7 +514,7 @@
                 BorderThickness="0,0,1,0"
                 CornerRadius="0"
                 Visibility="{Binding CurrentPopup, Converter={StaticResource NullToInversVisibilityConverter}, FallbackValue=Collapsed}">
-                <via:XStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ico:PackIconMaterial
                         Width="24"
                         Height="24"
@@ -524,7 +525,7 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
                         Text="{via:XLoc Popup.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                </via:XStackPanel>
+                </StackPanel>
             </via:XBorder>
         </Grid>
     </Grid>

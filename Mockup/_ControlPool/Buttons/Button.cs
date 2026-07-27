@@ -273,7 +273,8 @@ public partial class Button : DesignControl
             fillColor: fillColor,
             borderColor: resolvedBorderColor,
             borderStyle: BorderStyle.Solid,
-            shadowOptions: shadowOptions,
+            //shadowOptions: shadowOptions,
+            shadowOptions: null,
             borderWidth: 0.75f
         );
 

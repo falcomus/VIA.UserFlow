@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Mockup.Resources;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using VIA.WPF.Controls;
+using VIA.WPF.Localization;
 using VIA.WPF.Windowing;
 
 namespace Mockup.ColorSystem;
@@ -46,23 +48,31 @@ public partial class ColorSchemaEditor : XWindow
         LoadSchemaIntoUi();
     }
 
+    private static string DialogText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
 
     // === LOAD DATA INTO UI ========================================================
     private void LoadSchemaIntoUi()
     {
         DisplayName = _schema.DisplayName;
 
-        AddColor("Primary", nameof(_schema.PrimaryColor), _schema.PrimaryColor);
-        AddColor("Neutral", nameof(_schema.NeutralColor), _schema.NeutralColor);
-        AddColor("Accent", nameof(_schema.AccentColor), _schema.AccentColor);
-        AddColor("Text", nameof(_schema.TextColor), _schema.TextColor);
-        AddColor("Info", nameof(_schema.InfoColor), _schema.InfoColor);
-        AddColor("Control Background", nameof(_schema.ControlBGColor), _schema.ControlBGColor);
-        AddColor("Warning", nameof(_schema.WarningColor), _schema.WarningColor);
-        AddColor("Control Border", nameof(_schema.ControlBorderColor), _schema.ControlBorderColor);
-        AddColor("Error", nameof(_schema.ErrorColor), _schema.ErrorColor);
-        AddColor("Card Border", nameof(_schema.BorderColor), _schema.BorderColor);
-        AddColor("Success", nameof(_schema.SuccessColor), _schema.SuccessColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Primary", "Primary"), nameof(_schema.PrimaryColor), _schema.PrimaryColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Neutral", "Neutral"), nameof(_schema.NeutralColor), _schema.NeutralColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Accent", "Accent"), nameof(_schema.AccentColor), _schema.AccentColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Text", "Text"), nameof(_schema.TextColor), _schema.TextColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Info", "Info"), nameof(_schema.InfoColor), _schema.InfoColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.ControlBackground", "Control Background"), nameof(_schema.ControlBGColor), _schema.ControlBGColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Warning", "Warning"), nameof(_schema.WarningColor), _schema.WarningColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.ControlBorder", "Control Border"), nameof(_schema.ControlBorderColor), _schema.ControlBorderColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Error", "Error"), nameof(_schema.ErrorColor), _schema.ErrorColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.CardBorder", "Card Border"), nameof(_schema.BorderColor), _schema.BorderColor);
+        AddColor(DialogText("Dialog.ColorScheme.Token.Success", "Success"), nameof(_schema.SuccessColor), _schema.SuccessColor);
 
         foreach (var c in ColorItems)
             PreviewItems.Add(c);

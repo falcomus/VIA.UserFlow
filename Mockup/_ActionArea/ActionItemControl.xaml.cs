@@ -1,10 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Mockup.Resources;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using VIA.WPF.Localization;
 
 namespace Mockup.Actions;
 
@@ -48,7 +50,7 @@ public partial class ActionItemControl : UserControl
     }
 
     [ObservableProperty]
-    private string displayText = "No target...";
+    private string displayText = string.Empty;
 
     [ObservableProperty]
     private string trigger = string.Empty;
@@ -67,7 +69,7 @@ public partial class ActionItemControl : UserControl
     }
 
     [ObservableProperty]
-    private string filename = "Select filename...";
+    private string filename = string.Empty;
 
     partial void OnFilenameChanged(string value)
     {
@@ -77,7 +79,7 @@ public partial class ActionItemControl : UserControl
     }
 
     [ObservableProperty]
-    private string url = "Enter URL...";
+    private string url = string.Empty;
 
     partial void OnUrlChanged(string value)
     {
@@ -144,6 +146,29 @@ public partial class ActionItemControl : UserControl
         UpdateFromRow(); // nachträglich Row auswerten, falls schon gesetzt
     }
 
+    private static string Localize(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+    private static string LocalizeTrigger(ActionTrigger trigger)
+    {
+        return trigger switch
+        {
+            ActionTrigger.Tap => Localize("Dialog.ActionArea.Trigger.Tap", "Tap"),
+            ActionTrigger.DoubleTap => Localize("Dialog.ActionArea.Trigger.DoubleTap", "Double Tap"),
+            ActionTrigger.LongPress => Localize("Dialog.ActionArea.Trigger.LongPress", "Long Press"),
+            ActionTrigger.SwipeLeft => Localize("Dialog.ActionArea.Trigger.SwipeLeft", "Swipe Left"),
+            ActionTrigger.SwipeRight => Localize("Dialog.ActionArea.Trigger.SwipeRight", "Swipe Right"),
+            ActionTrigger.SwipeUp => Localize("Dialog.ActionArea.Trigger.SwipeUp", "Swipe Up"),
+            ActionTrigger.SwipeDown => Localize("Dialog.ActionArea.Trigger.SwipeDown", "Swipe Down"),
+            _ => trigger.ToString(),
+        };
+    }
+
     #endregion
 
     #region === Row Synchronisation ===
@@ -158,7 +183,7 @@ public partial class ActionItemControl : UserControl
         {
             _updatingFromRow = true;
 
-            Trigger = Row.Trigger.ToString().ToUpperInvariant();
+            Trigger = LocalizeTrigger(Row.Trigger).ToUpper(XLocalizationService.Current.CurrentUICulture);
             ActionType = Row.Type;
 
             // Navigate – Screen
@@ -181,8 +206,8 @@ public partial class ActionItemControl : UserControl
                 SelectedPopup = null;
             }
 
-            Filename = Row.Path ?? "Select filename...";
-            Url = Row.Url ?? "Enter URL...";
+            Filename = Row.Path ?? Localize("Dialog.ActionArea.Target.SelectFile", "Select file...");
+            Url = Row.Url ?? Localize("Dialog.ActionArea.Target.EnterUrl", "Enter URL...");
         }
         finally
         {
@@ -195,31 +220,23 @@ public partial class ActionItemControl : UserControl
         switch (ActionType)
         {
             case ActionType.None:
-                DisplayText = "No target";
+                DisplayText = Localize("Dialog.ActionArea.Target.NoTarget", "No target");
                 break;
             case ActionType.Navigate:
-                DisplayText = SelectedScreen == null ? "Select screen..." : SelectedScreen.Name;
+                DisplayText = SelectedScreen == null ? Localize("Dialog.ActionArea.Target.SelectScreen", "Select screen...") : SelectedScreen.Name;
                 break;
             case ActionType.OpenFile:
-                DisplayText = string.IsNullOrWhiteSpace(Filename) ? "Select file..." : Filename;
+                DisplayText = string.IsNullOrWhiteSpace(Filename) ? Localize("Dialog.ActionArea.Target.SelectFile", "Select file...") : Filename;
                 break;
 
             case ActionType.OpenURL:
-                DisplayText = string.IsNullOrWhiteSpace(Url) ? "Enter URL..." : Url;
+                DisplayText = string.IsNullOrWhiteSpace(Url) ? Localize("Dialog.ActionArea.Target.EnterUrl", "Enter URL...") : Url;
                 break;
             case ActionType.ShowPopup:
-                DisplayText = SelectedPopup == null ? "Select popup..." : SelectedPopup.Name;
+                DisplayText = SelectedPopup == null ? Localize("Dialog.ActionArea.Target.SelectPopup", "Select popup...") : SelectedPopup.Name;
                 break;
         }
 
-        // Hintergrundfarbe der ComboBox (optional)
-        if (PART_ActionCombo != null)
-        {
-            PART_ActionCombo.Background = new SolidColorBrush
-            {
-                Color = ActionType == ActionType.None ? Colors.White : Color.FromRgb(180, 220, 255)
-            };
-        }
     }
 
     private void UpdateVisibilities()
@@ -258,11 +275,14 @@ public partial class ActionItemControl : UserControl
 
     private void PART_ListBox_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
     {
-        if (sender is not ListBox lb || lb.SelectedItem == null)
+        if (e.NewValue is not true || sender is not ListBox lb || lb.SelectedItem == null)
             return;
 
         lb.Dispatcher.BeginInvoke(new Action(() =>
         {
+            if (!lb.IsLoaded || !lb.IsVisible)
+                return;
+
             CenterSelectedItem(lb);
             lb.Focus();
         }), DispatcherPriority.Loaded);
@@ -270,7 +290,8 @@ public partial class ActionItemControl : UserControl
 
     private static void CenterSelectedItem(ListBox lb)
     {
-        if (lb.SelectedItem == null) return;
+        if (!lb.IsLoaded || !lb.IsVisible || lb.SelectedItem == null)
+            return;
 
         lb.ScrollIntoView(lb.SelectedItem);
         lb.UpdateLayout();
@@ -286,7 +307,8 @@ public partial class ActionItemControl : UserControl
         if (sv == null) return;
 
         var presenter = FindVisualChild<ScrollContentPresenter>(sv);
-        if (presenter == null) return;
+        if (presenter == null || !presenter.IsAncestorOf(item))
+            return;
 
         var p = item.TransformToAncestor(presenter).Transform(new Point(0, 0));
         var itemCenterY = p.Y + item.ActualHeight / 2.0;
@@ -298,12 +320,34 @@ public partial class ActionItemControl : UserControl
 
         lb.Dispatcher.BeginInvoke(new Action(() =>
         {
+            if (!lb.IsLoaded || !lb.IsVisible || lb.SelectedItem == null)
+                return;
+
             lb.UpdateLayout();
-            var p2 = item.TransformToAncestor(presenter).Transform(new Point(0, 0));
-            var itemCenterY2 = p2.Y + item.ActualHeight / 2.0;
-            var target2 = sv.VerticalOffset + (itemCenterY2 - sv.ViewportHeight / 2.0);
-            target2 = Math.Max(0, Math.Min(target2, sv.ExtentHeight - sv.ViewportHeight));
-            sv.ScrollToVerticalOffset(target2);
+            var currentItem = (ListBoxItem?)lb.ItemContainerGenerator.ContainerFromItem(lb.SelectedItem);
+            var currentScrollViewer = FindVisualChild<ScrollViewer>(lb);
+            var currentPresenter = currentScrollViewer == null
+                ? null
+                : FindVisualChild<ScrollContentPresenter>(currentScrollViewer);
+
+            if (currentItem == null
+                || currentScrollViewer == null
+                || currentPresenter == null
+                || !currentPresenter.IsAncestorOf(currentItem))
+            {
+                return;
+            }
+
+            var p2 = currentItem.TransformToAncestor(currentPresenter).Transform(new Point(0, 0));
+            var itemCenterY2 = p2.Y + currentItem.ActualHeight / 2.0;
+            var target2 = currentScrollViewer.VerticalOffset
+                + (itemCenterY2 - currentScrollViewer.ViewportHeight / 2.0);
+            target2 = Math.Max(
+                0,
+                Math.Min(
+                    target2,
+                    currentScrollViewer.ExtentHeight - currentScrollViewer.ViewportHeight));
+            currentScrollViewer.ScrollToVerticalOffset(target2);
         }), DispatcherPriority.Background);
     }
 
@@ -327,7 +371,7 @@ public partial class ActionItemControl : UserControl
 
         var dlg = new Microsoft.Win32.OpenFileDialog
         {
-            Title = "Select file",
+            Title = Localize("Dialog.ActionArea.FileDialog.Title", "Select file"),
             CheckFileExists = true,
             Multiselect = false
         };

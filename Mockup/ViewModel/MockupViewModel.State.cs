@@ -4,7 +4,9 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mockup.Actions;
+using Mockup.Resources;
 using System.Collections.ObjectModel;
+using VIA.WPF.Localization;
 
 namespace Mockup.ViewModel;
 
@@ -108,7 +110,7 @@ public partial class MockupViewModel : ObservableObject
 
         if (aa.Actions == null || aa.Actions.Count == 0)
         {
-            ActionAreaHintRows.Add(new ActionHintRow { Header = "NO ACTIONS", Target = "—" });
+            ActionAreaHintRows.Add(new ActionHintRow { Header = ActionAreaText("Dialog.ActionArea.Hint.NoActions", "NO ACTIONS"), Target = "—" });
 
             IsActionAreaHintVisible = true;
             return;
@@ -121,13 +123,15 @@ public partial class MockupViewModel : ObservableObject
             if (a == null)
                 continue;
 
-            string header = $"{a.Trigger}: {a.Type}".ToUpperInvariant();
+            string header =
+                $"{LocalizeActionTrigger(a.Trigger)}: {LocalizeActionType(a.Type)}"
+                    .ToUpper(XLocalizationService.Current.CurrentUICulture);
 
             string target = a.Type switch
             {
                 ActionType.Navigate => ResolveScreenName(project, a.TargetScreenId),
-                ActionType.NavigateHome => "HOME",
-                ActionType.NavigateBack => "BACK",
+                ActionType.NavigateHome => ActionAreaText("Dialog.ActionArea.Hint.Home", "HOME"),
+                ActionType.NavigateBack => ActionAreaText("Dialog.ActionArea.Hint.Back", "BACK"),
                 ActionType.OpenFile => ShortFileName(a.FilePath ?? ""),
                 ActionType.OpenURL => NormalizeUrl(a.Url),
                 ActionType.ShowPopup => ResolvePopupName(project, a.PopupId),
@@ -147,6 +151,44 @@ public partial class MockupViewModel : ObservableObject
     {
         ActionAreaHintRows.Clear();
         IsActionAreaHintVisible = false;
+    }
+
+    private static string ActionAreaText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+    private static string LocalizeActionTrigger(ActionTrigger trigger)
+    {
+        return trigger switch
+        {
+            ActionTrigger.Tap => ActionAreaText("Dialog.ActionArea.Trigger.Tap", "Tap"),
+            ActionTrigger.DoubleTap => ActionAreaText("Dialog.ActionArea.Trigger.DoubleTap", "Double Tap"),
+            ActionTrigger.LongPress => ActionAreaText("Dialog.ActionArea.Trigger.LongPress", "Long Press"),
+            ActionTrigger.SwipeLeft => ActionAreaText("Dialog.ActionArea.Trigger.SwipeLeft", "Swipe Left"),
+            ActionTrigger.SwipeRight => ActionAreaText("Dialog.ActionArea.Trigger.SwipeRight", "Swipe Right"),
+            ActionTrigger.SwipeUp => ActionAreaText("Dialog.ActionArea.Trigger.SwipeUp", "Swipe Up"),
+            ActionTrigger.SwipeDown => ActionAreaText("Dialog.ActionArea.Trigger.SwipeDown", "Swipe Down"),
+            _ => trigger.ToString(),
+        };
+    }
+
+    private static string LocalizeActionType(ActionType actionType)
+    {
+        return actionType switch
+        {
+            ActionType.None => ActionAreaText("Dialog.ActionArea.ActionType.None", "None"),
+            ActionType.Navigate => ActionAreaText("Dialog.ActionArea.ActionType.Navigate", "Navigate"),
+            ActionType.NavigateHome => ActionAreaText("Dialog.ActionArea.ActionType.NavigateHome", "Navigate Home"),
+            ActionType.NavigateBack => ActionAreaText("Dialog.ActionArea.ActionType.NavigateBack", "Navigate Back"),
+            ActionType.OpenFile => ActionAreaText("Dialog.ActionArea.ActionType.OpenFile", "Open File"),
+            ActionType.OpenURL => ActionAreaText("Dialog.ActionArea.ActionType.OpenUrl", "Open URL"),
+            ActionType.ShowPopup => ActionAreaText("Dialog.ActionArea.ActionType.ShowPopup", "Show Popup"),
+            _ => actionType.ToString(),
+        };
     }
 
     private static string ResolveScreenName(Project? project, long? id)

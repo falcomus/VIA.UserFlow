@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     mc:Ignorable="d">
 
@@ -31,7 +32,7 @@
                     FontSize="14"
                     FontWeight="SemiBold"
                     Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
-                    Text="ACTIONS" />
+                    Text="{via:XLoc Dialog.ActionArea.Hint.Actions, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </via:XBorder>
 
             <!--  Content  -->

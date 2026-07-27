@@ -9,9 +9,10 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
     xmlns:via="http://schemas.via.dev/wpf"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
     x:Name="Root"
-    Title="Select Icon"
+    Title="{via:XLoc Dialog.AssetPicker.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Width="1024"
     Height="875"
     d:DataContext="{d:DesignInstance Type=assetsystem:ImageRefDialogViewModel}"
@@ -73,7 +74,7 @@
                                 VerticalAlignment="Center"
                                 FontSize="13"
                                 FontWeight="Normal"
-                                Text="{Binding AddButtonText, FallbackValue='Add SVG ..'}" />
+                                Text="{Binding AddButtonText}" />
                         </StackPanel>
                     </via:XButton>
                 </StackPanel>
@@ -103,13 +104,13 @@
             <via:XButton
                 Width="90"
                 Click="OkButton_Click"
-                Content="OK"
+                Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsDefault="True" />
             <via:XButton
                 Width="90"
                 Margin="15,0,0,0"
                 Click="CancelButton_Click"
-                Content="Cancel" />
+                Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
         </StackPanel>
 
         <!--  Main Content - Icon Grid  -->
@@ -185,7 +186,7 @@
                     FontSize="13"
                     FontStyle="Italic"
                     Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                    Text="No icons found" />
+                    Text="{via:XLoc Dialog.AssetPicker.NoResults, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </StackPanel>
 
         </Grid>

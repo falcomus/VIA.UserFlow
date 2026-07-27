@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using Mockup.Actions;
 using Mockup.Dialogs;
 using Mockup.Messages;
+using Mockup.Resources;
 using Mockup.Services;
 using Mockup.Snapshots;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using VIA.WPF.Localization;
 using VIA.WPF.Windowing;
 using MessageBox = Mockup.Services.XDialogs;
 
@@ -33,6 +35,14 @@ public sealed partial class MockupViewModel : ObservableObject
     {
         // aktuell nichts nötig (kein Messenger).
         // Kontext wird direkt vom Designer gesetzt.
+    }
+
+    private static string DialogText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
     }
 
     #endregion
@@ -292,7 +302,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 project,
                 _ => new ProjectDialog(),
-                "NEW PROJECT",
+                DialogText("Dialog.Project.New.Title", "NEW PROJECT"),
                 XDialogService.Default
             );
 
@@ -349,7 +359,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 CurrentProject,
                 _ => new ProjectDialog(),
-                "EDIT PROJECT",
+                DialogText("Dialog.Project.Edit.Title", "EDIT PROJECT"),
                 XDialogService.Default
             );
 
@@ -664,7 +674,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 screen,
                 _ => new ScreenDialog(),
-                "EDIT SCREEN",
+                DialogText("Dialog.Screen.Edit.Title", "EDIT SCREEN"),
                 beforeApply: () => PushSnapshot(SnapshotContext.Screen, SnapshotLabels.ScreenChanged)
             );
 
@@ -722,7 +732,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 screen,
                 _ => new Mockup.Dialogs.ScreenDialog(),
-                "NEW SCREEN"
+                DialogText("Dialog.Screen.New.Title", "NEW SCREEN")
             );
 
             if (!accepted)
@@ -2168,7 +2178,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 newTemplate,
                 _ => new TemplateDialog(),
-                "NEW TEMPLATE"
+                DialogText("Dialog.Template.New.Title", "NEW TEMPLATE")
             );
 
             if (!accepted)
@@ -2209,7 +2219,7 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 clone,
                 _ => new TemplateDialog(),
-                "EDIT TEMPLATE"
+                DialogText("Dialog.Template.Edit.Title", "EDIT TEMPLATE")
             );
 
             if (!accepted)
@@ -2309,7 +2319,7 @@ public sealed partial class MockupViewModel : ObservableObject
                 Position = ScreenPopupPosition.Center,
             };
 
-            bool accepted = DialogService.EditEntity(newPopup, _ => new PopupDialog(), "NEW POPUP");
+            bool accepted = DialogService.EditEntity(newPopup, _ => new PopupDialog(), DialogText("Dialog.Popup.New.Title", "NEW POPUP"));
 
             if (!accepted)
                 return;
@@ -2390,7 +2400,7 @@ public sealed partial class MockupViewModel : ObservableObject
             var clone = popup.DeepClone();
             var oldPosition = popup.Position;
 
-            bool accepted = DialogService.EditEntity(clone, _ => new PopupDialog(), "EDIT POPUP");
+            bool accepted = DialogService.EditEntity(clone, _ => new PopupDialog(), DialogText("Dialog.Popup.Edit.Title", "EDIT POPUP"));
 
             if (!accepted)
                 return;

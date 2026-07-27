@@ -11,6 +11,7 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mockup="clr-namespace:Mockup"
     xmlns:via="http://schemas.via.dev/wpf"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     x:Name="root"
     d:DataContext="{d:DesignInstance Type=mockup:Screen}"
     d:DesignHeight="350"
@@ -55,7 +56,7 @@
                     FontSize="14"
                     FontWeight="SemiBold"
                     IsHitTestVisible="False"
-                    Text="DROP HERE" />
+                    Text="{via:XLoc Dialog.ImagePicker.DropHere, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </Grid>
             <!--#endregion === DROP AREA ===-->
 
@@ -68,7 +69,7 @@
                     FontSize="14"
                     FontWeight="Medium"
                     Opacity="0.8"
-                    Text="Recommended Size" />
+                    Text="{via:XLoc Dialog.ImagePicker.RecommendedSize, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                 <TextBlock
                     Grid.Row="2"
                     Margin="0,8,0,50"
@@ -76,7 +77,7 @@
                     FontSize="14"
                     FontWeight="Medium"
                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                    Text="{Binding ElementName=root, Path=ImageSizeHint, FallbackValue='SIZE INFO'}" />
+                    Text="{Binding ElementName=root, Path=ImageSizeHint, FallbackValue='—'}" />
             </StackPanel>
             <!--#endregion === RECOMMENDED SIZE INFO ===-->
 
@@ -111,7 +112,7 @@
                             FontSize="14"
                             FontWeight="Medium"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
-                            Text="Clear" />
+                            Text="{via:XLoc Dialog.ImagePicker.Clear, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </Grid>
                 </Button>
                 <Button
@@ -141,7 +142,7 @@
                             FontSize="14"
                             FontWeight="Medium"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                            Text="Browse" />
+                            Text="{via:XLoc Dialog.ImagePicker.Browse, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </Grid>
                 </Button>
             </Grid>

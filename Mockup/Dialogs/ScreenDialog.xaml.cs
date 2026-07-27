@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Mockup.Resources;
 using Mockup.Services;
 using Mockup.Snapshots;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using VIA.WPF.Localization;
 
 namespace Mockup.Dialogs;
 
@@ -25,6 +27,14 @@ public partial class ScreenDialog : ModalDialogWindow
     {
         InitializeComponent();
         Loaded += ScreenEditor_Loaded;
+    }
+
+    private static string DialogText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
     }
 
     private void ScreenEditor_Loaded(object sender, RoutedEventArgs e)
@@ -246,7 +256,7 @@ public partial class ScreenDialog : ModalDialogWindow
         int customCount = screen.Bands.Count(b => b.BandType == BandType.Custom);
         if (customCount <= 1)
         {
-            XNotifications.Info("At least one band is required!");
+            XNotifications.Info(DialogText("Dialog.Screen.AtLeastOneBand", "At least one band is required!"));
             return;
         }
 
@@ -353,7 +363,7 @@ public partial class ScreenDialog : ModalDialogWindow
 
         if (band.Pages.Count <= 1)
         {
-            XNotifications.Info("At least one page is required!");
+            XNotifications.Info(DialogText("Dialog.Screen.AtLeastOnePage", "At least one page is required!"));
             return;
         }
 

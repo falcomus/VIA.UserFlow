@@ -17,6 +17,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Mockup.Domain.Registry;
 using Mockup.Messages;
+using Mockup.Resources;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;
@@ -26,6 +27,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using VIA.WPF.Localization;
 
 namespace Mockup.AssetSystem;
 
@@ -132,8 +134,8 @@ public partial class ImageRefDialogViewModel : ObservableObject
     public enum FormatKind { Svg, Png }
 
     [ObservableProperty] private string searchText = string.Empty;
-    [ObservableProperty] private string countDisplayText = "Loading...";
-    [ObservableProperty] private string addButtonText = "Add SVG ..";
+    [ObservableProperty] private string countDisplayText = string.Empty;
+    [ObservableProperty] private string addButtonText = string.Empty;
     [ObservableProperty] private FormatKind currentFormat = FormatKind.Svg;
     [ObservableProperty] private bool noResultsVisible;
     [ObservableProperty] private AssetCatalog.AssetInfo? selectedAsset;
@@ -149,7 +151,33 @@ public partial class ImageRefDialogViewModel : ObservableObject
         SwitchFormatCommand = new RelayCommand<string>(OnSwitchFormat);
         SelectAssetCommand = new RelayCommand<AssetCatalog.AssetInfo>(OnSelectAsset);
         AddAssetCommand = new RelayCommand(OnAddAsset);
+        CountDisplayText = DialogText("Common.Loading", "Loading...");
+        UpdateAddButtonText();
         ApplyFilter();
+    }
+
+    private static string DialogText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
+    private static string DialogFormat(string key, string fallbackText, params object?[] arguments)
+    {
+        return XLocalizationService.Current.Format(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText,
+            arguments);
+    }
+
+    private void UpdateAddButtonText()
+    {
+        AddButtonText = CurrentFormat == FormatKind.Svg
+            ? DialogText("Dialog.AssetPicker.AddSvg", "Add SVG...")
+            : DialogText("Dialog.AssetPicker.AddPng", "Add PNG...");
     }
 
     // ============================================================================
@@ -160,7 +188,7 @@ public partial class ImageRefDialogViewModel : ObservableObject
     {
         CurrentFormat = format == "Png" ? FormatKind.Png : FormatKind.Svg;
         ApplyFilter();
-        AddButtonText = CurrentFormat == FormatKind.Svg ? "Add SVG.." : "Add PNG ..";
+        UpdateAddButtonText();
     }
 
     private void OnSelectAsset(AssetCatalog.AssetInfo? asset)
@@ -197,7 +225,9 @@ public partial class ImageRefDialogViewModel : ObservableObject
         foreach (var asset in results)
             FilteredAssets.Add(asset);
 
-        CountDisplayText = $"{results.Count} icon{(results.Count == 1 ? "" : "s")}";
+        CountDisplayText = results.Count == 1
+            ? DialogFormat("Dialog.AssetPicker.Count.One", "{0} icon", results.Count)
+            : DialogFormat("Dialog.AssetPicker.Count.Many", "{0} icons", results.Count);
         NoResultsVisible = results.Count == 0;
 
         if (SelectedAsset != null && !results.Contains(SelectedAsset))
@@ -213,12 +243,14 @@ public partial class ImageRefDialogViewModel : ObservableObject
         try
         {
             string filter = CurrentFormat == FormatKind.Svg
-                ? "SVG files (*.svg)|*.svg"
-                : "PNG files (*.png)|*.png";
+                ? DialogText("Dialog.AssetPicker.SvgFilesFilter", "SVG files (*.svg)|*.svg")
+                : DialogText("Dialog.AssetPicker.PngFilesFilter", "PNG files (*.png)|*.png");
 
             var dlg = new OpenFileDialog
             {
-                Title = $"Add {(CurrentFormat == FormatKind.Svg ? "SVG" : "PNG")} Icon",
+                Title = CurrentFormat == FormatKind.Svg
+                    ? DialogText("Dialog.AssetPicker.AddSvgTitle", "Add SVG Icon")
+                    : DialogText("Dialog.AssetPicker.AddPngTitle", "Add PNG Icon"),
                 Filter = filter,
                 CheckFileExists = true,
                 Multiselect = false

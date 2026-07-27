@@ -160,4 +160,216 @@
   <data name="Undo.Label.ControlMoved" xml:space="preserve"><value>Steuerelement verschoben</value></data>
   <data name="Common.EditTooltip" xml:space="preserve"><value>Bearbeiten</value></data>
   <data name="Common.DeleteTooltip" xml:space="preserve"><value>Löschen</value></data>
+  <data name="ContextMenu.Screen.New" xml:space="preserve"><value>Neuer Bildschirm</value></data>
+  <data name="ContextMenu.Screen.Edit" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
+  <data name="ContextMenu.Screen.Duplicate" xml:space="preserve"><value>Bildschirm duplizieren</value></data>
+  <data name="ContextMenu.Screen.Delete" xml:space="preserve"><value>Bildschirm löschen</value></data>
+  <data name="ContextMenu.Screen.SetAsHome" xml:space="preserve"><value>Als Startbildschirm festlegen</value></data>
+  <data name="ContextMenu.Screen.ChangeBackground" xml:space="preserve"><value>Bildschirmhintergrund ändern</value></data>
+  <data name="ContextMenu.Screen.SelectImage" xml:space="preserve"><value>Bildschirmbild auswählen</value></data>
+  <data name="ContextMenu.Screen.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
+  <data name="ContextMenu.Screen.ShowFooter" xml:space="preserve"><value>Fußbereich anzeigen</value></data>
+  <data name="ContextMenu.Template.New" xml:space="preserve"><value>Neue Vorlage</value></data>
+  <data name="ContextMenu.Template.Edit" xml:space="preserve"><value>Vorlage bearbeiten</value></data>
+  <data name="ContextMenu.Template.Delete" xml:space="preserve"><value>Vorlage löschen</value></data>
+  <data name="ContextMenu.Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
+  <data name="ContextMenu.Popup.Edit" xml:space="preserve"><value>Popup bearbeiten</value></data>
+  <data name="ContextMenu.Popup.Delete" xml:space="preserve"><value>Popup löschen</value></data>
+  <data name="ContextMenu.Popup.DockLeft" xml:space="preserve"><value>Links andocken</value></data>
+  <data name="ContextMenu.Popup.DockRight" xml:space="preserve"><value>Rechts andocken</value></data>
+  <data name="ContextMenu.Popup.DockTop" xml:space="preserve"><value>Oben andocken</value></data>
+  <data name="ContextMenu.Popup.DockBottom" xml:space="preserve"><value>Unten andocken</value></data>
+  <data name="ContextMenu.Popup.DockCenter" xml:space="preserve"><value>Zentriert andocken</value></data>
+  <data name="ContextMenu.Popup.AtMousePosition" xml:space="preserve"><value>An Mausposition</value></data>
+  <data name="ContextMenu.Band.MoveUp" xml:space="preserve"><value>Band nach oben verschieben</value></data>
+  <data name="ContextMenu.Band.MoveDown" xml:space="preserve"><value>Band nach unten verschieben</value></data>
+  <data name="ContextMenu.Band.New" xml:space="preserve"><value>Neues Band</value></data>
+  <data name="ContextMenu.Band.Duplicate" xml:space="preserve"><value>Band duplizieren</value></data>
+  <data name="ContextMenu.Band.Delete" xml:space="preserve"><value>Band löschen</value></data>
+  <data name="ContextMenu.ActionArea.EditActions" xml:space="preserve"><value>Aktionen bearbeiten</value></data>
+  <data name="ContextMenu.ActionArea.Copy" xml:space="preserve"><value>Aktionsbereich kopieren</value></data>
+  <data name="ContextMenu.ActionArea.Paste" xml:space="preserve"><value>Aktionsbereich einfügen</value></data>
+  <data name="ContextMenu.ActionArea.Delete" xml:space="preserve"><value>Aktionsbereich löschen</value></data>
+  <data name="ContextMenu.Control.Copy" xml:space="preserve"><value>Steuerelemente kopieren</value></data>
+  <data name="ContextMenu.Control.Paste" xml:space="preserve"><value>Steuerelemente einfügen</value></data>
+  <data name="ContextMenu.Control.Delete" xml:space="preserve"><value>Steuerelemente löschen</value></data>
+  <data name="ContextMenu.Control.BringToFront" xml:space="preserve"><value>Ganz nach vorne</value></data>
+  <data name="ContextMenu.Control.SendToBack" xml:space="preserve"><value>Ganz nach hinten</value></data>
+  <data name="ContextMenu.Control.BringForward" xml:space="preserve"><value>Eine Ebene nach vorne</value></data>
+  <data name="ContextMenu.Control.SendBackward" xml:space="preserve"><value>Eine Ebene nach hinten</value></data>
+  <data name="Common.OK" xml:space="preserve"><value>OK</value></data>
+  <data name="Common.Cancel" xml:space="preserve"><value>Abbrechen</value></data>
+  <data name="Dialog.General" xml:space="preserve"><value>Allgemein</value></data>
+  <data name="Dialog.Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Dialog.Description" xml:space="preserve"><value>Beschreibung</value></data>
+  <data name="Dialog.Category" xml:space="preserve"><value>Kategorie</value></data>
+  <data name="Dialog.Width" xml:space="preserve"><value>Breite</value></data>
+  <data name="Dialog.Height" xml:space="preserve"><value>Höhe</value></data>
+  <data name="Dialog.Position" xml:space="preserve"><value>Position</value></data>
+  <data name="Dialog.TitleField" xml:space="preserve"><value>Titel</value></data>
+  <data name="Dialog.Project.New.Title" xml:space="preserve"><value>NEUES PROJEKT</value></data>
+  <data name="Dialog.Project.Edit.Title" xml:space="preserve"><value>PROJEKT BEARBEITEN</value></data>
+  <data name="Dialog.Project.DeviceTab" xml:space="preserve"><value>Gerät</value></data>
+  <data name="Dialog.Project.DevicePreset" xml:space="preserve"><value>Gerätevoreinstellung</value></data>
+  <data name="Dialog.Project.ThemeSharingTab" xml:space="preserve"><value>Design und Freigabe</value></data>
+  <data name="Dialog.Project.ColorScheme" xml:space="preserve"><value>Farbschema</value></data>
+  <data name="Dialog.Project.SharedProject" xml:space="preserve"><value>Freigegebenes Projekt</value></data>
+  <data name="Dialog.Project.ReadOnlySharedUsers" xml:space="preserve"><value>Für freigegebene Benutzer schreibgeschützt</value></data>
+  <data name="Dialog.Project.ColorSchemeInfo" xml:space="preserve"><value>Das ausgewählte Farbschema wird für alle Screens und Popups in diesem Projekt verwendet.</value></data>
+  <data name="Dialog.Screen.New.Title" xml:space="preserve"><value>NEUER SCREEN</value></data>
+  <data name="Dialog.Screen.Edit.Title" xml:space="preserve"><value>SCREEN BEARBEITEN</value></data>
+  <data name="Dialog.Screen.HomeScreen" xml:space="preserve"><value>Startscreen</value></data>
+  <data name="Dialog.Screen.Background" xml:space="preserve"><value>Hintergrund</value></data>
+  <data name="Dialog.Screen.Image" xml:space="preserve"><value>Bild</value></data>
+  <data name="Dialog.Screen.HeaderTab" xml:space="preserve"><value>Kopfbereich</value></data>
+  <data name="Dialog.Screen.HeaderTitle" xml:space="preserve"><value>Titel des Kopfbereichs</value></data>
+  <data name="Dialog.Screen.HeaderColor" xml:space="preserve"><value>Farbe des Kopfbereichs</value></data>
+  <data name="Dialog.Screen.FooterTab" xml:space="preserve"><value>Fußbereich</value></data>
+  <data name="Dialog.Screen.FooterTitle" xml:space="preserve"><value>Titel des Fußbereichs</value></data>
+  <data name="Dialog.Screen.FooterColor" xml:space="preserve"><value>Farbe des Fußbereichs</value></data>
+  <data name="Dialog.Screen.BandsPagesTab" xml:space="preserve"><value>Bänder und Seiten</value></data>
+  <data name="Dialog.Screen.Bands" xml:space="preserve"><value>Bänder</value></data>
+  <data name="Dialog.Screen.AddBand" xml:space="preserve"><value>Band hinzufügen</value></data>
+  <data name="Dialog.Screen.MoveUp" xml:space="preserve"><value>Nach oben</value></data>
+  <data name="Dialog.Screen.MoveDown" xml:space="preserve"><value>Nach unten</value></data>
+  <data name="Dialog.Screen.DeleteBand" xml:space="preserve"><value>Band löschen</value></data>
+  <data name="Dialog.Screen.Sticky" xml:space="preserve"><value>Fixiert</value></data>
+  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Aufkl.</value></data>
+  <data name="Dialog.Screen.Tabs" xml:space="preserve"><value>Tabs</value></data>
+  <data name="Dialog.Screen.Uniform" xml:space="preserve"><value>Einheitlich</value></data>
+  <data name="Dialog.Screen.Pages" xml:space="preserve"><value>Seiten</value></data>
+  <data name="Dialog.Screen.AddPage" xml:space="preserve"><value>Seite hinzufügen</value></data>
+  <data name="Dialog.Screen.DeletePage" xml:space="preserve"><value>Seite löschen</value></data>
+  <data name="Dialog.Screen.AtLeastOneBand" xml:space="preserve"><value>Mindestens ein Band ist erforderlich!</value></data>
+  <data name="Dialog.Screen.AtLeastOnePage" xml:space="preserve"><value>Mindestens eine Seite ist erforderlich!</value></data>
+  <data name="Dialog.Template.New.Title" xml:space="preserve"><value>NEUE VORLAGE</value></data>
+  <data name="Dialog.Template.Edit.Title" xml:space="preserve"><value>VORLAGE BEARBEITEN</value></data>
+  <data name="Dialog.Popup.New.Title" xml:space="preserve"><value>NEUES POPUP</value></data>
+  <data name="Dialog.Popup.Edit.Title" xml:space="preserve"><value>POPUP BEARBEITEN</value></data>
+  <data name="Dialog.Popup.Left" xml:space="preserve"><value>Links</value></data>
+  <data name="Dialog.Popup.Right" xml:space="preserve"><value>Rechts</value></data>
+  <data name="Dialog.Popup.Top" xml:space="preserve"><value>Oben</value></data>
+  <data name="Dialog.Popup.Bottom" xml:space="preserve"><value>Unten</value></data>
+  <data name="Dialog.Popup.Center" xml:space="preserve"><value>Zentriert</value></data>
+  <data name="Dialog.Popup.MousePosition" xml:space="preserve"><value>Mausposition</value></data>
+  <data name="Dialog.Popup.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
+  <data name="Dialog.Popup.HeaderHeight" xml:space="preserve"><value>Höhe des Kopfbereichs</value></data>
+  <data name="Common.Loading" xml:space="preserve"><value>Wird geladen...</value></data>
+  <data name="Dialog.ColorPicker.Title" xml:space="preserve"><value>Farbe bearbeiten</value></data>
+  <data name="Dialog.ColorScheme.Title" xml:space="preserve"><value>Farbschema bearbeiten</value></data>
+  <data name="Dialog.ColorScheme.Instruction" xml:space="preserve"><value>Wähle ein Farbtoken aus und passe es anschließend unten an.</value></data>
+  <data name="Dialog.ColorScheme.Token.Primary" xml:space="preserve"><value>Primärfarbe</value></data>
+  <data name="Dialog.ColorScheme.Token.Neutral" xml:space="preserve"><value>Neutralfarbe</value></data>
+  <data name="Dialog.ColorScheme.Token.Accent" xml:space="preserve"><value>Akzentfarbe</value></data>
+  <data name="Dialog.ColorScheme.Token.Text" xml:space="preserve"><value>Textfarbe</value></data>
+  <data name="Dialog.ColorScheme.Token.Info" xml:space="preserve"><value>Information</value></data>
+  <data name="Dialog.ColorScheme.Token.ControlBackground" xml:space="preserve"><value>Steuerelement-Hintergrund</value></data>
+  <data name="Dialog.ColorScheme.Token.Warning" xml:space="preserve"><value>Warnung</value></data>
+  <data name="Dialog.ColorScheme.Token.ControlBorder" xml:space="preserve"><value>Steuerelement-Rahmen</value></data>
+  <data name="Dialog.ColorScheme.Token.Error" xml:space="preserve"><value>Fehler</value></data>
+  <data name="Dialog.ColorScheme.Token.CardBorder" xml:space="preserve"><value>Kartenrahmen</value></data>
+  <data name="Dialog.ColorScheme.Token.Success" xml:space="preserve"><value>Erfolg</value></data>
+  <data name="Dialog.AssetPicker.Title" xml:space="preserve"><value>Symbol auswählen</value></data>
+  <data name="Dialog.AssetPicker.NoResults" xml:space="preserve"><value>Keine Symbole gefunden</value></data>
+  <data name="Dialog.AssetPicker.AddSvg" xml:space="preserve"><value>SVG hinzufügen...</value></data>
+  <data name="Dialog.AssetPicker.AddPng" xml:space="preserve"><value>PNG hinzufügen...</value></data>
+  <data name="Dialog.AssetPicker.Count.One" xml:space="preserve"><value>{0} Symbol</value></data>
+  <data name="Dialog.AssetPicker.Count.Many" xml:space="preserve"><value>{0} Symbole</value></data>
+  <data name="Dialog.AssetPicker.AddSvgTitle" xml:space="preserve"><value>SVG-Symbol hinzufügen</value></data>
+  <data name="Dialog.AssetPicker.AddPngTitle" xml:space="preserve"><value>PNG-Symbol hinzufügen</value></data>
+  <data name="Dialog.AssetPicker.SvgFilesFilter" xml:space="preserve"><value>SVG-Dateien (*.svg)|*.svg</value></data>
+  <data name="Dialog.AssetPicker.PngFilesFilter" xml:space="preserve"><value>PNG-Dateien (*.png)|*.png</value></data>
+  <data name="Dialog.ImagePicker.DropHere" xml:space="preserve"><value>HIER ABLEGEN</value></data>
+  <data name="Dialog.ImagePicker.RecommendedSize" xml:space="preserve"><value>Empfohlene Größe</value></data>
+  <data name="Dialog.ImagePicker.Clear" xml:space="preserve"><value>Leeren</value></data>
+  <data name="Dialog.ImagePicker.Browse" xml:space="preserve"><value>Durchsuchen</value></data>
+  <data name="Dialog.ImagePicker.SelectBackgroundTitle" xml:space="preserve"><value>Hintergrundbild auswählen</value></data>
+  <data name="Dialog.ImagePicker.ImageFilesFilter" xml:space="preserve"><value>Bilder (*.bmp;*.png;*.jpg;*.jpeg)|*.bmp;*.png;*.jpg;*.jpeg</value></data>
+  <data name="Dialog.ActionArea.Title" xml:space="preserve">
+    <value>AKTIONSBEREICH BEARBEITEN</value>
+  </data>
+  <data name="Dialog.ActionArea.Header" xml:space="preserve">
+    <value>AKTIONSZUWEISUNG</value>
+  </data>
+  <data name="Dialog.ActionArea.Column.Trigger" xml:space="preserve">
+    <value>AUSLÖSER</value>
+  </data>
+  <data name="Dialog.ActionArea.Column.Action" xml:space="preserve">
+    <value>AKTION</value>
+  </data>
+  <data name="Dialog.ActionArea.Column.Target" xml:space="preserve">
+    <value>ZIEL</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.Navigate" xml:space="preserve">
+    <value>Navigieren</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.NavigateHome" xml:space="preserve">
+    <value>Zum Startbildschirm</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.NavigateBack" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.OpenFile" xml:space="preserve">
+    <value>Datei öffnen</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.OpenUrl" xml:space="preserve">
+    <value>URL öffnen</value>
+  </data>
+  <data name="Dialog.ActionArea.ActionType.ShowPopup" xml:space="preserve">
+    <value>Popup anzeigen</value>
+  </data>
+  <data name="Dialog.ActionArea.Target.NoTarget" xml:space="preserve">
+    <value>Kein Ziel</value>
+  </data>
+  <data name="Dialog.ActionArea.Target.SelectScreen" xml:space="preserve">
+    <value>Bildschirm auswählen...</value>
+  </data>
+  <data name="Dialog.ActionArea.Target.SelectFile" xml:space="preserve">
+    <value>Datei auswählen...</value>
+  </data>
+  <data name="Dialog.ActionArea.Target.EnterUrl" xml:space="preserve">
+    <value>URL eingeben...</value>
+  </data>
+  <data name="Dialog.ActionArea.Target.SelectPopup" xml:space="preserve">
+    <value>Popup auswählen...</value>
+  </data>
+  <data name="Dialog.ActionArea.FileDialog.Title" xml:space="preserve">
+    <value>Datei auswählen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.Tap" xml:space="preserve">
+    <value>Antippen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.DoubleTap" xml:space="preserve">
+    <value>Doppeltippen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.LongPress" xml:space="preserve">
+    <value>Lange drücken</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.SwipeLeft" xml:space="preserve">
+    <value>Nach links wischen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.SwipeRight" xml:space="preserve">
+    <value>Nach rechts wischen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.SwipeUp" xml:space="preserve">
+    <value>Nach oben wischen</value>
+  </data>
+  <data name="Dialog.ActionArea.Trigger.SwipeDown" xml:space="preserve">
+    <value>Nach unten wischen</value>
+  </data>
+  <data name="Dialog.ActionArea.Hint.Actions" xml:space="preserve">
+    <value>AKTIONEN</value>
+  </data>
+  <data name="Dialog.ActionArea.Hint.NoActions" xml:space="preserve">
+    <value>KEINE AKTIONEN</value>
+  </data>
+  <data name="Dialog.ActionArea.Hint.Home" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="Dialog.ActionArea.Hint.Back" xml:space="preserve">
+    <value>ZURÜCK</value>
+  </data>
 </root>

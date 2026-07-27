@@ -5,100 +5,83 @@
     xmlns:aa="clr-namespace:Mockup.Actions"
     xmlns:actions="clr-namespace:Mockup.Actions;assembly=VIA.Mockup"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ext="clr-namespace:Mockup.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
     d:DataContext="{d:DesignInstance Type=aa:ActionItemControl}"
+    d:DesignHeight="36"
     Background="Transparent"
     IsTabStop="False"
     mc:Ignorable="d">
 
-    <!--REMOVE-->
-    <!--<UserControl.Resources>
-        <Style
-            x:Key="ComboStyle"
-            BasedOn="{StaticResource ComboBoxBaseStyle}"
-            TargetType="{x:Type via:XComboBox}">
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Padding" Value="15,0,12,2" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Medium" />
-        </Style>
-    </UserControl.Resources>-->
+    <via:XGrid
+        Margin="0,0,0,6"
+        Columns="170,12,190,12,*"
+        Rows="Auto">
 
-    <Grid
-        Margin="0,0,0,18"
-        ext:GridEx.ColDef="130,18,160,18,*"
-        ShowGridLines="False">
-
-        <!--  Trigger  -->
         <via:XBorder
-            Height="40"
+            Padding="0"
             Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-            CornerRadius="4">
+            CornerRadius="{x:Static via:XControlSizeMetrics.MediumCornerRadius}">
             <via:XTextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="14"
-                FontWeight="SemiBold"
                 Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
-                Text="{Binding Trigger}" />
+                Text="{Binding Trigger}"
+                TextAlignment="Center"
+                TextRole="Label" />
         </via:XBorder>
 
-        <!--  Action Type ComboBox  -->
         <via:XComboBox
             x:Name="PART_ActionCombo"
             Grid.Column="2"
-            FontSize="15"
-            FontWeight="Medium"
             SelectedValue="{Binding ActionType, Mode=TwoWay}"
-            SelectedValuePath="Tag"
-            Style="{StaticResource ComboStyle}">
-            <ComboBoxItem Content="NONE" Tag="{x:Static actions:ActionType.None}" />
+            SelectedValuePath="Tag">
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.None}" />
             <Separator />
-            <ComboBoxItem Content="Navigate" Tag="{x:Static actions:ActionType.Navigate}" />
-            <ComboBoxItem Content="Navigate Home" Tag="{x:Static actions:ActionType.NavigateHome}" />
-            <ComboBoxItem Content="Navigate Back" Tag="{x:Static actions:ActionType.NavigateBack}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.Navigate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.Navigate}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.NavigateHome, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.NavigateHome}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.NavigateBack, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.NavigateBack}" />
             <Separator />
-            <ComboBoxItem Content="Open File" Tag="{x:Static actions:ActionType.OpenFile}" />
-            <ComboBoxItem Content="Open URL"      Tag="{x:Static actions:ActionType.OpenURL}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.OpenFile, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.OpenFile}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.OpenUrl, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.OpenURL}" />
             <Separator />
-            <ComboBoxItem Content="Show Popup" Tag="{x:Static actions:ActionType.ShowPopup}" />
+            <via:XComboBoxItem
+                Content="{via:XLoc Dialog.ActionArea.ActionType.ShowPopup, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                Tag="{x:Static actions:ActionType.ShowPopup}" />
         </via:XComboBox>
 
-        <!--  Target Picker  -->
-        <!--  Target Picker  -->
-        <Grid
+        <via:XGrid
             Grid.Column="4"
-            VerticalAlignment="Center"
-            ext:GridEx.ColDef="*,Auto">
+            ColumnSpacing="6"
+            Columns="*,Auto">
 
-            <!--  A) Navigate / ShowPopup -> DropDown (wie bisher)  -->
             <via:XToggleDropDown
                 x:Name="PART_TargetButton"
                 Grid.ColumnSpan="2"
-                Height="38"
-                Padding="10,0,10,2"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 Content="{Binding DisplayText}"
-                FontSize="15"
-                FontWeight="Medium"
                 Visibility="{Binding DropDownTargetVisibility}">
 
                 <via:XToggleDropDown.DropDownContent>
                     <Grid>
-
-                        <!--  Screen List  -->
                         <via:XListBox
                             x:Name="PART_ScreenListBox"
-                            MaxHeight="500"
-                            FontSize="15"
-                            FontWeight="Medium"
+                            MaxHeight="320"
                             IsVisibleChanged="PART_ListBox_IsVisibleChanged"
                             ItemsSource="{Binding Screens}"
                             Mode="CompactNavigation"
@@ -108,18 +91,15 @@
                             <via:XListBox.ItemTemplate>
                                 <DataTemplate>
                                     <via:XTextBlock
-                                        Padding="0,5,0,7"
-                                        FontSize="14"
-                                        FontWeight="Medium"
-                                        Text="{Binding Name}" />
+                                        Text="{Binding Name}"
+                                        TextRole="Label" />
                                 </DataTemplate>
                             </via:XListBox.ItemTemplate>
                         </via:XListBox>
 
-                        <!--  Popup List  -->
                         <via:XListBox
                             x:Name="PART_PopupListBox"
-                            MaxHeight="400"
+                            MaxHeight="320"
                             IsVisibleChanged="PART_ListBox_IsVisibleChanged"
                             ItemsSource="{Binding Popups}"
                             Mode="CompactNavigation"
@@ -128,65 +108,179 @@
                             Visibility="{Binding PopupListVisibility}">
                             <via:XListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="5,0,10,0" ext:GridEx.RowDef="*,Auto">
+                                    <via:XGrid
+                                        Margin="5,0,10,0"
+                                        Rows="*,Auto">
                                         <via:XTextBlock
-                                            Padding="0,5,0,7"
-                                            FontSize="14"
-                                            FontWeight="Medium"
-                                            Text="{Binding Name}" />
+                                            Text="{Binding Name}"
+                                            TextRole="Label" />
                                         <via:XTextBlock
                                             Grid.Row="1"
                                             MaxWidth="300"
                                             MaxHeight="50"
-                                            Margin="0,-6,0,0"
-                                            Padding="0,0,0,8"
-                                            FontSize="13"
-                                            Opacity="0.8"
+                                            Margin="0,2,0,6"
                                             Text="{Binding Description}"
+                                            TextRole="Caption"
                                             TextTrimming="CharacterEllipsis"
                                             TextWrapping="Wrap" />
-                                    </Grid>
+                                    </via:XGrid>
                                 </DataTemplate>
                             </via:XListBox.ItemTemplate>
                         </via:XListBox>
-
                     </Grid>
                 </via:XToggleDropDown.DropDownContent>
             </via:XToggleDropDown>
 
-            <!--  B) OpenFile -> TextBox + Browse Button (kein DropDown)  -->
             <via:XTextBox
                 Grid.Column="0"
-                Height="38"
-                Padding="10,0,10,2"
-                VerticalContentAlignment="Center"
-                FontSize="15"
-                FontWeight="Medium"
                 Text="{Binding Filename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Visibility="{Binding FileTargetVisibility}" />
 
             <via:XButton
                 Grid.Column="1"
-                Width="38"
-                Height="38"
-                Margin="6,0,0,0"
-                Padding="0"
                 Click="BrowseFile_Click"
                 Content="…"
                 Visibility="{Binding FileTargetVisibility}" />
 
-            <!--  C) OpenURL -> direkte URL-Eingabe (kein DropDown)  -->
             <via:XTextBox
                 Grid.ColumnSpan="2"
-                Height="38"
-                Padding="10,0,10,2"
-                VerticalContentAlignment="Center"
-                FontSize="15"
-                FontWeight="Medium"
                 Text="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Visibility="{Binding UrlTargetVisibility}" />
-
-        </Grid>
-
-    </Grid>
+        </via:XGrid>
+    </via:XGrid>
 </UserControl>
+
+
+
+
+
+
+
+
+    <!--<UserControl
+    x:Class="Mockup.Actions.ActionItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:aa="clr-namespace:Mockup.Actions"
+    xmlns:actions="clr-namespace:Mockup.Actions;assembly=VIA.Mockup"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Mockup.Resources"
+    xmlns:via="http://schemas.via.dev/wpf"
+    x:Name="root"
+    d:DataContext="{d:DesignInstance Type=aa:ActionItemControl}"
+    Background="Transparent"
+    IsTabStop="False"
+    mc:Ignorable="d">
+
+    <via:XGrid
+        Margin="0,0,0,6"
+        Columns="170,12,190,12,*"
+        Rows="Auto">
+
+        <via:XBorder Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}" CornerRadius="{x:Static via:XControlSizeMetrics.MediumCornerRadius}">
+            <via:XTextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
+                Text="{Binding Trigger}"
+                TextAlignment="Center"
+                TextRole="Label" />
+        </via:XBorder>
+
+        <via:XComboBox
+            x:Name="PART_ActionCombo"
+            Grid.Column="2"
+            SelectedValue="{Binding ActionType, Mode=TwoWay}"
+            SelectedValuePath="Tag">
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.None}" />
+            <Separator />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.Navigate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.Navigate}" />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.NavigateHome, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.NavigateHome}" />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.NavigateBack, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.NavigateBack}" />
+            <Separator />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.OpenFile, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.OpenFile}" />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.OpenUrl, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.OpenURL}" />
+            <Separator />
+            <via:XComboBoxItem Content="{via:XLoc Dialog.ActionArea.ActionType.ShowPopup, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Tag="{x:Static actions:ActionType.ShowPopup}" />
+        </via:XComboBox>
+
+        <via:XGrid
+            Grid.Column="4"
+            ColumnSpacing="6"
+            Columns="*,Auto">
+
+            <via:XToggleDropDown
+                x:Name="PART_TargetButton"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                Content="{Binding DisplayText}"
+                Visibility="{Binding DropDownTargetVisibility}">
+
+                <via:XToggleDropDown.DropDownContent>
+                    <Grid>
+                        <via:XListBox
+                            x:Name="PART_ScreenListBox"
+                            MaxHeight="320"
+                            IsVisibleChanged="PART_ListBox_IsVisibleChanged"
+                            ItemsSource="{Binding Screens}"
+                            Mode="CompactNavigation"
+                            MouseUp="ListBox_MouseUp"
+                            SelectedItem="{Binding SelectedScreen}"
+                            Visibility="{Binding ScreenListVisibility}">
+                            <via:XListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <via:XTextBlock Text="{Binding Name}" TextRole="Label" />
+                                </DataTemplate>
+                            </via:XListBox.ItemTemplate>
+                        </via:XListBox>
+
+                        <via:XListBox
+                            x:Name="PART_PopupListBox"
+                            MaxHeight="320"
+                            IsVisibleChanged="PART_ListBox_IsVisibleChanged"
+                            ItemsSource="{Binding Popups}"
+                            Mode="CompactNavigation"
+                            MouseUp="ListBox_MouseUp"
+                            SelectedItem="{Binding SelectedPopup}"
+                            Visibility="{Binding PopupListVisibility}">
+                            <via:XListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <via:XGrid Margin="5,0,10,0" Rows="*,Auto">
+                                        <via:XTextBlock Text="{Binding Name}" TextRole="Label" />
+                                        <via:XTextBlock
+                                            Grid.Row="1"
+                                            MaxWidth="300"
+                                            MaxHeight="50"
+                                            Margin="0,2,0,6"
+                                            Text="{Binding Description}"
+                                            TextRole="Caption"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </via:XGrid>
+                                </DataTemplate>
+                            </via:XListBox.ItemTemplate>
+                        </via:XListBox>
+                    </Grid>
+                </via:XToggleDropDown.DropDownContent>
+            </via:XToggleDropDown>
+
+            <via:XTextBox
+                Grid.Column="0"
+                Text="{Binding Filename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Visibility="{Binding FileTargetVisibility}" />
+
+            <via:XButton
+                Grid.Column="1"
+                Click="BrowseFile_Click"
+                Content="…"
+                Visibility="{Binding FileTargetVisibility}" />
+
+            <via:XTextBox
+                Grid.ColumnSpan="2"
+                Text="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Visibility="{Binding UrlTargetVisibility}" />
+        </via:XGrid>
+    </via:XGrid>
+</UserControl>-->

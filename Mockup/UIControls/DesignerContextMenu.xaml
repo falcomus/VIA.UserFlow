@@ -11,6 +11,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:resources="clr-namespace:Mockup.Resources"
   xmlns:via="http://schemas.via.dev/wpf"
   xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
   d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
@@ -23,14 +24,14 @@
   <via:XMenuItem
     Command="{Binding EditScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
-    Header="Edit Screen"
+    Header="{via:XLoc ContextMenu.Screen.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
   <via:XMenuItem
     Command="{Binding NewScreenCommand}"
-    Header="New Screen"
+    Header="{via:XLoc ContextMenu.Screen.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=Plus}"
     Variant="Primary"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -38,7 +39,7 @@
 
   <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
-    Header="Paste Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -47,7 +48,7 @@
   <via:XMenuItem
     Command="{Binding DeleteScreenCommand}"
     CommandParameter="{Binding CurrentScreen}"
-    Header="Delete Screen"
+    Header="{via:XLoc ContextMenu.Screen.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -60,7 +61,7 @@
   <via:XMenuItem
     Command="{Binding ChangeScreenBackgroundCommand}"
     CommandParameter="{Binding CurrentScreen}"
-    Header="Change Screen Background"
+    Header="{via:XLoc ContextMenu.Screen.ChangeBackground, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=PaletteOutline}"
     IsEnabled="True"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -69,7 +70,7 @@
   <via:XMenuItem
     Command="{Binding SelectScreenImageCommand}"
     CommandParameter="{Binding CurrentScreen}"
-    Header="Select Screen Image"
+    Header="{via:XLoc ContextMenu.Screen.SelectImage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
     IsEnabled="False"
     Visibility="{Binding ShowScreenMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -80,7 +81,7 @@
   />
 
   <via:XMenuItem
-    Header="Show Header"
+    Header="{via:XLoc ContextMenu.Screen.ShowHeader, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ViewHeadline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentScreen.ShowHeader, Mode=TwoWay}"
@@ -88,7 +89,7 @@
   />
 
   <via:XMenuItem
-    Header="Show Footer"
+    Header="{via:XLoc ContextMenu.Screen.ShowFooter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ViewHeadline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentScreen.ShowFooter, Mode=TwoWay}"
@@ -102,14 +103,14 @@
   <via:XMenuItem
     Command="{Binding EditTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
-    Header="Edit Template"
+    Header="{via:XLoc ContextMenu.Template.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
   <via:XMenuItem
     Command="{Binding NewTemplateCommand}"
-    Header="New Template"
+    Header="{via:XLoc ContextMenu.Template.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=Plus}"
     Variant="Primary"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -117,7 +118,7 @@
 
   <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
-    Header="Paste Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -126,7 +127,7 @@
   <via:XMenuItem
     Command="{Binding DeleteTemplateCommand}"
     CommandParameter="{Binding CurrentTemplate}"
-    Header="Delete Template"
+    Header="{via:XLoc ContextMenu.Template.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowTemplateMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -139,14 +140,14 @@
   <via:XMenuItem
     Command="{Binding EditPopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
-    Header="Edit Popup"
+    Header="{via:XLoc ContextMenu.Popup.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
   <via:XMenuItem
     Command="{Binding NewPopupCommand}"
-    Header="New Popup"
+    Header="{via:XLoc ContextMenu.Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=Plus}"
     Variant="Primary"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -154,7 +155,7 @@
 
   <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
-    Header="Paste Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -163,7 +164,7 @@
   <via:XMenuItem
     Command="{Binding DeletePopupCommand}"
     CommandParameter="{Binding CurrentPopup}"
-    Header="Delete Popup"
+    Header="{via:XLoc ContextMenu.Popup.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowPopupMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -174,7 +175,7 @@
   />
 
   <via:XMenuItem
-    Header="Dock Left"
+    Header="{via:XLoc ContextMenu.Popup.DockLeft, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronLeft}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Left}"
@@ -182,7 +183,7 @@
   />
 
   <via:XMenuItem
-    Header="Dock Right"
+    Header="{via:XLoc ContextMenu.Popup.DockRight, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronRight}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Right}"
@@ -190,7 +191,7 @@
   />
 
   <via:XMenuItem
-    Header="Dock Top"
+    Header="{via:XLoc ContextMenu.Popup.DockTop, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronUp}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Top}"
@@ -198,7 +199,7 @@
   />
 
   <via:XMenuItem
-    Header="Dock Bottom"
+    Header="{via:XLoc ContextMenu.Popup.DockBottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronDown}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Bottom}"
@@ -206,7 +207,7 @@
   />
 
   <via:XMenuItem
-    Header="Dock Center"
+    Header="{via:XLoc ContextMenu.Popup.DockCenter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=VectorSquare}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=Center}"
@@ -214,7 +215,7 @@
   />
 
   <via:XMenuItem
-    Header="At Mouse Position"
+    Header="{via:XLoc ContextMenu.Popup.AtMousePosition, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ApplicationOutline}"
     IsCheckable="True"
     IsChecked="{Binding CurrentPopup.Position, Mode=TwoWay, Converter={StaticResource EnumEqualsConverter}, ConverterParameter=MousePos}"
@@ -232,7 +233,7 @@
   <via:XMenuItem
     Command="{Binding MoveBandUpCommand}"
     CommandParameter="{Binding ContextBand}"
-    Header="Move Band Up"
+    Header="{via:XLoc ContextMenu.Band.MoveUp, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ArrowUp}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -240,7 +241,7 @@
   <via:XMenuItem
     Command="{Binding MoveBandDownCommand}"
     CommandParameter="{Binding ContextBand}"
-    Header="Move Band Down"
+    Header="{via:XLoc ContextMenu.Band.MoveDown, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ArrowDown}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -252,7 +253,7 @@
   <via:XMenuItem
     Command="{Binding AddBandCommand}"
     CommandParameter="{Binding ContextBand}"
-    Header="New Band"
+    Header="{via:XLoc ContextMenu.Band.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=Plus}"
     Variant="Primary"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -272,7 +273,7 @@
   <via:XMenuItem
     Command="{Binding DuplicateBandCommand}"
     CommandParameter="{Binding ContextBand}"
-    Header="Duplicate Band"
+    Header="{via:XLoc ContextMenu.Band.Duplicate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -280,7 +281,7 @@
   <via:XMenuItem
     Command="{Binding DeleteBandCommand}"
     CommandParameter="{Binding ContextBand}"
-    Header="Delete Band"
+    Header="{via:XLoc ContextMenu.Band.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowBandMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -293,7 +294,7 @@
   <via:XMenuItem
     Command="{Binding EditActionAreaActionsCommand}"
     CommandParameter="{Binding CurrentActionArea}"
-    Header="Edit Actions"
+    Header="{via:XLoc ContextMenu.ActionArea.EditActions, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=PencilOutline}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -305,14 +306,14 @@
   <via:XMenuItem
     Command="{Binding CopyControlsCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Copy ActionArea"
+    Header="{via:XLoc ContextMenu.ActionArea.Copy, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
   <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
-    Header="Paste ActionArea"
+    Header="{via:XLoc ContextMenu.ActionArea.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -321,7 +322,7 @@
   <via:XMenuItem
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Delete ActionArea"
+    Header="{via:XLoc ContextMenu.ActionArea.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowActionAreaMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -334,14 +335,14 @@
   <via:XMenuItem
     Command="{Binding CopyControlsCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Copy Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Copy, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentCopy}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
 
   <via:XMenuItem
     Command="{Binding PasteControlsCommand}"
-    Header="Paste Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ContentPaste}"
     IsEnabled="{Binding CanPasteControls}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -354,7 +355,7 @@
   <via:XMenuItem
     Command="{Binding DeleteControlsCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Delete Control(s)"
+    Header="{via:XLoc ContextMenu.Control.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=DeleteOutline}"
     Variant="Danger"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -367,7 +368,7 @@
   <via:XMenuItem
     Command="{Binding BringToFrontCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Bring To Front"
+    Header="{via:XLoc ContextMenu.Control.BringToFront, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ArrowUp}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -375,7 +376,7 @@
   <via:XMenuItem
     Command="{Binding SendToBackCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Send To Back"
+    Header="{via:XLoc ContextMenu.Control.SendToBack, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ArrowDown}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -383,7 +384,7 @@
   <via:XMenuItem
     Command="{Binding BringForwardCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Bring Forward"
+    Header="{via:XLoc ContextMenu.Control.BringForward, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronUp}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />
@@ -391,7 +392,7 @@
   <via:XMenuItem
     Command="{Binding SendBackwardCommand}"
     CommandParameter="{Binding ContextControls}"
-    Header="Send Backward"
+    Header="{via:XLoc ContextMenu.Control.SendBackward, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Icon="{via:MaterialIcon Kind=ChevronDown}"
     Visibility="{Binding ShowControlMenu, Converter={StaticResource BoolToVisibilityConverter}}"
   />

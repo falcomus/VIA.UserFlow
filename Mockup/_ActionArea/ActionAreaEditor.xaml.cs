@@ -2,23 +2,18 @@
 // FILE: Mockup/Actions/ActionAreaEditor.xaml.cs
 // ======================================================================================
 
+using Mockup.Dialogs;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Mockup.Actions;
 
-public partial class ActionAreaEditor : Window
+public partial class ActionAreaEditor : ModalDialogWindow
 {
     public ActionAreaEditor()
     {
         InitializeComponent();
-
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        ResizeMode = ResizeMode.NoResize;
-        ShowInTaskbar = false;
-        Title = "ActionArea Editor";
 
         DataContextChanged += (_, __) => TryWireCloseFromViewModel();
         Loaded += (_, __) => TryWireCloseFromViewModel();
@@ -26,19 +21,16 @@ public partial class ActionAreaEditor : Window
 
     private void ContentPresenter_Loaded(object sender, RoutedEventArgs e)
     {
-        var cp = sender as ContentPresenter;
-        if (cp == null) return;
+        if (sender is not ContentPresenter contentPresenter)
+            return;
 
-        var actionControl = cp.ContentTemplate.FindName("actionControl", cp) as ActionItemControl;
-        if (actionControl != null)
-        {
-            if (cp.DataContext != null)
-            {
-                actionControl.Row = (ActionRow)cp.DataContext;
-            }
-        }
+        var actionControl =
+            contentPresenter.ContentTemplate.FindName("actionControl", contentPresenter)
+                as ActionItemControl;
+
+        if (actionControl is not null && contentPresenter.DataContext is ActionRow row)
+            actionControl.Row = row;
     }
-
 
     private bool _wired;
 
@@ -65,27 +57,15 @@ public partial class ActionAreaEditor : Window
     // Damit Click auf ComboBox auch Item auswählt
     private void ItemComboBox_SelectParent(object sender, RoutedEventArgs e)
     {
-        if (sender is not DependencyObject d) return;
+        if (sender is not DependencyObject dependencyObject)
+            return;
 
-        DependencyObject? p = d;
-        while (p is not null && p is not ListBoxItem)
-            p = VisualTreeHelper.GetParent(p);
+        DependencyObject? parent = dependencyObject;
 
-        if (p is ListBoxItem lbi)
-            lbi.IsSelected = true;
-    }
+        while (parent is not null && parent is not ListBoxItem)
+            parent = VisualTreeHelper.GetParent(parent);
 
-    private void TitleBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton == MouseButton.Left)
-            DragMove();
-    }
-
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-        var rect = new RectangleGeometry(new Rect(0, 0, ActualWidth, ActualHeight), 6, 4);
-        Clip = rect;
+        if (parent is ListBoxItem listBoxItem)
+            listBoxItem.IsSelected = true;
     }
 }
-
-

@@ -5,9 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:dialogs="clr-namespace:Mockup.Dialogs"
     xmlns:via="http://schemas.via.dev/wpf"
-    Title="Edit template"
+    Title="{via:XLoc Dialog.Template.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Subtitle=""
     Width="400"
     SizeToContent="Height"
@@ -52,7 +53,7 @@
             <via:XTextBox
                 x:Name="InputName"
                 Grid.Row="0"
-                Header="Name"
+                Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
             <via:XTextBox
@@ -60,7 +61,7 @@
                 Grid.Row="2"
                 Height="85"
                 AcceptsReturn="True"
-                Header="Description"
+                Header="{via:XLoc Dialog.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 MaxLines="4"
                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                 TextWrapping="Wrap"
@@ -68,7 +69,7 @@
 
             <via:XComboBox
                 Grid.Row="4"
-                Header="Category"
+                Header="{via:XLoc Dialog.Category, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEditable="True"
                 IsTextSearchEnabled="True"
                 ItemsSource="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=TemplateGroupNames}"
@@ -88,7 +89,7 @@
                 <via:XButton
                     Width="112"
                     Click="Ok_Click"
-                    Content="OK"
+                    Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsDefault="True"
                     Size="Large"
@@ -96,7 +97,7 @@
                 <via:XButton
                     Width="92"
                     Click="Cancel_Click"
-                    Content="Cancel"
+                    Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsCancel="True"
                     Size="Large" />

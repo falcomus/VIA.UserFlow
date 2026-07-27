@@ -1,10 +1,12 @@
 ﻿using Microsoft.Win32;
+using Mockup.Resources;
 using SkiaSharp;
 using SkiaSharp.Views.WPF;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using VIA.WPF.Localization;
 
 namespace Mockup.UIControls;
 
@@ -24,6 +26,14 @@ public partial class XImagePicker : UserControl
         Loaded += ScreenEditor_Loaded;
     }
 
+    private static string DialogText(string key, string fallbackText)
+    {
+        return XLocalizationService.Current.GetString(
+            UserFlowResources.ResourceManager,
+            key,
+            fallbackText);
+    }
+
     private void ScreenEditor_Loaded(object sender, RoutedEventArgs e)
     {
         //InputName.Focus();
@@ -41,8 +51,8 @@ public partial class XImagePicker : UserControl
 
         var dlg = new OpenFileDialog
         {
-            Title = "Select Background Image",
-            Filter = "Images (*.bmp;*.png;*.jpg;*.jpeg)|*.bmp;*.png;*.jpg;*.jpeg",
+            Title = DialogText("Dialog.ImagePicker.SelectBackgroundTitle", "Select Background Image"),
+            Filter = DialogText("Dialog.ImagePicker.ImageFilesFilter", "Images (*.bmp;*.png;*.jpg;*.jpeg)|*.bmp;*.png;*.jpg;*.jpeg"),
             Multiselect = false
         };
 

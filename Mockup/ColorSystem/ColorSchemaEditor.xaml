@@ -3,8 +3,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:via="http://schemas.via.dev/wpf"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     x:Name="Root"
-    Title="Edit color scheme"
+    Title="{via:XLoc Dialog.ColorScheme.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Width="850"
     CornerRadius="4"
     ResizeMode="NoResize"
@@ -24,15 +25,15 @@
         <Grid.RowDefinitions><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
         <via:XStackPanel Margin="28,22,28,24" Spacing="18">
             <via:XStackPanel Spacing="5">
-                <via:XTextBlock FontSize="14" FontWeight="SemiBold" Text="Color scheme" />
-                <via:XTextBlock Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}" Text="Select a color token, then adjust it below." />
+                <via:XTextBlock FontSize="14" FontWeight="SemiBold" Text="{via:XLoc Dialog.Project.ColorScheme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                <via:XTextBlock Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}" Text="{via:XLoc Dialog.ColorScheme.Instruction, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </via:XStackPanel>
             <via:XColorSchemeEditor ItemsSource="{Binding ColorItems}" SelectedItem="{Binding SelectedColorItem, Mode=TwoWay}" />
         </via:XStackPanel>
         <via:XBorder Grid.Row="1" Padding="28,14" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}" BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}" BorderThickness="0,1,0,0">
             <via:XStackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
-                <via:XButton Width="112" Command="{Binding OkCommand}" Content="OK" IsDefault="True" Size="Large" Variant="Primary" />
-                <via:XButton Width="92" Command="{Binding CancelCommand}" Content="Cancel" IsCancel="True" Size="Large" />
+                <via:XButton Width="112" Command="{Binding OkCommand}" Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsDefault="True" Size="Large" Variant="Primary" />
+                <via:XButton Width="92" Command="{Binding CancelCommand}" Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsCancel="True" Size="Large" />
             </via:XStackPanel>
         </via:XBorder>
     </Grid>

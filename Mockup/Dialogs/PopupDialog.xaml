@@ -5,9 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:dialogs="clr-namespace:Mockup.Dialogs"
     xmlns:via="http://schemas.via.dev/wpf"
-    Title="Edit popup"
+    Title="{via:XLoc Dialog.Popup.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Subtitle=""
     Width="500"
     SizeToContent="Height"
@@ -60,18 +61,18 @@
             <via:XTextBox
                 x:Name="InputName"
                 Grid.Row="0"
-                Header="Name"
+                Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
             <via:XTextBox
                 x:Name="InputTitle"
                 Grid.Row="2"
-                Header="Title"
+                Header="{via:XLoc Dialog.TitleField, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
             <via:XComboBox
                 Grid.Row="4"
-                Header="Category"
+                Header="{via:XLoc Dialog.Category, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEditable="True"
                 IsTextSearchEnabled="True"
                 ItemsSource="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=PopupGroupNames}"
@@ -81,15 +82,15 @@
                 Grid.Row="6"
                 FontSize="13"
                 FontWeight="SemiBold"
-                Text="Position" />
+                Text="{via:XLoc Dialog.Position, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
             <via:XStackPanel Grid.Row="8" Orientation="Horizontal" Spacing="12">
-                <via:XRadioButton Content="Left" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Left}" />
-                <via:XRadioButton Content="Right" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Right}" />
-                <via:XRadioButton Content="Top" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Top}" />
-                <via:XRadioButton Content="Bottom" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Bottom}" />
-                <via:XRadioButton Content="Center" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Center}" />
-                <via:XRadioButton Content="MousePos" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=MousePos}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Left, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Left}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Right, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Right}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Top, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Top}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Bottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Bottom}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Center, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Center}" />
+                <via:XRadioButton Content="{via:XLoc Dialog.Popup.MousePosition, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=MousePos}" />
             </via:XStackPanel>
 
             <via:XBorder
@@ -109,11 +110,11 @@
                     <via:XCheckBox
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Content="Show header"
+                        Content="{via:XLoc Dialog.Popup.ShowHeader, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         IsChecked="{Binding HasHeader, Mode=TwoWay}" />
                     <via:XTextBox
                         Grid.Column="2"
-                        Header="Header height"
+                        Header="{via:XLoc Dialog.Popup.HeaderHeight, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         IsEnabled="{Binding HasHeader}"
                         Text="{Binding HeaderHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
@@ -123,7 +124,7 @@
                 x:Name="InputDescription"
                 Grid.Row="12"
                 AcceptsReturn="True"
-                Header="Description"
+                Header="{via:XLoc Dialog.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 MaxLines="4"
                 Height="85"
                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
@@ -144,7 +145,7 @@
                 <via:XButton
                     Width="112"
                     Click="Ok_Click"
-                    Content="OK"
+                    Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsDefault="True"
                     Size="Large"
@@ -152,7 +153,7 @@
                 <via:XButton
                     Width="92"
                     Click="Cancel_Click"
-                    Content="Cancel"
+                    Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsCancel="True"
                     Size="Large" />

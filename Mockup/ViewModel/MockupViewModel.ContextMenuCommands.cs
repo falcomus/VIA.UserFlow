@@ -806,8 +806,8 @@ public sealed partial class MockupViewModel : ObservableObject
 
         var dialog = new XColorPickerDialog { SelectedColor = CurrentScreen.Background };
 
-        bool? accepted = dialog.ShowDialog();
-        if (accepted != true)
+        XDialogResult result = XDialogService.Default.ShowModal(dialog);
+        if (!result.IsAccepted)
             return;
 
         if (CurrentScreen.Background == dialog.SelectedColor)

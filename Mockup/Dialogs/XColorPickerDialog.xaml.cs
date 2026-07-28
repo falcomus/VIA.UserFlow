@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace Mockup.Dialogs;
 
-public partial class XColorPickerDialog : Window
+public partial class XColorPickerDialog : ModalDialogWindow
 {
     public static readonly DependencyProperty SelectedColorProperty =
         DependencyProperty.Register(
@@ -36,6 +36,12 @@ public partial class XColorPickerDialog : Window
     {
         SelectedColor = PART_ColorPicker.SelectedColor;
         DialogResult = true;
+        Close();
+    }
+
+    private void Cancel_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
         Close();
     }
 }

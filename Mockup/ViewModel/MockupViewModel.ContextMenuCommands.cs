@@ -2161,8 +2161,6 @@ public sealed partial class MockupViewModel : ObservableObject
     [RelayCommand]
     private void NewTemplate()
     {
-        MSG.UI.ShowOverlay();
-
         try
         {
             var newTemplate = new ScreenTemplate(
@@ -2178,7 +2176,8 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 newTemplate,
                 _ => new TemplateDialog(),
-                DialogText("Dialog.Template.New.Title", "NEW TEMPLATE")
+                DialogText("Dialog.Template.New.Title", "NEW TEMPLATE"),
+                XDialogService.Default
             );
 
             if (!accepted)
@@ -2194,7 +2193,6 @@ public sealed partial class MockupViewModel : ObservableObject
         finally
         {
             MSG.UI.InvalidateDesigner();
-            MSG.UI.HideOverlay();
         }
     }
 
@@ -2208,8 +2206,6 @@ public sealed partial class MockupViewModel : ObservableObject
 
         CurrentTemplate = template;
 
-        MSG.UI.ShowOverlay();
-
         var oldId = CurrentTemplate.Id;
 
         try
@@ -2219,7 +2215,8 @@ public sealed partial class MockupViewModel : ObservableObject
             bool accepted = DialogService.EditEntity(
                 clone,
                 _ => new TemplateDialog(),
-                DialogText("Dialog.Template.Edit.Title", "EDIT TEMPLATE")
+                DialogText("Dialog.Template.Edit.Title", "EDIT TEMPLATE"),
+                XDialogService.Default
             );
 
             if (!accepted)
@@ -2245,7 +2242,6 @@ public sealed partial class MockupViewModel : ObservableObject
         finally
         {
             MSG.UI.InvalidateDesigner();
-            MSG.UI.HideOverlay();
         }
     }
 
@@ -2304,8 +2300,6 @@ public sealed partial class MockupViewModel : ObservableObject
         if (CurrentProject == null)
             return;
 
-        MSG.UI.ShowOverlay();
-
         try
         {
             var newPopup = new ScreenPopup(
@@ -2319,7 +2313,12 @@ public sealed partial class MockupViewModel : ObservableObject
                 Position = ScreenPopupPosition.Center,
             };
 
-            bool accepted = DialogService.EditEntity(newPopup, _ => new PopupDialog(), DialogText("Dialog.Popup.New.Title", "NEW POPUP"));
+            bool accepted = DialogService.EditEntity(
+                newPopup,
+                _ => new PopupDialog(),
+                DialogText("Dialog.Popup.New.Title", "NEW POPUP"),
+                XDialogService.Default
+            );
 
             if (!accepted)
                 return;
@@ -2338,7 +2337,6 @@ public sealed partial class MockupViewModel : ObservableObject
         finally
         {
             MSG.UI.InvalidateDesigner();
-            MSG.UI.HideOverlay();
         }
     }
 
@@ -2391,8 +2389,6 @@ public sealed partial class MockupViewModel : ObservableObject
 
         CurrentPopup = popup;
 
-        MSG.UI.ShowOverlay();
-
         var saveId = popup.Id;
 
         try
@@ -2400,7 +2396,12 @@ public sealed partial class MockupViewModel : ObservableObject
             var clone = popup.DeepClone();
             var oldPosition = popup.Position;
 
-            bool accepted = DialogService.EditEntity(clone, _ => new PopupDialog(), DialogText("Dialog.Popup.Edit.Title", "EDIT POPUP"));
+            bool accepted = DialogService.EditEntity(
+                clone,
+                _ => new PopupDialog(),
+                DialogText("Dialog.Popup.Edit.Title", "EDIT POPUP"),
+                XDialogService.Default
+            );
 
             if (!accepted)
                 return;
@@ -2443,7 +2444,6 @@ public sealed partial class MockupViewModel : ObservableObject
         finally
         {
             MSG.UI.InvalidateDesigner();
-            MSG.UI.HideOverlay();
         }
     }
 

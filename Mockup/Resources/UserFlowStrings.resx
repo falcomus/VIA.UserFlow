@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -221,6 +221,15 @@
   <data name="Dialog.Screen.HomeScreen" xml:space="preserve"><value>Home Screen</value></data>
   <data name="Dialog.Screen.Background" xml:space="preserve"><value>Background</value></data>
   <data name="Dialog.Screen.Image" xml:space="preserve"><value>Image</value></data>
+  <data name="Dialog.Screen.HeaderFooter" xml:space="preserve"><value>Header / Footer</value></data>
+  <data name="Dialog.Screen.BackgroundColor" xml:space="preserve"><value>Background Color</value></data>
+  <data name="Dialog.Screen.SelectColor" xml:space="preserve"><value>Select...</value></data>
+  <data name="Dialog.Screen.BrowseImage" xml:space="preserve"><value>Browse...</value></data>
+  <data name="Dialog.Screen.ClearImage" xml:space="preserve"><value>Clear</value></data>
+  <data name="Dialog.Screen.ImagePreview" xml:space="preserve"><value>Image Preview</value></data>
+  <data name="Dialog.Screen.Preview" xml:space="preserve"><value>Preview</value></data>
+  <data name="Dialog.Screen.BandDetails" xml:space="preserve"><value>Band Details</value></data>
+  <data name="Dialog.Screen.PagesInBand" xml:space="preserve"><value>Pages in this Band</value></data>
   <data name="Dialog.Screen.HeaderTab" xml:space="preserve"><value>Header</value></data>
   <data name="Dialog.Screen.HeaderTitle" xml:space="preserve"><value>Header Title</value></data>
   <data name="Dialog.Screen.HeaderColor" xml:space="preserve"><value>Header Color</value></data>
@@ -234,7 +243,7 @@
   <data name="Dialog.Screen.MoveDown" xml:space="preserve"><value>Move Down</value></data>
   <data name="Dialog.Screen.DeleteBand" xml:space="preserve"><value>Delete Band</value></data>
   <data name="Dialog.Screen.Sticky" xml:space="preserve"><value>Sticky</value></data>
-  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Exp.</value></data>
+  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Expand</value></data>
   <data name="Dialog.Screen.Tabs" xml:space="preserve"><value>Tabs</value></data>
   <data name="Dialog.Screen.Uniform" xml:space="preserve"><value>Uniform</value></data>
   <data name="Dialog.Screen.Pages" xml:space="preserve"><value>Pages</value></data>

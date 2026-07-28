@@ -1,12 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SkiaSharp;
 using Mockup.Resources;
 using Mockup.Services;
 using Mockup.Snapshots;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using VIA.WPF.Localization;
 
 namespace Mockup.Dialogs;
@@ -23,10 +26,19 @@ public partial class ScreenDialog : ModalDialogWindow
     [ObservableProperty]
     private ICollectionView? customBandsView;
 
+    [ObservableProperty]
+    private int selectedSectionIndex;
+
+    [ObservableProperty]
+    private ImageSource? backgroundImagePreview;
+
+    private Screen? observedScreen;
+
     public ScreenDialog()
     {
         InitializeComponent();
         Loaded += ScreenEditor_Loaded;
+        Closed += ScreenEditor_Closed;
     }
 
     private static string DialogText(string key, string fallbackText)
@@ -44,6 +56,18 @@ public partial class ScreenDialog : ModalDialogWindow
         if (DataContext is not Screen screen)
             return;
 
+        if (!ReferenceEquals(observedScreen, screen))
+        {
+            if (observedScreen != null)
+                observedScreen.PropertyChanged -= Screen_PropertyChanged;
+
+            observedScreen = screen;
+            observedScreen.PropertyChanged += Screen_PropertyChanged;
+        }
+
+        UpdateSelectedSectionVisibility();
+        UpdateBackgroundImagePreview();
+
         var view = CollectionViewSource.GetDefaultView(screen.Bands);
         view.Filter = o => o is Band b && b.BandType == BandType.Custom;
         CustomBandsView = view;
@@ -52,6 +76,64 @@ public partial class ScreenDialog : ModalDialogWindow
         SelectedPage = SelectedBand?.ActivePage;
 
         screen.RecalculateBandLayout();
+    }
+
+
+    partial void OnSelectedSectionIndexChanged(int value)
+    {
+        UpdateSelectedSectionVisibility();
+    }
+
+    private void UpdateSelectedSectionVisibility()
+    {
+        if (!IsInitialized)
+            return;
+
+        GeneralSection.Visibility = SelectedSectionIndex == 0 ? Visibility.Visible : Visibility.Collapsed;
+        BackgroundSection.Visibility = SelectedSectionIndex == 1 ? Visibility.Visible : Visibility.Collapsed;
+        HeaderFooterSection.Visibility = SelectedSectionIndex == 2 ? Visibility.Visible : Visibility.Collapsed;
+        BandsPagesSection.Visibility = SelectedSectionIndex == 3 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void ScreenEditor_Closed(object? sender, EventArgs e)
+    {
+        if (observedScreen != null)
+            observedScreen.PropertyChanged -= Screen_PropertyChanged;
+
+        observedScreen = null;
+        BackgroundImagePreview = null;
+    }
+
+    private void Screen_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(Screen.BackgroundImage)
+            or nameof(Screen.BackgroundImageBase64)
+            or nameof(Screen.BackgroundImageFilename))
+        {
+            UpdateBackgroundImagePreview();
+        }
+    }
+
+    private void UpdateBackgroundImagePreview()
+    {
+        BackgroundImagePreview = observedScreen?.BackgroundImage is { } bitmap
+            ? CreateImageSource(bitmap)
+            : null;
+    }
+
+    private static ImageSource CreateImageSource(SKBitmap bitmap)
+    {
+        using var image = SKImage.FromBitmap(bitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Png, 100);
+        using var stream = new MemoryStream(data.ToArray());
+
+        var source = new BitmapImage();
+        source.BeginInit();
+        source.CacheOption = BitmapCacheOption.OnLoad;
+        source.StreamSource = stream;
+        source.EndInit();
+        source.Freeze();
+        return source;
     }
 
     partial void OnSelectedBandChanged(Band? value)

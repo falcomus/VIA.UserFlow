@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -221,6 +221,15 @@
   <data name="Dialog.Screen.HomeScreen" xml:space="preserve"><value>Startscreen</value></data>
   <data name="Dialog.Screen.Background" xml:space="preserve"><value>Hintergrund</value></data>
   <data name="Dialog.Screen.Image" xml:space="preserve"><value>Bild</value></data>
+  <data name="Dialog.Screen.HeaderFooter" xml:space="preserve"><value>Kopf- / Fußbereich</value></data>
+  <data name="Dialog.Screen.BackgroundColor" xml:space="preserve"><value>Hintergrundfarbe</value></data>
+  <data name="Dialog.Screen.SelectColor" xml:space="preserve"><value>Auswählen...</value></data>
+  <data name="Dialog.Screen.BrowseImage" xml:space="preserve"><value>Durchsuchen...</value></data>
+  <data name="Dialog.Screen.ClearImage" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="Dialog.Screen.ImagePreview" xml:space="preserve"><value>Bildvorschau</value></data>
+  <data name="Dialog.Screen.Preview" xml:space="preserve"><value>Vorschau</value></data>
+  <data name="Dialog.Screen.BandDetails" xml:space="preserve"><value>Banddetails</value></data>
+  <data name="Dialog.Screen.PagesInBand" xml:space="preserve"><value>Seiten in diesem Band</value></data>
   <data name="Dialog.Screen.HeaderTab" xml:space="preserve"><value>Kopfbereich</value></data>
   <data name="Dialog.Screen.HeaderTitle" xml:space="preserve"><value>Titel des Kopfbereichs</value></data>
   <data name="Dialog.Screen.HeaderColor" xml:space="preserve"><value>Farbe des Kopfbereichs</value></data>
@@ -234,7 +243,7 @@
   <data name="Dialog.Screen.MoveDown" xml:space="preserve"><value>Nach unten</value></data>
   <data name="Dialog.Screen.DeleteBand" xml:space="preserve"><value>Band löschen</value></data>
   <data name="Dialog.Screen.Sticky" xml:space="preserve"><value>Fixiert</value></data>
-  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Aufkl.</value></data>
+  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Aufklappen</value></data>
   <data name="Dialog.Screen.Tabs" xml:space="preserve"><value>Tabs</value></data>
   <data name="Dialog.Screen.Uniform" xml:space="preserve"><value>Einheitlich</value></data>
   <data name="Dialog.Screen.Pages" xml:space="preserve"><value>Seiten</value></data>

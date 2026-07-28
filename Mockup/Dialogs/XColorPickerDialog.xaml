@@ -8,6 +8,7 @@
     Title="{via:XLoc Dialog.ColorPicker.Title,
                      ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Width="560"
+    BorderThickness="1"
     CornerRadius="10"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
@@ -76,4 +77,5 @@
             </via:XStackPanel>
         </via:XBorder>
     </Grid>
+
 </dialogs:ModalDialogWindow>

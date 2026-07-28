@@ -1,301 +1,1007 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
-  <resheader name="version"><value>2.0</value></resheader>
-  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
-  <data name="Main.Theme" xml:space="preserve"><value>Design</value></data>
-  <data name="Main.TabProject" xml:space="preserve"><value>PROJEKT</value></data>
-  <data name="Main.TabScreen" xml:space="preserve"><value>BILDSCHIRM</value></data>
-  <data name="Main.TabTemplate" xml:space="preserve"><value>VORLAGE</value></data>
-  <data name="Main.TabPopup" xml:space="preserve"><value>POPUP</value></data>
-  <data name="Main.TabPreview" xml:space="preserve"><value>VORSCHAU</value></data>
-  <data name="Main.TabActionFlow" xml:space="preserve"><value>AKTIONSABLAUF</value></data>
-  <data name="Main.TabOptions" xml:space="preserve"><value>OPTIONEN</value></data>
-  <data name="Main.TabHelp" xml:space="preserve"><value>HILFE</value></data>
-  <data name="Main.TabAbout" xml:space="preserve"><value>ÜBER</value></data>
-  <data name="Main.ToolboxToggle" xml:space="preserve"><value>Toolbox öffnen oder schließen</value></data>
-  <data name="Options.Title" xml:space="preserve"><value>Optionen</value></data>
-  <data name="Options.Heading" xml:space="preserve"><value>Anwendungsoptionen</value></data>
-  <data name="Options.Introduction" xml:space="preserve"><value>Änderungen werden sofort gespeichert und beim nächsten Start von UserFlow geladen.</value></data>
-  <data name="Options.Saving" xml:space="preserve"><value>Speichern</value></data>
-  <data name="Options.AutoSave" xml:space="preserve"><value>Änderungen automatisch speichern</value></data>
-  <data name="Options.SaveInterval" xml:space="preserve"><value>Speicherintervall</value></data>
-  <data name="Options.SaveDescription" xml:space="preserve"><value>UserFlow speichert Projekte, Vorlagen und Optionen im Hintergrund.</value></data>
-  <data name="Options.Workspace" xml:space="preserve"><value>Arbeitsbereich</value></data>
-  <data name="Options.ShowToolbox" xml:space="preserve"><value>Toolbox anzeigen</value></data>
-  <data name="Options.ShowToolboxDescription" xml:space="preserve"><value>Hält die Control-Toolbox im Designer sichtbar.</value></data>
-  <data name="Options.OpenLastProject" xml:space="preserve"><value>Letztes Projekt beim Start öffnen</value></data>
-  <data name="Options.OpenLastProjectDescription" xml:space="preserve"><value>Wenn deaktiviert, startet UserFlow ohne ausgewähltes Projekt.</value></data>
-  <data name="Options.Storage" xml:space="preserve"><value>Speicherort</value></data>
-  <data name="Options.StorageDescription" xml:space="preserve"><value>Anwendungsoptionen werden in Data\settings.json neben UserFlow gespeichert. Projekte, Vorlagen und Farbschemata bleiben im selben Data-Ordner.</value></data>
-  <data name="Designer.Search" xml:space="preserve"><value>Suchen...</value></data>
-  <data name="Screen.Title" xml:space="preserve"><value>Bildschirme</value></data>
-  <data name="Screen.New" xml:space="preserve"><value>Neuer Bildschirm</value></data>
-  <data name="Screen.None" xml:space="preserve"><value>Kein Bildschirm ausgewählt</value></data>
-  <data name="Screen.DeviceTop" xml:space="preserve"><value>Geräteoberkante</value></data>
-  <data name="Screen.DeviceBottom" xml:space="preserve"><value>Geräteunterkante</value></data>
-  <data name="Screen.Edit" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
-  <data name="Screen.Delete" xml:space="preserve"><value>Bildschirm löschen</value></data>
-  <data name="Screen.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
-  <data name="Screen.ShowFooter" xml:space="preserve"><value>Fußbereich anzeigen</value></data>
-  <data name="Template.Title" xml:space="preserve"><value>Vorlagen</value></data>
-  <data name="Template.New" xml:space="preserve"><value>Neue Vorlage</value></data>
-  <data name="Template.None" xml:space="preserve"><value>Keine Vorlage ausgewählt</value></data>
-  <data name="Popup.Title" xml:space="preserve"><value>Popups</value></data>
-  <data name="Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
-  <data name="Popup.None" xml:space="preserve"><value>Kein Popup ausgewählt</value></data>
-  <data name="Main.NoCurrentProject" xml:space="preserve"><value>Kein Projekt ausgewählt</value></data>
-  <data name="Main.ProjectActionTooltip" xml:space="preserve"><value>Ausgewähltes Projekt öffnen</value></data>
-  <data name="Main.ImportProject" xml:space="preserve"><value>Projekt importieren</value></data>
-  <data name="Main.CreateProject" xml:space="preserve"><value>Neues Projekt</value></data>
-  <data name="Main.ImportProjectTooltip" xml:space="preserve"><value>Projekt importieren</value></data>
-  <data name="Main.CreateProjectTooltip" xml:space="preserve"><value>Neues Projekt erstellen</value></data>
-  <data name="Splash.HeadingStartup" xml:space="preserve"><value>Startvorgang</value></data>
-  <data name="Splash.StatusPreparing" xml:space="preserve"><value>Der Start wird vorbereitet...</value></data>
-  <data name="Splash.StatusStarting" xml:space="preserve"><value>UserFlow wird gestartet...</value></data>
-  <data name="Splash.StatusPreparingViewModel" xml:space="preserve"><value>ViewModel wird vorbereitet...</value></data>
-  <data name="Splash.StatusPreparingMainWindow" xml:space="preserve"><value>Hauptfenster wird vorbereitet...</value></data>
-  <data name="Main.ProjectLoadingHeading" xml:space="preserve"><value>Projekt wird geladen</value></data>
-  <data name="Main.ProjectLoadingStatus" xml:space="preserve"><value>Lade {0} ...</value></data>
-  <data name="Main.UnsupportedFileType" xml:space="preserve"><value>Dateityp wird nicht unterstützt: {0}</value></data>
-  <data name="Splash.PleaseWait" xml:space="preserve"><value>Bitte warten...</value></data>
-  <data name="Startup.PreparingDataFolder" xml:space="preserve"><value>Datenordner wird vorbereitet...</value></data>
-  <data name="Startup.LoadingSettings" xml:space="preserve"><value>Einstellungen werden geladen...</value></data>
-  <data name="Startup.InitializingColorScheme" xml:space="preserve"><value>Farbschema wird initialisiert...</value></data>
-  <data name="Startup.PreparingAutosave" xml:space="preserve"><value>Automatisches Speichern wird vorbereitet...</value></data>
-  <data name="Startup.LoadingLastProject" xml:space="preserve"><value>Letztes Projekt wird geladen...</value></data>
-  <data name="Startup.LoadingTemplates" xml:space="preserve"><value>Vorlagen werden geladen...</value></data>
-  <data name="Startup.PreparingToolbox" xml:space="preserve"><value>Toolbox wird vorbereitet...</value></data>
-  <data name="Startup.RegisteringMessages" xml:space="preserve"><value>Nachrichten werden registriert...</value></data>
-  <data name="Startup.Complete" xml:space="preserve"><value>\n\nStart abgeschlossen.</value></data>
-  <data name="Startup.PreparingStartupSelection" xml:space="preserve"><value>Startauswahl wird vorbereitet...</value></data>
-  <data name="Startup.PreparingUndoRedo" xml:space="preserve"><value>Undo/Redo wird vorbereitet...\n\n</value></data>
-  <data name="Startup.ReadProjectFile" xml:space="preserve"><value>Projektdatei wird gelesen: {0} ...</value></data>
-  <data name="Startup.DeserializeProject" xml:space="preserve"><value>Projekt wird deserialisiert: {0} ...</value></data>
-  <data name="Startup.CheckProjectStructure" xml:space="preserve"><value>Projektstruktur wird geprüft ...</value></data>
-  <data name="Startup.ReconstructScreens" xml:space="preserve"><value>Screens werden rekonstruiert ({0}/{1}) ...</value></data>
-  <data name="Startup.ApplyProject" xml:space="preserve"><value>Projekt wird angewendet ...</value></data>
-  <data name="Startup.ApplyProjectTheme" xml:space="preserve"><value>Projekt-Design wird angewendet ...</value></data>
-  <data name="Startup.UpdateProjectList" xml:space="preserve"><value>Projektliste wird aktualisiert ...</value></data>
-  <data name="Startup.OpenLastProject" xml:space="preserve"><value>Letztes Projekt wird geöffnet: {0} ...</value></data>
-  <data name="Startup.UpdateProjectUi" xml:space="preserve"><value>Projektoberfläche wird aktualisiert ...</value></data>
-  <data name="Startup.ReadingTemplates" xml:space="preserve"><value>Vorlagen werden gelesen ...</value></data>
-  <data name="Startup.PreparingTemplates" xml:space="preserve"><value>Vorlagen werden vorbereitet ({0}/{1}) ...</value></data>
-  <data name="Main.StatusScreens" xml:space="preserve"><value>Bildschirme</value></data>
-  <data name="Main.StatusTemplates" xml:space="preserve"><value>Vorlagen</value></data>
-  <data name="Main.StatusPopups" xml:space="preserve"><value>Popups</value></data>
-  <data name="Main.StatusFilePath" xml:space="preserve"><value>Dateipfad:</value></data>
-  <data name="Project.OpenProjectShort" xml:space="preserve"><value>Öffnen ...</value></data>
-  <data name="Project.OpenProjectTooltip" xml:space="preserve"><value>Projekt öffnen</value></data>
-  <data name="Project.SaveProject" xml:space="preserve"><value>Speichern</value></data>
-  <data name="Project.SaveProjectTooltip" xml:space="preserve"><value>Projekt speichern</value></data>
-  <data name="Project.NewProjectTooltip" xml:space="preserve"><value>Neues Projekt</value></data>
-  <data name="Project.MoreProjectActionsTooltip" xml:space="preserve"><value>Weitere Projektaktionen</value></data>
-  <data name="Project.ProjectInfo" xml:space="preserve"><value>Projektinfo</value></data>
-  <data name="Project.Device" xml:space="preserve"><value>Gerät</value></data>
-  <data name="Project.Screens" xml:space="preserve"><value>Bildschirme</value></data>
-  <data name="Project.Templates" xml:space="preserve"><value>Vorlagen</value></data>
-  <data name="Project.Popups" xml:space="preserve"><value>Popups</value></data>
-  <data name="Project.Controls" xml:space="preserve"><value>Steuerelemente</value></data>
-  <data name="Project.Sharing" xml:space="preserve"><value>Freigabe</value></data>
-  <data name="Project.Shared" xml:space="preserve"><value>Freigegeben</value></data>
-  <data name="Project.Readonly" xml:space="preserve"><value>Schreibgeschützt</value></data>
-  <data name="Project.File" xml:space="preserve"><value>Datei</value></data>
-  <data name="Project.Description" xml:space="preserve"><value>Beschreibung</value></data>
-  <data name="Project.Theme" xml:space="preserve"><value>Design</value></data>
-  <data name="Project.NewColorSchemeTooltip" xml:space="preserve"><value>Neues Farbschema</value></data>
-  <data name="Project.EditColorSchemeTooltip" xml:space="preserve"><value>Farbschema bearbeiten</value></data>
-  <data name="Project.DeleteColorSchemeTooltip" xml:space="preserve"><value>Farbschema löschen</value></data>
-  <data name="Project.EditScreenTooltip" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
-  <data name="Project.DeleteScreenTooltip" xml:space="preserve"><value>Bildschirm löschen</value></data>
-  <data name="Project.GotoScreenTooltip" xml:space="preserve"><value>Zum Bildschirm wechseln</value></data>
-  <data name="Project.SetAsHomeScreenTooltip" xml:space="preserve"><value>Als Startbildschirm festlegen</value></data>
-  <data name="Project.NewScreenTooltip" xml:space="preserve"><value>Neuer Bildschirm</value></data>
-  <data name="Project.SaveProjectAs" xml:space="preserve"><value>Projekt speichern unter...</value></data>
-  <data name="Project.SaveProjectAsTooltip" xml:space="preserve"><value>Projekt unter neuem Dateinamen speichern</value></data>
-  <data name="Project.EditProjectSettings" xml:space="preserve"><value>Projekteinstellungen bearbeiten</value></data>
-  <data name="Project.EditProjectSettingsTooltip" xml:space="preserve"><value>Projekteinstellungen bearbeiten</value></data>
-  <data name="Project.DeleteProject" xml:space="preserve"><value>Projekt löschen</value></data>
-  <data name="Project.DeleteProjectTooltip" xml:space="preserve"><value>Projekt löschen</value></data>
-  <data name="Project.ResetZoomTooltip" xml:space="preserve"><value>Zoom auf 100 % zurücksetzen</value></data>
-  <data name="Screen.HeaderShort" xml:space="preserve"><value>K</value></data>
-  <data name="Screen.FooterShort" xml:space="preserve"><value>F</value></data>
-  <data name="Designer.SmartGuidesTooltip" xml:space="preserve"><value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value></data>
-  <data name="Toolbox.PinToolboxTooltip" xml:space="preserve"><value>Toolbox anheften</value></data>
-  <data name="Toolbox.Controls" xml:space="preserve"><value>Steuerelemente</value></data>
-  <data name="Toolbox.Templates" xml:space="preserve"><value>Vorlagen</value></data>
-  <data name="Toolbox.Popups" xml:space="preserve"><value>Popups</value></data>
-  <data name="Toolbox.Properties" xml:space="preserve"><value>Eigenschaften</value></data>
-  <data name="Toolbox.HeaderControls" xml:space="preserve"><value>Toolbox - Steuerelemente</value></data>
-  <data name="Toolbox.HeaderTemplates" xml:space="preserve"><value>Toolbox - Vorlagen</value></data>
-  <data name="Toolbox.HeaderPopups" xml:space="preserve"><value>Toolbox - Popups</value></data>
-  <data name="Toolbox.HeaderProperties" xml:space="preserve"><value>Toolbox - Eigenschaften</value></data>
-  <data name="Toolbox.SearchControlsPlaceholder" xml:space="preserve"><value>Steuerelemente suchen</value></data>
-  <data name="Toolbox.SearchTemplatesPlaceholder" xml:space="preserve"><value>Vorlagen suchen</value></data>
-  <data name="Toolbox.SearchPopupsPlaceholder" xml:space="preserve"><value>Popups suchen</value></data>
-  <data name="Designer.Alignment.Title" xml:space="preserve"><value>Ausrichtung</value></data>
-  <data name="Designer.Alignment.GroupAlignment" xml:space="preserve"><value>AUSRICHTUNG</value></data>
-  <data name="Designer.Alignment.GroupSizeSpacing" xml:space="preserve"><value>GRÖSSE &amp; ABSTAND</value></data>
-  <data name="Designer.Alignment.GroupStack" xml:space="preserve"><value>STAPELN</value></data>
-  <data name="Designer.Alignment.AlignLeft" xml:space="preserve"><value>Links ausrichten</value></data>
-  <data name="Designer.Alignment.AlignCenter" xml:space="preserve"><value>Horizontal zentrieren</value></data>
-  <data name="Designer.Alignment.AlignRight" xml:space="preserve"><value>Rechts ausrichten</value></data>
-  <data name="Designer.Alignment.AlignTop" xml:space="preserve"><value>Oben ausrichten</value></data>
-  <data name="Designer.Alignment.AlignMiddle" xml:space="preserve"><value>Vertikal zentrieren</value></data>
-  <data name="Designer.Alignment.AlignBottom" xml:space="preserve"><value>Unten ausrichten</value></data>
-  <data name="Designer.Alignment.MakeSameWidth" xml:space="preserve"><value>Gleiche Breite</value></data>
-  <data name="Designer.Alignment.MakeSameHeight" xml:space="preserve"><value>Gleiche Höhe</value></data>
-  <data name="Designer.Alignment.MakeSameSize" xml:space="preserve"><value>Gleiche Größe</value></data>
-  <data name="Designer.Alignment.SpaceHorizontalEven" xml:space="preserve"><value>Horizontal gleichmäßig verteilen</value></data>
-  <data name="Designer.Alignment.SpaceVerticalEven" xml:space="preserve"><value>Vertikal gleichmäßig verteilen</value></data>
-  <data name="Designer.Alignment.StackHorizontal" xml:space="preserve"><value>Horizontal stapeln</value></data>
-  <data name="Designer.Alignment.StackVertical" xml:space="preserve"><value>Vertikal stapeln</value></data>
-  <data name="Designer.SmartGuides.ToolTip" xml:space="preserve"><value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value></data>
-  <data name="Designer.ResetZoom.ToolTip" xml:space="preserve"><value>Zoom zurücksetzen</value></data>
-  <data name="Undo.Fallback" xml:space="preserve"><value>Rückgängig (Ctrl+Z)</value></data>
-  <data name="Undo.Format" xml:space="preserve"><value>Rückgängig: {0}</value></data>
-  <data name="Redo.Fallback" xml:space="preserve"><value>Wiederholen (Ctrl+Y)</value></data>
-  <data name="Redo.Format" xml:space="preserve"><value>Wiederholen: {0}</value></data>
-  <data name="Undo.Label.ControlMoved" xml:space="preserve"><value>Steuerelement verschoben</value></data>
-  <data name="Common.EditTooltip" xml:space="preserve"><value>Bearbeiten</value></data>
-  <data name="Common.DeleteTooltip" xml:space="preserve"><value>Löschen</value></data>
-  <data name="ContextMenu.Screen.New" xml:space="preserve"><value>Neuer Bildschirm</value></data>
-  <data name="ContextMenu.Screen.Edit" xml:space="preserve"><value>Bildschirm bearbeiten</value></data>
-  <data name="ContextMenu.Screen.Duplicate" xml:space="preserve"><value>Bildschirm duplizieren</value></data>
-  <data name="ContextMenu.Screen.Delete" xml:space="preserve"><value>Bildschirm löschen</value></data>
-  <data name="ContextMenu.Screen.SetAsHome" xml:space="preserve"><value>Als Startbildschirm festlegen</value></data>
-  <data name="ContextMenu.Screen.ChangeBackground" xml:space="preserve"><value>Bildschirmhintergrund ändern</value></data>
-  <data name="ContextMenu.Screen.SelectImage" xml:space="preserve"><value>Bildschirmbild auswählen</value></data>
-  <data name="ContextMenu.Screen.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
-  <data name="ContextMenu.Screen.ShowFooter" xml:space="preserve"><value>Fußbereich anzeigen</value></data>
-  <data name="ContextMenu.Template.New" xml:space="preserve"><value>Neue Vorlage</value></data>
-  <data name="ContextMenu.Template.Edit" xml:space="preserve"><value>Vorlage bearbeiten</value></data>
-  <data name="ContextMenu.Template.Delete" xml:space="preserve"><value>Vorlage löschen</value></data>
-  <data name="ContextMenu.Popup.New" xml:space="preserve"><value>Neues Popup</value></data>
-  <data name="ContextMenu.Popup.Edit" xml:space="preserve"><value>Popup bearbeiten</value></data>
-  <data name="ContextMenu.Popup.Delete" xml:space="preserve"><value>Popup löschen</value></data>
-  <data name="ContextMenu.Popup.DockLeft" xml:space="preserve"><value>Links andocken</value></data>
-  <data name="ContextMenu.Popup.DockRight" xml:space="preserve"><value>Rechts andocken</value></data>
-  <data name="ContextMenu.Popup.DockTop" xml:space="preserve"><value>Oben andocken</value></data>
-  <data name="ContextMenu.Popup.DockBottom" xml:space="preserve"><value>Unten andocken</value></data>
-  <data name="ContextMenu.Popup.DockCenter" xml:space="preserve"><value>Zentriert andocken</value></data>
-  <data name="ContextMenu.Popup.AtMousePosition" xml:space="preserve"><value>An Mausposition</value></data>
-  <data name="ContextMenu.Band.MoveUp" xml:space="preserve"><value>Band nach oben verschieben</value></data>
-  <data name="ContextMenu.Band.MoveDown" xml:space="preserve"><value>Band nach unten verschieben</value></data>
-  <data name="ContextMenu.Band.New" xml:space="preserve"><value>Neues Band</value></data>
-  <data name="ContextMenu.Band.Duplicate" xml:space="preserve"><value>Band duplizieren</value></data>
-  <data name="ContextMenu.Band.Delete" xml:space="preserve"><value>Band löschen</value></data>
-  <data name="ContextMenu.ActionArea.EditActions" xml:space="preserve"><value>Aktionen bearbeiten</value></data>
-  <data name="ContextMenu.ActionArea.Copy" xml:space="preserve"><value>Aktionsbereich kopieren</value></data>
-  <data name="ContextMenu.ActionArea.Paste" xml:space="preserve"><value>Aktionsbereich einfügen</value></data>
-  <data name="ContextMenu.ActionArea.Delete" xml:space="preserve"><value>Aktionsbereich löschen</value></data>
-  <data name="ContextMenu.Control.Copy" xml:space="preserve"><value>Steuerelemente kopieren</value></data>
-  <data name="ContextMenu.Control.Paste" xml:space="preserve"><value>Steuerelemente einfügen</value></data>
-  <data name="ContextMenu.Control.Delete" xml:space="preserve"><value>Steuerelemente löschen</value></data>
-  <data name="Dialog.Controls.Delete.Title" xml:space="preserve"><value>Steuerelemente löschen</value></data>
-  <data name="Dialog.Controls.Delete.Message" xml:space="preserve"><value>Möchten Sie die ausgewählten Steuerelemente wirklich löschen?</value></data>
-  <data name="ContextMenu.Control.BringToFront" xml:space="preserve"><value>Ganz nach vorne</value></data>
-  <data name="ContextMenu.Control.SendToBack" xml:space="preserve"><value>Ganz nach hinten</value></data>
-  <data name="ContextMenu.Control.BringForward" xml:space="preserve"><value>Eine Ebene nach vorne</value></data>
-  <data name="ContextMenu.Control.SendBackward" xml:space="preserve"><value>Eine Ebene nach hinten</value></data>
-  <data name="Common.OK" xml:space="preserve"><value>OK</value></data>
-  <data name="Common.Cancel" xml:space="preserve"><value>Abbrechen</value></data>
-  <data name="Dialog.General" xml:space="preserve"><value>Allgemein</value></data>
-  <data name="Dialog.Name" xml:space="preserve"><value>Name</value></data>
-  <data name="Dialog.Description" xml:space="preserve"><value>Beschreibung</value></data>
-  <data name="Dialog.Category" xml:space="preserve"><value>Kategorie</value></data>
-  <data name="Dialog.Width" xml:space="preserve"><value>Breite</value></data>
-  <data name="Dialog.Height" xml:space="preserve"><value>Höhe</value></data>
-  <data name="Dialog.Position" xml:space="preserve"><value>Position</value></data>
-  <data name="Dialog.TitleField" xml:space="preserve"><value>Titel</value></data>
-  <data name="Dialog.Project.New.Title" xml:space="preserve"><value>NEUES PROJEKT</value></data>
-  <data name="Dialog.Project.Edit.Title" xml:space="preserve"><value>PROJEKT BEARBEITEN</value></data>
-  <data name="Dialog.Project.DeviceTab" xml:space="preserve"><value>Gerät</value></data>
-  <data name="Dialog.Project.DevicePreset" xml:space="preserve"><value>Gerätevoreinstellung</value></data>
-  <data name="Dialog.Project.ThemeSharingTab" xml:space="preserve"><value>Design und Freigabe</value></data>
-  <data name="Dialog.Project.ColorScheme" xml:space="preserve"><value>Farbschema</value></data>
-  <data name="Dialog.Project.SharedProject" xml:space="preserve"><value>Freigegebenes Projekt</value></data>
-  <data name="Dialog.Project.ReadOnlySharedUsers" xml:space="preserve"><value>Für freigegebene Benutzer schreibgeschützt</value></data>
-  <data name="Dialog.Project.ColorSchemeInfo" xml:space="preserve"><value>Das ausgewählte Farbschema wird für alle Screens und Popups in diesem Projekt verwendet.</value></data>
-  <data name="Dialog.Screen.New.Title" xml:space="preserve"><value>NEUER SCREEN</value></data>
-  <data name="Dialog.Screen.Edit.Title" xml:space="preserve"><value>SCREEN BEARBEITEN</value></data>
-  <data name="Dialog.Screen.HomeScreen" xml:space="preserve"><value>Startscreen</value></data>
-  <data name="Dialog.Screen.Background" xml:space="preserve"><value>Hintergrund</value></data>
-  <data name="Dialog.Screen.Image" xml:space="preserve"><value>Bild</value></data>
-  <data name="Dialog.Screen.HeaderFooter" xml:space="preserve"><value>Kopf- / Fußbereich</value></data>
-  <data name="Dialog.Screen.BackgroundColor" xml:space="preserve"><value>Hintergrundfarbe</value></data>
-  <data name="Dialog.Screen.SelectColor" xml:space="preserve"><value>Auswählen...</value></data>
-  <data name="Dialog.Screen.BrowseImage" xml:space="preserve"><value>Durchsuchen...</value></data>
-  <data name="Dialog.Screen.ClearImage" xml:space="preserve"><value>Entfernen</value></data>
-  <data name="Dialog.Screen.ImagePreview" xml:space="preserve"><value>Bildvorschau</value></data>
-  <data name="Dialog.Screen.Preview" xml:space="preserve"><value>Vorschau</value></data>
-  <data name="Dialog.Screen.BandDetails" xml:space="preserve"><value>Banddetails</value></data>
-  <data name="Dialog.Screen.PagesInBand" xml:space="preserve"><value>Seiten in diesem Band</value></data>
-  <data name="Dialog.Screen.HeaderTab" xml:space="preserve"><value>Kopfbereich</value></data>
-  <data name="Dialog.Screen.HeaderTitle" xml:space="preserve"><value>Titel des Kopfbereichs</value></data>
-  <data name="Dialog.Screen.HeaderColor" xml:space="preserve"><value>Farbe des Kopfbereichs</value></data>
-  <data name="Dialog.Screen.FooterTab" xml:space="preserve"><value>Fußbereich</value></data>
-  <data name="Dialog.Screen.FooterTitle" xml:space="preserve"><value>Titel des Fußbereichs</value></data>
-  <data name="Dialog.Screen.FooterColor" xml:space="preserve"><value>Farbe des Fußbereichs</value></data>
-  <data name="Dialog.Screen.BandsPagesTab" xml:space="preserve"><value>Bänder und Seiten</value></data>
-  <data name="Dialog.Screen.Bands" xml:space="preserve"><value>Bänder</value></data>
-  <data name="Dialog.Screen.AddBand" xml:space="preserve"><value>Band hinzufügen</value></data>
-  <data name="Dialog.Screen.MoveUp" xml:space="preserve"><value>Nach oben</value></data>
-  <data name="Dialog.Screen.MoveDown" xml:space="preserve"><value>Nach unten</value></data>
-  <data name="Dialog.Screen.DeleteBand" xml:space="preserve"><value>Band löschen</value></data>
-  <data name="Dialog.Screen.Sticky" xml:space="preserve"><value>Fixiert</value></data>
-  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve"><value>Aufklappen</value></data>
-  <data name="Dialog.Screen.Tabs" xml:space="preserve"><value>Tabs</value></data>
-  <data name="Dialog.Screen.Uniform" xml:space="preserve"><value>Einheitlich</value></data>
-  <data name="Dialog.Screen.Pages" xml:space="preserve"><value>Seiten</value></data>
-  <data name="Dialog.Screen.AddPage" xml:space="preserve"><value>Seite hinzufügen</value></data>
-  <data name="Dialog.Screen.DeletePage" xml:space="preserve"><value>Seite löschen</value></data>
-  <data name="Dialog.Screen.AtLeastOneBand" xml:space="preserve"><value>Mindestens ein Band ist erforderlich!</value></data>
-  <data name="Dialog.Screen.AtLeastOnePage" xml:space="preserve"><value>Mindestens eine Seite ist erforderlich!</value></data>
-  <data name="Dialog.Template.New.Title" xml:space="preserve"><value>NEUE VORLAGE</value></data>
-  <data name="Dialog.Template.Edit.Title" xml:space="preserve"><value>VORLAGE BEARBEITEN</value></data>
-  <data name="Dialog.Popup.New.Title" xml:space="preserve"><value>NEUES POPUP</value></data>
-  <data name="Dialog.Popup.Edit.Title" xml:space="preserve"><value>POPUP BEARBEITEN</value></data>
-  <data name="Dialog.Popup.Left" xml:space="preserve"><value>Links</value></data>
-  <data name="Dialog.Popup.Right" xml:space="preserve"><value>Rechts</value></data>
-  <data name="Dialog.Popup.Top" xml:space="preserve"><value>Oben</value></data>
-  <data name="Dialog.Popup.Bottom" xml:space="preserve"><value>Unten</value></data>
-  <data name="Dialog.Popup.Center" xml:space="preserve"><value>Zentriert</value></data>
-  <data name="Dialog.Popup.MousePosition" xml:space="preserve"><value>Mausposition</value></data>
-  <data name="Dialog.Popup.ShowHeader" xml:space="preserve"><value>Kopfbereich anzeigen</value></data>
-  <data name="Dialog.Popup.HeaderHeight" xml:space="preserve"><value>Höhe des Kopfbereichs</value></data>
-  <data name="Common.Loading" xml:space="preserve"><value>Wird geladen...</value></data>
-  <data name="Dialog.ColorPicker.Title" xml:space="preserve"><value>Farbe bearbeiten</value></data>
-  <data name="Dialog.ColorScheme.Title" xml:space="preserve"><value>Farbschema bearbeiten</value></data>
-  <data name="Dialog.ColorScheme.Instruction" xml:space="preserve"><value>Wähle ein Farbtoken aus und passe es anschließend unten an.</value></data>
-  <data name="Dialog.ColorScheme.Token.Primary" xml:space="preserve"><value>Primärfarbe</value></data>
-  <data name="Dialog.ColorScheme.Token.Neutral" xml:space="preserve"><value>Neutralfarbe</value></data>
-  <data name="Dialog.ColorScheme.Token.Accent" xml:space="preserve"><value>Akzentfarbe</value></data>
-  <data name="Dialog.ColorScheme.Token.Text" xml:space="preserve"><value>Textfarbe</value></data>
-  <data name="Dialog.ColorScheme.Token.Info" xml:space="preserve"><value>Information</value></data>
-  <data name="Dialog.ColorScheme.Token.ControlBackground" xml:space="preserve"><value>Steuerelement-Hintergrund</value></data>
-  <data name="Dialog.ColorScheme.Token.Warning" xml:space="preserve"><value>Warnung</value></data>
-  <data name="Dialog.ColorScheme.Token.ControlBorder" xml:space="preserve"><value>Steuerelement-Rahmen</value></data>
-  <data name="Dialog.ColorScheme.Token.Error" xml:space="preserve"><value>Fehler</value></data>
-  <data name="Dialog.ColorScheme.Token.CardBorder" xml:space="preserve"><value>Kartenrahmen</value></data>
-  <data name="Dialog.ColorScheme.Token.Success" xml:space="preserve"><value>Erfolg</value></data>
-  <data name="Dialog.AssetPicker.Title" xml:space="preserve"><value>Symbol auswählen</value></data>
-  <data name="Dialog.AssetPicker.NoResults" xml:space="preserve"><value>Keine Symbole gefunden</value></data>
-  <data name="Dialog.AssetPicker.AddSvg" xml:space="preserve"><value>SVG hinzufügen...</value></data>
-  <data name="Dialog.AssetPicker.AddPng" xml:space="preserve"><value>PNG hinzufügen...</value></data>
-  <data name="Dialog.AssetPicker.Count.One" xml:space="preserve"><value>{0} Symbol</value></data>
-  <data name="Dialog.AssetPicker.Count.Many" xml:space="preserve"><value>{0} Symbole</value></data>
-  <data name="Dialog.AssetPicker.AddSvgTitle" xml:space="preserve"><value>SVG-Symbol hinzufügen</value></data>
-  <data name="Dialog.AssetPicker.AddPngTitle" xml:space="preserve"><value>PNG-Symbol hinzufügen</value></data>
-  <data name="Dialog.AssetPicker.SvgFilesFilter" xml:space="preserve"><value>SVG-Dateien (*.svg)|*.svg</value></data>
-  <data name="Dialog.AssetPicker.PngFilesFilter" xml:space="preserve"><value>PNG-Dateien (*.png)|*.png</value></data>
-  <data name="Dialog.ImagePicker.DropHere" xml:space="preserve"><value>HIER ABLEGEN</value></data>
-  <data name="Dialog.ImagePicker.RecommendedSize" xml:space="preserve"><value>Empfohlene Größe</value></data>
-  <data name="Dialog.ImagePicker.Clear" xml:space="preserve"><value>Leeren</value></data>
-  <data name="Dialog.ImagePicker.Browse" xml:space="preserve"><value>Durchsuchen</value></data>
-  <data name="Dialog.ImagePicker.SelectBackgroundTitle" xml:space="preserve"><value>Hintergrundbild auswählen</value></data>
-  <data name="Dialog.ImagePicker.ImageFilesFilter" xml:space="preserve"><value>Bilder (*.bmp;*.png;*.jpg;*.jpeg)|*.bmp;*.png;*.jpg;*.jpeg</value></data>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Main.Theme" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Main.TabProject" xml:space="preserve">
+    <value>PROJEKT</value>
+  </data>
+  <data name="Main.TabScreen" xml:space="preserve">
+    <value>BILDSCHIRM</value>
+  </data>
+  <data name="Main.TabTemplate" xml:space="preserve">
+    <value>VORLAGE</value>
+  </data>
+  <data name="Main.TabPopup" xml:space="preserve">
+    <value>POPUP</value>
+  </data>
+  <data name="Main.TabPreview" xml:space="preserve">
+    <value>VORSCHAU</value>
+  </data>
+  <data name="Main.TabActionFlow" xml:space="preserve">
+    <value>AKTIONSABLAUF</value>
+  </data>
+  <data name="Main.TabOptions" xml:space="preserve">
+    <value>OPTIONEN</value>
+  </data>
+  <data name="Main.TabHelp" xml:space="preserve">
+    <value>HILFE</value>
+  </data>
+  <data name="Main.TabAbout" xml:space="preserve">
+    <value>ÜBER</value>
+  </data>
+  <data name="Main.ToolboxToggle" xml:space="preserve">
+    <value>Toolbox öffnen oder schließen</value>
+  </data>
+  <data name="Options.Title" xml:space="preserve">
+    <value>Optionen</value>
+  </data>
+  <data name="Options.Heading" xml:space="preserve">
+    <value>Anwendungsoptionen</value>
+  </data>
+  <data name="Options.Introduction" xml:space="preserve">
+    <value>Änderungen werden sofort gespeichert und beim nächsten Start von UserFlow geladen.</value>
+  </data>
+  <data name="Options.Saving" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Options.AutoSave" xml:space="preserve">
+    <value>Änderungen automatisch speichern</value>
+  </data>
+  <data name="Options.SaveInterval" xml:space="preserve">
+    <value>Speicherintervall</value>
+  </data>
+  <data name="Options.SaveDescription" xml:space="preserve">
+    <value>UserFlow speichert Projekte, Vorlagen und Optionen im Hintergrund.</value>
+  </data>
+  <data name="Options.Workspace" xml:space="preserve">
+    <value>Arbeitsbereich</value>
+  </data>
+  <data name="Options.ShowToolbox" xml:space="preserve">
+    <value>Toolbox anzeigen</value>
+  </data>
+  <data name="Options.ShowToolboxDescription" xml:space="preserve">
+    <value>Hält die Control-Toolbox im Designer sichtbar.</value>
+  </data>
+  <data name="Options.OpenLastProject" xml:space="preserve">
+    <value>Letztes Projekt beim Start öffnen</value>
+  </data>
+  <data name="Options.OpenLastProjectDescription" xml:space="preserve">
+    <value>Wenn deaktiviert, startet UserFlow ohne ausgewähltes Projekt.</value>
+  </data>
+  <data name="Options.Storage" xml:space="preserve">
+    <value>Speicherort</value>
+  </data>
+  <data name="Options.StorageDescription" xml:space="preserve">
+    <value>Anwendungsoptionen werden in Data\settings.json neben UserFlow gespeichert. Projekte, Vorlagen und Farbschemata bleiben im selben Data-Ordner.</value>
+  </data>
+  <data name="Designer.Search" xml:space="preserve">
+    <value>Suchen...</value>
+  </data>
+  <data name="Screen.Title" xml:space="preserve">
+    <value>Bildschirme</value>
+  </data>
+  <data name="Screen.New" xml:space="preserve">
+    <value>Neuer Bildschirm</value>
+  </data>
+  <data name="Screen.None" xml:space="preserve">
+    <value>Kein Bildschirm ausgewählt</value>
+  </data>
+  <data name="Screen.DeviceTop" xml:space="preserve">
+    <value>Geräteoberkante</value>
+  </data>
+  <data name="Screen.DeviceBottom" xml:space="preserve">
+    <value>Geräteunterkante</value>
+  </data>
+  <data name="Screen.Edit" xml:space="preserve">
+    <value>Bildschirm bearbeiten</value>
+  </data>
+  <data name="Screen.Delete" xml:space="preserve">
+    <value>Bildschirm löschen</value>
+  </data>
+  <data name="Screen.ShowHeader" xml:space="preserve">
+    <value>Kopfbereich anzeigen</value>
+  </data>
+  <data name="Screen.ShowFooter" xml:space="preserve">
+    <value>Fußbereich anzeigen</value>
+  </data>
+  <data name="Template.Title" xml:space="preserve">
+    <value>Vorlagen</value>
+  </data>
+  <data name="Template.New" xml:space="preserve">
+    <value>Neue Vorlage</value>
+  </data>
+  <data name="Template.None" xml:space="preserve">
+    <value>Keine Vorlage ausgewählt</value>
+  </data>
+  <data name="Popup.Title" xml:space="preserve">
+    <value>Popups</value>
+  </data>
+  <data name="Popup.New" xml:space="preserve">
+    <value>Neues Popup</value>
+  </data>
+  <data name="Popup.None" xml:space="preserve">
+    <value>Kein Popup ausgewählt</value>
+  </data>
+  <data name="Main.NoCurrentProject" xml:space="preserve">
+    <value>Kein Projekt ausgewählt</value>
+  </data>
+  <data name="Main.ProjectActionTooltip" xml:space="preserve">
+    <value>Ausgewähltes Projekt öffnen</value>
+  </data>
+  <data name="Main.ImportProject" xml:space="preserve">
+    <value>Projekt importieren</value>
+  </data>
+  <data name="Main.CreateProject" xml:space="preserve">
+    <value>Neues Projekt</value>
+  </data>
+  <data name="Main.ImportProjectTooltip" xml:space="preserve">
+    <value>Projekt importieren</value>
+  </data>
+  <data name="Main.CreateProjectTooltip" xml:space="preserve">
+    <value>Neues Projekt erstellen</value>
+  </data>
+  <data name="Splash.HeadingStartup" xml:space="preserve">
+    <value>Startvorgang</value>
+  </data>
+  <data name="Splash.StatusPreparing" xml:space="preserve">
+    <value>Der Start wird vorbereitet...</value>
+  </data>
+  <data name="Splash.StatusStarting" xml:space="preserve">
+    <value>UserFlow wird gestartet...</value>
+  </data>
+  <data name="Splash.StatusPreparingViewModel" xml:space="preserve">
+    <value>ViewModel wird vorbereitet...</value>
+  </data>
+  <data name="Splash.StatusPreparingMainWindow" xml:space="preserve">
+    <value>Hauptfenster wird vorbereitet...</value>
+  </data>
+  <data name="Main.ProjectLoadingHeading" xml:space="preserve">
+    <value>Projekt wird geladen</value>
+  </data>
+  <data name="Main.ProjectLoadingStatus" xml:space="preserve">
+    <value>Lade {0} ...</value>
+  </data>
+  <data name="Main.UnsupportedFileType" xml:space="preserve">
+    <value>Dateityp wird nicht unterstützt: {0}</value>
+  </data>
+  <data name="Splash.PleaseWait" xml:space="preserve">
+    <value>Bitte warten...</value>
+  </data>
+  <data name="Startup.PreparingDataFolder" xml:space="preserve">
+    <value>Datenordner wird vorbereitet...</value>
+  </data>
+  <data name="Startup.LoadingSettings" xml:space="preserve">
+    <value>Einstellungen werden geladen...</value>
+  </data>
+  <data name="Startup.InitializingColorScheme" xml:space="preserve">
+    <value>Farbschema wird initialisiert...</value>
+  </data>
+  <data name="Startup.PreparingAutosave" xml:space="preserve">
+    <value>Automatisches Speichern wird vorbereitet...</value>
+  </data>
+  <data name="Startup.LoadingLastProject" xml:space="preserve">
+    <value>Letztes Projekt wird geladen...</value>
+  </data>
+  <data name="Startup.LoadingTemplates" xml:space="preserve">
+    <value>Vorlagen werden geladen...</value>
+  </data>
+  <data name="Startup.PreparingToolbox" xml:space="preserve">
+    <value>Toolbox wird vorbereitet...</value>
+  </data>
+  <data name="Startup.RegisteringMessages" xml:space="preserve">
+    <value>Nachrichten werden registriert...</value>
+  </data>
+  <data name="Startup.Complete" xml:space="preserve">
+    <value>\n\nStart abgeschlossen.</value>
+  </data>
+  <data name="Startup.PreparingStartupSelection" xml:space="preserve">
+    <value>Startauswahl wird vorbereitet...</value>
+  </data>
+  <data name="Startup.PreparingUndoRedo" xml:space="preserve">
+    <value>Undo/Redo wird vorbereitet...\n\n</value>
+  </data>
+  <data name="Startup.ReadProjectFile" xml:space="preserve">
+    <value>Projektdatei wird gelesen: {0} ...</value>
+  </data>
+  <data name="Startup.DeserializeProject" xml:space="preserve">
+    <value>Projekt wird deserialisiert: {0} ...</value>
+  </data>
+  <data name="Startup.CheckProjectStructure" xml:space="preserve">
+    <value>Projektstruktur wird geprüft ...</value>
+  </data>
+  <data name="Startup.ReconstructScreens" xml:space="preserve">
+    <value>Screens werden rekonstruiert ({0}/{1}) ...</value>
+  </data>
+  <data name="Startup.ApplyProject" xml:space="preserve">
+    <value>Projekt wird angewendet ...</value>
+  </data>
+  <data name="Startup.ApplyProjectTheme" xml:space="preserve">
+    <value>Projekt-Design wird angewendet ...</value>
+  </data>
+  <data name="Startup.UpdateProjectList" xml:space="preserve">
+    <value>Projektliste wird aktualisiert ...</value>
+  </data>
+  <data name="Startup.OpenLastProject" xml:space="preserve">
+    <value>Letztes Projekt wird geöffnet: {0} ...</value>
+  </data>
+  <data name="Startup.UpdateProjectUi" xml:space="preserve">
+    <value>Projektoberfläche wird aktualisiert ...</value>
+  </data>
+  <data name="Startup.ReadingTemplates" xml:space="preserve">
+    <value>Vorlagen werden gelesen ...</value>
+  </data>
+  <data name="Startup.PreparingTemplates" xml:space="preserve">
+    <value>Vorlagen werden vorbereitet ({0}/{1}) ...</value>
+  </data>
+  <data name="Main.StatusScreens" xml:space="preserve">
+    <value>Bildschirme</value>
+  </data>
+  <data name="Main.StatusTemplates" xml:space="preserve">
+    <value>Vorlagen</value>
+  </data>
+  <data name="Main.StatusPopups" xml:space="preserve">
+    <value>Popups</value>
+  </data>
+  <data name="Main.StatusFilePath" xml:space="preserve">
+    <value>Dateipfad:</value>
+  </data>
+  <data name="Project.OpenProjectShort" xml:space="preserve">
+    <value>Öffnen ...</value>
+  </data>
+  <data name="Project.OpenProjectTooltip" xml:space="preserve">
+    <value>Projekt öffnen</value>
+  </data>
+  <data name="Project.SaveProject" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Project.SaveProjectTooltip" xml:space="preserve">
+    <value>Projekt speichern</value>
+  </data>
+  <data name="Project.NewProjectTooltip" xml:space="preserve">
+    <value>Neues Projekt</value>
+  </data>
+  <data name="Project.MoreProjectActionsTooltip" xml:space="preserve">
+    <value>Weitere Projektaktionen</value>
+  </data>
+  <data name="Project.ProjectInfo" xml:space="preserve">
+    <value>Projektinfo</value>
+  </data>
+  <data name="Project.Device" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="Project.Screens" xml:space="preserve">
+    <value>Bildschirme</value>
+  </data>
+  <data name="Project.Templates" xml:space="preserve">
+    <value>Vorlagen</value>
+  </data>
+  <data name="Project.Popups" xml:space="preserve">
+    <value>Popups</value>
+  </data>
+  <data name="Project.Controls" xml:space="preserve">
+    <value>Steuerelemente</value>
+  </data>
+  <data name="Project.Sharing" xml:space="preserve">
+    <value>Freigabe</value>
+  </data>
+  <data name="Project.Shared" xml:space="preserve">
+    <value>Freigegeben</value>
+  </data>
+  <data name="Project.Readonly" xml:space="preserve">
+    <value>Schreibgeschützt</value>
+  </data>
+  <data name="Project.File" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="Project.Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Project.Theme" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Project.NewColorSchemeTooltip" xml:space="preserve">
+    <value>Neues Farbschema</value>
+  </data>
+  <data name="Project.EditColorSchemeTooltip" xml:space="preserve">
+    <value>Farbschema bearbeiten</value>
+  </data>
+  <data name="Project.DeleteColorSchemeTooltip" xml:space="preserve">
+    <value>Farbschema löschen</value>
+  </data>
+  <data name="Project.EditScreenTooltip" xml:space="preserve">
+    <value>Bildschirm bearbeiten</value>
+  </data>
+  <data name="Project.DeleteScreenTooltip" xml:space="preserve">
+    <value>Bildschirm löschen</value>
+  </data>
+  <data name="Project.GotoScreenTooltip" xml:space="preserve">
+    <value>Zum Bildschirm wechseln</value>
+  </data>
+  <data name="Project.SetAsHomeScreenTooltip" xml:space="preserve">
+    <value>Als Startbildschirm festlegen</value>
+  </data>
+  <data name="Project.NewScreenTooltip" xml:space="preserve">
+    <value>Neuer Bildschirm</value>
+  </data>
+  <data name="Project.SaveProjectAs" xml:space="preserve">
+    <value>Projekt speichern unter...</value>
+  </data>
+  <data name="Project.SaveProjectAsTooltip" xml:space="preserve">
+    <value>Projekt unter neuem Dateinamen speichern</value>
+  </data>
+  <data name="Project.EditProjectSettings" xml:space="preserve">
+    <value>Projekteinstellungen bearbeiten</value>
+  </data>
+  <data name="Project.EditProjectSettingsTooltip" xml:space="preserve">
+    <value>Projekteinstellungen bearbeiten</value>
+  </data>
+  <data name="Project.DeleteProject" xml:space="preserve">
+    <value>Projekt löschen</value>
+  </data>
+  <data name="Project.DeleteProjectTooltip" xml:space="preserve">
+    <value>Projekt löschen</value>
+  </data>
+  <data name="Project.ResetZoomTooltip" xml:space="preserve">
+    <value>Zoom auf 100 % zurücksetzen</value>
+  </data>
+  <data name="Screen.HeaderShort" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="Screen.FooterShort" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="Designer.SmartGuidesTooltip" xml:space="preserve">
+    <value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value>
+  </data>
+  <data name="Toolbox.PinToolboxTooltip" xml:space="preserve">
+    <value>Toolbox anheften</value>
+  </data>
+  <data name="Toolbox.Controls" xml:space="preserve">
+    <value>Steuerelemente</value>
+  </data>
+  <data name="Toolbox.Templates" xml:space="preserve">
+    <value>Vorlagen</value>
+  </data>
+  <data name="Toolbox.Popups" xml:space="preserve">
+    <value>Popups</value>
+  </data>
+  <data name="Toolbox.Properties" xml:space="preserve">
+    <value>Eigenschaften</value>
+  </data>
+  <data name="Toolbox.HeaderControls" xml:space="preserve">
+    <value>Toolbox - Steuerelemente</value>
+  </data>
+  <data name="Toolbox.HeaderTemplates" xml:space="preserve">
+    <value>Toolbox - Vorlagen</value>
+  </data>
+  <data name="Toolbox.HeaderPopups" xml:space="preserve">
+    <value>Toolbox - Popups</value>
+  </data>
+  <data name="Toolbox.HeaderProperties" xml:space="preserve">
+    <value>Toolbox - Eigenschaften</value>
+  </data>
+  <data name="Toolbox.NoControlSelected" xml:space="preserve">
+    <value>Kein Steuerelement ausgewählt</value>
+  </data>
+  <data name="Toolbox.NoControlSelectedHint" xml:space="preserve">
+    <value>Wählen Sie auf der Entwurfsfläche ein Steuerelement aus, um dessen Eigenschaften zu bearbeiten.</value>
+  </data>
+  <data name="Toolbox.MultipleControlsSelected" xml:space="preserve">
+    <value>{0} Steuerelemente ausgewählt</value>
+  </data>
+  <data name="Toolbox.SearchControlsPlaceholder" xml:space="preserve">
+    <value>Steuerelemente suchen</value>
+  </data>
+  <data name="Toolbox.SearchTemplatesPlaceholder" xml:space="preserve">
+    <value>Vorlagen suchen</value>
+  </data>
+  <data name="Toolbox.SearchPopupsPlaceholder" xml:space="preserve">
+    <value>Popups suchen</value>
+  </data>
+  <data name="Designer.Alignment.Title" xml:space="preserve">
+    <value>Ausrichtung</value>
+  </data>
+  <data name="Designer.Alignment.GroupAlignment" xml:space="preserve">
+    <value>AUSRICHTUNG</value>
+  </data>
+  <data name="Designer.Alignment.GroupSizeSpacing" xml:space="preserve">
+    <value>GRÖSSE &amp; ABSTAND</value>
+  </data>
+  <data name="Designer.Alignment.GroupStack" xml:space="preserve">
+    <value>STAPELN</value>
+  </data>
+  <data name="Designer.Alignment.AlignLeft" xml:space="preserve">
+    <value>Links ausrichten</value>
+  </data>
+  <data name="Designer.Alignment.AlignCenter" xml:space="preserve">
+    <value>Horizontal zentrieren</value>
+  </data>
+  <data name="Designer.Alignment.AlignRight" xml:space="preserve">
+    <value>Rechts ausrichten</value>
+  </data>
+  <data name="Designer.Alignment.AlignTop" xml:space="preserve">
+    <value>Oben ausrichten</value>
+  </data>
+  <data name="Designer.Alignment.AlignMiddle" xml:space="preserve">
+    <value>Vertikal zentrieren</value>
+  </data>
+  <data name="Designer.Alignment.AlignBottom" xml:space="preserve">
+    <value>Unten ausrichten</value>
+  </data>
+  <data name="Designer.Alignment.MakeSameWidth" xml:space="preserve">
+    <value>Gleiche Breite</value>
+  </data>
+  <data name="Designer.Alignment.MakeSameHeight" xml:space="preserve">
+    <value>Gleiche Höhe</value>
+  </data>
+  <data name="Designer.Alignment.MakeSameSize" xml:space="preserve">
+    <value>Gleiche Größe</value>
+  </data>
+  <data name="Designer.Alignment.SpaceHorizontalEven" xml:space="preserve">
+    <value>Horizontal gleichmäßig verteilen</value>
+  </data>
+  <data name="Designer.Alignment.SpaceVerticalEven" xml:space="preserve">
+    <value>Vertikal gleichmäßig verteilen</value>
+  </data>
+  <data name="Designer.Alignment.StackHorizontal" xml:space="preserve">
+    <value>Horizontal stapeln</value>
+  </data>
+  <data name="Designer.Alignment.StackVertical" xml:space="preserve">
+    <value>Vertikal stapeln</value>
+  </data>
+  <data name="Designer.SmartGuides.ToolTip" xml:space="preserve">
+    <value>Intelligente Hilfslinien: passende Steuerelement-Kanten und Mittelpunkte anzeigen und einrasten</value>
+  </data>
+  <data name="Designer.ResetZoom.ToolTip" xml:space="preserve">
+    <value>Zoom zurücksetzen</value>
+  </data>
+  <data name="Undo.Fallback" xml:space="preserve">
+    <value>Rückgängig (Ctrl+Z)</value>
+  </data>
+  <data name="Undo.Format" xml:space="preserve">
+    <value>Rückgängig: {0}</value>
+  </data>
+  <data name="Redo.Fallback" xml:space="preserve">
+    <value>Wiederholen (Ctrl+Y)</value>
+  </data>
+  <data name="Redo.Format" xml:space="preserve">
+    <value>Wiederholen: {0}</value>
+  </data>
+  <data name="Undo.Label.ControlMoved" xml:space="preserve">
+    <value>Steuerelement verschoben</value>
+  </data>
+  <data name="Common.EditTooltip" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Common.DeleteTooltip" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="ContextMenu.Screen.New" xml:space="preserve">
+    <value>Neuer Bildschirm</value>
+  </data>
+  <data name="ContextMenu.Screen.Edit" xml:space="preserve">
+    <value>Bildschirm bearbeiten</value>
+  </data>
+  <data name="ContextMenu.Screen.Duplicate" xml:space="preserve">
+    <value>Bildschirm duplizieren</value>
+  </data>
+  <data name="ContextMenu.Screen.Delete" xml:space="preserve">
+    <value>Bildschirm löschen</value>
+  </data>
+  <data name="ContextMenu.Screen.SetAsHome" xml:space="preserve">
+    <value>Als Startbildschirm festlegen</value>
+  </data>
+  <data name="ContextMenu.Screen.ChangeBackground" xml:space="preserve">
+    <value>Bildschirmhintergrund ändern</value>
+  </data>
+  <data name="ContextMenu.Screen.SelectImage" xml:space="preserve">
+    <value>Bildschirmbild auswählen</value>
+  </data>
+  <data name="ContextMenu.Screen.ShowHeader" xml:space="preserve">
+    <value>Kopfbereich anzeigen</value>
+  </data>
+  <data name="ContextMenu.Screen.ShowFooter" xml:space="preserve">
+    <value>Fußbereich anzeigen</value>
+  </data>
+  <data name="ContextMenu.Template.New" xml:space="preserve">
+    <value>Neue Vorlage</value>
+  </data>
+  <data name="ContextMenu.Template.Edit" xml:space="preserve">
+    <value>Vorlage bearbeiten</value>
+  </data>
+  <data name="ContextMenu.Template.Delete" xml:space="preserve">
+    <value>Vorlage löschen</value>
+  </data>
+  <data name="ContextMenu.Popup.New" xml:space="preserve">
+    <value>Neues Popup</value>
+  </data>
+  <data name="ContextMenu.Popup.Edit" xml:space="preserve">
+    <value>Popup bearbeiten</value>
+  </data>
+  <data name="ContextMenu.Popup.Delete" xml:space="preserve">
+    <value>Popup löschen</value>
+  </data>
+  <data name="ContextMenu.Popup.DockLeft" xml:space="preserve">
+    <value>Links andocken</value>
+  </data>
+  <data name="ContextMenu.Popup.DockRight" xml:space="preserve">
+    <value>Rechts andocken</value>
+  </data>
+  <data name="ContextMenu.Popup.DockTop" xml:space="preserve">
+    <value>Oben andocken</value>
+  </data>
+  <data name="ContextMenu.Popup.DockBottom" xml:space="preserve">
+    <value>Unten andocken</value>
+  </data>
+  <data name="ContextMenu.Popup.DockCenter" xml:space="preserve">
+    <value>Zentriert andocken</value>
+  </data>
+  <data name="ContextMenu.Popup.AtMousePosition" xml:space="preserve">
+    <value>An Mausposition</value>
+  </data>
+  <data name="ContextMenu.Band.MoveUp" xml:space="preserve">
+    <value>Band nach oben verschieben</value>
+  </data>
+  <data name="ContextMenu.Band.MoveDown" xml:space="preserve">
+    <value>Band nach unten verschieben</value>
+  </data>
+  <data name="ContextMenu.Band.New" xml:space="preserve">
+    <value>Neues Band</value>
+  </data>
+  <data name="ContextMenu.Band.Duplicate" xml:space="preserve">
+    <value>Band duplizieren</value>
+  </data>
+  <data name="ContextMenu.Band.Delete" xml:space="preserve">
+    <value>Band löschen</value>
+  </data>
+  <data name="ContextMenu.ActionArea.EditActions" xml:space="preserve">
+    <value>Aktionen bearbeiten</value>
+  </data>
+  <data name="ContextMenu.ActionArea.Copy" xml:space="preserve">
+    <value>Aktionsbereich kopieren</value>
+  </data>
+  <data name="ContextMenu.ActionArea.Paste" xml:space="preserve">
+    <value>Aktionsbereich einfügen</value>
+  </data>
+  <data name="ContextMenu.ActionArea.Delete" xml:space="preserve">
+    <value>Aktionsbereich löschen</value>
+  </data>
+  <data name="ContextMenu.Control.Copy" xml:space="preserve">
+    <value>Steuerelemente kopieren</value>
+  </data>
+  <data name="ContextMenu.Control.Paste" xml:space="preserve">
+    <value>Steuerelemente einfügen</value>
+  </data>
+  <data name="ContextMenu.Control.Delete" xml:space="preserve">
+    <value>Steuerelemente löschen</value>
+  </data>
+  <data name="Dialog.Controls.Delete.Title" xml:space="preserve">
+    <value>Steuerelemente löschen</value>
+  </data>
+  <data name="Dialog.Controls.Delete.Message" xml:space="preserve">
+    <value>Möchten Sie die ausgewählten Steuerelemente wirklich löschen?</value>
+  </data>
+  <data name="ContextMenu.Control.BringToFront" xml:space="preserve">
+    <value>Ganz nach vorne</value>
+  </data>
+  <data name="ContextMenu.Control.SendToBack" xml:space="preserve">
+    <value>Ganz nach hinten</value>
+  </data>
+  <data name="ContextMenu.Control.BringForward" xml:space="preserve">
+    <value>Eine Ebene nach vorne</value>
+  </data>
+  <data name="ContextMenu.Control.SendBackward" xml:space="preserve">
+    <value>Eine Ebene nach hinten</value>
+  </data>
+  <data name="Common.OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Dialog.General" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="Dialog.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Dialog.Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Dialog.Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Dialog.Width" xml:space="preserve">
+    <value>Breite</value>
+  </data>
+  <data name="Dialog.Height" xml:space="preserve">
+    <value>Höhe</value>
+  </data>
+  <data name="Dialog.Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Dialog.TitleField" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Dialog.Project.New.Title" xml:space="preserve">
+    <value>NEUES PROJEKT</value>
+  </data>
+  <data name="Dialog.Project.Edit.Title" xml:space="preserve">
+    <value>PROJEKT BEARBEITEN</value>
+  </data>
+  <data name="Dialog.Project.DeviceTab" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="Dialog.Project.DevicePreset" xml:space="preserve">
+    <value>Gerätevoreinstellung</value>
+  </data>
+  <data name="Dialog.Project.ThemeSharingTab" xml:space="preserve">
+    <value>Design und Freigabe</value>
+  </data>
+  <data name="Dialog.Project.ColorScheme" xml:space="preserve">
+    <value>Farbschema</value>
+  </data>
+  <data name="Dialog.Project.SharedProject" xml:space="preserve">
+    <value>Freigegebenes Projekt</value>
+  </data>
+  <data name="Dialog.Project.ReadOnlySharedUsers" xml:space="preserve">
+    <value>Schreibgeschützt</value>
+  </data>
+  <data name="Dialog.Project.ColorSchemeInfo" xml:space="preserve">
+    <value>Farbschema wird für Controls in diesem Projekt verwendet.</value>
+  </data>
+  <data name="Dialog.Screen.New.Title" xml:space="preserve">
+    <value>NEUER SCREEN</value>
+  </data>
+  <data name="Dialog.Screen.Edit.Title" xml:space="preserve">
+    <value>SCREEN BEARBEITEN</value>
+  </data>
+  <data name="Dialog.Screen.HomeScreen" xml:space="preserve">
+    <value>Startscreen</value>
+  </data>
+  <data name="Dialog.Screen.Background" xml:space="preserve">
+    <value>Hintergrund</value>
+  </data>
+  <data name="Dialog.Screen.Image" xml:space="preserve">
+    <value>Bild</value>
+  </data>
+  <data name="Dialog.Screen.HeaderFooter" xml:space="preserve">
+    <value>Kopf- / Fußbereich</value>
+  </data>
+  <data name="Dialog.Screen.BackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="Dialog.Screen.SelectColor" xml:space="preserve">
+    <value>Auswählen...</value>
+  </data>
+  <data name="Dialog.Screen.BrowseImage" xml:space="preserve">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="Dialog.Screen.ClearImage" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="Dialog.Screen.ImagePreview" xml:space="preserve">
+    <value>Bildvorschau</value>
+  </data>
+  <data name="Dialog.Screen.Preview" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="Dialog.Screen.BandDetails" xml:space="preserve">
+    <value>Banddetails</value>
+  </data>
+  <data name="Dialog.Screen.PagesInBand" xml:space="preserve">
+    <value>Seiten in diesem Band</value>
+  </data>
+  <data name="Dialog.Screen.HeaderTab" xml:space="preserve">
+    <value>Kopfbereich</value>
+  </data>
+  <data name="Dialog.Screen.HeaderTitle" xml:space="preserve">
+    <value>Titel des Kopfbereichs</value>
+  </data>
+  <data name="Dialog.Screen.HeaderColor" xml:space="preserve">
+    <value>Farbe des Kopfbereichs</value>
+  </data>
+  <data name="Dialog.Screen.FooterTab" xml:space="preserve">
+    <value>Fußbereich</value>
+  </data>
+  <data name="Dialog.Screen.FooterTitle" xml:space="preserve">
+    <value>Titel des Fußbereichs</value>
+  </data>
+  <data name="Dialog.Screen.FooterColor" xml:space="preserve">
+    <value>Farbe des Fußbereichs</value>
+  </data>
+  <data name="Dialog.Screen.BandsPagesTab" xml:space="preserve">
+    <value>Bänder und Seiten</value>
+  </data>
+  <data name="Dialog.Screen.Bands" xml:space="preserve">
+    <value>Bänder</value>
+  </data>
+  <data name="Dialog.Screen.AddBand" xml:space="preserve">
+    <value>Band hinzufügen</value>
+  </data>
+  <data name="Dialog.Screen.MoveUp" xml:space="preserve">
+    <value>Nach oben</value>
+  </data>
+  <data name="Dialog.Screen.MoveDown" xml:space="preserve">
+    <value>Nach unten</value>
+  </data>
+  <data name="Dialog.Screen.DeleteBand" xml:space="preserve">
+    <value>Band löschen</value>
+  </data>
+  <data name="Dialog.Screen.Sticky" xml:space="preserve">
+    <value>Fixiert</value>
+  </data>
+  <data name="Dialog.Screen.ExpandableShort" xml:space="preserve">
+    <value>Aufklappen</value>
+  </data>
+  <data name="Dialog.Screen.Tabs" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="Dialog.Screen.Uniform" xml:space="preserve">
+    <value>Einheitlich</value>
+  </data>
+  <data name="Dialog.Screen.Pages" xml:space="preserve">
+    <value>Seiten</value>
+  </data>
+  <data name="Dialog.Screen.AddPage" xml:space="preserve">
+    <value>Seite hinzufügen</value>
+  </data>
+  <data name="Dialog.Screen.DeletePage" xml:space="preserve">
+    <value>Seite löschen</value>
+  </data>
+  <data name="Dialog.Screen.AtLeastOneBand" xml:space="preserve">
+    <value>Mindestens ein Band ist erforderlich!</value>
+  </data>
+  <data name="Dialog.Screen.AtLeastOnePage" xml:space="preserve">
+    <value>Mindestens eine Seite ist erforderlich!</value>
+  </data>
+  <data name="Dialog.Template.New.Title" xml:space="preserve">
+    <value>NEUE VORLAGE</value>
+  </data>
+  <data name="Dialog.Template.Edit.Title" xml:space="preserve">
+    <value>VORLAGE BEARBEITEN</value>
+  </data>
+  <data name="Dialog.Popup.New.Title" xml:space="preserve">
+    <value>NEUES POPUP</value>
+  </data>
+  <data name="Dialog.Popup.Edit.Title" xml:space="preserve">
+    <value>POPUP BEARBEITEN</value>
+  </data>
+  <data name="Dialog.Popup.Left" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Dialog.Popup.Right" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="Dialog.Popup.Top" xml:space="preserve">
+    <value>Oben</value>
+  </data>
+  <data name="Dialog.Popup.Bottom" xml:space="preserve">
+    <value>Unten</value>
+  </data>
+  <data name="Dialog.Popup.Center" xml:space="preserve">
+    <value>Zentriert</value>
+  </data>
+  <data name="Dialog.Popup.MousePosition" xml:space="preserve">
+    <value>Mausposition</value>
+  </data>
+  <data name="Dialog.Popup.ShowHeader" xml:space="preserve">
+    <value>Kopfbereich anzeigen</value>
+  </data>
+  <data name="Dialog.Popup.HeaderHeight" xml:space="preserve">
+    <value>Höhe des Kopfbereichs</value>
+  </data>
+  <data name="Common.Loading" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="Dialog.ColorPicker.Title" xml:space="preserve">
+    <value>Farbe bearbeiten</value>
+  </data>
+  <data name="Dialog.ColorScheme.Title" xml:space="preserve">
+    <value>Farbschema bearbeiten</value>
+  </data>
+  <data name="Dialog.ColorScheme.Instruction" xml:space="preserve">
+    <value>Wähle ein Farbtoken aus und passe es anschließend unten an.</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Primary" xml:space="preserve">
+    <value>Primärfarbe</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Neutral" xml:space="preserve">
+    <value>Neutralfarbe</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Accent" xml:space="preserve">
+    <value>Akzentfarbe</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Text" xml:space="preserve">
+    <value>Textfarbe</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.ControlBackground" xml:space="preserve">
+    <value>Steuerelement-Hintergrund</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Warning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.ControlBorder" xml:space="preserve">
+    <value>Steuerelement-Rahmen</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.CardBorder" xml:space="preserve">
+    <value>Kartenrahmen</value>
+  </data>
+  <data name="Dialog.ColorScheme.Token.Success" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="Dialog.AssetPicker.Title" xml:space="preserve">
+    <value>Symbol auswählen</value>
+  </data>
+  <data name="Dialog.AssetPicker.NoResults" xml:space="preserve">
+    <value>Keine Symbole gefunden</value>
+  </data>
+  <data name="Dialog.AssetPicker.AddSvg" xml:space="preserve">
+    <value>SVG hinzufügen...</value>
+  </data>
+  <data name="Dialog.AssetPicker.AddPng" xml:space="preserve">
+    <value>PNG hinzufügen...</value>
+  </data>
+  <data name="Dialog.AssetPicker.Count.One" xml:space="preserve">
+    <value>{0} Symbol</value>
+  </data>
+  <data name="Dialog.AssetPicker.Count.Many" xml:space="preserve">
+    <value>{0} Symbole</value>
+  </data>
+  <data name="Dialog.AssetPicker.AddSvgTitle" xml:space="preserve">
+    <value>SVG-Symbol hinzufügen</value>
+  </data>
+  <data name="Dialog.AssetPicker.AddPngTitle" xml:space="preserve">
+    <value>PNG-Symbol hinzufügen</value>
+  </data>
+  <data name="Dialog.AssetPicker.SvgFilesFilter" xml:space="preserve">
+    <value>SVG-Dateien (*.svg)|*.svg</value>
+  </data>
+  <data name="Dialog.AssetPicker.PngFilesFilter" xml:space="preserve">
+    <value>PNG-Dateien (*.png)|*.png</value>
+  </data>
+  <data name="Dialog.ImagePicker.DropHere" xml:space="preserve">
+    <value>HIER ABLEGEN</value>
+  </data>
+  <data name="Dialog.ImagePicker.RecommendedSize" xml:space="preserve">
+    <value>Empfohlene Größe</value>
+  </data>
+  <data name="Dialog.ImagePicker.Clear" xml:space="preserve">
+    <value>Leeren</value>
+  </data>
+  <data name="Dialog.ImagePicker.Browse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
+  <data name="Dialog.ImagePicker.SelectBackgroundTitle" xml:space="preserve">
+    <value>Hintergrundbild auswählen</value>
+  </data>
+  <data name="Dialog.ImagePicker.ImageFilesFilter" xml:space="preserve">
+    <value>Bilder (*.bmp;*.png;*.jpg;*.jpeg)|*.bmp;*.png;*.jpg;*.jpeg</value>
+  </data>
   <data name="Dialog.ActionArea.Title" xml:space="preserve">
     <value>AKTIONSBEREICH BEARBEITEN</value>
   </data>

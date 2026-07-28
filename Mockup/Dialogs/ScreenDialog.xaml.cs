@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using VIA.WPF.Localization;
+using VIA.WPF.Windowing;
 
 namespace Mockup.Dialogs;
 
@@ -198,10 +199,9 @@ public partial class ScreenDialog : ModalDialogWindow
         if (DataContext is not Screen screen)
             return;
 
-        var dialog = new XColorPickerDialog { Owner = this, SelectedColor = screen.Background };
+        var dialog = new XColorPickerDialog { SelectedColor = screen.Background };
 
-        bool? accepted = dialog.ShowDialog();
-        if (accepted != true)
+        if (!XDialogService.Default.ShowModal(dialog, this).IsAccepted)
             return;
 
         screen.Background = dialog.SelectedColor;
@@ -216,9 +216,9 @@ public partial class ScreenDialog : ModalDialogWindow
         if (band == null)
             return;
 
-        var dlg = new XColorPickerDialog { Owner = this, SelectedColor = band.HeaderBackground };
+        var dlg = new XColorPickerDialog { SelectedColor = band.HeaderBackground };
 
-        if (dlg.ShowDialog() != true)
+        if (!XDialogService.Default.ShowModal(dlg, this).IsAccepted)
             return;
 
         PushScreenSnapshot(SnapshotLabels.BandPropChanged);
@@ -239,9 +239,9 @@ public partial class ScreenDialog : ModalDialogWindow
         if (band == null)
             return;
 
-        var dlg = new XColorPickerDialog { Owner = this, SelectedColor = band.FooterBackground };
+        var dlg = new XColorPickerDialog { SelectedColor = band.FooterBackground };
 
-        if (dlg.ShowDialog() != true)
+        if (!XDialogService.Default.ShowModal(dlg, this).IsAccepted)
             return;
 
         PushScreenSnapshot(SnapshotLabels.BandPropChanged);
@@ -262,9 +262,9 @@ public partial class ScreenDialog : ModalDialogWindow
         if (band == null)
             return;
 
-        var dlg = new XColorPickerDialog { Owner = this, SelectedColor = band.BandBackground };
+        var dlg = new XColorPickerDialog { SelectedColor = band.BandBackground };
 
-        if (dlg.ShowDialog() != true)
+        if (!XDialogService.Default.ShowModal(dlg, this).IsAccepted)
             return;
 
         PushScreenSnapshot(SnapshotLabels.BandPropChanged);

@@ -49,7 +49,7 @@
         <via:XBorder
             Grid.Row="1"
             Padding="20,15"
-            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
             BorderThickness="0,1,0,0"
             CornerRadius="0">

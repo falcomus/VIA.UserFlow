@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
     MinWidth="280"
@@ -77,7 +78,9 @@
                     </via:XNavigationList>
                 </via:XBorder>
 
-            <Grid Grid.Column="1">
+            <Grid
+                Grid.Column="1"
+                Visibility="{Binding ElementName=root, Path=HasActiveSelection, Converter={StaticResource BoolToVisibility}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="42" />
                         <RowDefinition Height="*" />
@@ -87,7 +90,7 @@
                         Margin="12,0"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Text="{Binding ElementName=root, Path=SelectedPropertyCategory.Name}" />
+                        Text="{Binding ElementName=root, Path=SelectionHeaderText}" />
 
                     <ScrollViewer
                         Grid.Row="1"
@@ -244,6 +247,26 @@
                         </ItemsControl>
                     </ScrollViewer>
             </Grid>
+
+            <via:XStackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MaxWidth="260"
+                Spacing="8"
+                Visibility="{Binding ElementName=root, Path=HasNoActiveSelection, Converter={StaticResource BoolToVisibility}}">
+                <via:XTextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Text="{via:XLoc Toolbox.NoControlSelected, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                <via:XTextBlock
+                    HorizontalAlignment="Center"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                    Text="{via:XLoc Toolbox.NoControlSelectedHint, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+            </via:XStackPanel>
         </Grid>
     </via:XBorder>
 </UserControl>

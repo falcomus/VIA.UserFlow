@@ -39,6 +39,7 @@
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="ClipToBounds" Value="True" />
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect
@@ -73,6 +74,30 @@
                                 ShadowDepth="2" />
                         </Setter.Value>
                     </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ToolboxDescriptionCardStyle"
+               TargetType="via:XBorder"
+               BasedOn="{StaticResource ToolboxControlCardStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Description}" Value="{x:Null}">
+                    <Setter Property="Height" Value="34" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Description}" Value="">
+                    <Setter Property="Height" Value="34" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ToolboxDescriptionBodyStyle" TargetType="via:XBorder">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Description}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Description}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -474,7 +499,6 @@
                                                 <via:XBorder
                                                     Padding="0"
                                                     Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                                    CornerRadius="0"
                                                     Style="{StaticResource ToolboxControlCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -677,7 +701,7 @@
                                                 <via:XBorder
                                                     Padding="0"
                                                     Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                                    Style="{StaticResource ToolboxControlCardStyle}">
+                                                    Style="{StaticResource ToolboxDescriptionCardStyle}">
                                                     <Grid>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="26" />
@@ -700,7 +724,8 @@
                                                             Padding="14,12"
                                                             Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                                             BorderThickness="0"
-                                                            CornerRadius="0,0,5,5">
+                                                            CornerRadius="0,0,5,5"
+                                                            Style="{StaticResource ToolboxDescriptionBodyStyle}">
                                                             <via:XTextBlock TextWrapping="Wrap">
                                                                 <via:XTextBlock.Style>
                                                                     <Style TargetType="{x:Type via:XTextBlock}">

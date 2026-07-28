@@ -26,6 +26,7 @@ using Mockup.AssetSystem;
 using Mockup.Dialogs;
 using Mockup.Domain.Registry;
 using Mockup.Messages;
+using Mockup.Resources;
 using Mockup.Snapshots;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -38,6 +39,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using VIA.WPF.Controls;
+using ControlRegistry = Mockup.Registry.ControlRegistry;
+using VIA.WPF.Windowing;
 using SkiaColor = SkiaSharp.SKColor;
 
 namespace Mockup.UIControls;
@@ -72,15 +75,24 @@ public partial class PropertyEditor : UserControl
             var selected = GetSelectedControls();
 
             if (selected.Count > 1)
-                return "<Multiple Controls selected>";
+                return string.Format(
+                    CultureInfo.CurrentUICulture,
+                    UserFlowResources.ResourceManager.GetString("Toolbox.MultipleControlsSelected", CultureInfo.CurrentUICulture) ?? "{0} controls selected",
+                    selected.Count);
 
             var active = ActiveControl;
             if (active == null)
-                return "<no control selected>";
+                return UserFlowResources.ResourceManager.GetString("Toolbox.NoControlSelected", CultureInfo.CurrentUICulture) ?? "No control selected";
 
-            return active.TypeKey;
+            return ControlRegistry.GetDescriptor(active.GetType())?.DisplayName
+                   ?? ControlRegistry.GetDescriptor(active.TypeKey)?.DisplayName
+                   ?? active.GetType().Name;
         }
     }
+
+    public bool HasNoActiveSelection => ActiveControl is null;
+
+    public bool HasActiveSelection => ActiveControl is not null;
 
     #endregion
 
@@ -225,6 +237,8 @@ public partial class PropertyEditor : UserControl
 
             RefreshVisibleValues();
             OnPropertyChanged(nameof(SelectionHeaderText));
+            OnPropertyChanged(nameof(HasNoActiveSelection));
+            OnPropertyChanged(nameof(HasActiveSelection));
         }
         finally
         {
@@ -314,6 +328,8 @@ public partial class PropertyEditor : UserControl
         {
             SelectedPropertyCategory = null;
             OnPropertyChanged(nameof(SelectionHeaderText));
+            OnPropertyChanged(nameof(HasNoActiveSelection));
+            OnPropertyChanged(nameof(HasActiveSelection));
             return;
         }
 
@@ -355,6 +371,8 @@ public partial class PropertyEditor : UserControl
             ?? PropertyCategories.FirstOrDefault();
 
         OnPropertyChanged(nameof(SelectionHeaderText));
+        OnPropertyChanged(nameof(HasNoActiveSelection));
+        OnPropertyChanged(nameof(HasActiveSelection));
     }
 
     private void RefreshVisibleValues()
@@ -1037,47 +1055,7 @@ public partial class PropertyEditor : UserControl
 
         var dialog = new ImageRefDialog(current);
 
-        Window? owner = Window.GetWindow(fe);
-
-        if (owner == null || ReferenceEquals(owner, dialog))
-        {
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (ReferenceEquals(window, dialog))
-                    continue;
-
-                if (!window.IsVisible || window.WindowState == WindowState.Minimized)
-                    continue;
-
-                if (window.IsActive)
-                {
-                    owner = window;
-                    break;
-                }
-            }
-        }
-
-        if ((owner == null || ReferenceEquals(owner, dialog))
-            && Application.Current.MainWindow != null
-            && !ReferenceEquals(Application.Current.MainWindow, dialog)
-            && Application.Current.MainWindow.IsVisible
-            && Application.Current.MainWindow.WindowState != WindowState.Minimized)
-        {
-            owner = Application.Current.MainWindow;
-        }
-
-        if (owner != null && !ReferenceEquals(owner, dialog))
-        {
-            dialog.Owner = owner;
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        }
-        else
-        {
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        }
-
-        bool? accepted = dialog.ShowDialog();
-        if (accepted != true)
+        if (!XDialogService.Default.ShowModal(dialog, fe).IsAccepted)
             return;
 
         PushSnapshotForPropertyChange(item);
@@ -1098,31 +1076,7 @@ public partial class PropertyEditor : UserControl
 
         var dialog = new XColorPickerDialog { SelectedColor = currentColor };
 
-        // XColorPickerDialog is a real modal XWindow. Give it the active host just
-        // like ImageRefDialog, otherwise it can open behind the main window.
-        Window? owner = Window.GetWindow(fe) ?? Window.GetWindow(this);
-
-        if ((owner == null || ReferenceEquals(owner, dialog))
-            && Application.Current.MainWindow != null
-            && !ReferenceEquals(Application.Current.MainWindow, dialog)
-            && Application.Current.MainWindow.IsVisible
-            && Application.Current.MainWindow.WindowState != WindowState.Minimized)
-        {
-            owner = Application.Current.MainWindow;
-        }
-
-        if (owner != null && !ReferenceEquals(owner, dialog))
-        {
-            dialog.Owner = owner;
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        }
-        else
-        {
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        }
-
-        bool? accepted = dialog.ShowDialog();
-        if (accepted != true)
+        if (!XDialogService.Default.ShowModal(dialog, fe).IsAccepted)
             return;
 
         PushSnapshotForPropertyChange(item);

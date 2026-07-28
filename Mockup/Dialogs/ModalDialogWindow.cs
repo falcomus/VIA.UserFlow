@@ -7,4 +7,4 @@ namespace Mockup.Dialogs;
 /// The caller owns the host dim overlay. Acquiring it here makes an owned
 /// dialog compete with the main-window overlay during source initialization.
 /// </summary>
-public class ModalDialogWindow : XWindow { }
+public class ModalDialogWindow : XDialogWindow { }

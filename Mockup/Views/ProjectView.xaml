@@ -13,8 +13,8 @@
     xmlns:local="clr-namespace:Mockup.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mockup="clr-namespace:Mockup"
-    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:render="clr-namespace:Mockup.Rendering"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
@@ -83,14 +83,16 @@
                     Appearance="Outline"
                     BorderThickness="0"
                     Command="{Binding LoadProjectCommand}"
-                    Content="{via:XLoc Project.OpenProjectShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Project.OpenProjectShort,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
                     Size="Large"
-                    ToolTip="{via:XLoc Project.OpenProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    ToolTip="{via:XLoc Project.OpenProjectTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
                 <via:XButton
@@ -99,14 +101,16 @@
                     Margin="5,0,0,0"
                     BorderThickness="0"
                     Command="{Binding SaveProjectCommand}"
-                    Content="{via:XLoc Project.SaveProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Project.SaveProject,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=ContentSave}"
                     Size="Large"
-                    ToolTip="{via:XLoc Project.SaveProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    ToolTip="{via:XLoc Project.SaveProjectTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
                 <via:XButton
@@ -120,7 +124,8 @@
                     Focusable="False"
                     Icon="{via:MaterialIcon Kind=Plus}"
                     Size="Large"
-                    ToolTip="{via:XLoc Project.NewProjectTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    ToolTip="{via:XLoc Project.NewProjectTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
 
@@ -136,7 +141,8 @@
                     Content="{via:MaterialIcon Kind=DotsVertical}"
                     Focusable="False"
                     Menu="{StaticResource ProjectActionsContextMenu}"
-                    ToolTip="{via:XLoc Project.MoreProjectActionsTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    ToolTip="{via:XLoc Project.MoreProjectActionsTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
 
             </via:XGrid>
@@ -157,7 +163,8 @@
                     FontSize="12"
                     FontWeight="SemiBold"
                     Opacity="0.62"
-                    Text="{via:XLoc Project.ProjectInfo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    Text="{via:XLoc Project.ProjectInfo,
+                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                 <via:XTextBlock
                     Grid.Row="1"
@@ -185,7 +192,8 @@
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="{via:XLoc Project.Device, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                Text="{via:XLoc Project.Device,
+                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
@@ -240,7 +248,8 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="{via:XLoc Project.Screens, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Project.Screens,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
                         </Grid>
                     </via:XBorder>
@@ -278,7 +287,8 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="{via:XLoc Project.Templates, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Project.Templates,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
                         </via:XGrid>
                     </via:XBorder>
@@ -316,7 +326,8 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="{via:XLoc Project.Popups, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Project.Popups,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
                         </via:XGrid>
                     </via:XBorder>
@@ -354,7 +365,8 @@
                                     FontSize="13"
                                     FontWeight="SemiBold"
                                     Opacity="0.72"
-                                    Text="{via:XLoc Project.Controls, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Project.Controls,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
                         </via:XGrid>
                     </via:XBorder>
@@ -378,7 +390,8 @@
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="{via:XLoc Project.Sharing, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                Text="{via:XLoc Project.Sharing,
+                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
@@ -410,7 +423,8 @@
                                 FontSize="12"
                                 FontWeight="SemiBold"
                                 Opacity="0.62"
-                                Text="{via:XLoc Project.File, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                Text="{via:XLoc Project.File,
+                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             <via:XTextBlock
                                 Grid.Column="1"
                                 Margin="10,0,0,0"
@@ -434,7 +448,8 @@
                         FontSize="12"
                         FontWeight="SemiBold"
                         Opacity="0.62"
-                        Text="{via:XLoc Project.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        Text="{via:XLoc Project.Description,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     <ScrollViewer
                         Grid.Row="1"
                         MaxHeight="128"
@@ -473,7 +488,8 @@
                             FontSize="12"
                             FontWeight="SemiBold"
                             Opacity="0.62"
-                            Text="{via:XLoc Project.Theme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Project.Theme,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                         <via:XStackPanel
                             Grid.Column="1"
@@ -491,10 +507,12 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding NewColorSchemaCommand}"
+                                Cursor="Hand"
                                 Icon="{via:MaterialIcon Kind=Plus}"
                                 IconSize="16"
                                 Size="Small"
-                                ToolTip="{via:XLoc Project.NewColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                ToolTip="{via:XLoc Project.NewColorSchemeTooltip,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                             <via:XIconButton
                                 Width="30"
@@ -504,10 +522,12 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding EditColorSchemaCommand}"
-                                Icon="{via:MaterialIcon Kind=PencilOutline}"
+                                Cursor="Hand"
+                                Icon="{via:MaterialIcon Kind=Launch}"
                                 IconSize="16"
                                 Size="Small"
-                                ToolTip="{via:XLoc Project.EditColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                ToolTip="{via:XLoc Project.EditColorSchemeTooltip,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                             <via:XIconButton
                                 Width="30"
@@ -517,11 +537,13 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding DeleteColorSchemaCommand}"
+                                Cursor="Hand"
                                 Foreground="{DynamicResource DangerBrush}"
                                 Icon="{via:MaterialIcon Kind=DeleteOutline}"
                                 IconSize="16"
                                 Size="Small"
-                                ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         </via:XStackPanel>
 
                         <via:XComboBox
@@ -631,7 +653,8 @@
                         VerticalAlignment="Center"
                         FontSize="16"
                         FontWeight="Medium"
-                        Text="{via:XLoc Project.Screens, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Text="{via:XLoc Project.Screens,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Visibility="{Binding CurrentProject, Converter={StaticResource NullToVisibilityConverter}}" />
                 </StackPanel>
 
@@ -642,8 +665,9 @@
                         HorizontalAlignment="Right"
                         BorderThickness="1,0,0,0"
                         MaxZoomPercent="100"
-                        ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         MinZoomPercent="25"
+                        ResetButtonToolTip="{via:XLoc Project.ResetZoomTooltip,
+                                                      ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         TickFrequency="1"
                         ZoomPercent="{Binding CurrentProject.ProjectZoomPercent, Mode=TwoWay}" />
                 </StackPanel>
@@ -802,10 +826,11 @@
                                                 Command="{Binding DataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ProjectView}}}"
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
-                                                Icon="{via:MaterialIcon Kind=PencilOutline}"
+                                                Icon="{via:MaterialIcon Kind=Launch}"
                                                 IconSize="16"
                                                 Size="Small"
-                                                ToolTip="{via:XLoc Project.EditScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                                ToolTip="{via:XLoc Project.EditScreenTooltip,
+                                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Primary" />
 
                                             <via:XIconButton
@@ -815,9 +840,10 @@
                                                 CommandParameter="{Binding}"
                                                 Cursor="Hand"
                                                 Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                                IconSize="14"
+                                                IconSize="16"
                                                 Size="Small"
-                                                ToolTip="{via:XLoc Project.DeleteScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                                ToolTip="{via:XLoc Project.DeleteScreenTooltip,
+                                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Danger" />
 
                                             <via:XIconButton
@@ -829,7 +855,8 @@
                                                 Icon="{via:MaterialIcon Kind=ArrowRightBold}"
                                                 IconSize="16"
                                                 Size="Small"
-                                                ToolTip="{via:XLoc Project.GotoScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                                ToolTip="{via:XLoc Project.GotoScreenTooltip,
+                                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Primary" />
 
                                         </via:XStackPanel>
@@ -859,7 +886,8 @@
                                                 IconSize="18"
                                                 Opacity="0.9"
                                                 Size="Small"
-                                                ToolTip="{via:XLoc Project.SetAsHomeScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                                ToolTip="{via:XLoc Project.SetAsHomeScreenTooltip,
+                                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                                 Variant="Default">
                                                 <via:XIconButton.Style>
                                                     <Style TargetType="{x:Type via:XIconButton}">
@@ -1142,7 +1170,8 @@
                         Margin="5,0,0,0"
                         Command="{Binding NewScreenCommand}"
                         Icon="{via:MaterialIcon Kind=Plus}"
-                        ToolTip="{via:XLoc Project.NewScreenTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        ToolTip="{via:XLoc Project.NewScreenTooltip,
+                                           ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Variant="Primary" />
 
                 </via:XStackPanel>

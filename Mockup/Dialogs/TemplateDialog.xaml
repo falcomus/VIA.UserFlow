@@ -10,7 +10,7 @@
     xmlns:via="http://schemas.via.dev/wpf"
     Title="{via:XLoc Dialog.Template.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Subtitle=""
-    Width="400"
+    Width="320"
     SizeToContent="Height"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
@@ -41,7 +41,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="28,24,28,26" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Margin="20" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="16" />
@@ -78,8 +78,9 @@
 
         <via:XBorder
             Grid.Row="1"
-            Padding="28,14"
-            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            CornerRadius="0"
+            Padding="20,15"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
             BorderThickness="0,1,0,0">
             <via:XStackPanel

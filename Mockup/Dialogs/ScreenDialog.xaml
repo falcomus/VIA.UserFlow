@@ -10,33 +10,38 @@
     xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
-    Title="{via:XLoc Dialog.Screen.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-    Subtitle=""
-    Width="900"
+    Title="{via:XLoc Dialog.Screen.Edit.Title,
+                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+    Width="800"
     Height="620"
-    MinWidth="840"
+    MinWidth="750"
     MinHeight="560"
     d:DataContext="{d:DesignInstance Type=mockup:Screen}"
+    CornerRadius="10"
     ResizeMode="CanResize"
     ShowInTaskbar="False"
+    ShowMaximizeButton="False"
+    ShowMinimizeButton="False"
+    ShowResizeGrip="True"
     ShowThemeModeButton="False"
     ShowThemeSelector="False"
-    ShowMinimizeButton="False"
-    ShowMaximizeButton="False"
-    ShowResizeGrip="True"
-    TitleBarHeight="45"
-    TitleFontSize="16"
-    TitleBarPadding="24,0,0,0"
-    CornerRadius="10"
-    WindowStartupLocation="CenterOwner"
-    WindowBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
-    WindowBorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+    Subtitle=""
     TitleBarBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
     TitleBarForegroundBrush="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+    TitleBarHeight="45"
+    TitleBarPadding="24,0,0,0"
+    TitleFontSize="16"
+    WindowBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
+    WindowBorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+    WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
 
     <dialogs:ModalDialogWindow.Effect>
-        <DropShadowEffect BlurRadius="18" Direction="270" Opacity="0.20" ShadowDepth="5" />
+        <DropShadowEffect
+            BlurRadius="18"
+            Direction="270"
+            Opacity="0.20"
+            ShadowDepth="5" />
     </dialogs:ModalDialogWindow.Effect>
 
     <Grid ext:GridEx.RowDef="*,Auto">
@@ -49,38 +54,29 @@
                 BorderThickness="0,0,1,0"
                 CornerRadius="0">
                 <via:XNavigationList
-                    CornerRadius="0"
-                    Variant="Surface"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     BorderThickness="0"
+                    CornerRadius="0"
                     ItemCornerRadius="6"
                     ItemPadding="14,11"
                     SelectedIndex="{Binding ElementName=root, Path=SelectedSectionIndex, Mode=TwoWay}"
-                    ShowSelectionIndicator="True">
-                    <via:XNavigationListItem
-                        Icon="{via:MaterialIcon Kind=CogOutline}"
-                        Title="{via:XLoc Dialog.General, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                    <via:XNavigationListItem
-                        Icon="{via:MaterialIcon Kind=PaletteOutline}"
-                        Title="{via:XLoc Dialog.Screen.Background, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                    <via:XNavigationListItem
-                        Icon="{via:MaterialIcon Kind=ApplicationOutline}"
-                        Title="{via:XLoc Dialog.Screen.HeaderFooter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                    <via:XNavigationListItem
-                        Icon="{via:MaterialIcon Kind=LayersOutline}"
-                        Title="{via:XLoc Dialog.Screen.BandsPagesTab, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    ShowSelectionIndicator="True"
+                    Variant="Surface">
+                    <via:XNavigationListItem Title="{via:XLoc Dialog.General, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Icon="{via:MaterialIcon Kind=CogOutline}" />
+                    <via:XNavigationListItem Title="{via:XLoc Dialog.Screen.Background, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Icon="{via:MaterialIcon Kind=PaletteOutline}" />
+                    <via:XNavigationListItem Title="{via:XLoc Dialog.Screen.HeaderFooter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Icon="{via:MaterialIcon Kind=ApplicationOutline}" />
+                    <via:XNavigationListItem Title="{via:XLoc Dialog.Screen.BandsPagesTab, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Icon="{via:MaterialIcon Kind=LayersOutline}" />
                 </via:XNavigationList>
             </via:XBorder>
 
-            <Grid Grid.Column="1" Margin="24,18,24,16">
-                <!-- General -->
-                <Grid
-                    x:Name="GeneralSection"
-                    ext:GridEx.RowDef="Auto,Auto,*">
+            <Grid Grid.Column="1" Margin="20">
+                <!--  General  -->
+                <Grid x:Name="GeneralSection" ext:GridEx.RowDef="Auto,Auto,*">
                     <via:XTextBox
                         x:Name="InputName"
-                        Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Name,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
                     <Grid
@@ -89,7 +85,8 @@
                         ext:GridEx.ColDef="*,Auto">
                         <via:XComboBox
                             MinWidth="320"
-                            Header="{via:XLoc Dialog.Category, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                            Header="{via:XLoc Dialog.Category,
+                                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                             IsEditable="True"
                             IsTextSearchEnabled="True"
                             ItemsSource="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=ScreenGroupNames}"
@@ -97,10 +94,11 @@
                         <via:XToggleSwitch
                             Grid.Column="1"
                             Margin="30,0,0,0"
-                            Size="Large"
                             VerticalAlignment="Bottom"
-                            Content="{via:XLoc Dialog.Screen.HomeScreen, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                            IsChecked="{Binding IsHomeScreen}" />
+                            Content="{via:XLoc Dialog.Screen.HomeScreen,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                            IsChecked="{Binding IsHomeScreen}"
+                            Size="Large" />
                     </Grid>
 
                     <via:XTextBox
@@ -108,23 +106,25 @@
                         MinHeight="180"
                         Margin="0,14,0,0"
                         VerticalAlignment="Stretch"
-                        AcceptsReturn="True"
-                        Header="{via:XLoc Dialog.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         VerticalContentAlignment="Top"
+                        AcceptsReturn="True"
+                        Header="{via:XLoc Dialog.Description,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Text="{Binding Descr, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap" />
                 </Grid>
 
-                <!-- Background -->
+                <!--  Background  -->
                 <Grid
                     x:Name="BackgroundSection"
-                    Visibility="Collapsed"
-                    ext:GridEx.RowDef="Auto,Auto,*">
+                    ext:GridEx.RowDef="Auto,Auto,*"
+                    Visibility="Collapsed">
                     <via:XStackPanel Spacing="8">
                         <via:XTextBlock
                             FontSize="12"
                             FontWeight="Medium"
-                            Text="{via:XLoc Dialog.Screen.BackgroundColor, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Dialog.Screen.BackgroundColor,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <Grid ext:GridEx.ColDef="*,Auto">
                             <via:XBorder
                                 Height="30"
@@ -133,59 +133,74 @@
                                 BorderThickness="1"
                                 CornerRadius="5" />
                             <via:XButton
+                                Width="120"
                                 Grid.Column="1"
-                                Margin="8,0,0,0"
+                                Margin="8,0,42,0"
                                 Click="PickBackground_Click"
-                                Content="{via:XLoc Dialog.Screen.SelectColor, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                Content="{via:XLoc Dialog.Screen.SelectColor,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 Icon="{via:MaterialIcon Kind=PaletteOutline}"
                                 Size="Medium" />
                         </Grid>
                     </via:XStackPanel>
 
-                    <via:XStackPanel Grid.Row="1" Margin="0,18,0,0" Spacing="8">
+                    <via:XStackPanel
+                        Grid.Row="1"
+                        Margin="0,18,0,0"
+                        Spacing="8">
                         <via:XTextBlock
                             FontSize="12"
                             FontWeight="Medium"
-                            Text="{via:XLoc Dialog.Screen.Image, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Dialog.Screen.Image,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <Grid ext:GridEx.ColDef="*,Auto,Auto">
                             <via:XBorder
-                                Height="30"
+                                Height="32"
                                 Padding="12,0"
                                 Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                                 BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
                                 BorderThickness="1"
                                 CornerRadius="5">
-                                <via:XTextBlock
-                                    VerticalAlignment="Center"
-                                    Text="{Binding BackgroundImageFilename}" />
+                                <via:XTextBlock VerticalAlignment="Center" Text="{Binding BackgroundImageFilename}" />
                             </via:XBorder>
                             <via:XButton
                                 Grid.Column="1"
+                                Height="32"
+                                Width="120"
                                 Margin="8,0,0,0"
-                                Padding="15 0"
+                                Padding="15,0"
                                 Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=SelectScreenImageCommand}"
                                 CommandParameter="{Binding}"
-                                Content="{via:XLoc Dialog.Screen.BrowseImage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                Content="{via:XLoc Dialog.Screen.BrowseImage,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
                                 Size="Medium" />
                             <via:XIconButton
                                 Grid.Column="2"
+                                Height="12"
+                                MinHeight="32"
                                 Margin="8,0,0,0"
+                                Padding="0"
                                 Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=ResetScreenImageCommand}"
                                 CommandParameter="{Binding}"
                                 Icon="{via:MaterialIcon Kind=Close}"
                                 IconSize="14"
                                 Size="Medium"
-                                ToolTip="{via:XLoc Dialog.Screen.ClearImage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                ToolTip="{via:XLoc Dialog.Screen.ClearImage,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 Variant="Danger" />
                         </Grid>
                     </via:XStackPanel>
 
-                    <Grid Grid.Row="2" Margin="0,18,0,0" ext:GridEx.RowDef="Auto,*">
+                    <Grid
+                        Grid.Row="2"
+                        Margin="0,18,0,0"
+                        ext:GridEx.RowDef="Auto,*">
                         <via:XTextBlock
                             FontSize="12"
                             FontWeight="Medium"
-                            Text="{via:XLoc Dialog.Screen.ImagePreview, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Dialog.Screen.ImagePreview,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <via:XBorder
                             Grid.Row="1"
                             Margin="0,8,0,0"
@@ -203,149 +218,139 @@
                     </Grid>
                 </Grid>
 
-                <!-- Header / Footer -->
+                <!--  Header / Footer  -->
                 <ScrollViewer
                     x:Name="HeaderFooterSection"
                     HorizontalScrollBarVisibility="Disabled"
                     VerticalScrollBarVisibility="Auto"
                     Visibility="Collapsed">
-                    <via:XStackPanel Margin="0,0,6,0" Spacing="14">
-                        <via:XBorder
-                            Padding="18"
-                            Appearance="VerySubtle"
-                            BorderThickness="1"
-                            CornerRadius="7">
-                            <via:XStackPanel Spacing="14">
+                    <via:XStackPanel Margin="8,4,14,4" Spacing="18">
+                        <via:XStackPanel Spacing="14">
+                            <Grid ext:GridEx.ColDef="*,Auto">
+                                <via:XTextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Text="{via:XLoc Dialog.Screen.HeaderTab,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                <via:XToggleSwitch
+                                    Grid.Column="1"
+                                    Content="{via:XLoc ContextMenu.Screen.ShowHeader,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                    IsChecked="{Binding ShowHeader}" />
+                            </Grid>
+                            <via:XTextBox Header="{via:XLoc Dialog.Screen.HeaderTitle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Text="{Binding HeaderBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <via:XStackPanel Spacing="6">
+                                <via:XTextBlock
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    Text="{via:XLoc Dialog.Screen.HeaderColor,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <Grid ext:GridEx.ColDef="*,Auto">
-                                    <via:XTextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Text="{via:XLoc Dialog.Screen.HeaderTab, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XToggleSwitch
+                                    <via:XBorder
+                                        x:Name="HeaderColorPreview"
+                                        Height="35"
+                                        Background="{Binding HeaderBand.HeaderBackground, Converter={StaticResource ColorToBrushConverter}}"
+                                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                        BorderThickness="1"
+                                        CornerRadius="5">
+                                        <via:XTextBlock
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding HeaderBand.Title}" />
+                                    </via:XBorder>
+                                    <via:XIconButton
                                         Grid.Column="1"
-                                        Content="{via:XLoc ContextMenu.Screen.ShowHeader, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ShowHeader}" />
+                                        Margin="8,0,0,0"
+                                        Click="PickHeaderColor_Click"
+                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                        IconSize="12"
+                                        Size="Medium" />
                                 </Grid>
-                                <via:XTextBox
-                                    Header="{via:XLoc Dialog.Screen.HeaderTitle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                    Text="{Binding HeaderBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <via:XStackPanel Spacing="6">
-                                    <via:XTextBlock
-                                        FontSize="12"
-                                        FontWeight="Medium"
-                                        Text="{via:XLoc Dialog.Screen.HeaderColor, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <Grid ext:GridEx.ColDef="*,Auto">
-                                        <via:XBorder
-                                            x:Name="HeaderColorPreview"
-                                            Height="35"
-                                            Background="{Binding HeaderBand.HeaderBackground, Converter={StaticResource ColorToBrushConverter}}"
-                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                                            BorderThickness="1"
-                                            CornerRadius="5">
-                                            <via:XTextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Text="{Binding HeaderBand.Title}" />
-                                        </via:XBorder>
-                                        <via:XIconButton
-                                            Grid.Column="1"
-                                            Margin="8,0,0,0"
-                                            Click="PickHeaderColor_Click"
-                                            Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                            IconSize="12"
-                                            Size="Medium" />
-                                    </Grid>
-                                </via:XStackPanel>
                             </via:XStackPanel>
-                        </via:XBorder>
+                        </via:XStackPanel>
 
-                        <via:XBorder
-                            Padding="18"
-                            Appearance="VerySubtle"
-                            BorderThickness="1"
-                            CornerRadius="7">
-                            <via:XStackPanel Spacing="14">
+                        <via:XSeparator Margin="0,4" />
+
+                        <via:XStackPanel Spacing="14">
+                            <Grid ext:GridEx.ColDef="*,Auto">
+                                <via:XTextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Text="{via:XLoc Dialog.Screen.FooterTab,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                <via:XToggleSwitch
+                                    Grid.Column="1"
+                                    Content="{via:XLoc ContextMenu.Screen.ShowFooter,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                    IsChecked="{Binding ShowFooter}" />
+                            </Grid>
+                            <via:XTextBox Header="{via:XLoc Dialog.Screen.FooterTitle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Text="{Binding FooterBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <via:XStackPanel Spacing="6">
+                                <via:XTextBlock
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    Text="{via:XLoc Dialog.Screen.FooterColor,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <Grid ext:GridEx.ColDef="*,Auto">
-                                    <via:XTextBlock
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Text="{via:XLoc Dialog.Screen.FooterTab, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XToggleSwitch
+                                    <via:XBorder
+                                        x:Name="FooterColorPreview"
+                                        Height="35"
+                                        Background="{Binding FooterBand.FooterBackground, Converter={StaticResource ColorToBrushConverter}}"
+                                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                        BorderThickness="1"
+                                        CornerRadius="5">
+                                        <via:XTextBlock
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding FooterBand.Title}" />
+                                    </via:XBorder>
+                                    <via:XIconButton
                                         Grid.Column="1"
-                                        Content="{via:XLoc ContextMenu.Screen.ShowFooter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ShowFooter}" />
+                                        Margin="8,0,0,0"
+                                        Click="PickFooterColor_Click"
+                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                        IconSize="12"
+                                        Size="Medium" />
                                 </Grid>
-                                <via:XTextBox
-                                    Header="{via:XLoc Dialog.Screen.FooterTitle, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                    Text="{Binding FooterBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <via:XStackPanel Spacing="6">
-                                    <via:XTextBlock
-                                        FontSize="12"
-                                        FontWeight="Medium"
-                                        Text="{via:XLoc Dialog.Screen.FooterColor, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <Grid ext:GridEx.ColDef="*,Auto">
-                                        <via:XBorder
-                                            x:Name="FooterColorPreview"
-                                            Height="35"
-                                            Background="{Binding FooterBand.FooterBackground, Converter={StaticResource ColorToBrushConverter}}"
-                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                                            BorderThickness="1"
-                                            CornerRadius="5">
-                                            <via:XTextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Text="{Binding FooterBand.Title}" />
-                                        </via:XBorder>
-                                        <via:XIconButton
-                                            Grid.Column="1"
-                                            Margin="8,0,0,0"
-                                            Click="PickFooterColor_Click"
-                                            Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                            IconSize="12"
-                                            Size="Medium" />
-                                    </Grid>
-                                </via:XStackPanel>
                             </via:XStackPanel>
-                        </via:XBorder>
+                        </via:XStackPanel>
                     </via:XStackPanel>
                 </ScrollViewer>
 
-                <!-- Bands & Pages -->
+                <!--  Bands & Pages  -->
                 <Grid
                     x:Name="BandsPagesSection"
-                    Visibility="Collapsed"
-                    ext:GridEx.ColDef="240,16,*">
-                    <via:XBorder
-                        Grid.Column="0"
-                        Padding="14"
-                        Appearance="VerySubtle"
-                        BorderThickness="1"
-                        CornerRadius="7">
+                    ext:GridEx.ColDef="240,20,*"
+                    Visibility="Collapsed">
+                    <Grid Grid.Column="0" Margin="0,0,5,4">
                         <Grid ext:GridEx.RowDef="Auto,*">
                             <Grid ext:GridEx.ColDef="*,Auto,Auto,Auto,Auto">
                                 <via:XTextBlock
                                     VerticalAlignment="Center"
                                     FontSize="14"
                                     FontWeight="SemiBold"
-                                    Text="{via:XLoc Dialog.Screen.Bands, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Dialog.Screen.Bands,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <via:XIconButton
                                     Grid.Column="1"
                                     Click="AddBand_Click"
                                     Icon="{via:MaterialIcon Kind=Plus}"
-                                    IconSize="12"
+                                    IconSize="13"
                                     Size="Medium"
-                                    ToolTip="{via:XLoc Dialog.Screen.AddBand, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    ToolTip="{via:XLoc Dialog.Screen.AddBand,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <via:XIconButton
                                     Grid.Column="2"
                                     Margin="4,0,0,0"
                                     Click="DeleteBand_Click"
                                     Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                    IconSize="12"
+                                    IconSize="13"
                                     Size="Medium"
-                                    Variant="Danger"
-                                    ToolTip="{via:XLoc Dialog.Screen.DeleteBand, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    ToolTip="{via:XLoc Dialog.Screen.DeleteBand,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                    Variant="Danger" />
                                 <via:XIconButton
                                     Grid.Column="3"
                                     Margin="4,0,0,0"
@@ -353,7 +358,8 @@
                                     Icon="{via:MaterialIcon Kind=ArrowUp}"
                                     IconSize="12"
                                     Size="Medium"
-                                    ToolTip="{via:XLoc Dialog.Screen.MoveUp, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    ToolTip="{via:XLoc Dialog.Screen.MoveUp,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <via:XIconButton
                                     Grid.Column="4"
                                     Margin="4,0,0,0"
@@ -361,12 +367,13 @@
                                     Icon="{via:MaterialIcon Kind=ArrowDown}"
                                     IconSize="12"
                                     Size="Medium"
-                                    ToolTip="{via:XLoc Dialog.Screen.MoveDown, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    ToolTip="{via:XLoc Dialog.Screen.MoveDown,
+                                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </Grid>
 
                             <via:XListBox
                                 Grid.Row="1"
-                                Margin="0,12,0,0"
+                                Margin="-5,20,-3,0"
                                 HorizontalContentAlignment="Stretch"
                                 ItemsSource="{Binding ElementName=root, Path=CustomBandsView}"
                                 Mode="Navigation"
@@ -382,96 +389,86 @@
                                 </via:XListBox.ItemTemplate>
                             </via:XListBox>
                         </Grid>
-                    </via:XBorder>
+                    </Grid>
 
-                    <Grid Grid.Column="2" ext:GridEx.RowDef="Auto,16,*">
-                        <via:XBorder
+                    <via:XSeparator Grid.Column="1" Orientation="Vertical" />
+
+                    <Grid Grid.Column="2" ext:GridEx.RowDef="Auto,12,*">
+                        <via:XStackPanel
                             Grid.Row="0"
-                            Padding="18"
-                            Appearance="VerySubtle"
-                            BorderThickness="1"
-                            CornerRadius="7">
-                            <via:XStackPanel Spacing="14">
+                            Margin="12,4,8,0"
+                            Spacing="14">
+                            <via:XTextBlock
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Text="{via:XLoc Dialog.Screen.BandDetails,
+                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                            <via:XTextBox Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Text="{Binding ElementName=root, Path=SelectedBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                            <via:XWrapPanel HorizontalSpacing="20" VerticalSpacing="10">
+                                <via:XCheckBox Content="{via:XLoc Dialog.Screen.Sticky, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding ElementName=root, Path=SelectedBand.IsSticky, Mode=TwoWay}" />
+                                <via:XCheckBox Content="{via:XLoc Dialog.Screen.ExpandableShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding ElementName=root, Path=SelectedBand.IsExpandable, Mode=TwoWay}" />
+                                <via:XCheckBox Content="{via:XLoc Dialog.Screen.Tabs, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding ElementName=root, Path=SelectedBand.ShowTabs, Mode=TwoWay}" />
+                                <via:XCheckBox Content="{via:XLoc Dialog.Screen.Uniform, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding ElementName=root, Path=SelectedBand.UniformPageHeight, Mode=TwoWay}" />
+                            </via:XWrapPanel>
+
+                            <via:XStackPanel Margin="0,10,0,0" Spacing="6">
                                 <via:XTextBlock
-                                    FontSize="14"
-                                    FontWeight="SemiBold"
-                                    Text="{via:XLoc Dialog.Screen.BandDetails, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-                                <via:XTextBox
-                                    Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                    Text="{Binding ElementName=root, Path=SelectedBand.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                                <via:XWrapPanel HorizontalSpacing="20" VerticalSpacing="10">
-                                    <via:XCheckBox
-                                        Content="{via:XLoc Dialog.Screen.Sticky, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ElementName=root, Path=SelectedBand.IsSticky, Mode=TwoWay}" />
-                                    <via:XCheckBox
-                                        Content="{via:XLoc Dialog.Screen.ExpandableShort, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ElementName=root, Path=SelectedBand.IsExpandable, Mode=TwoWay}" />
-                                    <via:XCheckBox
-                                        Content="{via:XLoc Dialog.Screen.Tabs, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ElementName=root, Path=SelectedBand.ShowTabs, Mode=TwoWay}" />
-                                    <via:XCheckBox
-                                        Content="{via:XLoc Dialog.Screen.Uniform, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                        IsChecked="{Binding ElementName=root, Path=SelectedBand.UniformPageHeight, Mode=TwoWay}" />
-                                </via:XWrapPanel>
-
-                                <via:XStackPanel Spacing="6">
-                                    <via:XTextBlock
-                                        FontSize="12"
-                                        FontWeight="Medium"
-                                        Text="{via:XLoc Dialog.Screen.BackgroundColor, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <Grid ext:GridEx.ColDef="*,Auto">
-                                        <via:XBorder
-                                            Height="35"
-                                            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                                            BorderThickness="1"
-                                            CornerRadius="5">
-                                            <via:XBorder.Background>
-                                                <SolidColorBrush Color="{Binding ElementName=root, Path=SelectedBand.BandBackground}" />
-                                            </via:XBorder.Background>
-                                        </via:XBorder>
-                                        <via:XIconButton
-                                            Grid.Column="1"
-                                            Margin="8,0,0,0"
-                                            Click="PickBandColor_Click"
-                                            Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                            IconSize="12"
-                                            Size="Medium" />
-                                    </Grid>
-                                </via:XStackPanel>
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    Text="{via:XLoc Dialog.Screen.BackgroundColor,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                <Grid ext:GridEx.ColDef="*,Auto">
+                                    <via:XBorder
+                                        Height="35"
+                                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                        BorderThickness="1"
+                                        CornerRadius="5">
+                                        <via:XBorder.Background>
+                                            <SolidColorBrush Color="{Binding ElementName=root, Path=SelectedBand.BandBackground}" />
+                                        </via:XBorder.Background>
+                                    </via:XBorder>
+                                    <via:XIconButton
+                                        Grid.Column="1"
+                                        Margin="8,0,0,0"
+                                        Click="PickBandColor_Click"
+                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
+                                        IconSize="12"
+                                        Size="Medium" />
+                                </Grid>
                             </via:XStackPanel>
-                        </via:XBorder>
+                        </via:XStackPanel>
 
-                        <via:XBorder
-                            Grid.Row="2"
-                            Padding="14"
-                            Appearance="VerySubtle"
-                            BorderThickness="1"
-                            CornerRadius="7">
+                        <via:XSeparator Grid.Row="1" Margin="12,0,8,0" />
+
+                        <Grid Grid.Row="2" Margin="12,10,8,4">
                             <Grid ext:GridEx.RowDef="Auto,*">
                                 <Grid ext:GridEx.ColDef="*,Auto,Auto">
                                     <via:XTextBlock
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         FontWeight="SemiBold"
-                                        Text="{via:XLoc Dialog.Screen.PagesInBand, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        Text="{via:XLoc Dialog.Screen.PagesInBand,
+                                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <via:XIconButton
                                         Grid.Column="1"
                                         Click="AddPage_Click"
                                         Icon="{via:MaterialIcon Kind=Plus}"
-                                        IconSize="12"
-                                        Size="Small"
-                                        ToolTip="{via:XLoc Dialog.Screen.AddPage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        IconSize="14"
+                                        Size="Medium"
+                                        ToolTip="{via:XLoc Dialog.Screen.AddPage,
+                                                           ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <via:XIconButton
                                         Grid.Column="2"
                                         Margin="4,0,0,0"
                                         Click="DeletePage_Click"
                                         Icon="{via:MaterialIcon Kind=DeleteOutline}"
                                         IconSize="12"
-                                        Size="Small"
-                                        Variant="Danger"
-                                        ToolTip="{via:XLoc Dialog.Screen.DeletePage, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        Size="Medium"
+                                        ToolTip="{via:XLoc Dialog.Screen.DeletePage,
+                                                           ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        Variant="Danger" />
                                 </Grid>
 
                                 <via:XListBox
@@ -493,7 +490,7 @@
                                     </via:XListBox.ItemTemplate>
                                 </via:XListBox>
                             </Grid>
-                        </via:XBorder>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
@@ -501,10 +498,11 @@
 
         <via:XBorder
             Grid.Row="1"
-            Padding="24,12"
-            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            Padding="20,15"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-            BorderThickness="0,1,0,0">
+            BorderThickness="0,1,0,0"
+            CornerRadius="0">
             <via:XStackPanel
                 HorizontalAlignment="Right"
                 Orientation="Horizontal"
@@ -512,7 +510,8 @@
                 <via:XButton
                     Width="110"
                     Click="Ok_Click"
-                    Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Common.OK,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsTabStop="False"
                     Size="Large"
@@ -520,7 +519,8 @@
                 <via:XButton
                     Width="100"
                     Click="Cancel_Click"
-                    Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Common.Cancel,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsTabStop="False"
                     Size="Large" />

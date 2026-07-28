@@ -10,7 +10,7 @@
     xmlns:via="http://schemas.via.dev/wpf"
     Title="{via:XLoc Dialog.Popup.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Subtitle=""
-    Width="500"
+    Width="415"
     SizeToContent="Height"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
@@ -41,75 +41,61 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="28,24,28,26" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="12" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="16" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="8" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
+        <via:XStackPanel Grid.Row="0" Margin="20" Spacing="16" VerticalAlignment="Top">
             <via:XTextBox
                 x:Name="InputName"
-                Grid.Row="0"
                 Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
             <via:XTextBox
                 x:Name="InputTitle"
-                Grid.Row="2"
                 Header="{via:XLoc Dialog.TitleField, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
             <via:XComboBox
-                Grid.Row="4"
                 Header="{via:XLoc Dialog.Category, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                 IsEditable="True"
                 IsTextSearchEnabled="True"
                 ItemsSource="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=PopupGroupNames}"
                 Text="{Binding GroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <via:XTextBlock
-                Grid.Row="6"
-                FontSize="13"
-                FontWeight="SemiBold"
-                Text="{via:XLoc Dialog.Position, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-            <via:XStackPanel Grid.Row="8" Orientation="Horizontal" Spacing="12">
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Left, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Left}" />
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Right, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Right}" />
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Top, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Top}" />
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Bottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Bottom}" />
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.Center, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Center}" />
-                <via:XRadioButton Content="{via:XLoc Dialog.Popup.MousePosition, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding Position, Mode=TwoWay, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=MousePos}" />
+            <via:XStackPanel Margin="0,4,0,0" Spacing="8">
+                <via:XTextBlock
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Text="{via:XLoc Dialog.Position, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                <via:XButtonGroup
+                    HorizontalAlignment="Left"
+                    ItemMinWidth="52"
+                    SelectedValue="{Binding Position, Mode=TwoWay}"
+                    Size="Small"
+                    Variant="Primary">
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.Left, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.Left}" />
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.Right, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.Right}" />
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.Top, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.Top}" />
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.Bottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.Bottom}" />
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.Center, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.Center}" />
+                    <via:XButtonGroupItem Content="{via:XLoc Dialog.Popup.MousePosition, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Value="{x:Static mockup:ScreenPopupPosition.MousePos}" />
+                </via:XButtonGroup>
             </via:XStackPanel>
 
             <via:XBorder
-                Grid.Row="10"
-                Padding="14,12"
+                Padding="0 5"
                 Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                BorderThickness="0"
                 CornerRadius="6">
-                <!--BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                BorderThickness="1"-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="20" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
 
                     <via:XCheckBox
                         Grid.Column="0"
-                        VerticalAlignment="Center"
+                        Margin="0 0 0 3"
+                        VerticalAlignment="Bottom"
                         Content="{via:XLoc Dialog.Popup.ShowHeader, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         IsChecked="{Binding HasHeader, Mode=TwoWay}" />
                     <via:XTextBox
@@ -122,20 +108,20 @@
 
             <via:XTextBox
                 x:Name="InputDescription"
-                Grid.Row="12"
                 AcceptsReturn="True"
                 Header="{via:XLoc Dialog.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                MaxLines="4"
                 Height="85"
+                MaxLines="4"
                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                 TextWrapping="Wrap"
                 VerticalContentAlignment="Stretch" />
-        </Grid>
+        </via:XStackPanel>
 
         <via:XBorder
+            CornerRadius="0"
             Grid.Row="1"
-            Padding="28,14"
-            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            Padding="20,15"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
             BorderThickness="0,1,0,0">
             <via:XStackPanel

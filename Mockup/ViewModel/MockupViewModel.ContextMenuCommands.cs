@@ -1602,6 +1602,17 @@ public sealed partial class MockupViewModel : ObservableObject
         if (toDelete.Count == 0)
             return;
 
+        var result = MessageBox.Show(
+            DialogText(
+                "Dialog.Controls.Delete.Message",
+                "Do you really want to delete the selected control(s)?"),
+            DialogText("Dialog.Controls.Delete.Title", "Delete Controls"),
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (result != MessageBoxResult.Yes)
+            return;
+
         var groups = toDelete
             .GroupBy(c => c.ParentBandPage!)
             .ToList();

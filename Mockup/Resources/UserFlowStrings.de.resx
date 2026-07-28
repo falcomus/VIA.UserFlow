@@ -193,6 +193,8 @@
   <data name="ContextMenu.Control.Copy" xml:space="preserve"><value>Steuerelemente kopieren</value></data>
   <data name="ContextMenu.Control.Paste" xml:space="preserve"><value>Steuerelemente einfügen</value></data>
   <data name="ContextMenu.Control.Delete" xml:space="preserve"><value>Steuerelemente löschen</value></data>
+  <data name="Dialog.Controls.Delete.Title" xml:space="preserve"><value>Steuerelemente löschen</value></data>
+  <data name="Dialog.Controls.Delete.Message" xml:space="preserve"><value>Möchten Sie die ausgewählten Steuerelemente wirklich löschen?</value></data>
   <data name="ContextMenu.Control.BringToFront" xml:space="preserve"><value>Ganz nach vorne</value></data>
   <data name="ContextMenu.Control.SendToBack" xml:space="preserve"><value>Ganz nach hinten</value></data>
   <data name="ContextMenu.Control.BringForward" xml:space="preserve"><value>Eine Ebene nach vorne</value></data>

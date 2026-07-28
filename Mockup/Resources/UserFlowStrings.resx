@@ -193,6 +193,8 @@
   <data name="ContextMenu.Control.Copy" xml:space="preserve"><value>Copy Control(s)</value></data>
   <data name="ContextMenu.Control.Paste" xml:space="preserve"><value>Paste Control(s)</value></data>
   <data name="ContextMenu.Control.Delete" xml:space="preserve"><value>Delete Control(s)</value></data>
+  <data name="Dialog.Controls.Delete.Title" xml:space="preserve"><value>Delete Controls</value></data>
+  <data name="Dialog.Controls.Delete.Message" xml:space="preserve"><value>Do you really want to delete the selected control(s)?</value></data>
   <data name="ContextMenu.Control.BringToFront" xml:space="preserve"><value>Bring To Front</value></data>
   <data name="ContextMenu.Control.SendToBack" xml:space="preserve"><value>Send To Back</value></data>
   <data name="ContextMenu.Control.BringForward" xml:space="preserve"><value>Bring Forward</value></data>

@@ -35,6 +35,8 @@ public abstract partial class BaseDesigner : System.Windows.Controls.Control
 {
     #region === STATIC / CTOR / LOADED / UNLOADED ===
     MockupViewModel? VM => DataContext as MockupViewModel;
+    private static WeakReference<BaseDesigner>? activeKeyboardDesigner;
+    private Window? keyboardHostWindow;
 
     static BaseDesigner()
     {
@@ -47,31 +49,102 @@ public abstract partial class BaseDesigner : System.Windows.Controls.Control
     public BaseDesigner()
     {
         Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        Loaded -= OnLoaded;
-
         Focusable = true;
         KeyboardNavigation.SetIsTabStop(this, true);
 
+        AttachKeyboardHost();
         HookMessages();
 
         InvalidateDesigner();
     }
 
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        DetachKeyboardHost();
+
+        if (IsActiveKeyboardDesigner())
+            activeKeyboardDesigner = null;
+    }
+
     public void FocusDesignerSurface()
     {
-        if (PART_Canvas != null)
-        {
-            PART_Canvas.Focus();
-            Keyboard.Focus(PART_Canvas);
-            return;
-        }
-
+        activeKeyboardDesigner = new WeakReference<BaseDesigner>(this);
         Focus();
         Keyboard.Focus(this);
+    }
+
+    private void AttachKeyboardHost()
+    {
+        var host = Window.GetWindow(this);
+        if (ReferenceEquals(keyboardHostWindow, host))
+            return;
+
+        DetachKeyboardHost();
+        keyboardHostWindow = host;
+
+        if (keyboardHostWindow == null)
+            return;
+
+        keyboardHostWindow.AddHandler(
+            Keyboard.PreviewKeyDownEvent,
+            new KeyEventHandler(OnHostPreviewKeyDown),
+            handledEventsToo: true);
+        keyboardHostWindow.AddHandler(
+            Keyboard.PreviewKeyUpEvent,
+            new KeyEventHandler(OnHostPreviewKeyUp),
+            handledEventsToo: true);
+        keyboardHostWindow.AddHandler(
+            Mouse.PreviewMouseDownEvent,
+            new MouseButtonEventHandler(OnHostPreviewMouseDown),
+            handledEventsToo: true);
+    }
+
+    private void DetachKeyboardHost()
+    {
+        if (keyboardHostWindow == null)
+            return;
+
+        keyboardHostWindow.RemoveHandler(
+            Keyboard.PreviewKeyDownEvent,
+            new KeyEventHandler(OnHostPreviewKeyDown));
+        keyboardHostWindow.RemoveHandler(
+            Keyboard.PreviewKeyUpEvent,
+            new KeyEventHandler(OnHostPreviewKeyUp));
+        keyboardHostWindow.RemoveHandler(
+            Mouse.PreviewMouseDownEvent,
+            new MouseButtonEventHandler(OnHostPreviewMouseDown));
+
+        keyboardHostWindow = null;
+    }
+
+    private void OnHostPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (IsActiveKeyboardDesigner())
+            OnPreviewKeyDown(this, e);
+    }
+
+    private void OnHostPreviewKeyUp(object sender, KeyEventArgs e)
+    {
+        if (IsActiveKeyboardDesigner())
+            OnPreviewKeyUp(this, e);
+    }
+
+    private void OnHostPreviewMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (IsActiveKeyboardDesigner() && !IsMouseOver)
+            activeKeyboardDesigner = null;
+    }
+
+    private bool IsActiveKeyboardDesigner()
+    {
+        return activeKeyboardDesigner != null
+            && activeKeyboardDesigner.TryGetTarget(out var designer)
+            && ReferenceEquals(designer, this);
     }
 
     #endregion === STATIC / CTOR / LOADED / UNLOADED ===
@@ -138,9 +211,7 @@ public abstract partial class BaseDesigner : System.Windows.Controls.Control
         Focusable = true;
 
         PART_Canvas.Focusable = true;
-        PART_Canvas.PreviewKeyDown += OnPreviewKeyDown;
-        PART_Canvas.PreviewKeyUp += OnPreviewKeyUp;
-        PART_Canvas.MouseDown += (_, _) => PART_Canvas.Focus();
+        PART_Canvas.MouseDown += (_, _) => FocusDesignerSurface();
 
         // Wichtig: diese Methoden sind in Partials implementiert!
         PART_Canvas.PaintSurface += OnPaintSurface;

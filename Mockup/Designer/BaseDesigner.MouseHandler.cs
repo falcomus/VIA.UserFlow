@@ -168,6 +168,7 @@ public partial class BaseDesigner
     private bool _controlDragSnapshotPushed;
     private bool _controlResizeSnapshotPushed;
     private bool _bandResizeSnapshotPushed;
+    private bool _keyboardNudgeSnapshotPushed;
     private DesignControl? _pendingCtrlClickToggleControl;
     private SKPoint _controlDragStartMouseWorld;
     private string? _designerInteractionHintText;
@@ -2090,6 +2091,9 @@ public partial class BaseDesigner
         if (HandleClipboardShortcut(e))
             return;
 
+        if (HandleEditDesignerShortcut(e))
+            return;
+
         if (HandleDeleteShortcut(e))
             return;
 
@@ -2101,7 +2105,7 @@ public partial class BaseDesigner
         float dx = 0f;
         float dy = 0f;
 
-        switch (e.Key)
+        switch (key)
         {
             case Key.Left:
                 dx = -step;
@@ -2130,6 +2134,13 @@ public partial class BaseDesigner
     private void OnPreviewKeyUp(object sender, KeyEventArgs e)
     {
         var key = e.Key == Key.System ? e.SystemKey : e.Key;
+
+        if (key is Key.Left or Key.Right or Key.Up or Key.Down)
+        {
+            _keyboardNudgeSnapshotPushed = false;
+            e.Handled = true;
+            return;
+        }
 
         if (key != Key.Space)
             return;
@@ -2208,6 +2219,50 @@ public partial class BaseDesigner
         }
     }
 
+    private bool HandleEditDesignerShortcut(KeyEventArgs e)
+    {
+        if ((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Alt)) != ModifierKeys.None)
+            return false;
+
+        var key = e.Key == Key.System ? e.SystemKey : e.Key;
+        if (key != Key.Enter)
+            return false;
+
+        switch (DesignerKind)
+        {
+            case DesignerKind.Screen when VM.CurrentScreen != null:
+                VM.SetContextScreen(VM.CurrentScreen);
+                if (!VM.EditScreenCommand.CanExecute(null))
+                    return false;
+
+                VM.EditScreenCommand.Execute(null);
+                break;
+
+            case DesignerKind.Template when VM.CurrentTemplate != null:
+                VM.SetContextTemplate(VM.CurrentTemplate);
+                if (!VM.EditTemplateCommand.CanExecute(VM.CurrentTemplate))
+                    return false;
+
+                VM.EditTemplateCommand.Execute(VM.CurrentTemplate);
+                break;
+
+            case DesignerKind.Popup when VM.CurrentPopup != null:
+                VM.SetContextPopup(VM.CurrentPopup);
+                if (!VM.EditPopupCommand.CanExecute(VM.CurrentPopup))
+                    return false;
+
+                VM.EditPopupCommand.Execute(VM.CurrentPopup);
+                break;
+
+            default:
+                return false;
+        }
+
+        FocusDesignerSurface();
+        e.Handled = true;
+        return true;
+    }
+
     private bool HandleDeleteShortcut(KeyEventArgs e)
     {
         if ((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Alt)) != ModifierKeys.None)
@@ -2225,13 +2280,18 @@ public partial class BaseDesigner
         VM.SetContextControls(first?.ParentBand, controls);
         VM.DeleteControlsCommand.Execute(null);
 
+        FocusDesignerSurface();
         e.Handled = true;
         return true;
     }
 
     private float GetKeyboardNudgeStep(KeyEventArgs e)
     {
+        bool shift = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
         bool ctrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+
+        if (shift)
+            return 5f;
 
         if (!ctrl)
             return 1f;
@@ -2255,8 +2315,11 @@ public partial class BaseDesigner
             return;
 
         var snapshotContext = GetSnapshotContextForDesigner();
-        if (snapshotContext != null)
+        if (snapshotContext != null && !_keyboardNudgeSnapshotPushed)
+        {
             MockupService.Mockup.PushSnapshot(snapshotContext.Value, SnapshotLabels.ControlMoved);
+            _keyboardNudgeSnapshotPushed = true;
+        }
 
         foreach (var kv in startLocal)
         {

@@ -163,5 +163,12 @@
 	<ItemGroup>
 	  <Resource Include="Resources\png\splashScreen.png" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="Samples\Food Couriers App.ufp">
+	    <Link>Data\Projects\Food Couriers App.ufp</Link>
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
 
 </Project>

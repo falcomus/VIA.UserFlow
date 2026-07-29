@@ -1092,4 +1092,166 @@
   <data name="Dialog.ActionArea.Hint.Back" xml:space="preserve">
     <value>ZURÜCK</value>
   </data>
+  <data name="Options.ResetWorkspace" xml:space="preserve">
+    <value>Arbeitsbereich zurücksetzen</value>
+  </data>
+  <data name="Options.OpenDataFolder" xml:space="preserve">
+    <value>Datenordner öffnen</value>
+  </data>
+  <data name="Options.CopyDataPath" xml:space="preserve">
+    <value>Pfad kopieren</value>
+  </data>
+  <data name="Help.Title" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="Help.Heading" xml:space="preserve">
+    <value>Tastatur- und Mausbefehle</value>
+  </data>
+  <data name="Help.Introduction" xml:space="preserve">
+    <value>Befehle zum Bearbeiten, präzisen Positionieren, Auswählen und für die Vorschau.</value>
+  </data>
+  <data name="Help.FocusHint" xml:space="preserve">
+    <value>Designer-Befehle sind aktiv, solange die Designerfläche den Tastaturfokus besitzt.</value>
+  </data>
+  <data name="Help.Section.Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Help.Section.Position" xml:space="preserve">
+    <value>Position und Eingabe</value>
+  </data>
+  <data name="Help.Section.Selection" xml:space="preserve">
+    <value>Auswahl, Maus und Vorschau</value>
+  </data>
+  <data name="Help.Shortcut.Undo" xml:space="preserve">
+    <value>Letzte Designeränderung rückgängig machen.</value>
+  </data>
+  <data name="Help.Shortcut.Redo" xml:space="preserve">
+    <value>Zuletzt rückgängig gemachte Designeränderung wiederholen.</value>
+  </data>
+  <data name="Help.Shortcut.Copy" xml:space="preserve">
+    <value>Ausgewählte Controls kopieren.</value>
+  </data>
+  <data name="Help.Shortcut.Paste" xml:space="preserve">
+    <value>Kopierte Controls einfügen.</value>
+  </data>
+  <data name="Help.Shortcut.Delete" xml:space="preserve">
+    <value>Ausgewählte Controls löschen.</value>
+  </data>
+  <data name="Help.Shortcut.Edit" xml:space="preserve">
+    <value>Aktuellen Bildschirm, aktuelle Vorlage oder aktuelles Popup bearbeiten.</value>
+  </data>
+  <data name="Help.Shortcut.Nudge1" xml:space="preserve">
+    <value>Ausgewählte Controls um 1 DIP verschieben.</value>
+  </data>
+  <data name="Help.Shortcut.Nudge5" xml:space="preserve">
+    <value>Ausgewählte Controls um 5 DIP verschieben.</value>
+  </data>
+  <data name="Help.Shortcut.Nudge10" xml:space="preserve">
+    <value>Ausgewählte Controls um 10 DIP verschieben.</value>
+  </data>
+  <data name="Help.Shortcut.Zoom" xml:space="preserve">
+    <value>Aktuelles Projekt, Designer oder Vorschau zoomen.</value>
+  </data>
+  <data name="Help.Shortcut.NumericApply" xml:space="preserve">
+    <value>Numerischen Eigenschaftswert übernehmen.</value>
+  </data>
+  <data name="Help.Shortcut.NumericEnd" xml:space="preserve">
+    <value>Aktuelle numerische Eingabe beenden.</value>
+  </data>
+  <data name="Help.Shortcut.ToggleSelection" xml:space="preserve">
+    <value>Control zur Auswahl hinzufügen oder daraus entfernen.</value>
+  </data>
+  <data name="Help.Shortcut.Duplicate" xml:space="preserve">
+    <value>Ausgewählte Controls beim Ziehen duplizieren.</value>
+  </data>
+  <data name="Help.Shortcut.AddMarquee" xml:space="preserve">
+    <value>Controls im Auswahlrahmen zur Auswahl hinzufügen.</value>
+  </data>
+  <data name="Help.Shortcut.ContextMenu" xml:space="preserve">
+    <value>Kontextmenü für das aktuelle Ziel öffnen.</value>
+  </data>
+  <data name="Help.Shortcut.ActionAreas" xml:space="preserve">
+    <value>Aktionsbereiche in der Vorschau vorübergehend einblenden.</value>
+  </data>
+  <data name="Help.Shortcut.Scroll" xml:space="preserve">
+    <value>Aktuellen Designer oder die Vorschau scrollen.</value>
+  </data>
+  <data name="Help.Key.Undo" xml:space="preserve">
+    <value>Strg + Z</value>
+  </data>
+  <data name="Help.Key.Redo" xml:space="preserve">
+    <value>Strg + Y</value>
+  </data>
+  <data name="Help.Key.Copy" xml:space="preserve">
+    <value>Strg + C</value>
+  </data>
+  <data name="Help.Key.Paste" xml:space="preserve">
+    <value>Strg + V</value>
+  </data>
+  <data name="Help.Key.Delete" xml:space="preserve">
+    <value>Entf</value>
+  </data>
+  <data name="Help.Key.Enter" xml:space="preserve">
+    <value>Eingabe</value>
+  </data>
+  <data name="Help.Key.Arrows" xml:space="preserve">
+    <value>Pfeiltasten</value>
+  </data>
+  <data name="Help.Key.ShiftArrows" xml:space="preserve">
+    <value>Umschalt + Pfeil</value>
+  </data>
+  <data name="Help.Key.CtrlArrows" xml:space="preserve">
+    <value>Strg + Pfeil</value>
+  </data>
+  <data name="Help.Key.CtrlWheel" xml:space="preserve">
+    <value>Strg + Mausrad</value>
+  </data>
+  <data name="Help.Key.Escape" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="Help.Key.CtrlClick" xml:space="preserve">
+    <value>Strg + Klick</value>
+  </data>
+  <data name="Help.Key.CtrlDrag" xml:space="preserve">
+    <value>Strg + Ziehen</value>
+  </data>
+  <data name="Help.Key.CtrlMarquee" xml:space="preserve">
+    <value>Strg + Auswahlrahmen</value>
+  </data>
+  <data name="Help.Key.RightClick" xml:space="preserve">
+    <value>Rechtsklick</value>
+  </data>
+  <data name="Help.Key.HoldSpace" xml:space="preserve">
+    <value>Leertaste halten</value>
+  </data>
+  <data name="Help.Key.MouseWheel" xml:space="preserve">
+    <value>Mausrad</value>
+  </data>
+  <data name="About.Title" xml:space="preserve">
+    <value>Über VIA UserFlow</value>
+  </data>
+  <data name="About.Introduction" xml:space="preserve">
+    <value>Bildschirme, Vorlagen und interaktive Prototypen in einer fokussierten Desktop-Anwendung gestalten.</value>
+  </data>
+  <data name="About.Product" xml:space="preserve">
+    <value>Produktinformationen</value>
+  </data>
+  <data name="About.Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="About.Runtime" xml:space="preserve">
+    <value>Laufzeitumgebung</value>
+  </data>
+  <data name="About.OperatingSystem" xml:space="preserve">
+    <value>Betriebssystem</value>
+  </data>
+  <data name="About.Technology" xml:space="preserve">
+    <value>Technologie</value>
+  </data>
+  <data name="About.TechnologyDescription" xml:space="preserve">
+    <value>Entwickelt mit VIA.WPF, WPF und SkiaSharp.</value>
+  </data>
+  <data name="About.Copyright" xml:space="preserve">
+    <value>© VIA Software. Alle Rechte vorbehalten.</value>
+  </data>
 </root>

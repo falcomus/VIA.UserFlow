@@ -3,6 +3,7 @@
 // ======================================================================================
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Mockup.ColorSystem;
 using Mockup.JsonConverters;
 using Mockup.Messages;
@@ -29,9 +30,22 @@ public partial class MockupViewModel : ObservableObject
 
     private string ProjectsFolder => Path.Combine(_dataRoot, "Projects");
     private string TemplatesFolder => Path.Combine(_dataRoot, "Templates");
+    private string DemoProjectFilePath => Path.Combine(ProjectsFolder, "Food Couriers App.ufp");
 
     private string SettingsFilePath => Path.Combine(_dataRoot, "settings.json");
     private string TemplatesFilePath => Path.Combine(TemplatesFolder, "templates.json");
+
+    public string DataRootPath => _dataRoot;
+
+    [RelayCommand]
+    private void OpenDataFolder()
+    {
+        Directory.CreateDirectory(_dataRoot);
+        Process.Start(new ProcessStartInfo(_dataRoot) { UseShellExecute = true });
+    }
+
+    [RelayCommand]
+    private void CopyDataFolderPath() => Clipboard.SetText(_dataRoot);
 
     #endregion === DATA PATHS ===
 
@@ -212,27 +226,35 @@ public partial class MockupViewModel : ObservableObject
 
     private void ApplySettingsToViewModel()
     {
-        AutoSaveEnabled = Settings.Designer.AutoSaveEnabled;
-        AutoSaveIntervalMinutes = Settings.Designer.AutoSaveIntervalMinutes;
-        ShowToolbox = Settings.UI.ShowToolbox;
-        ToolboxPinned = Settings.UI.ToolboxPinned;
-        ToolboxWidth = Settings.UI.ToolboxWidth;
-        ScreenNavigatorPinned = Settings.UI.ScreenNavigatorPinned;
-        ScreenNavigatorWidth = Settings.UI.ScreenNavigatorWidth;
-        TemplateNavigatorWidth = Settings.UI.TemplateNavigatorWidth;
-        PopupNavigatorWidth = Settings.UI.PopupNavigatorWidth;
-        MainTabSelectedIndex = Settings.UI.MainTabSelectedIndex;
-        ScreenTabSelectedIndex = Settings.UI.ScreenTabSelectedIndex;
-        OpenLastProjectOnStartup = Settings.Storage.AutoLoadLastProject;
-
-        RecentColors.Clear();
-        foreach (var hex in Settings.UI.RecentColors ?? new ObservableCollection<string>())
+        suppressSettingsPersistence = true;
+        try
         {
-            if (!string.IsNullOrWhiteSpace(hex))
-                RecentColors.Add(hex.Trim());
-        }
+            AutoSaveEnabled = Settings.Designer.AutoSaveEnabled;
+            AutoSaveIntervalMinutes = Settings.Designer.AutoSaveIntervalMinutes;
+            ShowToolbox = Settings.UI.ShowToolbox;
+            ToolboxPinned = Settings.UI.ToolboxPinned;
+            ToolboxWidth = Settings.UI.ToolboxWidth;
+            ScreenNavigatorPinned = Settings.UI.ScreenNavigatorPinned;
+            ScreenNavigatorWidth = Settings.UI.ScreenNavigatorWidth;
+            TemplateNavigatorWidth = Settings.UI.TemplateNavigatorWidth;
+            PopupNavigatorWidth = Settings.UI.PopupNavigatorWidth;
+            MainTabSelectedIndex = Settings.UI.MainTabSelectedIndex;
+            ScreenTabSelectedIndex = Settings.UI.ScreenTabSelectedIndex;
+            OpenLastProjectOnStartup = Settings.Storage.AutoLoadLastProject;
 
-        EnsureRecentColorsCount();
+            RecentColors.Clear();
+            foreach (var hex in Settings.UI.RecentColors ?? new ObservableCollection<string>())
+            {
+                if (!string.IsNullOrWhiteSpace(hex))
+                    RecentColors.Add(hex.Trim());
+            }
+
+            EnsureRecentColorsCount();
+        }
+        finally
+        {
+            suppressSettingsPersistence = false;
+        }
     }
 
     private void ApplyViewModelToSettings()
@@ -530,7 +552,13 @@ public partial class MockupViewModel : ObservableObject
 
             var path = ResolveProjectPath(Settings.Storage.LastOpenedProjectPath);
 
-            if (string.IsNullOrWhiteSpace(path))
+            // A freshly extracted demo has no user settings yet. In that case, open the
+            // bundled sample from the application-relative Data folder. This remains
+            // portable regardless of where the user extracts the application.
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+                path = DemoProjectFilePath;
+
+            if (!File.Exists(path))
                 return;
 
             progress?.Report(new StartupProgress(StartupText("Startup.OpenLastProject", "Open last project: {0} ...", Path.GetFileNameWithoutExtension(path)), 34));

@@ -72,6 +72,7 @@
     <Style TargetType="{x:Type views:DesignerWorkspaceHost}">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="IsToolboxPinned" Value="{Binding ToolboxPinned, Mode=TwoWay}" />
+        <Setter Property="IsToolboxVisible" Value="{Binding ShowToolbox, Mode=TwoWay}" />
         <Setter Property="ToolboxWidth" Value="{Binding ToolboxWidth, Mode=TwoWay}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
@@ -97,6 +98,7 @@
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
 
                         <views:ToolboxView
+                            x:Name="PART_Toolbox"
                             Grid.ColumnSpan="3"
                             d:Visibility="Collapsed"
                             HorizontalAlignment="Right"
@@ -104,6 +106,11 @@
                             DockWidth="{Binding ToolboxWidth, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             IsFlyoutPinned="{Binding IsToolboxPinned, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsToolboxVisible" Value="False">
+                            <Setter TargetName="PART_Toolbox" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

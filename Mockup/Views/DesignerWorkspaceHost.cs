@@ -30,6 +30,13 @@ public sealed class DesignerWorkspaceHost : ContentControl
             typeof(DesignerWorkspaceHost),
             new FrameworkPropertyMetadata(false, OnAdaptiveLayoutPropertyChanged));
 
+    public static readonly DependencyProperty IsToolboxVisibleProperty =
+        DependencyProperty.Register(
+            nameof(IsToolboxVisible),
+            typeof(bool),
+            typeof(DesignerWorkspaceHost),
+            new FrameworkPropertyMetadata(true, OnAdaptiveLayoutPropertyChanged));
+
     public static readonly DependencyProperty ToolboxWidthProperty =
         DependencyProperty.Register(
             nameof(ToolboxWidth),
@@ -56,6 +63,12 @@ public sealed class DesignerWorkspaceHost : ContentControl
     {
         get => (bool)GetValue(IsToolboxPinnedProperty);
         set => SetValue(IsToolboxPinnedProperty, value);
+    }
+
+    public bool IsToolboxVisible
+    {
+        get => (bool)GetValue(IsToolboxVisibleProperty);
+        set => SetValue(IsToolboxVisibleProperty, value);
     }
 
     public double ToolboxWidth
@@ -89,7 +102,8 @@ public sealed class DesignerWorkspaceHost : ContentControl
             DefaultMinimumUnpinnedWorkspaceWidth);
 
         bool hasRoomForPinnedToolbox =
-            IsToolboxPinned
+            IsToolboxVisible
+            && IsToolboxPinned
             && ActualWidth >= minimumUnpinnedWorkspaceWidth + toolboxWidth;
 
         SetValue(

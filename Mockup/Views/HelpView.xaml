@@ -4,207 +4,248 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="clr-namespace:Mockup.Extensions"
-    xmlns:ico="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="clr-namespace:Mockup.UIControls"
+    xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     d:DesignHeight="850"
-    d:DesignWidth="800"
-    Background="{DynamicResource DesignerBackgroundBrush}"
-    Foreground="{DynamicResource TextPrimaryBrush}"
-    TextOptions.TextFormattingMode="Display"
-    TextOptions.TextRenderingMode="ClearType"
+    d:DesignWidth="1100"
+    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
     mc:Ignorable="d">
 
-    <Grid ext:GridEx.RowDef="45,*">
-        <Border
-            Background="{DynamicResource HeaderBackgroundBrush}"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="0,0,0,1">
-            <Border.Effect>
-                <DropShadowEffect
-                    BlurRadius="8"
-                    Direction="270"
-                    Opacity="0.12"
-                    ShadowDepth="2" />
-            </Border.Effect>
-            <Grid Margin="16,0" ext:GridEx.ColDef="Auto,*">
-                <ico:PackIconFontAwesome5
-                    Width="20"
-                    Height="20"
-                    VerticalAlignment="Center"
-                    Foreground="{DynamicResource PrimaryBrush}"
-                    Kind="QuestionCircleRegular" />
-                <TextBlock
-                    Grid.Column="1"
-                    Margin="10,0,0,1"
-                    VerticalAlignment="Center"
+    <UserControl.Resources>
+        <Style x:Key="HelpSectionStyle" TargetType="{x:Type via:XBorder}">
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <Style x:Key="ShortcutRowStyle" TargetType="{x:Type via:XBorder}">
+            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Surface}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+        <Style x:Key="ShortcutKeyStyle" TargetType="{x:Type via:XTextBlock}">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
+        </Style>
+        <Style x:Key="ShortcutDescriptionStyle" TargetType="{x:Type via:XTextBlock}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid ext:GridEx.RowDef="48,*">
+        <via:XBorder
+            Padding="16,0"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+            BorderThickness="0,0,0,1"
+            CornerRadius="0">
+            <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <via:XIcon
+                    Width="18"
+                    Height="18"
+                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                    Kind="HelpCircleOutline"
+                    Pack="MaterialDesign" />
+                <via:XTextBlock
+                    Margin="10,0,0,0"
                     FontSize="16"
                     FontWeight="SemiBold"
-                    Text="Help" />
+                    Text="{via:XLoc Help.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+            </via:XStackPanel>
+        </via:XBorder>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid MaxWidth="1000" Margin="32,28" HorizontalAlignment="Center">
+                <via:XStackPanel>
+                    <via:XTextBlock
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        Text="{via:XLoc Help.Heading, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    <via:XTextBlock
+                        Margin="0,6,0,0"
+                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                        Text="{via:XLoc Help.Introduction, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        TextWrapping="Wrap" />
+
+                    <via:XBorder
+                        Margin="0,18,0,0"
+                        Padding="14"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtleHover}}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <via:XStackPanel Orientation="Horizontal">
+                            <via:XIcon
+                                Width="18"
+                                Height="18"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                Kind="InformationOutline"
+                                Pack="MaterialDesign" />
+                            <via:XTextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                                Text="{via:XLoc Help.FocusHint, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                TextWrapping="Wrap" />
+                        </via:XStackPanel>
+                    </via:XBorder>
+
+                    <Grid Margin="0,14,0,0" ext:GridEx.ColDef="*,14,*">
+                        <via:XBorder Style="{StaticResource HelpSectionStyle}">
+                            <via:XStackPanel Spacing="8">
+                                <via:XTextBlock
+                                    Margin="0,0,0,4"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="{via:XLoc Help.Section.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Undo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Undo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Redo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Redo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Copy, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Copy, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Paste, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="120,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Enter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                            </via:XStackPanel>
+                        </via:XBorder>
+
+                        <via:XBorder Grid.Column="2" Style="{StaticResource HelpSectionStyle}">
+                            <via:XStackPanel Spacing="8">
+                                <via:XTextBlock
+                                    Margin="0,0,0,4"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="{via:XLoc Help.Section.Position, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Arrows, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Nudge1, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.ShiftArrows, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Nudge5, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.CtrlArrows, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Nudge10, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.CtrlWheel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Zoom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Enter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.NumericApply, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                                <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                    <Grid ext:GridEx.ColDef="150,*">
+                                        <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.Escape, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.NumericEnd, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    </Grid>
+                                </via:XBorder>
+                            </via:XStackPanel>
+                        </via:XBorder>
+                    </Grid>
+
+                    <via:XBorder Margin="0,14,0,0" Style="{StaticResource HelpSectionStyle}">
+                        <via:XStackPanel Spacing="8">
+                            <via:XTextBlock
+                                Margin="0,0,0,4"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Text="{via:XLoc Help.Section.Selection, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <Grid ext:GridEx.ColDef="*,12,*">
+                                <via:XStackPanel Spacing="8">
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.CtrlClick, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.ToggleSelection, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.CtrlDrag, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Duplicate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.CtrlMarquee, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.AddMarquee, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                </via:XStackPanel>
+                                <via:XStackPanel Grid.Column="2" Spacing="8">
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.RightClick, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.ContextMenu, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.HoldSpace, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.ActionAreas, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                    <via:XBorder Style="{StaticResource ShortcutRowStyle}">
+                                        <Grid ext:GridEx.ColDef="150,*">
+                                            <via:XTextBlock Style="{StaticResource ShortcutKeyStyle}" Text="{via:XLoc Help.Key.MouseWheel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            <via:XTextBlock Grid.Column="1" Style="{StaticResource ShortcutDescriptionStyle}" Text="{via:XLoc Help.Shortcut.Scroll, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                        </Grid>
+                                    </via:XBorder>
+                                </via:XStackPanel>
+                            </Grid>
+                        </via:XStackPanel>
+                    </via:XBorder>
+                </via:XStackPanel>
             </Grid>
-        </Border>
-
-        <Grid Grid.Row="1" Margin="24">
-            <Border
-                MaxWidth="780"
-                Padding="26"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
-                BorderBrush="{DynamicResource BorderBrush}"
-                BorderThickness="1"
-                CornerRadius="12">
-                <Border.Effect>
-                    <DropShadowEffect
-                        BlurRadius="18"
-                        Direction="315"
-                        Opacity="0.08"
-                        ShadowDepth="3" />
-                </Border.Effect>
-
-                <Grid ext:GridEx.RowDef="Auto,Auto,*">
-                    <Border
-                        Width="48"
-                        Height="48"
-                        HorizontalAlignment="Left"
-                        Background="{DynamicResource PrimaryBrush}"
-                        CornerRadius="12">
-                        <ico:PackIconFontAwesome5
-                            Width="26"
-                            Height="26"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}"
-                            Kind="QuestionCircleSolid" />
-                    </Border>
-
-                    <StackPanel Grid.Row="1" Margin="0,18,0,18">
-                        <TextBlock
-                            FontSize="24"
-                            FontWeight="SemiBold"
-                            Foreground="{DynamicResource TextPrimaryBrush}"
-                            Text="Help" />
-                        <TextBlock
-                            Margin="0,8,0,0"
-                            FontSize="14"
-                            Foreground="{DynamicResource TextSecondaryBrush}"
-                            Text="Quick guidance for using the UserFlow mockup designer."
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="2">
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleRegular" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                    <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Project workflow" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="Create projects, add screens, place controls and test them in preview."
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleRegular" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                    <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Designer shortcuts" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="Use Ctrl + mouse wheel for zoom and context menus for screen/control actions."
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="0,0,0,10"
-                            Padding="16,14,16,14"
-                            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ext:GridEx.ColDef="Auto,*">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    Background="{DynamicResource {x:Static via:XBrushKeys.PrimarySubtle}}"
-                                    CornerRadius="16">
-                                    <ico:PackIconFontAwesome5
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="{DynamicResource PrimaryBrush}"
-                                        Kind="CheckCircleRegular" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                                    <TextBlock
-                                        FontSize="14"
-                                        FontWeight="SemiBold"
-                                        Foreground="{DynamicResource TextPrimaryBrush}"
-                                        Text="Troubleshooting" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        FontSize="13"
-                                        Foreground="{DynamicResource TextSecondaryBrush}"
-                                        Text="This area can later collect common issues and repair actions."
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

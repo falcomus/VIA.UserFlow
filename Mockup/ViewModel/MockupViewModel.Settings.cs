@@ -1,5 +1,6 @@
 //MockupViewModel.Settings.cs
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Mockup.Services;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -25,6 +26,8 @@ namespace Mockup.ViewModel;
 
 public partial class MockupViewModel : ObservableObject
 {
+    private bool suppressSettingsPersistence;
+
     #region === INITIALISIERUNG ===
 
     partial void InitSettings()
@@ -107,7 +110,8 @@ public partial class MockupViewModel : ObservableObject
     {
         Settings.Designer.AutoSaveEnabled = value;
         SetupAutoSaveTimer();
-        SaveSettings();
+        if (!suppressSettingsPersistence)
+            SaveSettings();
     }
 
     [ObservableProperty]
@@ -124,7 +128,8 @@ public partial class MockupViewModel : ObservableObject
 
         Settings.Designer.AutoSaveIntervalMinutes = safeValue;
         SetupAutoSaveTimer();
-        SaveSettings();
+        if (!suppressSettingsPersistence)
+            SaveSettings();
     }
 
     [ObservableProperty]
@@ -133,31 +138,16 @@ public partial class MockupViewModel : ObservableObject
     partial void OnOpenLastProjectOnStartupChanged(bool value)
     {
         Settings.Storage.AutoLoadLastProject = value;
-        SaveSettings();
+        if (!suppressSettingsPersistence)
+            SaveSettings();
     }
 
     #endregion === APPLICATION SETTINGS ===
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ToolboxToggleText))]
-    [NotifyPropertyChangedFor(nameof(ToolboxIcon))]
     private bool _showToolbox = true;
 
-    partial void OnShowToolboxChanged(bool value)
-    {
-        ToolboxToggleText = value ? "Hide Toolbox" : "Show Toolbox";
-        ToolboxIcon = value ? "EyeSlash" : "Eye";
-        if (value)
-        {
-            XNotifications.Info("Not yet implemented");
-        }
-    }
-
-    [ObservableProperty]
-    public string _toolboxToggleText = "Show Toolbox";
-
-    [ObservableProperty]
-    public string _toolboxIcon = "Eye";
+    partial void OnShowToolboxChanged(bool value) => PersistDockSettings();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
@@ -194,6 +184,10 @@ public partial class MockupViewModel : ObservableObject
 
     private void PersistDockSettings()
     {
+        if (suppressSettingsPersistence)
+            return;
+
+        Settings.UI.ShowToolbox = ShowToolbox;
         Settings.UI.ToolboxPinned = ToolboxPinned;
         Settings.UI.ToolboxWidth = ToolboxWidth;
         Settings.UI.ScreenNavigatorPinned = ScreenNavigatorPinned;
@@ -201,6 +195,18 @@ public partial class MockupViewModel : ObservableObject
         Settings.UI.TemplateNavigatorWidth = TemplateNavigatorWidth;
         Settings.UI.PopupNavigatorWidth = PopupNavigatorWidth;
         SaveSettings();
+    }
+
+    [RelayCommand]
+    private void ResetWorkspaceLayout()
+    {
+        ShowToolbox = true;
+        ToolboxPinned = false;
+        ToolboxWidth = 380d;
+        ScreenNavigatorPinned = true;
+        ScreenNavigatorWidth = 480d;
+        TemplateNavigatorWidth = 480d;
+        PopupNavigatorWidth = 480d;
     }
 
     #endregion === UI VISIBILITY FLAGS ===

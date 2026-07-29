@@ -37,7 +37,7 @@
         </via:XBorder>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid MaxWidth="760" Margin="24" HorizontalAlignment="Center">
+            <Grid MaxWidth="1000" Margin="32,28" HorizontalAlignment="Center">
                 <via:XStackPanel>
                     <via:XStackPanel Margin="0,0,0,20">
                         <via:XTextBlock FontSize="24" FontWeight="SemiBold" Text="{via:XLoc Options.Heading, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
@@ -145,6 +145,15 @@
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                 Text="{via:XLoc Options.OpenLastProjectDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
+
+                            <via:XButton
+                                Margin="0,18,0,0"
+                                HorizontalAlignment="Left"
+                                Appearance="Outline"
+                                Command="{Binding ResetWorkspaceLayoutCommand}"
+                                Content="{via:XLoc Options.ResetWorkspace, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                Icon="{via:MaterialIcon Kind=Restore}"
+                                Variant="Primary" />
                         </via:XStackPanel>
                     </via:XBorder>
 
@@ -174,6 +183,34 @@
                                 Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
                                 Text="{via:XLoc Options.StorageDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 TextWrapping="Wrap" />
+                            <via:XBorder
+                                Margin="0,14,0,0"
+                                Padding="12"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                BorderThickness="1"
+                                CornerRadius="6">
+                                <via:XTextBlock
+                                    FontFamily="Consolas"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                                    Text="{Binding DataRootPath}"
+                                    TextTrimming="CharacterEllipsis"
+                                    ToolTip="{Binding DataRootPath}" />
+                            </via:XBorder>
+                            <via:XStackPanel Margin="0,12,0,0" Orientation="Horizontal" Spacing="8">
+                                <via:XButton
+                                    Appearance="Outline"
+                                    Command="{Binding OpenDataFolderCommand}"
+                                    Content="{via:XLoc Options.OpenDataFolder, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                    Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
+                                    Variant="Primary" />
+                                <via:XButton
+                                    Appearance="Subtle"
+                                    Command="{Binding CopyDataFolderPathCommand}"
+                                    Content="{via:XLoc Options.CopyDataPath, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                    Icon="{via:MaterialIcon Kind=ContentCopy}"
+                                    Variant="Primary" />
+                            </via:XStackPanel>
                         </via:XStackPanel>
                     </via:XBorder>
                 </via:XStackPanel>

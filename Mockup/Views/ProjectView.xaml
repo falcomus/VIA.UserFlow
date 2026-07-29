@@ -335,59 +335,71 @@
                     BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
                     BorderThickness="1">
                     <via:XGrid Rows="Auto,Auto">
-                        <via:XGrid Columns="Auto,*">
+                        <via:XGrid MinHeight="24" Columns="Auto,*">
                             <via:XTextBlock
+                                VerticalAlignment="Center"
                                 FontSize="12"
                                 Opacity="0.62"
                                 Text="{via:XLoc Project.Sharing,
                                                 ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                            <via:XStackPanel
+                            <via:XGrid
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
-                                Orientation="Horizontal"
-                                Spacing="10">
-                                <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                                Columns="Auto,Auto">
+                                <via:XGrid VerticalAlignment="Center" Columns="Auto,24">
                                     <via:XTextBlock
+                                        VerticalAlignment="Center"
                                         FontSize="12"
                                         FontWeight="Medium"
                                         Text="{via:XLoc Project.Shared, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XTextBlock VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold">
-                                        <via:XTextBlock.Style>
-                                            <Style TargetType="{x:Type via:XTextBlock}">
+                                    <ico:PackIconMaterial
+                                        Grid.Column="1"
+                                        Width="18"
+                                        Height="18"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center">
+                                        <ico:PackIconMaterial.Style>
+                                            <Style TargetType="{x:Type ico:PackIconMaterial}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
-                                                <Setter Property="Text" Value="✓" />
+                                                <Setter Property="Kind" Value="CheckCircle" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding CurrentProject.IsShared}" Value="False">
                                                         <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}" />
-                                                        <Setter Property="Text" Value="×" />
+                                                        <Setter Property="Kind" Value="CloseCircle" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </via:XTextBlock.Style>
-                                    </via:XTextBlock>
-                                </via:XStackPanel>
-                                <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
+                                        </ico:PackIconMaterial.Style>
+                                    </ico:PackIconMaterial>
+                                </via:XGrid>
+                                <via:XGrid Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" Columns="Auto,24">
                                     <via:XTextBlock
+                                        VerticalAlignment="Center"
                                         FontSize="12"
                                         FontWeight="Medium"
                                         Text="{via:XLoc Project.Readonly, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XTextBlock VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold">
-                                        <via:XTextBlock.Style>
-                                            <Style TargetType="{x:Type via:XTextBlock}">
+                                    <ico:PackIconMaterial
+                                        Grid.Column="1"
+                                        Width="18"
+                                        Height="18"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center">
+                                        <ico:PackIconMaterial.Style>
+                                            <Style TargetType="{x:Type ico:PackIconMaterial}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
-                                                <Setter Property="Text" Value="✓" />
+                                                <Setter Property="Kind" Value="CheckCircle" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding CurrentProject.IsSharedReadonly}" Value="False">
                                                         <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}" />
-                                                        <Setter Property="Text" Value="×" />
+                                                        <Setter Property="Kind" Value="CloseCircle" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </via:XTextBlock.Style>
-                                    </via:XTextBlock>
-                                </via:XStackPanel>
-                            </via:XStackPanel>
+                                        </ico:PackIconMaterial.Style>
+                                    </ico:PackIconMaterial>
+                                </via:XGrid>
+                            </via:XGrid>
                         </via:XGrid>
                         <via:XGrid Grid.Row="1" Margin="0,7,0,0" Columns="Auto,*">
                             <via:XTextBlock

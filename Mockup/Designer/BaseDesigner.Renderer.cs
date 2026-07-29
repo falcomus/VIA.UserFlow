@@ -286,7 +286,9 @@ public abstract partial class BaseDesigner : Control
 
     private void RenderDesignerInteractionHint(SKCanvas canvas)
     {
-        if (PART_Canvas == null || string.IsNullOrWhiteSpace(_designerInteractionHintText))
+        if (VM?.CurrentProject?.ShowDesignerInteractionHints != true
+            || PART_Canvas == null
+            || string.IsNullOrWhiteSpace(_designerInteractionHintText))
             return;
 
         const float horizontalPadding = 6f;

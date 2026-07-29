@@ -64,6 +64,11 @@ public sealed partial class Project : ObservableObject
 
     partial void OnShowAlignmentGuidelinesChanged(bool value) => MSG.UI.InvalidateDesigner();
 
+    [ObservableProperty]
+    private bool showDesignerInteractionHints;
+
+    partial void OnShowDesignerInteractionHintsChanged(bool value) => MSG.UI.InvalidateDesigner();
+
     #endregion === DESIGNER GUIDES ===
 
     [ObservableProperty]
@@ -219,6 +224,7 @@ public sealed partial class Project : ObservableObject
             DeviceWidth = this.DeviceWidth,
             DeviceHeight = this.DeviceHeight,
             ShowAlignmentGuidelines = this.ShowAlignmentGuidelines,
+            ShowDesignerInteractionHints = this.ShowDesignerInteractionHints,
             ScreenZoomPercent = this.ScreenZoomPercent,
             PreviewZoomPercent = this.PreviewZoomPercent,
             TemplateZoomPercent = this.TemplateZoomPercent,

@@ -24,6 +24,16 @@
             UncheckedIcon="{via:MaterialIcon Kind=RulerSquare}"
             Variant="Info" />
 
+        <via:XToggleButton
+            Margin="4,0,0,0"
+            CheckedIcon="{via:MaterialIcon Kind=AxisArrowInfo}"
+            IconSize="16"
+            IsChecked="{Binding CurrentProject.ShowDesignerInteractionHints, Mode=TwoWay}"
+            ToolTip="{via:XLoc Designer.InteractionHintsTooltip,
+                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            UncheckedIcon="{via:MaterialIcon Kind=AxisArrowInfo}"
+            Variant="Info" />
+
         <via:XSeparator Margin="8,0" />
 
         <via:XUndoRedoBar

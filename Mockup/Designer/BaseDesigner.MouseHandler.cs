@@ -1281,33 +1281,33 @@ public partial class BaseDesigner
 
         Cursor = Cursors.Hand;
 
-        if (!geometryChanged)
-            return true;
-
-        if (_controlDragCopyRequested)
-            StartControlCopyDrag();
-
-        if (!_controlDragSnapshotPushed)
+        if (geometryChanged)
         {
-            var snapshotContext = GetSnapshotContextForDesigner();
-            if (snapshotContext != null)
+            if (_controlDragCopyRequested)
+                StartControlCopyDrag();
+
+            if (!_controlDragSnapshotPushed)
             {
-                MockupService.Mockup.PushSnapshot(snapshotContext.Value, SnapshotLabels.ControlMoved);
-                _controlDragSnapshotPushed = true;
+                var snapshotContext = GetSnapshotContextForDesigner();
+                if (snapshotContext != null)
+                {
+                    MockupService.Mockup.PushSnapshot(snapshotContext.Value, SnapshotLabels.ControlMoved);
+                    _controlDragSnapshotPushed = true;
+                }
             }
-        }
 
-        foreach (var kv in _controlDragStartLocal)
-        {
-            var ctrl = kv.Key;
-            float targetX = MathF.Round(kv.Value.X + dx);
-            float targetY = MathF.Round(kv.Value.Y + dy);
+            foreach (var kv in _controlDragStartLocal)
+            {
+                var ctrl = kv.Key;
+                float targetX = MathF.Round(kv.Value.X + dx);
+                float targetY = MathF.Round(kv.Value.Y + dy);
 
-            if (ctrl.X != targetX)
-                ctrl.X = targetX;
+                if (ctrl.X != targetX)
+                    ctrl.X = targetX;
 
-            if (ctrl.Y != targetY)
-                ctrl.Y = targetY;
+                if (ctrl.Y != targetY)
+                    ctrl.Y = targetY;
+            }
         }
 
         UpdateAlignmentGuidelinesDuringControlDrag(dx, dy);

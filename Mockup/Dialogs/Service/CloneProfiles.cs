@@ -53,6 +53,7 @@ public static class CloneProfiles
             DeviceWidth = p.DeviceWidth,
             DeviceHeight = p.DeviceHeight,
             ShowAlignmentGuidelines = p.ShowAlignmentGuidelines,
+            ShowDesignerInteractionHints = p.ShowDesignerInteractionHints,
             ScreenZoomPercent = p.ScreenZoomPercent,
             PreviewZoomPercent = p.PreviewZoomPercent,
             TemplateZoomPercent = p.TemplateZoomPercent,

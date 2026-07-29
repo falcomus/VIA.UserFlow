@@ -1254,4 +1254,7 @@
   <data name="About.Copyright" xml:space="preserve">
     <value>© VIA Software. All rights reserved.</value>
   </data>
+  <data name="Designer.InteractionHintsTooltip" xml:space="preserve">
+    <value>Show position and size while moving or resizing controls</value>
+  </data>
 </root>

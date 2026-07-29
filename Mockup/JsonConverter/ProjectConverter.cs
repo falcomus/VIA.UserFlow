@@ -35,6 +35,9 @@ public sealed class ProjectConverter : JsonConverter<Project>
         if (root.TryGetProperty("showAlignmentGuidelines", out var showAlignmentGuidelines))
             project.ShowAlignmentGuidelines = showAlignmentGuidelines.GetBoolean();
 
+        if (root.TryGetProperty("showDesignerInteractionHints", out var showDesignerInteractionHints))
+            project.ShowDesignerInteractionHints = showDesignerInteractionHints.GetBoolean();
+
         if (root.TryGetProperty("isShared", out var isShared))
             project.IsShared = isShared.GetBoolean();
 
@@ -124,6 +127,7 @@ public sealed class ProjectConverter : JsonConverter<Project>
         writer.WriteNumber("deviceWidth", value.DeviceWidth);
         writer.WriteNumber("deviceHeight", value.DeviceHeight);
         writer.WriteBoolean("showAlignmentGuidelines", value.ShowAlignmentGuidelines);
+        writer.WriteBoolean("showDesignerInteractionHints", value.ShowDesignerInteractionHints);
 
         writer.WriteBoolean("isShared", value.IsShared);
         writer.WriteBoolean("isSharedReadonly", value.IsSharedReadonly);

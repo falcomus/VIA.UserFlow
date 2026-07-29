@@ -195,9 +195,12 @@
   <data name="Designer.Search" xml:space="preserve">
     <value>Search...</value>
   </data>
-  <data name="Screen.Title" xml:space="preserve">
-    <value>Screens</value>
-  </data>
+    <data name="Screen.Title" xml:space="preserve">
+      <value>Screens</value>
+    </data>
+    <data name="Screen.All" xml:space="preserve">
+      <value>All</value>
+    </data>
   <data name="Screen.New" xml:space="preserve">
     <value>New screen</value>
   </data>

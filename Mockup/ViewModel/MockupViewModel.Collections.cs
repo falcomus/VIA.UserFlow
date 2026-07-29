@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mockup.Registry;
 using Mockup.Snapshots;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -80,6 +81,7 @@ public partial class MockupViewModel : ObservableObject
         UpdatePopupGroupNames();
 
         OnPropertyChanged(nameof(ScreensGroupedView));
+        OnPropertyChanged(nameof(ScreensNavigationView));
         OnPropertyChanged(nameof(PopupsGroupedView));
 
         OnPropertyChanged(nameof(PreviewPopupWidth));
@@ -193,6 +195,12 @@ public partial class MockupViewModel : ObservableObject
     public ICollectionView? ScreensGroupedView { get; private set; }
 
     /// <summary>
+    /// Flat, independently filtered screen view used exclusively by the Screen master-detail navigator.
+    /// It intentionally does not share filters or grouping with <see cref="ScreensGroupedView"/>.
+    /// </summary>
+    public ICollectionView? ScreensNavigationView { get; private set; }
+
+    /// <summary>
     /// Richtet die gruppierte Ansicht für Screens ein.
     /// Fügt GroupDescription und SortDescriptions hinzu und registriert Ereignishandler.
     /// </summary>
@@ -201,6 +209,7 @@ public partial class MockupViewModel : ObservableObject
         if (CurrentProject == null)
         {
             ScreensGroupedView = null;
+            ScreensNavigationView = null;
             return;
         }
 
@@ -224,6 +233,14 @@ public partial class MockupViewModel : ObservableObject
         CurrentProject.Screens.CollectionChanged += OnScreensCollectionChanged;
         foreach (var s in CurrentProject.Screens)
             s.PropertyChanged += OnScreenPropertyChanged;
+
+        ScreensNavigationView = new ListCollectionView((IList)CurrentProject.Screens);
+        using (ScreensNavigationView.DeferRefresh())
+        {
+            ScreensNavigationView.SortDescriptions.Clear();
+            ScreensNavigationView.SortDescriptions.Add(
+                new SortDescription(nameof(Screen.Name), ListSortDirection.Ascending));
+        }
     }
 
     /// <summary>
@@ -242,6 +259,7 @@ public partial class MockupViewModel : ObservableObject
 
         UpdateScreenGroupNames();
         ScreensGroupedView?.Refresh();
+        ScreensNavigationView?.Refresh();
     }
 
     /// <summary>
@@ -254,6 +272,7 @@ public partial class MockupViewModel : ObservableObject
         {
             UpdateScreenGroupNames();
             ScreensGroupedView?.Refresh();
+            ScreensNavigationView?.Refresh();
             return;
         }
     }

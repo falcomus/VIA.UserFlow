@@ -967,6 +967,28 @@
 
             </Grid>
         </Border>
+
+        <GridSplitter
+            Grid.Column="0"
+            Width="6"
+            Margin="0,45,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Panel.ZIndex="30"
+            Background="Transparent"
+            DragDelta="PinnedSplitter_DragDelta"
+            ToolTip="Resize toolbox">
+            <GridSplitter.Style>
+                <Style TargetType="GridSplitter">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=root, Path=IsFlyoutPinned}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GridSplitter.Style>
+        </GridSplitter>
     </Grid>
 
 </UserControl>

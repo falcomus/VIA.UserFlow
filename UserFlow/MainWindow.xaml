@@ -61,7 +61,7 @@
     <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="56,*,28">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="{Binding ToolboxReservedWidth}" />
             <ColumnDefinition>
                 <ColumnDefinition.Style>
                     <Style TargetType="{x:Type ColumnDefinition}">
@@ -189,6 +189,8 @@
             Margin="0,0,0,0"
             HorizontalAlignment="Right"
             Panel.ZIndex="20"
+            DockWidth="{Binding ToolboxWidth, Mode=TwoWay}"
+            IsFlyoutPinned="{Binding ToolboxPinned, Mode=TwoWay}"
             Visibility="{Binding ShowHamburgerButton, Converter={StaticResource BoolToVisibilityConverter}}" />
         <!--#endregion === TOOLBOX VIEW ===-->
 

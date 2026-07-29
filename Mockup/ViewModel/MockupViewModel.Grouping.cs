@@ -8,8 +8,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mockup.Grouping;
 using Mockup.Registry;
+using Mockup.Resources;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -108,6 +110,80 @@ public partial class MockupViewModel : ObservableObject
         ReplaceCollection(ScreenGroupNames, newNames);
         // Nach Aktualisierung der Gruppennamen auch die Filter-Liste neu aufbauen
         UpdateScreenFilterGroupNames();
+        RebuildScreenNavigationGroups();
+    }
+
+    /// <summary>
+    /// Categories displayed in the left master column of the Screen view.
+    /// A persisted key is never used directly as UI text.
+    /// </summary>
+    public ObservableCollection<ScreenNavigationGroup> ScreenNavigationGroups { get; } = [];
+
+    [ObservableProperty]
+    private ScreenNavigationGroup? currentScreenNavigationGroup;
+
+    partial void OnCurrentScreenNavigationGroupChanged(ScreenNavigationGroup? value)
+    {
+        if (ScreensNavigationView == null)
+            return;
+
+        ScreensNavigationView.Filter = value == null || value.IsAll
+            ? null
+            : item => item is Screen screen
+                && string.Equals(screen.GroupName?.Trim(), value.Key, StringComparison.OrdinalIgnoreCase);
+
+        ScreensNavigationView.Refresh();
+
+        if (CurrentScreen != null && ScreensNavigationView.Cast<Screen>().Contains(CurrentScreen))
+            return;
+
+        CurrentScreen = ScreensNavigationView.Cast<Screen>().FirstOrDefault();
+    }
+
+    private void RebuildScreenNavigationGroups()
+    {
+        string? selectedKey = CurrentScreenNavigationGroup?.Key;
+        var projectScreens = CurrentProject?.Screens ?? new ObservableCollection<Screen>();
+        var allDisplayName = UserFlowResources.ResourceManager.GetString(
+            "Screen.All",
+            CultureInfo.CurrentUICulture) ?? "All";
+
+        var groups = projectScreens
+            .Where(screen => !string.IsNullOrWhiteSpace(screen.GroupName))
+            .GroupBy(screen => screen.GroupName.Trim(), StringComparer.OrdinalIgnoreCase)
+            .Select(group => new ScreenNavigationGroup(
+                group.Key,
+                GetScreenNavigationDisplayName(group.Key),
+                group.Count()))
+            .OrderBy(group => group.DisplayName, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var allGroup = new ScreenNavigationGroup("ALL", allDisplayName, projectScreens.Count, true);
+        ReplaceCollection(ScreenNavigationGroups, new[] { allGroup }.Concat(groups));
+
+        CurrentScreenNavigationGroup = !string.IsNullOrWhiteSpace(selectedKey)
+            ? ScreenNavigationGroups.FirstOrDefault(group =>
+                string.Equals(group.Key, selectedKey, StringComparison.OrdinalIgnoreCase))
+            : null;
+        CurrentScreenNavigationGroup ??= allGroup;
+    }
+
+    private static string GetScreenNavigationDisplayName(string key)
+    {
+        var displayName = key.Trim();
+
+        // Persisted project data must never leak a namespace, a fully qualified type name,
+        // or a default object representation into the navigation UI.
+        if (displayName.Contains('.')
+            && displayName.Split('.').All(segment =>
+                !string.IsNullOrWhiteSpace(segment)
+                && segment.All(character => char.IsLetterOrDigit(character) || character == '_')))
+        {
+            displayName = displayName[(displayName.LastIndexOf('.') + 1)..];
+        }
+
+        displayName = displayName.Replace('_', ' ').Trim();
+        return string.IsNullOrWhiteSpace(displayName) ? "General" : displayName;
     }
 
     /// <summary>

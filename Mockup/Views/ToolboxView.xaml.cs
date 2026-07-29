@@ -24,6 +24,12 @@ public partial class ToolboxView : UserControl
         typeof(ToolboxView),
         new PropertyMetadata(false));
 
+    public static readonly DependencyProperty DockWidthProperty = DependencyProperty.Register(
+        nameof(DockWidth),
+        typeof(double),
+        typeof(ToolboxView),
+        new PropertyMetadata(570d, OnDockWidthChanged));
+
     private readonly DispatcherTimer flyoutCloseTimer = new()
     {
         Interval = TimeSpan.FromMilliseconds(260)
@@ -39,6 +45,12 @@ public partial class ToolboxView : UserControl
     {
         get => (bool)GetValue(IsFlyoutPinnedProperty);
         set => SetValue(IsFlyoutPinnedProperty, value);
+    }
+
+    public double DockWidth
+    {
+        get => (double)GetValue(DockWidthProperty);
+        set => SetValue(DockWidthProperty, value);
     }
 
     public ToolboxView()
@@ -81,6 +93,18 @@ public partial class ToolboxView : UserControl
         {
             SetFlyoutOpen(true);
         }
+    }
+
+    private static void OnDockWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ToolboxView { IsLoaded: true } toolbox)
+            toolbox.UpdateFlyoutPresentation();
+    }
+
+    private void PinnedSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        if (IsFlyoutPinned)
+            DockWidth = Math.Clamp(DockWidth - e.HorizontalChange, 420, 900);
     }
 
     private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -156,13 +180,7 @@ public partial class ToolboxView : UserControl
 
     private void UpdateFlyoutPresentation()
     {
-        PART_FlyoutSurface.Width = PART_Tabs.SelectedIndex switch
-        {
-            //0 => 570,
-            //_ => 660,
-            0 => 570,
-            _ => 570,
-        };
+        PART_FlyoutSurface.Width = Math.Max(420, DockWidth);
 
         PART_HeaderTitle.Text = PART_Tabs.SelectedIndex switch
         {

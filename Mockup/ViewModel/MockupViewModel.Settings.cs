@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Mockup.Services;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Mockup.ViewModel;
@@ -164,6 +165,40 @@ public partial class MockupViewModel : ObservableObject
 
     [ObservableProperty]
     public string _toolboxIcon = "Eye";
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
+    private bool toolboxPinned;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
+    private double toolboxWidth = 570;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]
+    private bool screenNavigatorPinned = true;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]
+    private double screenNavigatorWidth = 480;
+
+    public GridLength ToolboxReservedWidth => ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
+
+    public GridLength ScreenNavigatorReservedWidth => ScreenNavigatorPinned ? new GridLength(ScreenNavigatorWidth) : new GridLength(48);
+
+    partial void OnToolboxPinnedChanged(bool value) => PersistDockSettings();
+    partial void OnToolboxWidthChanged(double value) => PersistDockSettings();
+    partial void OnScreenNavigatorPinnedChanged(bool value) => PersistDockSettings();
+    partial void OnScreenNavigatorWidthChanged(double value) => PersistDockSettings();
+
+    private void PersistDockSettings()
+    {
+        Settings.UI.ToolboxPinned = ToolboxPinned;
+        Settings.UI.ToolboxWidth = ToolboxWidth;
+        Settings.UI.ScreenNavigatorPinned = ScreenNavigatorPinned;
+        Settings.UI.ScreenNavigatorWidth = ScreenNavigatorWidth;
+        SaveSettings();
+    }
 
     #endregion === UI VISIBILITY FLAGS ===
 

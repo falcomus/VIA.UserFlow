@@ -1112,7 +1112,7 @@
 
                     <via:XListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <vwp:VirtualizingWrapPanel VirtualizingPanel.IsVirtualizing="True" />
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </via:XListBox.ItemsPanel>
 

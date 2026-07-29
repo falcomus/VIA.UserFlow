@@ -397,139 +397,194 @@
             </via:XGrid>
         </via:XBorder>
 
-        <!--  PROJECT SETTINGS SUMMARY  -->
+        <!--  PROJECT DESIGN  -->
         <via:XBorder
             Grid.Row="3"
-            Padding="12"
+            Padding="14,12,14,14"
             Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
             BorderThickness="0,0,1,0"
             CornerRadius="0">
-            <via:XGrid>
-                <via:XBorder Padding="10,8,10,10" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                    <via:XBorder.Effect>
-                        <DropShadowEffect
-                            BlurRadius="12"
-                            Direction="270"
-                            Opacity="0.15"
-                            ShadowDepth="2" />
-                    </via:XBorder.Effect>
-                    <via:XGrid Columns="*,Auto" Rows="Auto,Auto">
+            <via:XBorder
+                Padding="12"
+                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                BorderThickness="1">
+                <via:XGrid Columns="*,Auto" Rows="Auto,Auto,Auto">
+                    <via:XStackPanel Orientation="Vertical" Spacing="2">
                         <via:XTextBlock
-                            FontSize="12"
+                            FontSize="13"
                             FontWeight="SemiBold"
-                            Opacity="0.62"
                             Text="{via:XLoc Project.Theme,
                                             ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        <via:XTextBlock
+                            FontSize="11"
+                            Opacity="0.62"
+                            Text="Active color scheme" />
+                    </via:XStackPanel>
 
-                        <via:XStackPanel
-                            Grid.Column="1"
-                            Margin="0,-3,0,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Orientation="Horizontal"
-                            Spacing="3">
+                    <via:XStackPanel
+                        Grid.Column="1"
+                        Margin="0,-4,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal"
+                        Spacing="3">
 
-                            <via:XIconButton
-                                Width="30"
-                                Height="30"
-                                MinWidth="30"
-                                MinHeight="30"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Command="{Binding NewColorSchemaCommand}"
-                                Cursor="Hand"
-                                Icon="{via:MaterialIcon Kind=Plus}"
-                                IconSize="16"
-                                Size="Small"
-                                ToolTip="{via:XLoc Project.NewColorSchemeTooltip,
-                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-                            <via:XIconButton
-                                Width="30"
-                                Height="30"
-                                MinWidth="30"
-                                MinHeight="30"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Command="{Binding EditColorSchemaCommand}"
-                                Cursor="Hand"
-                                Icon="{via:MaterialIcon Kind=Launch}"
-                                IconSize="16"
-                                Size="Small"
-                                ToolTip="{via:XLoc Project.EditColorSchemeTooltip,
-                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-                            <via:XIconButton
-                                Width="30"
-                                Height="30"
-                                MinWidth="30"
-                                MinHeight="30"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Command="{Binding DeleteColorSchemaCommand}"
-                                Cursor="Hand"
-                                Foreground="{DynamicResource DangerBrush}"
-                                Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                IconSize="16"
-                                Size="Small"
-                                ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip,
-                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XStackPanel>
-
-                        <via:XComboBox
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            Margin="0,9,0,0"
-                            VerticalAlignment="Bottom"
-                            HorizontalContentAlignment="Stretch"
+                        <via:XIconButton
+                            Width="30"
+                            Height="30"
+                            MinWidth="30"
+                            MinHeight="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding NewColorSchemaCommand}"
                             Cursor="Hand"
-                            Focusable="False"
-                            ItemsSource="{Binding Source={x:Static colorsystem:ColorSchemaCatalog.All}}"
-                            SelectedValue="{Binding CurrentProject.ColorSchemaKey, Mode=TwoWay}"
-                            SelectedValuePath="Key"
-                            UseLayoutRounding="True">
-                            <via:XComboBox.ItemTemplate>
-                                <DataTemplate DataType="colorsystem:ColorSchema">
-                                    <Grid ext:GridEx.ColDef="Auto,*" IsHitTestVisible="False">
-                                        <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
-                                            <!--  Swatches  -->
-                                            <StackPanel Margin="-2,1,10,0" Orientation="Horizontal">
-                                                <StackPanel.Resources>
-                                                    <Style TargetType="Border">
-                                                        <Setter Property="Width" Value="20" />
-                                                        <Setter Property="Height" Value="20" />
-                                                        <Setter Property="Margin" Value="1,0" />
-                                                        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
-                                                        <Setter Property="BorderThickness" Value="1" />
-                                                        <Setter Property="CornerRadius" Value="2" />
-                                                    </Style>
-                                                </StackPanel.Resources>
-                                                <Border Background="{Binding PrimaryBrush}" ToolTip="Primary" />
-                                                <Border Background="{Binding AccentBrush}" ToolTip="Accent" />
-                                                <Border Background="{Binding InfoBrush}" ToolTip="Info" />
-                                                <Border Background="{Binding WarningBrush}" ToolTip="Warning" />
-                                                <Border Background="{Binding ErrorBrush}" ToolTip="Error" />
-                                                <Border Background="{Binding SuccessBrush}" ToolTip="Success" />
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <!--  Name  -->
-                                        <TextBlock
-                                            Grid.Column="1"
-                                            Grid.ColumnSpan="2"
-                                            Margin="0,0,15,2"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Center"
-                                            FontSize="13"
-                                            FontWeight="SemiBold"
-                                            Text="{Binding DisplayName}"
-                                            TextAlignment="Right" />
-                                    </Grid>
-                                </DataTemplate>
-                            </via:XComboBox.ItemTemplate>
-                        </via:XComboBox>
-                    </via:XGrid>
-                </via:XBorder>
-            </via:XGrid>
+                            Icon="{via:MaterialIcon Kind=Plus}"
+                            IconSize="16"
+                            Size="Small"
+                            ToolTip="{via:XLoc Project.NewColorSchemeTooltip,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                        <via:XIconButton
+                            Width="30"
+                            Height="30"
+                            MinWidth="30"
+                            MinHeight="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding EditColorSchemaCommand}"
+                            Cursor="Hand"
+                            Icon="{via:MaterialIcon Kind=Launch}"
+                            IconSize="16"
+                            Size="Small"
+                            ToolTip="{via:XLoc Project.EditColorSchemeTooltip,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                        <via:XIconButton
+                            Width="30"
+                            Height="30"
+                            MinWidth="30"
+                            MinHeight="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding DeleteColorSchemaCommand}"
+                            Cursor="Hand"
+                            Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
+                            Icon="{via:MaterialIcon Kind=DeleteOutline}"
+                            IconSize="16"
+                            Size="Small"
+                            ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip,
+                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    </via:XStackPanel>
+
+                    <via:XComboBox
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        MinHeight="38"
+                        Margin="0,12,0,0"
+                        HorizontalContentAlignment="Stretch"
+                        Cursor="Hand"
+                        Focusable="False"
+                        ItemsSource="{Binding Source={x:Static colorsystem:ColorSchemaCatalog.All}}"
+                        SelectedValue="{Binding CurrentProject.ColorSchemaKey, Mode=TwoWay}"
+                        SelectedValuePath="Key"
+                        UseLayoutRounding="True">
+                        <via:XComboBox.ItemTemplate>
+                            <DataTemplate DataType="colorsystem:ColorSchema">
+                                <Grid ext:GridEx.ColDef="Auto,*" IsHitTestVisible="False">
+                                    <StackPanel Margin="-2,1,10,0" VerticalAlignment="Center" Orientation="Horizontal">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Width" Value="18" />
+                                                <Setter Property="Height" Value="18" />
+                                                <Setter Property="Margin" Value="1,0" />
+                                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}" />
+                                                <Setter Property="BorderThickness" Value="1" />
+                                                <Setter Property="CornerRadius" Value="2" />
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <Border Background="{Binding PrimaryBrush}" />
+                                        <Border Background="{Binding AccentBrush}" />
+                                        <Border Background="{Binding InfoBrush}" />
+                                        <Border Background="{Binding WarningBrush}" />
+                                        <Border Background="{Binding ErrorBrush}" />
+                                        <Border Background="{Binding SuccessBrush}" />
+                                    </StackPanel>
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="0,0,12,1"
+                                        VerticalAlignment="Center"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Text="{Binding DisplayName}"
+                                        TextAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </via:XComboBox.ItemTemplate>
+                    </via:XComboBox>
+
+                    <via:XUniformGrid
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Margin="0,12,0,0"
+                        Columns="3">
+                        <via:XStackPanel Margin="0,0,5,7" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Primary" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.PrimaryBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,5,7" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Accent" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.AccentBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,0,7" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Info" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.InfoBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="0,0,5,0" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Warning" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.WarningBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,5,0" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Error" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.ErrorBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,0,0" Orientation="Vertical" Spacing="4">
+                            <via:XTextBlock FontSize="11" Opacity="0.62" Text="Success" />
+                            <Border
+                                Height="20"
+                                Background="{Binding CurrentProject.ActiveColorSchema.SuccessBrush}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                                BorderThickness="1"
+                                CornerRadius="3" />
+                        </via:XStackPanel>
+                    </via:XUniformGrid>
+                </via:XGrid>
+            </via:XBorder>
         </via:XBorder>
 
         <!--  COLOR SCHEMES  -->

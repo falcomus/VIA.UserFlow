@@ -146,55 +146,13 @@
             Grid.Column="1"
             Width="6"
             HorizontalAlignment="Stretch"
-            Background="{DynamicResource {x:Static via:XBrushKeys.Border}}"
             Cursor="SizeWE"
             DragCompleted="ScreenNavigatorSplitter_DragCompleted"
             DragDelta="ScreenNavigatorSplitter_DragDelta"
             ResizeBehavior="PreviousAndNext"
             ResizeDirection="Columns"
-            ShowsPreview="False">
-            <GridSplitter.Style>
-                <Style TargetType="GridSplitter">
-                    <Setter Property="Cursor" Value="SizeWE" />
-                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.Primary}}" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="GridSplitter">
-                                <Border Background="{TemplateBinding Background}">
-                                    <Grid>
-                                    <Border
-                                        Width="6"
-                                        Height="34"
-                                        HorizontalAlignment="Center"
-                                        Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                        CornerRadius="3" />
-                                    <StackPanel
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Orientation="Vertical">
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Margin="0,0,0,3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Margin="0,0,0,3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                    </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </GridSplitter.Style>
-        </GridSplitter>
+            ShowsPreview="False"
+            Style="{StaticResource DesignerNavigatorSplitterStyle}" />
 
         <via:XBorder
             Padding="0"

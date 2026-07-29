@@ -62,6 +62,8 @@ public partial class MockupViewModel : ObservableObject
         public double ToolboxWidth { get; set; } = 570;
         public bool ScreenNavigatorPinned { get; set; } = true;
         public double ScreenNavigatorWidth { get; set; } = 480;
+        public double TemplateNavigatorWidth { get; set; } = 480;
+        public double PopupNavigatorWidth { get; set; } = 480;
 
         public int MainTabSelectedIndex { get; set; } = 0;
         public int ScreenTabSelectedIndex { get; set; } = 0;
@@ -217,6 +219,8 @@ public partial class MockupViewModel : ObservableObject
         ToolboxWidth = Settings.UI.ToolboxWidth;
         ScreenNavigatorPinned = Settings.UI.ScreenNavigatorPinned;
         ScreenNavigatorWidth = Settings.UI.ScreenNavigatorWidth;
+        TemplateNavigatorWidth = Settings.UI.TemplateNavigatorWidth;
+        PopupNavigatorWidth = Settings.UI.PopupNavigatorWidth;
         MainTabSelectedIndex = Settings.UI.MainTabSelectedIndex;
         ScreenTabSelectedIndex = Settings.UI.ScreenTabSelectedIndex;
         OpenLastProjectOnStartup = Settings.Storage.AutoLoadLastProject;
@@ -240,6 +244,8 @@ public partial class MockupViewModel : ObservableObject
         Settings.UI.ToolboxWidth = ToolboxWidth;
         Settings.UI.ScreenNavigatorPinned = ScreenNavigatorPinned;
         Settings.UI.ScreenNavigatorWidth = ScreenNavigatorWidth;
+        Settings.UI.TemplateNavigatorWidth = TemplateNavigatorWidth;
+        Settings.UI.PopupNavigatorWidth = PopupNavigatorWidth;
         Settings.UI.MainTabSelectedIndex = MainTabSelectedIndex;
         Settings.UI.ScreenTabSelectedIndex = ScreenTabSelectedIndex;
         Settings.Storage.AutoLoadLastProject = OpenLastProjectOnStartup;

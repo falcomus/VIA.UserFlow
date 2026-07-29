@@ -131,152 +131,166 @@
     </UserControl.Resources>
 
     <local:DesignerWorkspaceHost>
-        <Grid ext:GridEx.ColDef="350,*">
+        <Grid ext:GridEx.RowDef="48,*">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                x:Name="PopupNavigatorColumn"
+                Width="{Binding PopupNavigatorWidth}"
+                MinWidth="430" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="*" MinWidth="600" />
+        </Grid.ColumnDefinitions>
+
+        <!--  MASTER: popup groups and popups in the selected group  -->
         <via:XBorder
+            Grid.Row="1"
+            Grid.Column="0"
             Padding="0"
-            Background="{DynamicResource HeaderBackgroundBrush}"
-            BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+            Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderThickness="0,0,1,0"
             CornerRadius="0">
-            <Grid Grid.Column="0" ext:GridEx.RowDef="48,Auto,*">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <via:XBorder
-                    Grid.Row="1"
-                    Height="35"
-                    Padding="8,2"
-                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
-                    BorderThickness="0,0,0,0.5"
-                    CornerRadius="0"
-                    Visibility="Collapsed">
-                    <via:XSearchBox
-                        Margin="0,0,0,4"
-                        Padding="5,0,5,0"
-                        VerticalAlignment="Center"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
-                        BorderThickness="0,0,0,1"
-                        Focusable="True"
-                        FontSize="15"
-                        FontWeight="Normal"
-                        IsHitTestVisible="True"
-                        IsTabStop="False"
-                        Placeholder="{via:XLoc Designer.Search, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                        ShowResetButton="True" />
-                </via:XBorder>
-
-                <via:XListBox
-                    x:Name="PopupListBox"
-                    Grid.Row="2"
-                    Padding="0"
+                <via:XNavigationList
+                    Padding="4"
                     HorizontalContentAlignment="Stretch"
-                    Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
-                    BorderThickness="0"
-                    ContextMenu="{StaticResource PopupListContextMenu}"
-                    ItemsSource="{Binding PopupsGroupedView}"
-                    MouseDoubleClick="ListBox_MouseDoubleClick"
-                    ScrollViewer.CanContentScroll="False"
+                    Background="Transparent"
+                    ItemCornerRadius="4"
+                    ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
+                    ItemMargin="0,1"
+                    ItemPadding="10,7,8,7"
+                    ItemsSource="{Binding PopupNavigationGroups}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                    SelectedItem="{Binding CurrentPopup, Mode=TwoWay}"
-                    SelectionChanged="PopupListBox_SelectionChanged"
-                    SelectionMode="Single">
-
-                    <via:XListBox.ItemContainerStyle>
-                        <Style BasedOn="{StaticResource {x:Type via:XListBoxItem}}" TargetType="{x:Type via:XListBoxItem}">
-
-                            <Setter Property="Margin" Value="4,1" />
-                            <Setter Property="Padding" Value="12,5,10,6" />
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-
-                            <Setter Property="Title" Value="{Binding Name}" />
-                            <Setter Property="SubTitle" Value="{Binding Description}" />
-
-                            <Setter Property="ShowEdit" Value="True" />
-                            <Setter Property="ShowDelete" Value="True" />
-
-
-                            <Setter Property="EditCommand" Value="{Binding DataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
-                            <Setter Property="EditCommandParameter" Value="{Binding}" />
-
-                            <Setter Property="DeleteCommand" Value="{Binding DataContext.DeletePopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XListBox}}}" />
-                            <Setter Property="DeleteCommandParameter" Value="{Binding}" />
-
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    SelectedItem="{Binding CurrentPopupNavigationGroup, Mode=TwoWay}"
+                    SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
+                    SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                    SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                    SelectionIndicatorCornerRadius="0,2,2,0"
+                    SelectionIndicatorWidth="3"
+                    ShowSelectionIndicator="True"
+                    Variant="Surface">
+                    <via:XNavigationList.ItemContainerStyle>
+                        <Style BasedOn="{StaticResource {x:Type via:XNavigationListItem}}" TargetType="{x:Type via:XNavigationListItem}">
+                            <Setter Property="MinHeight" Value="38" />
+                            <Setter Property="Title" Value="{Binding DisplayName}" />
+                            <Setter Property="ToolTip" Value="{Binding DisplayName}" />
+                            <Setter Property="ShowBadge" Value="True" />
+                            <Setter Property="BadgeContent" Value="{Binding Count}" />
+                            <Setter Property="BadgeVariant" Value="Primary" />
                         </Style>
-                    </via:XListBox.ItemContainerStyle>
-
-
-                    <via:XListBox.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                <via:XExpander
-                                                    Margin="2"
-                                                    Padding="0"
-                                                    HorizontalAlignment="Stretch"
-                                                    HorizontalContentAlignment="Stretch"
-                                                    behav:GroupExpandStateBehavior.Host="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                    behav:GroupExpandStateBehavior.Key="{Binding Name}"
-                                                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceDark}}"
-                                                    ContentPadding="0 1 0 -2"
-                                                    Header="{Binding Name}"
-                                                    IsExpanded="True">
-                                                    <ItemsPresenter />
-                                                </via:XExpander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </via:XListBox.GroupStyle>
-                </via:XListBox>
+                    </via:XNavigationList.ItemContainerStyle>
+                </via:XNavigationList>
 
                 <via:XBorder
-                    Grid.Column="0"
-                    Padding="0"
-                    Background="{DynamicResource HeaderBackgroundBrush}"
-                    BorderBrush="{DynamicResource DarkBorderBrush}"
-                    BorderThickness="0,0,0,1"
+                    Grid.Column="1"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.Background}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                    BorderThickness="1,0,0,0"
                     CornerRadius="0">
-                    <via:XBorder.Effect>
-                        <DropShadowEffect
-                            BlurRadius="8"
-                            Direction="270"
-                            Opacity="0.2"
-                            ShadowDepth="2" />
-                    </via:XBorder.Effect>
-                    <Grid Grid.Column="0" ext:GridEx.ColDef="*,Auto">
-
-                        <via:XTextBlock
-                            Margin="15,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="SemiBold"
-                            Text="{via:XLoc Popup.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-                        <via:XIconButton
-                            Grid.Column="1"
-                            Margin="0,0,8,0"
-                            Appearance="Subtle"
-                            Command="{Binding NewPopupCommand}"
-                            Cursor="Hand"
-                            Focusable="False"
-                            Icon="{via:MaterialIcon Kind=Plus}"
-                            Size="Medium"
-                                ToolTip="{via:XLoc Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                            Variant="Primary" />
-
-                    </Grid>
+                    <via:XNavigationList
+                        x:Name="PopupListBox"
+                        Padding="4"
+                        HorizontalContentAlignment="Stretch"
+                        Background="Transparent"
+                        ContextMenu="{StaticResource PopupListContextMenu}"
+                        ItemCornerRadius="4"
+                        ItemHoverBackground="{DynamicResource {x:Static via:XBrushKeys.StateHover}}"
+                        ItemMargin="0,1"
+                        ItemPadding="10,7,8,7"
+                        ItemsSource="{Binding PopupsNavigationView}"
+                        MouseDoubleClick="ListBox_MouseDoubleClick"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        SelectedItem="{Binding CurrentPopup, Mode=TwoWay}"
+                        SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
+                        SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
+                        SelectionChanged="PopupListBox_SelectionChanged"
+                        SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                        SelectionIndicatorCornerRadius="0,2,2,0"
+                        SelectionIndicatorWidth="3"
+                        ShowSelectionIndicator="True"
+                        Variant="Surface"
+                        VirtualizingPanel.IsVirtualizing="True"
+                        VirtualizingPanel.VirtualizationMode="Recycling">
+                        <via:XNavigationList.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource {x:Type via:XNavigationListItem}}" TargetType="{x:Type via:XNavigationListItem}">
+                                <Setter Property="MinHeight" Value="50" />
+                                <Setter Property="Title" Value="{Binding Name}" />
+                                <Setter Property="SubTitle" Value="{Binding Description}" />
+                                <Setter Property="ToolTip" Value="{Binding Name}" />
+                                <Setter Property="ShowEdit" Value="True" />
+                                <Setter Property="ShowDelete" Value="True" />
+                                <Setter Property="EditToolTip" Value="{via:XLoc Common.EditTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                <Setter Property="DeleteToolTip" Value="{via:XLoc Common.DeleteTooltip, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                <Setter Property="EditCommand" Value="{Binding DataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XNavigationList}}}" />
+                                <Setter Property="EditCommandParameter" Value="{Binding}" />
+                                <Setter Property="DeleteCommand" Value="{Binding DataContext.DeletePopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XNavigationList}}}" />
+                                <Setter Property="DeleteCommandParameter" Value="{Binding}" />
+                            </Style>
+                        </via:XNavigationList.ItemContainerStyle>
+                    </via:XNavigationList>
                 </via:XBorder>
+            </Grid>
+        </via:XBorder>
+
+        <GridSplitter
+            x:Name="PopupNavigatorSplitter"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Width="6"
+            HorizontalAlignment="Stretch"
+            DragCompleted="PopupNavigatorSplitter_DragCompleted"
+            DragDelta="PopupNavigatorSplitter_DragDelta"
+            ResizeBehavior="PreviousAndNext"
+            ResizeDirection="Columns"
+            ShowsPreview="False"
+            Style="{StaticResource DesignerNavigatorSplitterStyle}" />
+
+        <via:XBorder
+            Grid.Column="0"
+            Padding="0"
+            Background="{DynamicResource HeaderBackgroundBrush}"
+            BorderThickness="0,0,1,1"
+            CornerRadius="0">
+            <via:XBorder.Effect>
+                <DropShadowEffect
+                    BlurRadius="8"
+                    Direction="270"
+                    Opacity="0.2"
+                    ShadowDepth="2" />
+            </via:XBorder.Effect>
+
+            <Grid ext:GridEx.ColDef="*,Auto">
+                <via:XTextBlock
+                    Margin="15,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="SemiBold"
+                    Text="{via:XLoc Popup.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                <via:XIconButton
+                    Grid.Column="1"
+                    Margin="0,0,8,0"
+                    Appearance="Subtle"
+                    Command="{Binding NewPopupCommand}"
+                    Cursor="Hand"
+                    Focusable="False"
+                    Icon="{via:MaterialIcon Kind=Plus}"
+                    Size="Medium"
+                    ToolTip="{via:XLoc Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Variant="Primary" />
             </Grid>
         </via:XBorder>
 
         <Grid
             x:Name="PART_DesignerArea"
-            Grid.Column="1"
+            Grid.RowSpan="2"
+            Grid.Column="2"
             ext:GridEx.RowDef="48,*">
 
             <ScrollViewer

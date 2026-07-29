@@ -4,6 +4,7 @@
 
 using Mockup.Helper;
 using Mockup.ViewModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -180,5 +181,20 @@ public partial class TemplateView : UserControl
     private void TemplateListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         PART_TemplateDesigner.PART_Designer.FocusDesignerSurface();
+    }
+
+    private void TemplateNavigatorSplitter_DragCompleted(object sender, DragCompletedEventArgs e)
+    {
+        if (DataContext is MockupViewModel vm)
+        {
+            vm.TemplateNavigatorWidth = Math.Max(430, TemplateNavigatorColumn.ActualWidth);
+            TemplateNavigatorColumn.Width = new GridLength(vm.TemplateNavigatorWidth);
+        }
+    }
+
+    private void TemplateNavigatorSplitter_DragDelta(object sender, DragDeltaEventArgs e)
+    {
+        if (DataContext is MockupViewModel vm)
+            vm.TemplateNavigatorWidth = Math.Max(430, TemplateNavigatorColumn.ActualWidth);
     }
 }

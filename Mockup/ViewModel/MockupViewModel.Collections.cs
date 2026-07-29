@@ -83,6 +83,7 @@ public partial class MockupViewModel : ObservableObject
         OnPropertyChanged(nameof(ScreensGroupedView));
         OnPropertyChanged(nameof(ScreensNavigationView));
         OnPropertyChanged(nameof(PopupsGroupedView));
+        OnPropertyChanged(nameof(PopupsNavigationView));
 
         OnPropertyChanged(nameof(PreviewPopupWidth));
         OnPropertyChanged(nameof(PreviewPopupHeight));
@@ -323,6 +324,11 @@ public partial class MockupViewModel : ObservableObject
     public ICollectionView TemplatesGroupedView { get; private set; } = null!;
 
     /// <summary>
+    /// Flat, independently filtered template view used by the Template master-detail navigator.
+    /// </summary>
+    public ICollectionView TemplatesNavigationView { get; private set; } = null!;
+
+    /// <summary>
     /// Richtet die gruppierte Ansicht für Templates ein.
     /// </summary>
     private void SetupTemplatesGroupedView()
@@ -347,6 +353,14 @@ public partial class MockupViewModel : ObservableObject
         Templates.CollectionChanged += OnTemplatesCollectionChanged;
         foreach (var t in Templates)
             t.PropertyChanged += OnTemplatePropertyChanged;
+
+        TemplatesNavigationView = new ListCollectionView((IList)Templates);
+        using (TemplatesNavigationView.DeferRefresh())
+        {
+            TemplatesNavigationView.SortDescriptions.Clear();
+            TemplatesNavigationView.SortDescriptions.Add(
+                new SortDescription(nameof(ScreenTemplate.Name), ListSortDirection.Ascending));
+        }
     }
 
     /// <summary>
@@ -365,6 +379,7 @@ public partial class MockupViewModel : ObservableObject
 
         UpdateTemplateGroupNames();
         TemplatesGroupedView.Refresh();
+        TemplatesNavigationView.Refresh();
     }
 
     /// <summary>
@@ -377,6 +392,7 @@ public partial class MockupViewModel : ObservableObject
         {
             UpdateTemplateGroupNames();
             TemplatesGroupedView.Refresh();
+            TemplatesNavigationView.Refresh();
         }
     }
 
@@ -407,6 +423,11 @@ public partial class MockupViewModel : ObservableObject
     public ICollectionView? PopupsGroupedView { get; private set; }
 
     /// <summary>
+    /// Flat, independently filtered popup view used by the Popup master-detail navigator.
+    /// </summary>
+    public ICollectionView? PopupsNavigationView { get; private set; }
+
+    /// <summary>
     /// Richtet die gruppierte Ansicht für Popups ein.
     /// </summary>
     private void SetupPopupsGroupedView()
@@ -414,6 +435,7 @@ public partial class MockupViewModel : ObservableObject
         if (CurrentProject == null)
         {
             PopupsGroupedView = null;
+            PopupsNavigationView = null;
             return;
         }
 
@@ -437,6 +459,14 @@ public partial class MockupViewModel : ObservableObject
         CurrentProject.Popups.CollectionChanged += OnPopupsCollectionChanged;
         foreach (var p in CurrentProject.Popups)
             p.PropertyChanged += OnPopupPropertyChanged;
+
+        PopupsNavigationView = new ListCollectionView((IList)CurrentProject.Popups);
+        using (PopupsNavigationView.DeferRefresh())
+        {
+            PopupsNavigationView.SortDescriptions.Clear();
+            PopupsNavigationView.SortDescriptions.Add(
+                new SortDescription(nameof(ScreenPopup.Name), ListSortDirection.Ascending));
+        }
     }
 
     /// <summary>
@@ -454,6 +484,7 @@ public partial class MockupViewModel : ObservableObject
 
         UpdatePopupGroupNames();
         PopupsGroupedView?.Refresh();
+        PopupsNavigationView?.Refresh();
     }
 
     /// <summary>
@@ -466,6 +497,7 @@ public partial class MockupViewModel : ObservableObject
         {
             UpdatePopupGroupNames();
             PopupsGroupedView?.Refresh();
+            PopupsNavigationView?.Refresh();
         }
     }
 

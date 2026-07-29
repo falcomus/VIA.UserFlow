@@ -558,4 +558,19 @@ public partial class PopupView : UserControl
     {
         PART_PopupDesignerControl.PART_Designer.FocusDesignerSurface();
     }
+
+    private void PopupNavigatorSplitter_DragCompleted(object sender, DragCompletedEventArgs e)
+    {
+        if (DataContext is MockupViewModel vm)
+        {
+            vm.PopupNavigatorWidth = Math.Max(430, PopupNavigatorColumn.ActualWidth);
+            PopupNavigatorColumn.Width = new GridLength(vm.PopupNavigatorWidth);
+        }
+    }
+
+    private void PopupNavigatorSplitter_DragDelta(object sender, DragDeltaEventArgs e)
+    {
+        if (DataContext is MockupViewModel vm)
+            vm.PopupNavigatorWidth = Math.Max(430, PopupNavigatorColumn.ActualWidth);
+    }
 }

@@ -175,6 +175,12 @@ public partial class MockupViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]
     private double screenNavigatorWidth = 480;
 
+    [ObservableProperty]
+    private double templateNavigatorWidth = 480;
+
+    [ObservableProperty]
+    private double popupNavigatorWidth = 480;
+
     public GridLength ToolboxReservedWidth => ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
 
     public GridLength ScreenNavigatorReservedWidth => ScreenNavigatorPinned ? new GridLength(ScreenNavigatorWidth) : new GridLength(48);
@@ -183,6 +189,8 @@ public partial class MockupViewModel : ObservableObject
     partial void OnToolboxWidthChanged(double value) => PersistDockSettings();
     partial void OnScreenNavigatorPinnedChanged(bool value) => PersistDockSettings();
     partial void OnScreenNavigatorWidthChanged(double value) => PersistDockSettings();
+    partial void OnTemplateNavigatorWidthChanged(double value) => PersistDockSettings();
+    partial void OnPopupNavigatorWidthChanged(double value) => PersistDockSettings();
 
     private void PersistDockSettings()
     {
@@ -190,6 +198,8 @@ public partial class MockupViewModel : ObservableObject
         Settings.UI.ToolboxWidth = ToolboxWidth;
         Settings.UI.ScreenNavigatorPinned = ScreenNavigatorPinned;
         Settings.UI.ScreenNavigatorWidth = ScreenNavigatorWidth;
+        Settings.UI.TemplateNavigatorWidth = TemplateNavigatorWidth;
+        Settings.UI.PopupNavigatorWidth = PopupNavigatorWidth;
         SaveSettings();
     }
 

@@ -1,12 +1,12 @@
 namespace Mockup.Grouping;
 
 /// <summary>
-/// Represents a screen category in the master column of the Screen view.
+/// Represents a category in a designer view's master navigation column.
 /// The persisted group key is deliberately kept separate from its UI display name.
 /// </summary>
-public sealed class ScreenNavigationGroup
+public sealed class DesignerNavigationGroup
 {
-    public ScreenNavigationGroup(string key, string displayName, int count, bool isAll = false)
+    public DesignerNavigationGroup(string key, string displayName, int count, bool isAll = false)
     {
         Key = key;
         DisplayName = displayName;

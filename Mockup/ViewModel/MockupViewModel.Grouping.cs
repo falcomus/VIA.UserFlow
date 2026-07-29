@@ -117,12 +117,12 @@ public partial class MockupViewModel : ObservableObject
     /// Categories displayed in the left master column of the Screen view.
     /// A persisted key is never used directly as UI text.
     /// </summary>
-    public ObservableCollection<ScreenNavigationGroup> ScreenNavigationGroups { get; } = [];
+    public ObservableCollection<DesignerNavigationGroup> ScreenNavigationGroups { get; } = [];
 
     [ObservableProperty]
-    private ScreenNavigationGroup? currentScreenNavigationGroup;
+    private DesignerNavigationGroup? currentScreenNavigationGroup;
 
-    partial void OnCurrentScreenNavigationGroupChanged(ScreenNavigationGroup? value)
+    partial void OnCurrentScreenNavigationGroupChanged(DesignerNavigationGroup? value)
     {
         if (ScreensNavigationView == null)
             return;
@@ -151,14 +151,14 @@ public partial class MockupViewModel : ObservableObject
         var groups = projectScreens
             .Where(screen => !string.IsNullOrWhiteSpace(screen.GroupName))
             .GroupBy(screen => screen.GroupName.Trim(), StringComparer.OrdinalIgnoreCase)
-            .Select(group => new ScreenNavigationGroup(
+            .Select(group => new DesignerNavigationGroup(
                 group.Key,
-                GetScreenNavigationDisplayName(group.Key),
+                GetNavigationDisplayName(group.Key),
                 group.Count()))
             .OrderBy(group => group.DisplayName, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
 
-        var allGroup = new ScreenNavigationGroup("ALL", allDisplayName, projectScreens.Count, true);
+        var allGroup = new DesignerNavigationGroup("ALL", allDisplayName, projectScreens.Count, true);
         ReplaceCollection(ScreenNavigationGroups, new[] { allGroup }.Concat(groups));
 
         CurrentScreenNavigationGroup = !string.IsNullOrWhiteSpace(selectedKey)
@@ -168,7 +168,7 @@ public partial class MockupViewModel : ObservableObject
         CurrentScreenNavigationGroup ??= allGroup;
     }
 
-    private static string GetScreenNavigationDisplayName(string key)
+    private static string GetNavigationDisplayName(string key)
     {
         var displayName = key.Trim();
 
@@ -289,6 +289,58 @@ public partial class MockupViewModel : ObservableObject
             .ToList();
 
         ReplaceCollection(TemplateGroupNames, names);
+        RebuildTemplateNavigationGroups();
+    }
+
+    public ObservableCollection<DesignerNavigationGroup> TemplateNavigationGroups { get; } = [];
+
+    [ObservableProperty]
+    private DesignerNavigationGroup? currentTemplateNavigationGroup;
+
+    partial void OnCurrentTemplateNavigationGroupChanged(DesignerNavigationGroup? value)
+    {
+        if (TemplatesNavigationView == null)
+            return;
+
+        TemplatesNavigationView.Filter = value == null || value.IsAll
+            ? null
+            : item => item is ScreenTemplate template
+                && string.Equals(template.GroupName?.Trim(), value.Key, StringComparison.OrdinalIgnoreCase);
+
+        TemplatesNavigationView.Refresh();
+
+        if (CurrentTemplate != null && TemplatesNavigationView.Cast<ScreenTemplate>().Contains(CurrentTemplate))
+            return;
+
+        CurrentTemplate = TemplatesNavigationView.Cast<ScreenTemplate>().FirstOrDefault();
+    }
+
+    private void RebuildTemplateNavigationGroups()
+    {
+        string? selectedKey = CurrentTemplateNavigationGroup?.Key;
+        var groups = Templates
+            .Where(template => !string.IsNullOrWhiteSpace(template.GroupName))
+            .GroupBy(template => template.GroupName.Trim(), StringComparer.OrdinalIgnoreCase)
+            .Select(group => new DesignerNavigationGroup(
+                group.Key,
+                GetNavigationDisplayName(group.Key),
+                group.Count()))
+            .OrderBy(group => group.DisplayName, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var allGroup = new DesignerNavigationGroup(
+            "ALL",
+            GetAllNavigationDisplayName(),
+            Templates.Count,
+            true);
+
+        ReplaceCollection(TemplateNavigationGroups, new[] { allGroup }.Concat(groups));
+
+        CurrentTemplateNavigationGroup = !string.IsNullOrWhiteSpace(selectedKey)
+            ? TemplateNavigationGroups.FirstOrDefault(group =>
+                string.Equals(group.Key, selectedKey, StringComparison.OrdinalIgnoreCase))
+            : null;
+        CurrentTemplateNavigationGroup ??= allGroup;
     }
 
     /// <summary>
@@ -349,7 +401,65 @@ public partial class MockupViewModel : ObservableObject
         }
 
         ReplaceCollection(PopupGroupNames, names);
+        RebuildPopupNavigationGroups();
     }
+
+    public ObservableCollection<DesignerNavigationGroup> PopupNavigationGroups { get; } = [];
+
+    [ObservableProperty]
+    private DesignerNavigationGroup? currentPopupNavigationGroup;
+
+    partial void OnCurrentPopupNavigationGroupChanged(DesignerNavigationGroup? value)
+    {
+        if (PopupsNavigationView == null)
+            return;
+
+        PopupsNavigationView.Filter = value == null || value.IsAll
+            ? null
+            : item => item is ScreenPopup popup
+                && string.Equals(popup.GroupName?.Trim(), value.Key, StringComparison.OrdinalIgnoreCase);
+
+        PopupsNavigationView.Refresh();
+
+        if (CurrentPopup != null && PopupsNavigationView.Cast<ScreenPopup>().Contains(CurrentPopup))
+            return;
+
+        CurrentPopup = PopupsNavigationView.Cast<ScreenPopup>().FirstOrDefault();
+    }
+
+    private void RebuildPopupNavigationGroups()
+    {
+        string? selectedKey = CurrentPopupNavigationGroup?.Key;
+        var projectPopups = CurrentProject?.Popups ?? new ObservableCollection<ScreenPopup>();
+        var groups = projectPopups
+            .Where(popup => !string.IsNullOrWhiteSpace(popup.GroupName))
+            .GroupBy(popup => popup.GroupName.Trim(), StringComparer.OrdinalIgnoreCase)
+            .Select(group => new DesignerNavigationGroup(
+                group.Key,
+                GetNavigationDisplayName(group.Key),
+                group.Count()))
+            .OrderBy(group => group.DisplayName, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var allGroup = new DesignerNavigationGroup(
+            "ALL",
+            GetAllNavigationDisplayName(),
+            projectPopups.Count,
+            true);
+
+        ReplaceCollection(PopupNavigationGroups, new[] { allGroup }.Concat(groups));
+
+        CurrentPopupNavigationGroup = !string.IsNullOrWhiteSpace(selectedKey)
+            ? PopupNavigationGroups.FirstOrDefault(group =>
+                string.Equals(group.Key, selectedKey, StringComparison.OrdinalIgnoreCase))
+            : null;
+        CurrentPopupNavigationGroup ??= allGroup;
+    }
+
+    private static string GetAllNavigationDisplayName() =>
+        UserFlowResources.ResourceManager.GetString(
+            "Screen.All",
+            CultureInfo.CurrentUICulture) ?? "All";
 
     #endregion
 

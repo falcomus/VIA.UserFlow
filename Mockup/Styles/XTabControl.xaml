@@ -125,22 +125,16 @@
                             </DockPanel>
                         </via:XBorder>
 
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
-                            </Grid.ColumnDefinitions>
-                            <via:XBorder
-                                Grid.Column="0"
-                                Padding="0"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="0">
-                                <ContentPresenter
-                                    x:Name="PART_SelectedContentHost"
-                                    ContentSource="SelectedContent"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </via:XBorder>
-                        </Grid>
+                        <via:XBorder
+                            Grid.Row="1"
+                            Padding="0"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="0">
+                            <ContentPresenter
+                                x:Name="PART_SelectedContentHost"
+                                ContentSource="SelectedContent"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </via:XBorder>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

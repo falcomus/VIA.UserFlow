@@ -59,31 +59,12 @@
     </via:XWindow.TitleBarContent>
 
     <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="54,*,28">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="{Binding ToolboxReservedWidth}" />
-            <ColumnDefinition>
-                <ColumnDefinition.Style>
-                    <Style TargetType="{x:Type ColumnDefinition}">
-                        <Setter Property="Width" Value="0" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=PART_ToolboxView, Path=Visibility}" Value="Visible">
-                                <Setter Property="Width" Value="60" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ColumnDefinition.Style>
-            </ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
         <!--#region === MAIN TABCONTROL ===-->
         <TabControl
             Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
             ItemContainerStyle="{StaticResource CustomTabItemStyle}"
             SelectedIndex="{Binding MainTabSelectedIndex}"
-            Style="{StaticResource CustomTabControlStyle}"
-            Tag="{Binding ToolboxReservedWidth}">
+            Style="{StaticResource CustomTabControlStyle}">
             <TabControl.Resources />
             <!--  Tab PROJECT  -->
             <TabItem
@@ -173,39 +154,10 @@
         </TabControl>
         <!--#endregion === MAIN TABCONTROL ===-->
 
-        <Border
-            Grid.Row="0"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
-            UseLayoutRounding="True" />
-
-
-        <!--#region === TOOLBOX VIEW ===-->
-        <views:ToolboxView
-            x:Name="PART_ToolboxView"
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            Margin="0,0,0,0"
-            HorizontalAlignment="Right"
-            Panel.ZIndex="20"
-            DockWidth="{Binding ToolboxWidth, Mode=TwoWay}"
-            IsFlyoutPinned="{Binding ToolboxPinned, Mode=TwoWay}"
-            Visibility="{Binding ShowHamburgerButton, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <!--#endregion === TOOLBOX VIEW ===-->
-
-        <Border
-            Grid.Row="2"
-            Grid.Column="2"
-            Background="{DynamicResource AppShellBrush}"
-            Visibility="{Binding ShowHamburgerButton, Converter={StaticResource BoolToVisibilityConverter}}" />
-
         <!--#region === OVERLAY ===-->
         <Border
             x:Name="PART_Overlay"
             Grid.Row="1"
-            Grid.ColumnSpan="2"
             Background="{DynamicResource {x:Static via:XBrushKeys.Scrim}}"
             IsHitTestVisible="False"
             Visibility="Collapsed" />
@@ -214,7 +166,6 @@
         <!--#region === STATUSBAR ===-->
         <StatusBar
             Grid.Row="2"
-            Grid.ColumnSpan="2"
             Height="28"
             Padding="0,1,0,0"
             Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
@@ -318,35 +269,8 @@
         </StatusBar>
         <!--#endregion === STATUSBAR ===-->
 
-        <!--#region === HAMBURGER BUTTON ===-->
-        <via:XToggleButton
-            Grid.Column="2"
-            Width="32"
-            Height="30"
-            Padding="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Appearance="Ghost"
-            CheckedAppearance="Ghost"
-            CheckedIcon="{via:MaterialDesignIcon Kind=Close}"
-            CheckedVariant="Primary"
-            Click="HamburgerButton_Click"
-            CornerRadius="4"
-            Cursor="Hand"
-            Focusable="False"
-            Foreground="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}"
-            IconSize="15"
-            IsChecked="{Binding ElementName=PART_ToolboxView, Path=IsFlyoutOpen, Mode=OneWay}"
-            ToolTip="{via:XLoc Main.ToolboxToggle,
-                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-            UncheckedIcon="{via:MaterialDesignIcon Kind=Menu}"
-            Variant="Default"
-            Visibility="{Binding ShowHamburgerButton, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <!--#endregion === HAMBURGER BUTTON ===-->
-
         <via:XBorder
             Grid.RowSpan="3"
-            Grid.ColumnSpan="2"
             Padding="0"
             Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
             BorderThickness="0,0,1,0"

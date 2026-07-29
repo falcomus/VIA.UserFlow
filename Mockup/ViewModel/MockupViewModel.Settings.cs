@@ -70,10 +70,6 @@ public partial class MockupViewModel : ObservableObject
             }
         }
 
-        ShowHamburgerButton = value == 1 || value == 2 || value == 3;
-
-        OnPropertyChanged(nameof(ShowHamburgerButton));
-
         //Wenn erste Seite verlassen wird -> Filterung wieder aus "All"
         if (value > 0)
         {
@@ -143,10 +139,6 @@ public partial class MockupViewModel : ObservableObject
     #endregion === APPLICATION SETTINGS ===
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
-    private bool _showHamburgerButton;
-
-    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ToolboxToggleText))]
     [NotifyPropertyChangedFor(nameof(ToolboxIcon))]
     private bool _showToolbox = true;
@@ -183,7 +175,7 @@ public partial class MockupViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]
     private double screenNavigatorWidth = 480;
 
-    public GridLength ToolboxReservedWidth => ShowHamburgerButton && ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
+    public GridLength ToolboxReservedWidth => ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
 
     public GridLength ScreenNavigatorReservedWidth => ScreenNavigatorPinned ? new GridLength(ScreenNavigatorWidth) : new GridLength(48);
 

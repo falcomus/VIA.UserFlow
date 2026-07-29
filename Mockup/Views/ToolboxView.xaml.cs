@@ -67,7 +67,10 @@ public partial class ToolboxView : UserControl
         XLocalizationService.Current.LanguageChanged -= LocalizationService_LanguageChanged;
         XLocalizationService.Current.LanguageChanged += LocalizationService_LanguageChanged;
 
-        UpdateFlyoutPresentation();
+        if (IsFlyoutPinned)
+            SetFlyoutOpen(true);
+        else
+            UpdateFlyoutPresentation();
     }
 
     private void ToolboxView_Unloaded(object sender, RoutedEventArgs e)
@@ -103,7 +106,7 @@ public partial class ToolboxView : UserControl
 
     private static void OnIsFlyoutPinnedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not ToolboxView toolbox)
+        if (d is not ToolboxView { IsLoaded: true } toolbox)
             return;
 
         if ((bool)e.NewValue)

@@ -234,12 +234,6 @@ public partial class MainWindow
     {
     }
 
-    private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-    {
-        PART_ToolboxView.ToggleFlyout();
-        e.Handled = true;
-    }
-
     #endregion
 
     #region === DRAG DROP OF PROJECT FILE ===

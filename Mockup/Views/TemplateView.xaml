@@ -32,7 +32,8 @@
     TextOptions.TextRenderingMode="ClearType"
     UseLayoutRounding="True"
     mc:Ignorable="d">
-    <Grid ext:GridEx.ColDef="350,*">
+    <local:DesignerWorkspaceHost>
+        <Grid ext:GridEx.ColDef="350,*">
         <!--  LIST AREA  -->
         <via:XBorder
             Padding="0"
@@ -342,5 +343,6 @@
                 </StackPanel>
             </via:XBorder>
         </Grid>
-    </Grid>
+        </Grid>
+    </local:DesignerWorkspaceHost>
 </UserControl>

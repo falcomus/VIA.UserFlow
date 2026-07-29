@@ -29,7 +29,8 @@
     UseLayoutRounding="True"
     mc:Ignorable="d">
 
-    <Grid ext:GridEx.RowDef="48,*">
+    <local:DesignerWorkspaceHost>
+        <Grid ext:GridEx.RowDef="48,*">
         <Grid.ColumnDefinitions>
             <ColumnDefinition
                 x:Name="ScreenNavigatorColumn"
@@ -554,5 +555,6 @@
             </StackPanel>
         </via:XBorder>
 
-    </Grid>
+        </Grid>
+    </local:DesignerWorkspaceHost>
 </UserControl>

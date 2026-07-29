@@ -130,7 +130,8 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid ext:GridEx.ColDef="350,*">
+    <local:DesignerWorkspaceHost>
+        <Grid ext:GridEx.ColDef="350,*">
         <via:XBorder
             Padding="0"
             Background="{DynamicResource HeaderBackgroundBrush}"
@@ -528,7 +529,8 @@
                 </StackPanel>
             </via:XBorder>
         </Grid>
-    </Grid>
+        </Grid>
+    </local:DesignerWorkspaceHost>
 </UserControl>
 
 

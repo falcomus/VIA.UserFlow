@@ -22,7 +22,7 @@ public partial class ToolboxView : UserControl
         nameof(IsFlyoutPinned),
         typeof(bool),
         typeof(ToolboxView),
-        new PropertyMetadata(false));
+        new PropertyMetadata(false, OnIsFlyoutPinnedChanged));
 
     public static readonly DependencyProperty DockWidthProperty = DependencyProperty.Register(
         nameof(DockWidth),
@@ -99,6 +99,17 @@ public partial class ToolboxView : UserControl
     {
         if (d is ToolboxView { IsLoaded: true } toolbox)
             toolbox.UpdateFlyoutPresentation();
+    }
+
+    private static void OnIsFlyoutPinnedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not ToolboxView toolbox)
+            return;
+
+        if ((bool)e.NewValue)
+            toolbox.SetFlyoutOpen(true);
+
+        toolbox.UpdateFlyoutPresentation();
     }
 
     private void PinnedSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)

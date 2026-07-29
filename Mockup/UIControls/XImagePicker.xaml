@@ -10,8 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mockup="clr-namespace:Mockup"
-    xmlns:via="http://schemas.via.dev/wpf"
     xmlns:resources="clr-namespace:Mockup.Resources"
+    xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
     d:DataContext="{d:DesignInstance Type=mockup:Screen}"
     d:DesignHeight="350"
@@ -56,7 +56,8 @@
                     FontSize="14"
                     FontWeight="SemiBold"
                     IsHitTestVisible="False"
-                    Text="{via:XLoc Dialog.ImagePicker.DropHere, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    Text="{via:XLoc Dialog.ImagePicker.DropHere,
+                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </Grid>
             <!--#endregion === DROP AREA ===-->
 
@@ -69,7 +70,8 @@
                     FontSize="14"
                     FontWeight="Medium"
                     Opacity="0.8"
-                    Text="{via:XLoc Dialog.ImagePicker.RecommendedSize, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    Text="{via:XLoc Dialog.ImagePicker.RecommendedSize,
+                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                 <TextBlock
                     Grid.Row="2"
                     Margin="0,8,0,50"
@@ -112,7 +114,8 @@
                             FontSize="14"
                             FontWeight="Medium"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
-                            Text="{via:XLoc Dialog.ImagePicker.Clear, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Dialog.ImagePicker.Clear,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </Grid>
                 </Button>
                 <Button
@@ -142,7 +145,8 @@
                             FontSize="14"
                             FontWeight="Medium"
                             Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                            Text="{via:XLoc Dialog.ImagePicker.Browse, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            Text="{via:XLoc Dialog.ImagePicker.Browse,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </Grid>
                 </Button>
             </Grid>

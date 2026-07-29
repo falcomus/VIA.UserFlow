@@ -143,6 +143,7 @@ public partial class MockupViewModel : ObservableObject
     #endregion === APPLICATION SETTINGS ===
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
     private bool _showHamburgerButton;
 
     [ObservableProperty]
@@ -182,7 +183,7 @@ public partial class MockupViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]
     private double screenNavigatorWidth = 480;
 
-    public GridLength ToolboxReservedWidth => ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
+    public GridLength ToolboxReservedWidth => ShowHamburgerButton && ToolboxPinned ? new GridLength(ToolboxWidth) : new GridLength(0);
 
     public GridLength ScreenNavigatorReservedWidth => ScreenNavigatorPinned ? new GridLength(ScreenNavigatorWidth) : new GridLength(48);
 

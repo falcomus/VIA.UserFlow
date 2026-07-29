@@ -58,7 +58,7 @@
         </StackPanel>
     </via:XWindow.TitleBarContent>
 
-    <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="56,*,28">
+    <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="54,*,28">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="{Binding ToolboxReservedWidth}" />
@@ -82,7 +82,8 @@
             Grid.ColumnSpan="2"
             ItemContainerStyle="{StaticResource CustomTabItemStyle}"
             SelectedIndex="{Binding MainTabSelectedIndex}"
-            Style="{StaticResource CustomTabControlStyle}">
+            Style="{StaticResource CustomTabControlStyle}"
+            Tag="{Binding ToolboxReservedWidth}">
             <TabControl.Resources />
             <!--  Tab PROJECT  -->
             <TabItem

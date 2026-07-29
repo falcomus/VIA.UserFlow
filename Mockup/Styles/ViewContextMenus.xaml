@@ -8,14 +8,16 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.New,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=Plus}"
             Variant="Primary" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.Edit,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem Header="{via:XLoc ContextMenu.Screen.Duplicate, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" Icon="{via:MaterialIcon Kind=ContentCopy}" />
@@ -23,7 +25,8 @@
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.Delete,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
@@ -33,20 +36,23 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Template.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Template.New,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=Plus}"
             Variant="Primary" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Template.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Template.Edit,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteTemplateCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Template.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Template.Delete,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
@@ -56,20 +62,23 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Popup.New,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=Plus}"
             Variant="Primary" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditPopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Popup.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Popup.Edit,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeletePopupCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Popup.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Popup.Delete,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
@@ -79,20 +88,23 @@
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.NewScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.New,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=Plus}"
             Variant="Primary" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.EditScreenCoreCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.Edit,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=PencilOutline}" />
 
         <via:XMenuItem
             Command="{Binding TargetDataContext.DeleteScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.Delete,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=DeleteOutline}"
             Variant="Danger" />
 
@@ -101,7 +113,8 @@
         <via:XMenuItem
             Command="{Binding TargetDataContext.SetAsHomeScreenCommand, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
             CommandParameter="{Binding TargetItem, RelativeSource={RelativeSource AncestorType={x:Type via:XContextMenu}}}"
-            Header="{via:XLoc ContextMenu.Screen.SetAsHome, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+            Header="{via:XLoc ContextMenu.Screen.SetAsHome,
+                              ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
             Icon="{via:MaterialIcon Kind=HomeOutline}" />
 
     </via:XContextMenu>

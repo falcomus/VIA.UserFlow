@@ -11,9 +11,11 @@
 		<UseWPF>true</UseWPF>
 
 		<!-- Allgemeine Projekteigenschaften -->
-		<AssemblyTitle>Meine WPF Anwendung</AssemblyTitle>
-		<AssemblyDescription>Beschreibung der Anwendung</AssemblyDescription>
-		<Copyright>Copyright © 2024</Copyright>
+		<AssemblyTitle>VIA UserFlow</AssemblyTitle>
+		<AssemblyDescription>Desktop mockup and prototype designer for user flows.</AssemblyDescription>
+		<Company>VIA Software</Company>
+		<Product>VIA UserFlow</Product>
+		<Copyright>Copyright © 2026 VIA Software</Copyright>
 	</PropertyGroup>
 
 	<!-- ============================================================

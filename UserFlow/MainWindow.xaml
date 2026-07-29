@@ -28,7 +28,7 @@
     ResizeMode="CanResizeWithGrip"
     ShowLanguageSelector="True"
     ShowThemeModeButton="True"
-    ShowThemeSelector="True"
+    ShowThemeSelector="False"
     SnapsToDevicePixels="True"
     TextOptions.TextFormattingMode="Display"
     TextOptions.TextRenderingMode="ClearType"

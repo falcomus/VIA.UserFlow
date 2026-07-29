@@ -63,7 +63,6 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
-                            <!--<Setter TargetName="HoverSurface" Property="Background" Value="#12FFFFFF" />-->
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="ContentSite" Property="Opacity" Value="0.55" />

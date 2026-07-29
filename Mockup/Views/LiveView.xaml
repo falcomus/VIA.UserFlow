@@ -98,7 +98,7 @@
                     Padding="14"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Background="#171A20"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
                     CornerRadius="18">
                     <via:XBorder.Effect>
                         <DropShadowEffect
@@ -161,12 +161,11 @@
                         <via:XBorder
                             x:Name="PART_PopupDimmer"
                             Padding="0"
-                            Background="#66000000"
+                            Background="{DynamicResource {x:Static via:XBrushKeys.Scrim}}"
                             CornerRadius="0"
                             MouseLeftButtonDown="PreviewPopupOverlay_MouseLeftButtonDown"
                             Opacity="0" />
 
-                        <!--  Background="White"  -->
                         <via:XBorder
                             x:Name="PART_PopupCard"
                             Width="{Binding PreviewPopupWidth}"

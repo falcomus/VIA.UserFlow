@@ -40,7 +40,7 @@
                 <StackPanel
                     x:Name="PART_FormatSelector"
                     Margin="5,5,0,5"
-                    Background="#00000000"
+                    Background="Transparent"
                     Orientation="Horizontal">
                     <via:XRadioButton
                         Width="45"

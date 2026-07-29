@@ -15,7 +15,6 @@
     xmlns:mockup="clr-namespace:Mockup"
     xmlns:render="clr-namespace:Mockup.Rendering"
     xmlns:resources="clr-namespace:Mockup.Resources"
-    xmlns:themes="clr-namespace:VIA.WPF.Themes;assembly=VIA.WPF.Themes"
     xmlns:ui="clr-namespace:Mockup.UIControls"
     xmlns:via="http://schemas.via.dev/wpf"
     xmlns:viewmodel="clr-namespace:Mockup.ViewModel"
@@ -739,7 +738,6 @@
             Padding="0,2,0,8"
             BorderThickness="0,0,1,0"
             Visibility="Collapsed">
-            <!--  Background="White"  -->
             <via:XColorSchemeView
                 Grid.Row="1"
                 AccentBrush="{Binding CurrentProject.ActiveColorSchema.AccentBrush}"
@@ -846,8 +844,9 @@
                     <DataTemplate>
                         <Border Margin="0" Padding="6">
                             <Border
-                                Background="#2A2B2D"
-                                BorderThickness="0"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                                BorderThickness="1"
                                 CornerRadius="8 8 5 5">
                                 <Border.Effect>
                                     <DropShadowEffect
@@ -1022,20 +1021,12 @@
                                                 Variant="Default">
                                                 <via:XIconButton.Style>
                                                     <Style TargetType="{x:Type via:XIconButton}">
-                                                        <Setter Property="Foreground">
-                                                            <Setter.Value>
-                                                                <SolidColorBrush Color="{themes:AppThemeBinding Light=#FF909295, Dark=#FF505255}" />
-                                                            </Setter.Value>
-                                                        </Setter>
+                                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.TextTertiary}}" />
                                                         <Setter Property="Opacity" Value="1" />
                                                         <Setter Property="Visibility" Value="Visible" />
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsHomeScreen}" Value="True">
-                                                                <Setter Property="Foreground">
-                                                                    <Setter.Value>
-                                                                        <SolidColorBrush Color="White" />
-                                                                    </Setter.Value>
-                                                                </Setter>
+                                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
                                                                 <Setter Property="Opacity" Value="1" />
                                                                 <Setter Property="Visibility" Value="Visible" />
                                                             </DataTrigger>

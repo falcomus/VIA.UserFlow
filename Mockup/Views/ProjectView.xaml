@@ -72,21 +72,19 @@
 
 
 
-            <via:XGrid
+            <via:XStackPanel
                 Margin="0,5"
                 VerticalAlignment="Stretch"
-                Columns="*,*,80,20">
+                Orientation="Horizontal"
+                Spacing="5">
 
                 <via:XButton
-                    Grid.Column="0"
                     MinWidth="84"
                     Appearance="Outline"
-                    BorderThickness="0"
                     Command="{Binding LoadProjectCommand}"
                     Content="{via:XLoc Project.OpenProjectShort,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
-                    Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
@@ -96,15 +94,11 @@
                     Variant="Primary" />
 
                 <via:XButton
-                    Grid.Column="1"
                     MinWidth="84"
-                    Margin="5,0,0,0"
-                    BorderThickness="0"
                     Command="{Binding SaveProjectCommand}"
                     Content="{via:XLoc Project.SaveProject,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
-                    Focusable="False"
                     FontSize="15"
                     FontWeight="Medium"
                     Icon="{via:MaterialIcon Kind=ContentSave}"
@@ -114,14 +108,23 @@
                     Variant="Primary" />
 
                 <via:XButton
-                    Grid.Column="2"
-                    Width="60"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Right"
-                    BorderThickness="0"
+                    Width="36"
+                    MinWidth="36"
+                    Appearance="Outline"
+                    Command="{Binding EditProjectCommand}"
+                    CommandParameter="{Binding CurrentProjectFile}"
+                    Cursor="Hand"
+                    Icon="{via:MaterialIcon Kind=PencilOutline}"
+                    Size="Large"
+                    ToolTip="{via:XLoc Project.EditProjectSettingsTooltip,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+
+                <via:XButton
+                    Width="36"
+                    MinWidth="36"
+                    Appearance="Outline"
                     Command="{Binding ElementName=root, Path=DataContext.NewProjectCommand}"
                     Cursor="Hand"
-                    Focusable="False"
                     Icon="{via:MaterialIcon Kind=Plus}"
                     Size="Large"
                     ToolTip="{via:XLoc Project.NewProjectTooltip,
@@ -131,21 +134,16 @@
 
 
                 <via:XMenuButton
-                    Grid.Column="3"
-                    Width="30"
-                    MinWidth="30"
-                    Margin="0,0,-0,0"
-                    Padding="20,0,0,0"
-                    HorizontalAlignment="Right"
-                    BorderThickness="0"
-                    Content="{via:MaterialIcon Kind=DotsVertical}"
-                    Focusable="False"
+                    Width="36"
+                    MinWidth="36"
+                    Appearance="Outline"
+                    Icon="{via:MaterialIcon Kind=DotsVertical}"
                     Menu="{StaticResource ProjectActionsContextMenu}"
                     ToolTip="{via:XLoc Project.MoreProjectActionsTooltip,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
 
-            </via:XGrid>
+            </via:XStackPanel>
 
 
         </via:XBorder>
@@ -349,6 +347,7 @@
                                 Columns="Auto,Auto">
                                 <via:XGrid VerticalAlignment="Center" Columns="Auto,24">
                                     <via:XTextBlock
+                                        Margin="0 0 5 0"
                                         VerticalAlignment="Center"
                                         FontSize="12"
                                         FontWeight="Medium"
@@ -362,11 +361,11 @@
                                         <ico:PackIconMaterial.Style>
                                             <Style TargetType="{x:Type ico:PackIconMaterial}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
-                                                <Setter Property="Kind" Value="CheckCircle" />
+                                                <Setter Property="Kind" Value="CheckboxOutline" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding CurrentProject.IsShared}" Value="False">
                                                         <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}" />
-                                                        <Setter Property="Kind" Value="CloseCircle" />
+                                                        <Setter Property="Kind" Value="CloseBoxOutline" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -376,7 +375,7 @@
                                 <via:XGrid Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" Columns="Auto,24">
                                     <via:XTextBlock
                                         VerticalAlignment="Center"
-                                        FontSize="12"
+                                        FontSize="12" Margin="0 0 5 0"
                                         FontWeight="Medium"
                                         Text="{via:XLoc Project.Readonly, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <ico:PackIconMaterial
@@ -388,11 +387,11 @@
                                         <ico:PackIconMaterial.Style>
                                             <Style TargetType="{x:Type ico:PackIconMaterial}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
-                                                <Setter Property="Kind" Value="CheckCircle" />
+                                                <Setter Property="Kind" Value="CheckboxOutline" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding CurrentProject.IsSharedReadonly}" Value="False">
                                                         <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}" />
-                                                        <Setter Property="Kind" Value="CloseCircle" />
+                                                        <Setter Property="Kind" Value="CloseBoxOutline" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -460,6 +459,7 @@
             <via:XGrid Columns="*,Auto" Rows="Auto,Auto,Auto">
                     <via:XStackPanel Orientation="Vertical">
                         <via:XTextBlock
+                            VerticalAlignment="Center"
                             FontSize="13"
                             FontWeight="SemiBold"
                             Text="{via:XLoc Project.Theme,
@@ -472,54 +472,36 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Orientation="Horizontal"
-                        Spacing="3">
+                        Spacing="5">
 
                         <via:XIconButton
-                            Width="30"
-                            Height="30"
-                            MinWidth="30"
-                            MinHeight="30"
-                            Background="Transparent"
                             Appearance="Outline"
-                            BorderThickness="1"
                             Command="{Binding NewColorSchemaCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=Plus}"
                             IconSize="16"
-                            Size="Small"
+                            Size="Medium"
                             Variant="Primary"
                             ToolTip="{via:XLoc Project.NewColorSchemeTooltip,
                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                         <via:XIconButton
-                            Width="30"
-                            Height="30"
-                            MinWidth="30"
-                            MinHeight="30"
-                            Background="Transparent"
                             Appearance="Outline"
-                            BorderThickness="1"
                             Command="{Binding EditColorSchemaCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=PencilOutline}"
                             IconSize="16"
-                            Size="Small"
+                            Size="Medium"
                             ToolTip="{via:XLoc Project.EditColorSchemeTooltip,
                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                         <via:XIconButton
-                            Width="30"
-                            Height="30"
-                            MinWidth="30"
-                            MinHeight="30"
-                            Background="Transparent"
                             Appearance="Outline"
-                            BorderThickness="1"
                             Command="{Binding DeleteColorSchemaCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=DeleteOutline}"
                             IconSize="16"
-                            Size="Small"
+                            Size="Medium"
                             Variant="Danger"
                             ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip,
                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />

@@ -59,7 +59,7 @@ public partial class MockupViewModel : ObservableObject
     {
         public bool ShowToolbox { get; set; } = true;
         public bool ToolboxPinned { get; set; }
-        public double ToolboxWidth { get; set; } = 570;
+        public double ToolboxWidth { get; set; } = 380;
         public bool ScreenNavigatorPinned { get; set; } = true;
         public double ScreenNavigatorWidth { get; set; } = 480;
         public double TemplateNavigatorWidth { get; set; } = 480;

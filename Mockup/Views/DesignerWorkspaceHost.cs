@@ -11,7 +11,7 @@ public sealed class DesignerWorkspaceHost : ContentControl
 {
     // Navigator, splitter, minimum designer surface, and the 60-DIP toolbox rail.
     private const double DefaultMinimumUnpinnedWorkspaceWidth = 1130d;
-    private const double DefaultToolboxWidth = 570d;
+    private const double DefaultToolboxWidth = 380d;
 
     private static readonly DependencyPropertyKey EffectiveToolboxReservedWidthPropertyKey =
         DependencyProperty.RegisterReadOnly(

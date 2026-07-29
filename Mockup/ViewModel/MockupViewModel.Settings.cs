@@ -165,7 +165,7 @@ public partial class MockupViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ToolboxReservedWidth))]
-    private double toolboxWidth = 570;
+    private double toolboxWidth = 380;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ScreenNavigatorReservedWidth))]

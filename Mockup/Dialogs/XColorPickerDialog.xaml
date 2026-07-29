@@ -59,6 +59,8 @@
                 Spacing="10">
                 <via:XButton
                     Width="100"
+                    Height="30"
+                    Padding="0"
                     Click="Ok_Click"
                     Content="{via:XLoc Common.OK,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
@@ -68,6 +70,8 @@
                     Variant="Primary" />
                 <via:XButton
                     Width="100"
+                    Height="30"
+                    Padding="0"
                     Click="Cancel_Click"
                     Content="{via:XLoc Common.Cancel,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"

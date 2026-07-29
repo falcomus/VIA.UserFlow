@@ -9,32 +9,37 @@
     xmlns:resources="clr-namespace:Mockup.Resources"
     xmlns:via="http://schemas.via.dev/wpf"
     x:Name="root"
-    Title="{via:XLoc Dialog.Project.Edit.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-    Subtitle=""
+    Title="{via:XLoc Dialog.Project.Edit.Title,
+                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
     Width="400"
     MinHeight="370"
-    SizeToContent="Height"
+    d:DataContext="{d:DesignInstance Type=mockup:Project}"
+    CornerRadius="10"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
+    ShowMaximizeButton="False"
+    ShowMinimizeButton="False"
+    ShowResizeGrip="False"
     ShowThemeModeButton="False"
     ShowThemeSelector="False"
-    ShowMinimizeButton="False"
-    ShowMaximizeButton="False"
-    ShowResizeGrip="False"
-    TitleBarHeight="45"
-    TitleFontSize="16"
-    TitleBarPadding="20,0,0,0"
-    CornerRadius="10"
-    WindowStartupLocation="CenterOwner"
-    WindowBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
-    WindowBorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+    SizeToContent="Height"
+    Subtitle=""
     TitleBarBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
     TitleBarForegroundBrush="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
-    d:DataContext="{d:DesignInstance Type=mockup:Project}"
+    TitleBarHeight="45"
+    TitleBarPadding="20,0,0,0"
+    TitleFontSize="16"
+    WindowBackgroundBrush="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
+    WindowBorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+    WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
 
     <dialogs:ModalDialogWindow.Effect>
-        <DropShadowEffect BlurRadius="18" Direction="270" Opacity="0.20" ShadowDepth="5" />
+        <DropShadowEffect
+            BlurRadius="18"
+            Direction="270"
+            Opacity="0.20"
+            ShadowDepth="5" />
     </dialogs:ModalDialogWindow.Effect>
 
     <Grid>
@@ -59,20 +64,22 @@
 
                     <via:XTextBox
                         x:Name="InputName"
-                        Header="{via:XLoc Dialog.Name, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Name,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
                     <via:XTextBox
                         x:Name="InputDescription"
                         Grid.Row="2"
                         Height="90"
-                        Padding="2 3"
+                        Padding="2,3"
+                        VerticalContentAlignment="Top"
                         AcceptsReturn="True"
-                        Header="{via:XLoc Dialog.Description, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Description,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         MaxLines="6"
                         Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
-                        TextWrapping="Wrap"
-                        VerticalContentAlignment="Top" />
+                        TextWrapping="Wrap" />
                 </Grid>
             </via:XTabItem>
 
@@ -91,7 +98,8 @@
 
                     <via:XNumberBox
                         Grid.Row="0"
-                        Header="{via:XLoc Dialog.Width, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Width,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Maximum="2000"
                         Minimum="100"
                         Step="10"
@@ -99,7 +107,8 @@
                     <via:XNumberBox
                         Grid.Row="0"
                         Grid.Column="2"
-                        Header="{via:XLoc Dialog.Height, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Height,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         Maximum="2000"
                         Minimum="100"
                         Step="10"
@@ -110,7 +119,8 @@
                         Grid.Row="2"
                         Grid.ColumnSpan="3"
                         DisplayMemberPath="DisplayText"
-                        Header="{via:XLoc Dialog.Project.DevicePreset, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Project.DevicePreset,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         SelectionChanged="PART_ScreenSizes_SelectionChanged" />
 
                 </Grid>
@@ -128,7 +138,8 @@
 
                     <via:XComboBox
                         DisplayMemberPath="Name"
-                        Header="{via:XLoc Dialog.Project.ColorScheme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Header="{via:XLoc Dialog.Project.ColorScheme,
+                                          ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         ItemsSource="{Binding ElementName=root, Path=ColorSchemas}"
                         SelectedValue="{Binding ColorSchemaKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectedValuePath="Key" />
@@ -136,23 +147,22 @@
                     <via:XTextBlock
                         Grid.Row="2"
                         Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                        Text="{via:XLoc Dialog.Project.ColorSchemeInfo, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                        Text="{via:XLoc Dialog.Project.ColorSchemeInfo,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                         TextWrapping="Wrap" />
 
                     <via:XBorder
                         Grid.Row="4"
                         Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
                         BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-                        BorderThickness="0"
-                        >
+                        BorderThickness="0">
                         <via:XStackPanel Orientation="Horizontal" Spacing="30">
+                            <via:XToggleSwitch Content="{via:XLoc Dialog.Project.SharedProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" IsChecked="{Binding IsShared, Mode=TwoWay}" />
                             <via:XToggleSwitch
-                                Content="{via:XLoc Dialog.Project.SharedProject, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                IsChecked="{Binding IsShared, Mode=TwoWay}" />
-                            <via:XToggleSwitch
-                                Content="{via:XLoc Dialog.Project.ReadOnlySharedUsers, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
-                                IsEnabled="{Binding IsShared}"
-                                IsChecked="{Binding IsSharedReadonly, Mode=TwoWay}" />
+                                Content="{via:XLoc Dialog.Project.ReadOnlySharedUsers,
+                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                IsChecked="{Binding IsSharedReadonly, Mode=TwoWay}"
+                                IsEnabled="{Binding IsShared}" />
                         </via:XStackPanel>
                     </via:XBorder>
 
@@ -161,30 +171,34 @@
         </via:XTabControl>
 
         <via:XBorder
-            CornerRadius="0"
             Grid.Row="1"
             Padding="20,15"
             Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
-            BorderThickness="0,1,0,0">
+            BorderThickness="0,1,0,0"
+            CornerRadius="0">
             <via:XStackPanel
                 HorizontalAlignment="Right"
                 Orientation="Horizontal"
                 Spacing="10">
                 <via:XButton
-                    Width="112"
+                    Width="100"
+                    Height="30"
                     Padding="0"
                     Click="Ok_Click"
-                    Content="{via:XLoc Common.OK, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Common.OK,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsDefault="True"
                     Size="Large"
                     Variant="Primary" />
                 <via:XButton
-                    Width="92"
+                    Width="100"
+                    Height="30"
                     Padding="0"
                     Click="Cancel_Click"
-                    Content="{via:XLoc Common.Cancel, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    Content="{via:XLoc Common.Cancel,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Cursor="Hand"
                     IsCancel="True"
                     Size="Large" />

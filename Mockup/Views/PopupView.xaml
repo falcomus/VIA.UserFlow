@@ -258,14 +258,14 @@
 
                         <via:XIconButton
                             Grid.Column="1"
-                            Width="50"
-                            Margin="0,0,10,0"
+                            Margin="0,0,8,0"
+                            Appearance="Subtle"
                             Command="{Binding NewPopupCommand}"
                             Cursor="Hand"
+                            Focusable="False"
                             Icon="{via:MaterialIcon Kind=Plus}"
-                            IconSize="16"
                             Size="Medium"
-                            ToolTip="{via:XLoc Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                ToolTip="{via:XLoc Popup.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                             Variant="Primary" />
 
                     </Grid>

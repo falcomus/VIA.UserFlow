@@ -127,20 +127,23 @@
                                             ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                         <Grid ext:GridEx.ColDef="*,Auto">
                             <via:XBorder
-                                Height="30"
+                                Height="32"
                                 Background="{Binding Background, Converter={StaticResource ColorToBrushConverter}}"
                                 BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
                                 BorderThickness="1"
                                 CornerRadius="5" />
                             <via:XButton
-                                Width="120"
                                 Grid.Column="1"
-                                Margin="8,0,42,0"
+                                Height="32"
+                                MinWidth="32"
+                                Margin="5,0,38,0"
                                 Click="PickBackground_Click"
-                                Content="{via:XLoc Dialog.Screen.SelectColor,
-                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 Icon="{via:MaterialIcon Kind=PaletteOutline}"
                                 Size="Medium" />
+                            <!--
+                                Content="{via:XLoc Dialog.Screen.SelectColor,
+                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                            -->
                         </Grid>
                     </via:XStackPanel>
 
@@ -166,25 +169,27 @@
                             <via:XButton
                                 Grid.Column="1"
                                 Height="32"
-                                Width="120"
-                                Margin="8,0,0,0"
-                                Padding="15,0"
+                                MinWidth="32"
+                                Margin="5,0,0,0"
                                 Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=SelectScreenImageCommand}"
                                 CommandParameter="{Binding}"
-                                Content="{via:XLoc Dialog.Screen.BrowseImage,
-                                                   ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                 Icon="{via:MaterialIcon Kind=FolderOpenOutline}"
                                 Size="Medium" />
-                            <via:XIconButton
+                            <!--
+                                Content="{via:XLoc Dialog.Screen.BrowseImage,
+                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                            -->
+                            <via:XButton
                                 Grid.Column="2"
-                                Height="12"
-                                MinHeight="32"
-                                Margin="8,0,0,0"
+                                Height="32"
+                                MinWidth="32"
+                                Margin="5,0,0,0"
                                 Padding="0"
+                                Appearance="Outline"
                                 Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=ResetScreenImageCommand}"
                                 CommandParameter="{Binding}"
                                 Icon="{via:MaterialIcon Kind=Close}"
-                                IconSize="14"
+                                IconSize="12"
                                 Size="Medium"
                                 ToolTip="{via:XLoc Dialog.Screen.ClearImage,
                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
@@ -259,13 +264,15 @@
                                             VerticalAlignment="Center"
                                             Text="{Binding HeaderBand.Title}" />
                                     </via:XBorder>
-                                    <via:XIconButton
+                                    <via:XButton
                                         Grid.Column="1"
-                                        Margin="8,0,0,0"
+                                        Height="34"
+                                        MinWidth="34"
+                                        Margin="5,0,0,0"
                                         Click="PickHeaderColor_Click"
-                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                        IconSize="12"
+                                        Icon="{via:MaterialIcon Kind=PaletteOutline}"
                                         Size="Medium" />
+
                                 </Grid>
                             </via:XStackPanel>
                         </via:XStackPanel>
@@ -306,12 +313,15 @@
                                             VerticalAlignment="Center"
                                             Text="{Binding FooterBand.Title}" />
                                     </via:XBorder>
-                                    <via:XIconButton
+
+                                    <via:XButton
                                         Grid.Column="1"
-                                        Margin="8,0,0,0"
-                                        Click="PickFooterColor_Click"
-                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                        IconSize="12"
+                                        Height="34"
+                                        MinWidth="34"
+                                        Margin="5,0,0,0"
+                                        Command="{Binding Source={x:Static mockup:MockupService.Mockup}, Path=SelectScreenImageCommand}"
+                                        CommandParameter="{Binding}"
+                                        Icon="{via:MaterialIcon Kind=PaletteOutline}"
                                         Size="Medium" />
                                 </Grid>
                             </via:XStackPanel>
@@ -337,16 +347,15 @@
                                     Grid.Column="1"
                                     Click="AddBand_Click"
                                     Icon="{via:MaterialIcon Kind=Plus}"
-                                    IconSize="13"
                                     Size="Medium"
                                     ToolTip="{via:XLoc Dialog.Screen.AddBand,
                                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                 <via:XIconButton
                                     Grid.Column="2"
                                     Margin="4,0,0,0"
+                                    Appearance="Outline"
                                     Click="DeleteBand_Click"
                                     Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                    IconSize="13"
                                     Size="Medium"
                                     ToolTip="{via:XLoc Dialog.Screen.DeleteBand,
                                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
@@ -356,7 +365,7 @@
                                     Margin="4,0,0,0"
                                     Click="MoveBandUp_Click"
                                     Icon="{via:MaterialIcon Kind=ArrowUp}"
-                                    IconSize="12"
+                                    IconSize="13"
                                     Size="Medium"
                                     ToolTip="{via:XLoc Dialog.Screen.MoveUp,
                                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
@@ -365,7 +374,7 @@
                                     Margin="4,0,0,0"
                                     Click="MoveBandDown_Click"
                                     Icon="{via:MaterialIcon Kind=ArrowDown}"
-                                    IconSize="12"
+                                    IconSize="13"
                                     Size="Medium"
                                     ToolTip="{via:XLoc Dialog.Screen.MoveDown,
                                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
@@ -431,10 +440,11 @@
                                     </via:XBorder>
                                     <via:XIconButton
                                         Grid.Column="1"
-                                        Margin="8,0,0,0"
+                                        Height="34"
+                                        MinWidth="34"
+                                        Margin="5,0,0,0"
                                         Click="PickBandColor_Click"
-                                        Icon="{via:MaterialIcon Kind=DotsHorizontal}"
-                                        IconSize="12"
+                                        Icon="{via:MaterialIcon Kind=PaletteOutline}"
                                         Size="Medium" />
                                 </Grid>
                             </via:XStackPanel>
@@ -461,11 +471,14 @@
                                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <via:XIconButton
                                         Grid.Column="2"
-                                        Margin="4,0,0,0"
+                                        Height="34"
+                                        MinWidth="34"
+                                        Margin="5,0,0,0"
+                                        Appearance="Outline"
                                         Click="DeletePage_Click"
-                                        Icon="{via:MaterialIcon Kind=DeleteOutline}"
-                                        IconSize="12"
+                                        Icon="{via:MaterialIcon Kind=Close}"
                                         Size="Medium"
+                                        IconSize="12"
                                         ToolTip="{via:XLoc Dialog.Screen.DeletePage,
                                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                                         Variant="Danger" />
@@ -508,7 +521,9 @@
                 Orientation="Horizontal"
                 Spacing="10">
                 <via:XButton
-                    Width="110"
+                    Width="100"
+                    Height="30"
+                    Padding="0"
                     Click="Ok_Click"
                     Content="{via:XLoc Common.OK,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
@@ -518,6 +533,8 @@
                     Variant="Primary" />
                 <via:XButton
                     Width="100"
+                    Height="30"
+                    Padding="0"
                     Click="Cancel_Click"
                     Content="{via:XLoc Common.Cancel,
                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"

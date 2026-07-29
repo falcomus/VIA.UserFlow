@@ -146,18 +146,20 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     FontWeight="SemiBold"
-                    Text="{via:XLoc Screen.Title, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    Text="{via:XLoc Screen.Title,
+                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                 <via:XIconButton
                     Grid.Column="1"
-                    Width="50"
-                    Margin="0,0,10,0"
+                    Margin="0,0,8,0"
+                    Appearance="Subtle"
                     Command="{Binding NewScreenCommand}"
                     Cursor="Hand"
+                    Focusable="False"
                     Icon="{via:MaterialIcon Kind=Plus}"
-                    IconSize="16"
                     Size="Medium"
-                    ToolTip="{via:XLoc Screen.New, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                    ToolTip="{via:XLoc Screen.New,
+                                       ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
                     Variant="Primary" />
 
             </Grid>
@@ -190,7 +192,8 @@
                     <via:XTextBlock
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
-                        Text="{via:XLoc Screen.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        Text="{via:XLoc Screen.None,
+                                        ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                 </StackPanel>
             </via:XBorder>
 
@@ -237,7 +240,8 @@
                                     FontSize="13"
                                     FontWeight="Normal"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                    Text="{via:XLoc Screen.DeviceTop, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Screen.DeviceTop,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                                 <Line
                                     HorizontalAlignment="Left"
@@ -258,7 +262,8 @@
                                     FontSize="13"
                                     FontWeight="Normal"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                    Text="{via:XLoc Screen.DeviceBottom, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    Text="{via:XLoc Screen.DeviceBottom,
+                                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                                 <Line
                                     Margin="0,0,0,-5"
@@ -340,14 +345,16 @@
                                         <via:XButton
                                             Command="{Binding EditScreenCoreCommand}"
                                             CommandParameter="{Binding CurrentScreen}"
-                                            ToolTip="{via:XLoc Screen.Edit, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                                            ToolTip="{via:XLoc Screen.Edit,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                                             <ico:PackIconMaterial Kind="Pencil" Style="{StaticResource IconStyle}" />
                                         </via:XButton>
 
                                         <via:XButton
                                             Command="{Binding DeleteScreenCommand}"
                                             CommandParameter="{Binding CurrentScreen}"
-                                            ToolTip="{via:XLoc Screen.Delete, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
+                                            ToolTip="{via:XLoc Screen.Delete,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}">
                                             <ico:PackIconMaterial
                                                 Foreground="{DynamicResource DangerBrush}"
                                                 Kind="TrashCan"
@@ -363,7 +370,8 @@
                                             FontWeight="Medium"
                                             IsChecked="{Binding CurrentScreen.ShowHeader, Mode=TwoWay}"
                                             Style="{DynamicResource XToggleButton}"
-                                            ToolTip="{via:XLoc Screen.ShowHeader, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            ToolTip="{via:XLoc Screen.ShowHeader,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                                         <via:XToggleButton
                                             Height="22"
@@ -374,7 +382,8 @@
                                             FontWeight="Medium"
                                             IsChecked="{Binding CurrentScreen.ShowFooter, Mode=TwoWay}"
                                             Style="{DynamicResource XToggleButton}"
-                                            ToolTip="{via:XLoc Screen.ShowFooter, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                            ToolTip="{via:XLoc Screen.ShowFooter,
+                                                               ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     </via:XStackPanel>
                                 </via:XBorder>
 
@@ -471,7 +480,8 @@
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     Foreground="{DynamicResource TextSecondaryBrush}"
-                    Text="{via:XLoc Screen.None, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                    Text="{via:XLoc Screen.None,
+                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
             </StackPanel>
         </via:XBorder>
 

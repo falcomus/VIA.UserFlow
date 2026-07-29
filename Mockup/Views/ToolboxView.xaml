@@ -147,12 +147,8 @@
                     <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
                 </Trigger>
                 <Trigger Property="IsChecked" Value="True">
-                    <!--<Setter Property="Background" Value="Transparent" />-->
-                    <Setter Property="Foreground" Value="White" />
-                </Trigger>
-                <Trigger Property="IsChecked" Value="False">
-                    <!--<Setter Property="Background" Value="Transparent" />-->
-                    <Setter Property="Foreground" Value="#B0B2B5" />
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
@@ -981,6 +977,26 @@
             <GridSplitter.Style>
                 <Style TargetType="GridSplitter">
                     <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="Cursor" Value="SizeWE" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="GridSplitter">
+                                <Grid IsHitTestVisible="False">
+                                    <Border
+                                        Width="2"
+                                        Height="34"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
+                                        CornerRadius="1" />
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <Ellipse Width="3" Height="3" Margin="0,0,0,3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                        <Ellipse Width="3" Height="3" Margin="0,0,0,3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                        <Ellipse Width="3" Height="3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=root, Path=IsFlyoutPinned}" Value="True">
                             <Setter Property="Visibility" Value="Visible" />

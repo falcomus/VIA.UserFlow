@@ -29,6 +29,36 @@
     UseLayoutRounding="True"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="NavigationRailPinButtonStyle" TargetType="via:XToggleButton">
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="MinWidth" Value="40" />
+            <Setter Property="MinHeight" Value="40" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelForeground}}" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelItemHoverBackground}}" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemForeground}}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelSelectedItemBackground}}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
     <Grid ext:GridEx.RowDef="48,*">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ScreenNavigatorColumn" Width="{Binding ScreenNavigatorReservedWidth}" MinWidth="48" />
@@ -54,6 +84,7 @@
                     Checked="ScreenNavigatorPin_Checked"
                     Unchecked="ScreenNavigatorPin_Unchecked"
                     IsChecked="{Binding ScreenNavigatorPinned, Mode=TwoWay}"
+                    Style="{StaticResource NavigationRailPinButtonStyle}"
                     ToolTip="Pin screen navigator">
                     <ico:PackIconMaterial Width="18" Height="18" Kind="Pin" />
                 </via:XToggleButton>
@@ -104,6 +135,7 @@
                     ItemPadding="10,7,8,7"
                     ItemsSource="{Binding ScreenNavigationGroups}"
                     SelectedItem="{Binding CurrentScreenNavigationGroup, Mode=TwoWay}"
+                    SelectionChanged="ScreenNavigationGroups_SelectionChanged"
                     SelectedItemBackground="{DynamicResource {x:Static via:XBrushKeys.StateSelected}}"
                     SelectedItemForeground="{DynamicResource {x:Static via:XBrushKeys.TextPrimary}}"
                     SelectionIndicatorBrush="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
@@ -193,10 +225,31 @@
             ResizeBehavior="PreviousAndNext"
             ResizeDirection="Columns"
             ShowsPreview="False"
+            DragDelta="ScreenNavigatorSplitter_DragDelta"
             DragCompleted="ScreenNavigatorSplitter_DragCompleted">
             <GridSplitter.Style>
                 <Style TargetType="GridSplitter">
                     <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="Cursor" Value="SizeWE" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="GridSplitter">
+                                <Grid IsHitTestVisible="False">
+                                    <Border
+                                        Width="2"
+                                        Height="34"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource {x:Static via:XBrushKeys.BorderDefault}}"
+                                        CornerRadius="1" />
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <Ellipse Width="3" Height="3" Margin="0,0,0,3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                        <Ellipse Width="3" Height="3" Margin="0,0,0,3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                        <Ellipse Width="3" Height="3" Fill="{DynamicResource {x:Static via:XBrushKeys.TextDisabled}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ScreenNavigatorPinned}" Value="True">
                             <Setter Property="Visibility" Value="Visible" />

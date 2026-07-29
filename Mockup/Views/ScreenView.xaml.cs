@@ -138,6 +138,18 @@ public partial class ScreenView : UserControl
         }
     }
 
+    private void ScreenNavigatorSplitter_DragDelta(object sender, DragDeltaEventArgs e)
+    {
+        if (DataContext is MockupViewModel vm)
+            vm.ScreenNavigatorWidth = Math.Max(430, ScreenNavigatorColumn.ActualWidth);
+    }
+
+    private void ScreenNavigationGroups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (DataContext is MockupViewModel { ScreenNavigatorPinned: false })
+            IsScreenNavigatorOpen = true;
+    }
+
     private void ScreenNavigatorPin_Checked(object sender, RoutedEventArgs e)
     {
         if (DataContext is MockupViewModel vm)

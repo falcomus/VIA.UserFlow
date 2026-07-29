@@ -20,7 +20,7 @@
     MinHeight="800"
     d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
     AllowDrop="True"
-    Background="{DynamicResource SecondaryRegionBrush}"
+    Background="{DynamicResource {x:Static via:XBrushKeys.Canvas}}"
     DragEnter="Window_DragEnter"
     DragOver="Window_DragOver"
     Drop="Window_Drop"

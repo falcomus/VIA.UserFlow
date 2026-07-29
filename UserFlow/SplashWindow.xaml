@@ -77,7 +77,7 @@
             Margin="22,252,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#F4F6F9" />
+            Background="{DynamicResource {x:Static via:XBrushKeys.Canvas}}" />
 
         <TextBlock
             x:Name="PART_PleaseWaitText"
@@ -85,7 +85,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="13"
-            Foreground="#6A7DA3"
+            Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
             Opacity="0.9"
             Text="{via:XLoc Splash.PleaseWait,
                             ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />

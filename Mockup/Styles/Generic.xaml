@@ -71,6 +71,8 @@
 
     <Style TargetType="{x:Type views:DesignerWorkspaceHost}">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="IsToolboxPinned" Value="{Binding ToolboxPinned, Mode=TwoWay}" />
+        <Setter Property="ToolboxWidth" Value="{Binding ToolboxWidth, Mode=TwoWay}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -78,9 +80,14 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="{Binding ToolboxReservedWidth}" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="60" />
                         </Grid.ColumnDefinitions>
+
+                        <Border
+                            Grid.Column="1"
+                            Width="{TemplateBinding EffectiveToolboxReservedWidth}"
+                            IsHitTestVisible="False" />
 
                         <ContentPresenter
                             Grid.Column="0"
@@ -94,8 +101,8 @@
                             d:Visibility="Collapsed"
                             HorizontalAlignment="Right"
                             Panel.ZIndex="20"
-                            DockWidth="{Binding ToolboxWidth, Mode=TwoWay}"
-                            IsFlyoutPinned="{Binding ToolboxPinned, Mode=TwoWay}" />
+                            DockWidth="{Binding ToolboxWidth, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsFlyoutPinned="{Binding IsToolboxPinned, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -344,14 +344,15 @@
                             <via:XStackPanel
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
                                 Orientation="Horizontal"
                                 Spacing="10">
-                                <via:XStackPanel Orientation="Horizontal" Spacing="4">
+                                <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
                                     <via:XTextBlock
                                         FontSize="12"
                                         FontWeight="Medium"
                                         Text="{via:XLoc Project.Shared, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XTextBlock FontSize="14" FontWeight="Bold">
+                                    <via:XTextBlock VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold">
                                         <via:XTextBlock.Style>
                                             <Style TargetType="{x:Type via:XTextBlock}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
@@ -366,12 +367,12 @@
                                         </via:XTextBlock.Style>
                                     </via:XTextBlock>
                                 </via:XStackPanel>
-                                <via:XStackPanel Orientation="Horizontal" Spacing="4">
+                                <via:XStackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="8">
                                     <via:XTextBlock
                                         FontSize="12"
                                         FontWeight="Medium"
                                         Text="{via:XLoc Project.Readonly, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                                    <via:XTextBlock FontSize="14" FontWeight="Bold">
+                                    <via:XTextBlock VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold">
                                         <via:XTextBlock.Style>
                                             <Style TargetType="{x:Type via:XTextBlock}">
                                                 <Setter Property="Foreground" Value="{DynamicResource {x:Static via:XBrushKeys.StatusSuccess}}" />
@@ -467,13 +468,14 @@
                             MinWidth="30"
                             MinHeight="30"
                             Background="Transparent"
-                            Appearance="Ghost"
-                            BorderThickness="0"
+                            Appearance="Outline"
+                            BorderThickness="1"
                             Command="{Binding NewColorSchemaCommand}"
                             Cursor="Hand"
                             Icon="{via:MaterialIcon Kind=Plus}"
                             IconSize="16"
                             Size="Small"
+                            Variant="Primary"
                             ToolTip="{via:XLoc Project.NewColorSchemeTooltip,
                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
@@ -483,11 +485,11 @@
                             MinWidth="30"
                             MinHeight="30"
                             Background="Transparent"
-                            Appearance="Ghost"
-                            BorderThickness="0"
+                            Appearance="Outline"
+                            BorderThickness="1"
                             Command="{Binding EditColorSchemaCommand}"
                             Cursor="Hand"
-                            Icon="{via:MaterialIcon Kind=Launch}"
+                            Icon="{via:MaterialIcon Kind=PencilOutline}"
                             IconSize="16"
                             Size="Small"
                             ToolTip="{via:XLoc Project.EditColorSchemeTooltip,
@@ -499,14 +501,14 @@
                             MinWidth="30"
                             MinHeight="30"
                             Background="Transparent"
-                            Appearance="Ghost"
-                            BorderThickness="0"
+                            Appearance="Outline"
+                            BorderThickness="1"
                             Command="{Binding DeleteColorSchemaCommand}"
                             Cursor="Hand"
-                            Foreground="{DynamicResource {x:Static via:XBrushKeys.StatusDanger}}"
                             Icon="{via:MaterialIcon Kind=DeleteOutline}"
                             IconSize="16"
                             Size="Small"
+                            Variant="Danger"
                             ToolTip="{via:XLoc Project.DeleteColorSchemeTooltip,
                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     </via:XStackPanel>
@@ -562,24 +564,30 @@
                         Grid.ColumnSpan="2"
                         Margin="0,12,0,0"
                         Columns="3">
-                        <via:XBorder Margin="0,0,5,6" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.PrimaryBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Primary, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
-                        <via:XBorder Margin="5,0,5,6" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.AccentBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Accent, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
-                        <via:XBorder Margin="5,0,0,6" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.InfoBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Info, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
-                        <via:XBorder Margin="0,0,5,0" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.WarningBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Warning, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
-                        <via:XBorder Margin="5,0,5,0" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.ErrorBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Error, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
-                        <via:XBorder Margin="5,0,0,0" Padding="8,0" Background="{Binding CurrentProject.ActiveColorSchema.SuccessBrush}" CornerRadius="4">
-                            <via:XTextBlock VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="{Binding CurrentProject.ActiveColorSchema.TextBrush}" Text="{via:XLoc Dialog.ColorScheme.Token.Success, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                        </via:XBorder>
+                        <via:XStackPanel Margin="0,0,5,6" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Primary, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.PrimaryBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,5,6" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Accent, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.AccentBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,0,6" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Info, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.InfoBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="0,0,5,0" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Warning, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.WarningBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,5,0" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Error, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.ErrorBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
+                        <via:XStackPanel Margin="5,0,0,0" Orientation="Vertical" Spacing="3">
+                            <via:XTextBlock FontSize="11" Opacity="0.68" Text="{via:XLoc Dialog.ColorScheme.Token.Success, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            <via:XBorder Height="18" Background="{Binding CurrentProject.ActiveColorSchema.SuccessBrush}" CornerRadius="3" />
+                        </via:XStackPanel>
                     </via:XUniformGrid>
             </via:XGrid>
         </via:XBorder>

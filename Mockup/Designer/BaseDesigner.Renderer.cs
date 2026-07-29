@@ -289,30 +289,21 @@ public abstract partial class BaseDesigner : Control
         if (PART_Canvas == null || string.IsNullOrWhiteSpace(_designerInteractionHintText))
             return;
 
-        const float fontSize = 10.5f;
         const float horizontalPadding = 6f;
         const float verticalPadding = 2.5f;
-        const float textLayoutHeight = 18f;
         const float cornerRadius = 3f;
         const float outerMargin = 4f;
         const float targetGap = 8f;
         const float widthSafety = 3f;
 
-        var fontWeight = FontWeight.FromOpenTypeWeight(500);
-
-        float richTextWidth = TextRenderer.MeasureTextWidth(
-            _designerInteractionHintText,
-            fontSize,
-            fontWeight: fontWeight);
-
-        float skiaWidth = _interactionHintMeasurePaint.MeasureText(
+        float textWidth = _interactionHintMeasurePaint.MeasureText(
             _designerInteractionHintText);
-
-        float textWidth = MathF.Max(richTextWidth, skiaWidth);
+        _interactionHintMeasurePaint.GetFontMetrics(out SKFontMetrics fontMetrics);
+        float textHeight = fontMetrics.Descent - fontMetrics.Ascent;
         float width = MathF.Ceiling(
             textWidth + horizontalPadding * 2f + widthSafety);
         float height = MathF.Ceiling(
-            textLayoutHeight + verticalPadding * 2f);
+            textHeight + verticalPadding * 2f);
 
         float canvasWidth = (float)PART_Canvas.ActualWidth;
         float canvasHeight = (float)PART_Canvas.ActualHeight;
@@ -348,21 +339,12 @@ public abstract partial class BaseDesigner : Control
             cornerRadius,
             _interactionHintBorderPaint);
 
-        var textRect = new SKRect(
-            rect.Left + horizontalPadding,
-            rect.Top + verticalPadding,
-            rect.Right - horizontalPadding,
-            rect.Bottom - verticalPadding);
-
-        TextRenderer.Draw(
-            canvas,
+        float textBaseline = rect.MidY - (fontMetrics.Ascent + fontMetrics.Descent) / 2f;
+        canvas.DrawText(
             _designerInteractionHintText,
-            textRect,
-            fontSize,
-            SKColors.White,
-            textAlignment: TextAlignment.Left,
-            padding: 0f,
-            fontWeight: fontWeight);
+            rect.Left + horizontalPadding,
+            textBaseline,
+            _interactionHintMeasurePaint);
     }
 
     #endregion === DESIGNER INTERACTION HINT ===

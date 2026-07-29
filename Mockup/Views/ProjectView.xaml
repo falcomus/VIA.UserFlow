@@ -150,104 +150,76 @@
 
         </via:XBorder>
 
-        <!--  PROJECT DESCRIPTION AND PROJECT INFO  -->
+        <!--  PROJECT INFORMATION  -->
         <via:XBorder
             Grid.Row="2"
-            Padding="14,12,14,14"
+            Padding="16,14"
             BorderThickness="0,0,1,1"
             CornerRadius="0">
-            <via:XGrid Rows="Auto,Auto,Auto,Auto,Auto,*">
-
+            <via:XGrid Rows="Auto,Auto,Auto,Auto,*">
                 <via:XTextBlock
-                    Grid.Row="0"
                     FontSize="12"
                     FontWeight="SemiBold"
                     Opacity="0.62"
                     Text="{via:XLoc Project.ProjectInfo,
-                                    ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-
-                <via:XTextBlock
-                    Grid.Row="1"
-                    Margin="0,8,0,0"
-                    FontSize="17"
-                    FontWeight="SemiBold"
-                    Text="{Binding CurrentProject.Name, FallbackValue='[No project]'}"
-                    TextTrimming="CharacterEllipsis" />
+                                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
 
                 <via:XStackPanel
-                    Grid.Row="2"
-                    Margin="0,15,0,8"
+                    Grid.Row="1"
+                    Margin="0,7,0,0"
                     Orientation="Vertical"
-                    Spacing="8">
-                    <via:XBorder Padding="10,7" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
-                            <via:XTextBlock
-                                FontSize="12"
-                                FontWeight="SemiBold"
-                                Opacity="0.62"
-                                Text="{via:XLoc Project.Device,
-                                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-                            <via:XTextBlock
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                FontSize="12"
-                                FontWeight="SemiBold">
-                                <via:XTextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} × {1}">
-                                        <Binding Path="CurrentProject.DeviceWidth" />
-                                        <Binding Path="CurrentProject.DeviceHeight" />
-                                    </MultiBinding>
-                                </via:XTextBlock.Text>
-                            </via:XTextBlock>
-                        </via:XGrid>
-                    </via:XBorder>
-
+                    Spacing="4">
+                    <via:XTextBlock
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Text="{Binding CurrentProject.Name, FallbackValue='[No project]'}"
+                        TextTrimming="CharacterEllipsis" />
+                    <via:XStackPanel Orientation="Horizontal" Spacing="6">
+                        <via:XTextBlock
+                            FontSize="12"
+                            Opacity="0.62"
+                            Text="{via:XLoc Project.Device,
+                                            ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                        <via:XTextBlock FontSize="12" FontWeight="SemiBold">
+                            <via:XTextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} × {1}">
+                                    <Binding Path="CurrentProject.DeviceWidth" />
+                                    <Binding Path="CurrentProject.DeviceHeight" />
+                                </MultiBinding>
+                            </via:XTextBlock.Text>
+                        </via:XTextBlock>
+                    </via:XStackPanel>
                 </via:XStackPanel>
 
                 <via:XUniformGrid
-                    Grid.Row="3"
-                    Margin="0,3,0,12"
+                    Grid.Row="2"
+                    Margin="0,16,0,14"
                     Columns="2">
                     <via:XBorder
-                        MinHeight="74"
+                        MinHeight="58"
                         Margin="0,0,5,5"
-                        Padding="12,10"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <Grid ext:GridEx.ColDef="4,*">
+                        Padding="0"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                        BorderThickness="1">
+                        <Grid ext:GridEx.ColDef="6,*">
                             <via:XBorder
                                 Padding="0"
-                                Background="IndianRed"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                 CornerRadius="1" />
                             <via:XStackPanel
                                 Grid.Column="1"
-                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Margin="12,7"
                                 Orientation="Vertical"
-                                Spacing="3">
+                                Spacing="1">
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="17"
                                     FontWeight="SemiBold"
                                     Text="{Binding CurrentProject.Screens.Count}" />
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="13"
-                                    FontWeight="SemiBold"
-                                    Opacity="0.72"
+                                    FontSize="11"
+                                    Opacity="0.62"
                                     Text="{via:XLoc Project.Screens,
                                                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
@@ -255,38 +227,30 @@
                     </via:XBorder>
 
                     <via:XBorder
-                        MinHeight="74"
+                        MinHeight="58"
                         Margin="5,0,0,5"
-                        Padding="12,10"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Columns="4,*">
+                        Padding="0"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                        BorderThickness="1">
+                        <via:XGrid Columns="6,*">
                             <via:XBorder
                                 Padding="0"
-                                Background="DarkTurquoise"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.Accent}}"
                                 CornerRadius="1" />
                             <via:XStackPanel
                                 Grid.Column="1"
-                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Margin="12,7"
                                 Orientation="Vertical"
-                                Spacing="3">
+                                Spacing="1">
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="17"
                                     FontWeight="SemiBold"
                                     Text="{Binding Templates.Count}" />
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="13"
-                                    FontWeight="SemiBold"
-                                    Opacity="0.72"
+                                    FontSize="11"
+                                    Opacity="0.62"
                                     Text="{via:XLoc Project.Templates,
                                                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
@@ -294,38 +258,30 @@
                     </via:XBorder>
 
                     <via:XBorder
-                        MinHeight="74"
+                        MinHeight="58"
                         Margin="0,5,5,0"
-                        Padding="10,10"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Columns="4,*">
+                        Padding="0"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                        BorderThickness="1">
+                        <via:XGrid Columns="6,*">
                             <via:XBorder
                                 Padding="0"
-                                Background="DarkViolet"
+                                Background="{DynamicResource {x:Static via:XBrushKeys.StatusWarning}}"
                                 CornerRadius="1" />
                             <via:XStackPanel
                                 Grid.Column="1"
-                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Margin="12,7"
                                 Orientation="Vertical"
-                                Spacing="3">
+                                Spacing="1">
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="17"
                                     FontWeight="SemiBold"
                                     Text="{Binding CurrentProject.Popups.Count}" />
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="13"
-                                    FontWeight="SemiBold"
-                                    Opacity="0.72"
+                                    FontSize="11"
+                                    Opacity="0.62"
                                     Text="{via:XLoc Project.Popups,
                                                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
@@ -333,38 +289,30 @@
                     </via:XBorder>
 
                     <via:XBorder
-                        MinHeight="74"
+                        MinHeight="58"
                         Margin="5,5,0,0"
-                        Padding="12,9"
-                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Columns="4,*">
+                        Padding="0"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                        BorderThickness="1">
+                        <via:XGrid Columns="6,*">
                             <via:XBorder
                                 Padding="0"
                                 Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                 CornerRadius="1" />
                             <via:XStackPanel
                                 Grid.Column="1"
-                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Margin="12,7"
                                 Orientation="Vertical"
-                                Spacing="3">
+                                Spacing="1">
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="17"
                                     FontWeight="SemiBold"
                                     Text="{Binding ControlCountValue}" />
                                 <via:XTextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="13"
-                                    FontWeight="SemiBold"
-                                    Opacity="0.72"
+                                    FontSize="11"
+                                    Opacity="0.62"
                                     Text="{via:XLoc Project.Controls,
                                                     ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                             </via:XStackPanel>
@@ -372,23 +320,16 @@
                     </via:XBorder>
                 </via:XUniformGrid>
 
-                <via:XStackPanel
-                    Grid.Row="4"
-                    Margin="0,0,0,10"
-                    Orientation="Vertical"
-                    Spacing="8">
-                    <via:XBorder Padding="10,7" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
+                <via:XBorder
+                    Grid.Row="3"
+                    Padding="10,8"
+                    Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceSunken}}"
+                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.BorderSubtle}}"
+                    BorderThickness="1">
+                    <via:XGrid Rows="Auto,Auto">
+                        <via:XGrid Columns="Auto,*">
                             <via:XTextBlock
                                 FontSize="12"
-                                FontWeight="SemiBold"
                                 Opacity="0.62"
                                 Text="{via:XLoc Project.Sharing,
                                                 ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
@@ -396,7 +337,7 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 FontSize="12"
-                                FontWeight="SemiBold">
+                                FontWeight="Medium">
                                 <via:XTextBlock.Inlines>
                                     <Run Text="{via:XLoc Project.Shared, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                                     <Run Text=" " />
@@ -408,20 +349,9 @@
                                 </via:XTextBlock.Inlines>
                             </via:XTextBlock>
                         </via:XGrid>
-                    </via:XBorder>
-
-                    <via:XBorder Padding="10,7" Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}">
-                        <via:XBorder.Effect>
-                            <DropShadowEffect
-                                BlurRadius="12"
-                                Direction="270"
-                                Opacity="0.15"
-                                ShadowDepth="2" />
-                        </via:XBorder.Effect>
-                        <via:XGrid Margin="0,1,0,0" Columns="Auto,*">
+                        <via:XGrid Grid.Row="1" Margin="0,7,0,0" Columns="Auto,*">
                             <via:XTextBlock
                                 FontSize="12"
-                                FontWeight="SemiBold"
                                 Opacity="0.62"
                                 Text="{via:XLoc Project.File,
                                                 ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
@@ -431,19 +361,19 @@
                                 HorizontalAlignment="Right"
                                 Cursor="Hand"
                                 FontSize="12"
-                                FontWeight="SemiBold"
+                                FontWeight="Medium"
                                 Text="{Binding CurrentProject.FilePath}"
                                 TextAlignment="Right"
                                 TextTrimming="CharacterEllipsis"
                                 ToolTip="{Binding CurrentProject.FilePath}" />
                         </via:XGrid>
-                    </via:XBorder>
-                </via:XStackPanel>
+                    </via:XGrid>
+                </via:XBorder>
 
                 <via:XGrid
-                    Grid.Row="5"
-                    Margin="0,10,0,0"
-                    Rows="Auto,Auto,*">
+                    Grid.Row="4"
+                    Margin="0,14,0,0"
+                    Rows="Auto,*">
                     <via:XTextBlock
                         FontSize="12"
                         FontWeight="SemiBold"
@@ -452,7 +382,7 @@
                                         ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
                     <ScrollViewer
                         Grid.Row="1"
-                        MaxHeight="128"
+                        MaxHeight="96"
                         Margin="0,7,0,0"
                         VerticalScrollBarVisibility="Auto">
                         <via:XTextBlock

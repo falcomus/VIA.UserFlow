@@ -163,7 +163,7 @@
             Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBorder}}"
             BorderThickness="1,0,0,0">
-            <StackPanel Margin="0,-2,0,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right">
 
                 <via:XToggleButton
                     Width="54"

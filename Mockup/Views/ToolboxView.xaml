@@ -163,15 +163,16 @@
             Background="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBackground}}"
             BorderBrush="{DynamicResource {x:Static via:XBrushKeys.NavigationPanelBorder}}"
             BorderThickness="1,0,0,0">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
 
                 <via:XToggleButton
-                    Width="54"
-                    Height="48"
-                    Margin="0,0,0,0"
+                    Width="55"
+                    Height="45"
+                    CornerRadius="2"
+                    Margin="-2,1,0,0"
                     Padding="0"
-                    BorderThickness="0"
                     Appearance="VerySubtle"
+                    BorderThickness="0"
                     Click="PinButton_Click"
                     IsChecked="{Binding ElementName=root, Path=IsFlyoutPinned}"
                     ToolTip="{via:XLoc Toolbox.PinToolboxTooltip,
@@ -935,8 +936,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Stretch"
             Panel.ZIndex="30"
-            Cursor="SizeWE"
             Background="{DynamicResource {x:Static via:XBrushKeys.Border}}"
+            Cursor="SizeWE"
             DragDelta="PinnedSplitter_DragDelta"
             ToolTip="Resize toolbox">
             <GridSplitter.Style>
@@ -949,31 +950,31 @@
                             <ControlTemplate TargetType="GridSplitter">
                                 <Border Background="{TemplateBinding Background}">
                                     <Grid>
-                                    <Border
-                                        Width="6"
-                                        Height="34"
-                                        HorizontalAlignment="Center"
-                                        Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
-                                        CornerRadius="3" />
-                                    <StackPanel
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Orientation="Vertical">
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Margin="0,0,0,3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Margin="0,0,0,3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                        <Ellipse
-                                            Width="3"
-                                            Height="3"
-                                            Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
-                                    </StackPanel>
+                                        <Border
+                                            Width="6"
+                                            Height="34"
+                                            HorizontalAlignment="Center"
+                                            Background="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                            CornerRadius="3" />
+                                        <StackPanel
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Orientation="Vertical">
+                                            <Ellipse
+                                                Width="3"
+                                                Height="3"
+                                                Margin="0,0,0,3"
+                                                Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
+                                            <Ellipse
+                                                Width="3"
+                                                Height="3"
+                                                Margin="0,0,0,3"
+                                                Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
+                                            <Ellipse
+                                                Width="3"
+                                                Height="3"
+                                                Fill="{DynamicResource {x:Static via:XBrushKeys.PrimaryForeground}}" />
+                                        </StackPanel>
                                     </Grid>
                                 </Border>
                             </ControlTemplate>

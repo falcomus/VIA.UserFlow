@@ -12,6 +12,9 @@ namespace Mockup.Views;
 /// </summary>
 public partial class ToolboxView : UserControl
 {
+    private static readonly double MinimumDockWidth = 380d;
+    private static readonly double MaximumDockWidth = 760d;
+
     public static readonly DependencyProperty IsFlyoutOpenProperty = DependencyProperty.Register(
         nameof(IsFlyoutOpen),
         typeof(bool),
@@ -118,7 +121,7 @@ public partial class ToolboxView : UserControl
     private void PinnedSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
     {
         if (IsFlyoutPinned)
-            DockWidth = Math.Clamp(DockWidth - e.HorizontalChange, 420, 900);
+            DockWidth = Math.Clamp(DockWidth - e.HorizontalChange, MinimumDockWidth, MaximumDockWidth);
     }
 
     private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -194,7 +197,7 @@ public partial class ToolboxView : UserControl
 
     private void UpdateFlyoutPresentation()
     {
-        PART_FlyoutSurface.Width = Math.Max(420, DockWidth);
+        PART_FlyoutSurface.Width = Math.Max(MinimumDockWidth, DockWidth);
 
         PART_HeaderTitle.Text = PART_Tabs.SelectedIndex switch
         {

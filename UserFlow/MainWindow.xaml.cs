@@ -71,10 +71,14 @@ public partial class MainWindow
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        WindowState = WindowState.Maximized;
+        //WindowState = WindowState.Maximized;
+
         VM.MainTabSelectedIndex = 0;
         ApplyCaptionButtonIcons();
-        StateChanged += (_, _) => ApplyCaptionButtonIcons();
+        StateChanged += (_, _) =>
+        {
+            ApplyCaptionButtonIcons();
+        };
     }
 
     private void ApplyCaptionButtonIcons()

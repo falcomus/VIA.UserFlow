@@ -17,6 +17,7 @@
     Width="1380"
     Height="850"
     MinWidth="1100"
+    WindowState="Maximized"
     MinHeight="800"
     d:DataContext="{d:DesignInstance Type=viewmodel:MockupViewModel}"
     AllowDrop="True"
@@ -26,8 +27,8 @@
     Drop="Window_Drop"
     PreviewMouseDown="Window_PreviewMouseDown"
     ResizeMode="CanResizeWithGrip"
-    ShowLanguageSelector="True"
-    ShowThemeModeButton="True"
+    ShowLanguageSelector="False"
+    ShowThemeModeButton="False"
     ShowThemeSelector="False"
     SnapsToDevicePixels="True"
     TextOptions.TextFormattingMode="Display"
@@ -35,28 +36,6 @@
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-
-    <via:XWindow.TitleBarContent>
-        <StackPanel
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Orientation="Horizontal">
-            <TextBlock
-                Margin="0,0,8,0"
-                VerticalAlignment="Center"
-                FontSize="12"
-                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
-                Text="{via:XLoc Main.Theme,
-                                ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
-            <via:XThemeSelector
-                Width="132"
-                Height="24"
-                Padding="6,0,6,1"
-                Background="{DynamicResource {x:Static via:XBrushKeys.Surface}}"
-                BorderBrush="{DynamicResource {x:Static via:XBrushKeys.ControlBorder}}"
-                BorderThickness="1" />
-        </StackPanel>
-    </via:XWindow.TitleBarContent>
 
     <Grid x:Name="PART_MainGrid" ext:GridEx.RowDef="54,*,28">
         <!--#region === MAIN TABCONTROL ===-->

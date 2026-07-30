@@ -159,6 +159,27 @@
   <data name="Options.Introduction" xml:space="preserve">
     <value>Änderungen werden sofort gespeichert und beim nächsten Start von UserFlow geladen.</value>
   </data>
+  <data name="Options.Appearance" xml:space="preserve">
+    <value>Darstellung und Sprache</value>
+  </data>
+  <data name="Options.AppearanceDescription" xml:space="preserve">
+    <value>Darstellungsthema, Anzeigemodus und Sprache von UserFlow anpassen.</value>
+  </data>
+  <data name="Options.ThemeDescription" xml:space="preserve">
+    <value>Legt das Farbschema der Benutzeroberfläche fest.</value>
+  </data>
+  <data name="Options.Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="Options.LanguageDescription" xml:space="preserve">
+    <value>Ändert Beschriftungen, Meldungen und regionale Formatierungen.</value>
+  </data>
+  <data name="Options.DarkMode" xml:space="preserve">
+    <value>Dunkler Modus</value>
+  </data>
+  <data name="Options.DarkModeDescription" xml:space="preserve">
+    <value>Verwendet die dunkle Variante des ausgewählten Darstellungsthemas.</value>
+  </data>
   <data name="Options.Saving" xml:space="preserve">
     <value>Speichern</value>
   </data>

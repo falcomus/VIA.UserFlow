@@ -31,6 +31,7 @@ public abstract partial class BaseDesigner
     private IReadOnlyList<GuidelineRect>? _cachedAlignmentGuidelineTargets;
 
     private const long DesignerBoundsGuidelineTargetId = long.MinValue;
+    private const float AlignmentGuidelineReleaseThreshold = 8f;
 
     private static readonly GuidelineOptions _alignmentGuidelineOptions = new()
     {
@@ -87,7 +88,7 @@ public abstract partial class BaseDesigner
         _cachedAlignmentGuidelineTargets = null;
     }
 
-    private void UpdateAlignmentGuidelinesDuringControlDrag(float dx, float dy)
+    private void UpdateAlignmentGuidelinesDuringControlDrag()
     {
         if (!AreAlignmentGuidelinesEnabled || VM?.SelectedControls == null || VM.SelectedControls.Count == 0)
         {
@@ -95,7 +96,7 @@ public abstract partial class BaseDesigner
             return;
         }
 
-        var movingBounds = CreateMovingSelectionGuidelineRect(dx, dy);
+        var movingBounds = CreateMovingSelectionGuidelineRect();
         if (!movingBounds.HasValue)
         {
             ClearAlignmentGuidelines();
@@ -109,9 +110,11 @@ public abstract partial class BaseDesigner
             return;
         }
 
-        _activeAlignmentGuidelines = _alignmentGuidelineManager.Evaluate(
+        _activeAlignmentGuidelines = _alignmentGuidelineManager.EvaluateWithHysteresis(
             movingBounds.Value,
             targets,
+            _activeAlignmentGuidelines,
+            AlignmentGuidelineReleaseThreshold,
             _alignmentGuidelineOptions);
     }
 
@@ -285,9 +288,11 @@ public abstract partial class BaseDesigner
             return changed;
         }
 
-        var preliminaryPositionGuidelines = _alignmentGuidelineManager.Evaluate(
+        var preliminaryPositionGuidelines = _alignmentGuidelineManager.EvaluateWithHysteresis(
             boundsBeforePositionSnap.Value,
             targets,
+            _activeAlignmentGuidelines,
+            AlignmentGuidelineReleaseThreshold,
             _alignmentGuidelineOptions);
 
         changed |= ApplyToolboxDropPositionSnap(
@@ -583,7 +588,7 @@ public abstract partial class BaseDesigner
         return null;
     }
 
-    private GuidelineRect? CreateMovingSelectionGuidelineRect(float dx, float dy)
+    private GuidelineRect? CreateMovingSelectionGuidelineRect()
     {
         if (_controlDragStartLocal.Count == 0)
             return null;
@@ -596,14 +601,15 @@ public abstract partial class BaseDesigner
         foreach (var kv in _controlDragStartLocal)
         {
             var ctrl = kv.Key;
-            var start = kv.Value;
             var page = ctrl.ParentBandPage;
 
             if (page == null)
                 continue;
 
-            float x = page.WorldBounds.Left + start.X + dx;
-            float y = page.WorldBounds.Top + start.Y + dy;
+            // Die Guideline-Auswertung verwendet exakt die bereits gerundete
+            // Geometrie, die in diesem Frame auch gerendert wird.
+            float x = page.WorldBounds.Left + ctrl.X;
+            float y = page.WorldBounds.Top + ctrl.Y;
 
             left = Math.Min(left, x);
             top = Math.Min(top, y);

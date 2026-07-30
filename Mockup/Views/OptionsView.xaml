@@ -60,6 +60,97 @@
                                     Width="18"
                                     Height="18"
                                     Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
+                                    Kind="PaletteOutline"
+                                    Pack="MaterialDesign" />
+                                <via:XTextBlock
+                                    Margin="9,0,0,0"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="{via:XLoc Options.Appearance, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                            </via:XStackPanel>
+
+                            <via:XTextBlock
+                                Margin="0,10,0,0"
+                                Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                Text="{via:XLoc Options.AppearanceDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                TextWrapping="Wrap" />
+
+                            <Grid Margin="0,18,0,0" ext:GridEx.ColDef="*,220">
+                                <via:XStackPanel VerticalAlignment="Center">
+                                    <via:XTextBlock
+                                        FontWeight="SemiBold"
+                                        Text="{via:XLoc Main.Theme, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <via:XTextBlock
+                                        Margin="0,3,24,0"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                        Text="{via:XLoc Options.ThemeDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        TextWrapping="Wrap" />
+                                </via:XStackPanel>
+                                <via:XThemeSelector
+                                    Grid.Column="1"
+                                    Height="36"
+                                    VerticalAlignment="Center"
+                                    Background="{DynamicResource {x:Static via:XBrushKeys.InputBackground}}"
+                                    BorderBrush="{DynamicResource {x:Static via:XBrushKeys.InputBorder}}"
+                                    BorderThickness="1"
+                                    Padding="10,0" />
+                            </Grid>
+
+                            <via:XSeparator Margin="0,16" />
+
+                            <Grid ext:GridEx.ColDef="*,220">
+                                <via:XStackPanel VerticalAlignment="Center">
+                                    <via:XTextBlock
+                                        FontWeight="SemiBold"
+                                        Text="{via:XLoc Options.Language, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <via:XTextBlock
+                                        Margin="0,3,24,0"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                        Text="{via:XLoc Options.LanguageDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        TextWrapping="Wrap" />
+                                </via:XStackPanel>
+                                <via:XLanguageSelector
+                                    Grid.Column="1"
+                                    Height="36"
+                                    VerticalAlignment="Center" />
+                            </Grid>
+
+                            <via:XSeparator Margin="0,16" />
+
+                            <Grid ext:GridEx.ColDef="*,Auto">
+                                <via:XStackPanel VerticalAlignment="Center">
+                                    <via:XTextBlock
+                                        FontWeight="SemiBold"
+                                        Text="{via:XLoc Options.DarkMode, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}" />
+                                    <via:XTextBlock
+                                        Margin="0,3,24,0"
+                                        Foreground="{DynamicResource {x:Static via:XBrushKeys.TextSecondary}}"
+                                        Text="{via:XLoc Options.DarkModeDescription, ResourceManager={x:Static resources:UserFlowResources.ResourceManager}}"
+                                        TextWrapping="Wrap" />
+                                </via:XStackPanel>
+                                <via:XToggleSwitch
+                                    x:Name="PART_DarkModeToggle"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Checked="DarkModeToggle_Checked"
+                                    Unchecked="DarkModeToggle_Unchecked" />
+                            </Grid>
+                        </via:XStackPanel>
+                    </via:XBorder>
+
+                    <via:XBorder
+                        Margin="0,14,0,0"
+                        Padding="20"
+                        Background="{DynamicResource {x:Static via:XBrushKeys.SurfaceRaised}}"
+                        BorderBrush="{DynamicResource {x:Static via:XBrushKeys.PanelBorder}}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <via:XStackPanel>
+                            <via:XStackPanel Orientation="Horizontal">
+                                <via:XIcon
+                                    Width="18"
+                                    Height="18"
+                                    Foreground="{DynamicResource {x:Static via:XBrushKeys.Primary}}"
                                     Kind="ContentSaveOutline"
                                     Pack="MaterialDesign" />
                                 <via:XTextBlock

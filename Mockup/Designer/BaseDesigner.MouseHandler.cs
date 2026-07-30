@@ -1310,7 +1310,7 @@ public partial class BaseDesigner
             }
         }
 
-        UpdateAlignmentGuidelinesDuringControlDrag(dx, dy);
+        UpdateAlignmentGuidelinesDuringControlDrag();
         UpdateControlDragInteractionHint(pt, dx, dy);
 
         InvalidateDesigner();

@@ -35,6 +35,52 @@ public sealed class AlignmentGuidelineManager
     }
 
     /// <summary>
+    /// Berechnet Guidelines mit einer Hysterese für bereits aktive Treffer.
+    /// Ein bestehender Treffer bleibt bis zum größeren Release-Threshold aktiv,
+    /// damit kleine Pointer-, DPI- oder Rundungsabweichungen das Ziel nicht
+    /// fortlaufend wechseln lassen.
+    /// </summary>
+    public GuidelineResult EvaluateWithHysteresis(
+        GuidelineRect movingBounds,
+        IReadOnlyList<GuidelineRect> targetRects,
+        GuidelineResult? previousResult,
+        float releaseThreshold,
+        GuidelineOptions? options = null)
+    {
+        options ??= GuidelineOptions.Default;
+
+        var currentResult = EvaluateInternal(
+            movingBounds,
+            targetRects,
+            options,
+            movingXAnchors: null,
+            movingYAnchors: null,
+            evaluateX: true,
+            evaluateY: true);
+
+        if (!movingBounds.IsValid || targetRects == null || targetRects.Count == 0)
+            return currentResult;
+
+        float safeReleaseThreshold = Math.Max(options.Threshold, releaseThreshold);
+
+        var xMatch = RefreshPreferredMatch(
+            GuidelineAxis.X,
+            movingBounds,
+            targetRects,
+            previousResult?.XMatch,
+            safeReleaseThreshold) ?? currentResult.XMatch;
+
+        var yMatch = RefreshPreferredMatch(
+            GuidelineAxis.Y,
+            movingBounds,
+            targetRects,
+            previousResult?.YMatch,
+            safeReleaseThreshold) ?? currentResult.YMatch;
+
+        return CreateResult(movingBounds, targetRects, xMatch, yMatch);
+    }
+
+    /// <summary>
     /// Berechnet Hilfslinien für eine Control-Größenänderung.
     /// Pro Achse wird ausschließlich die vom aktiven Resize-Handle bewegte Kante bewertet.
     /// Ziel-Controls stellen weiterhin Kanten und Mitte als Snap-Ziele bereit.
@@ -169,6 +215,15 @@ public sealed class AlignmentGuidelineManager
                 movingYAnchors)
             : null;
 
+        return CreateResult(movingBounds, targetRects, xMatch, yMatch);
+    }
+
+    private static GuidelineResult CreateResult(
+        GuidelineRect movingBounds,
+        IReadOnlyList<GuidelineRect> targetRects,
+        GuidelineMatch? xMatch,
+        GuidelineMatch? yMatch)
+    {
         if (!xMatch.HasValue && !yMatch.HasValue)
             return GuidelineResult.Empty;
 
@@ -190,6 +245,45 @@ public sealed class AlignmentGuidelineManager
         }
 
         return new GuidelineResult(xMatch, yMatch, lines, targetHighlightRects);
+    }
+
+    private static GuidelineMatch? RefreshPreferredMatch(
+        GuidelineAxis axis,
+        GuidelineRect movingBounds,
+        IReadOnlyList<GuidelineRect> targetRects,
+        GuidelineMatch? preferredMatch,
+        float releaseThreshold)
+    {
+        if (!preferredMatch.HasValue || preferredMatch.Value.Axis != axis)
+            return null;
+
+        var preferred = preferredMatch.Value;
+
+        foreach (var target in targetRects)
+        {
+            if (!target.IsValid || target.Id != preferred.TargetId)
+                continue;
+
+            float movingValue = movingBounds.GetAnchorValue(preferred.MovingAnchor);
+            float targetValue = target.GetAnchorValue(preferred.TargetAnchor);
+            float delta = targetValue - movingValue;
+            float distance = Math.Abs(delta);
+
+            if (distance > releaseThreshold)
+                return null;
+
+            return new GuidelineMatch(
+                axis,
+                preferred.MovingAnchor,
+                preferred.TargetAnchor,
+                movingValue,
+                targetValue,
+                delta,
+                distance,
+                target.Id);
+        }
+
+        return null;
     }
 
     private static GuidelineMatch? FindBestMatch(
